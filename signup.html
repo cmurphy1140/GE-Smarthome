@@ -27,6 +27,92 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.5s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
         /* Color Variables */
         :root {
             --primary-blue: #0066cc;
@@ -157,6 +243,7 @@
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            transform: scale(1.02);
         }
 
         .form-group textarea {
@@ -181,12 +268,12 @@
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 102, 204, 0.4);
         }
 
         .submit-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px) scale(0.98);
         }
 
         /* Success Message */
@@ -354,7 +441,7 @@
 </head>
 <body>
     <!-- Back to Home Link -->
-    <a href="index.html" class="back-link">
+    <a href="index.html" class="back-link animate-slide-in-left">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -362,7 +449,7 @@
     </a>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header animate-fade-in-down">
         <nav class="nav-container">
             <div class="logo">
                 GE Smarthome Dealer Program
@@ -373,10 +460,10 @@
 
     <!-- Main Content -->
     <main class="main-container">
-        <section class="form-section">
+        <section class="form-section animate-scale-in animate-delay-1">
             <div class="form-header">
-                <h1>Join an Elite Network of Smart Home Professionals</h1>
-                <p>Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
+                <h1 class="animate-fade-in-up animate-delay-2">Join an Elite Network of Smart Home Professionals</h1>
+                <p class="animate-fade-in-up animate-delay-3">Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
             </div>
 
             <form class="application-form" id="dealerForm">
