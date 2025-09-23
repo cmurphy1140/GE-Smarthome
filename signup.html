@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for GE Smarthome Dealer Program - Join Our Network</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            font-feature-settings: "kern" on, "liga" on, "calt" on, "zero" on;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary-blue: #0066cc;
+            --secondary-blue: #004499;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+            --border-color: #e9ecef;
+            --success-green: #28a745;
+            --error-red: #dc3545;
+            --accent-gradient: linear-gradient(135deg, #0066cc, #004499);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            text-align: center;
+        }
+
+        .logo-subtitle {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .form-header p {
+            font-size: 1.125rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Styles */
+        .application-form {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .required {
+            color: var(--error-red);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: var(--accent-gradient);
+            color: var(--white);
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 1px solid var(--success-green);
+            color: #155724;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .success-message h2 {
+            color: var(--success-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .success-message .success-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            background: var(--success-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-message .success-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--white);
+            stroke-width: 3;
+        }
+
+        /* Error Styles */
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: var(--error-red);
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Loading State */
+        .submit-btn.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .submit-btn.loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem 2rem;
+            }
+
+            .form-section {
+                padding: 2rem;
+                margin-top: 1rem;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-header p {
+                font-size: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-section {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .form-header h1 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Form Input Animations */
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            position: relative;
+        }
+
+        .form-group input:not(:placeholder-shown),
+        .form-group select:not(:empty),
+        .form-group textarea:not(:placeholder-shown) {
+            border-color: var(--primary-blue);
+        }
+
+        /* Back to Home Link */
+        .back-link {
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-blue);
+        }
+
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                position: static;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Link -->
+    <a href="index.html" class="back-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                GE Smarthome Dealer Program
+                <div class="logo-subtitle">in partnership with Savant</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <section class="form-section">
+            <div class="form-header">
+                <h1>Join an Elite Network of Smart Home Professionals</h1>
+                <p>Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
+            </div>
+
+            <form class="application-form" id="dealerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="companyName">Company Name <span class="required">*</span></label>
+                        <input type="text" id="companyName" name="companyName" required>
+                        <div class="error-message">Company name is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactName">Primary Contact Name <span class="required">*</span></label>
+                        <input type="text" id="contactName" name="contactName" required>
+                        <div class="error-message">Contact name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message">Valid email address is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <div class="error-message">Phone number is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Company Website</label>
+                    <input type="url" id="website" name="website" placeholder="https://www.yourcompany.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="streetAddress">Street Address</label>
+                    <input type="text" id="streetAddress" name="streetAddress">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" id="zipCode" name="zipCode">
+                </div>
+
+                <div class="form-group">
+                    <label for="businessFocus">Primary Business Focus <span class="required">*</span></label>
+                    <select id="businessFocus" name="businessFocus" required>
+                        <option value="">Select your primary business focus</option>
+                        <option value="custom-integrator">Custom Integrator / AV Professional</option>
+                        <option value="security-installer">Security Installer</option>
+                        <option value="licensed-electrician">Licensed Electrician</option>
+                        <option value="home-builder">Home Builder</option>
+                        <option value="remodeler-contractor">Remodeler / Contractor</option>
+                        <option value="retailer">Retailer</option>
+                    </select>
+                    <div class="error-message">Please select your business focus</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="yearsInBusiness">Number of Years in Business <span class="required">*</span></label>
+                    <input type="number" id="yearsInBusiness" name="yearsInBusiness" min="0" max="100" required>
+                    <div class="error-message">Years in business is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="annualRevenue">Estimated Annual Revenue Range <span class="required">*</span></label>
+                    <select id="annualRevenue" name="annualRevenue" required>
+                        <option value="">Select revenue range</option>
+                        <option value="under-100k">Under $100,000</option>
+                        <option value="100k-500k">$100,000 - $500,000</option>
+                        <option value="500k-1m">$500,000 - $1,000,000</option>
+                        <option value="1m-5m">$1,000,000 - $5,000,000</option>
+                        <option value="over-5m">Over $5,000,000</option>
+                    </select>
+                    <div class="error-message">Please select your revenue range</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamSize">Number of Installation Technicians</label>
+                    <select id="teamSize" name="teamSize">
+                        <option value="">Select team size</option>
+                        <option value="1-2">1-2 technicians</option>
+                        <option value="3-5">3-5 technicians</option>
+                        <option value="6-10">6-10 technicians</option>
+                        <option value="11-25">11-25 technicians</option>
+                        <option value="over-25">Over 25 technicians</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetTier">Which program tier interests you most?</label>
+                    <select id="targetTier" name="targetTier">
+                        <option value="">Select program tier</option>
+                        <option value="authorized-dealer">Authorized Dealer (Entry Level)</option>
+                        <option value="premier-partner">Premier Partner ($50K+ commitment)</option>
+                        <option value="elite-integrator">Elite Integrator ($150K+ commitment)</option>
+                        <option value="unsure">I need more information to decide</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currentBrands">Which smart home brands do you currently sell and install?</label>
+                    <textarea id="currentBrands" name="currentBrands" placeholder="Please list the smart home brands you currently work with (e.g., Lutron, Control4, Sonos, Ring, etc.)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="certifications">Relevant Certifications or Training</label>
+                    <textarea id="certifications" name="certifications" placeholder="List any relevant certifications (CEDIA, CABA, manufacturer certifications, electrical licenses, etc.)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="interestReason">Why are you interested in the GE Smarthome Dealer Program?</label>
+                    <textarea id="interestReason" name="interestReason" placeholder="Tell us about your interest in partnering with GE Lighting and Savant..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+
+            <!-- Success Message (Hidden by default) -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h2>Thank you for your interest!</h2>
+                <p>We have received your application and a member of our team will be in touch soon.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Form validation and submission handling
+        document.getElementById('dealerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            clearErrors();
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // Hide form and show success message
+                document.querySelector('.application-form').style.display = 'none';
+                document.querySelector('.form-header').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+
+                // Remove loading state
+                submitBtn.classList.remove('loading');
+
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 2000);
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Required fields validation
+            const requiredFields = [
+                'companyName',
+                'contactName',
+                'email',
+                'phone',
+                'businessFocus',
+                'yearsInBusiness',
+                'annualRevenue'
+            ];
+
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const value = field.value.trim();
+
+                if (!value) {
+                    showError(fieldName, field.getAttribute('type') === 'email' ? 'Valid email address is required' :
+                             fieldName === 'businessFocus' ? 'Please select your business focus' :
+                             fieldName === 'annualRevenue' ? 'Please select your revenue range' :
+                             'This field is required');
+                    isValid = false;
+                }
+            });
+
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            if (email && !isValidEmail(email)) {
+                showError('email', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            // Phone validation
+            const phone = document.getElementById('phone').value.trim();
+            if (phone && !isValidPhone(phone)) {
+                showError('phone', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            // Years in business validation
+            const years = document.getElementById('yearsInBusiness').value;
+            if (years && (years < 0 || years > 100)) {
+                showError('yearsInBusiness', 'Please enter a valid number of years');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(fieldName, message) {
+            const field = document.getElementById(fieldName);
+            const formGroup = field.closest('.form-group');
+            const errorMessage = formGroup.querySelector('.error-message');
+
+            formGroup.classList.add('error');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function clearErrors() {
+            const errorGroups = document.querySelectorAll('.form-group.error');
+            errorGroups.forEach(group => {
+                group.classList.remove('error');
+                group.querySelector('.error-message').style.display = 'none';
+            });
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+            return cleanPhone.length >= 10 && phoneRegex.test(cleanPhone);
+        }
+
+        // Real-time validation on input
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                const formGroup = this.closest('.form-group');
+                if (formGroup.classList.contains('error')) {
+                    // Re-validate this field
+                    const fieldName = this.getAttribute('name');
+                    if (fieldName && this.value.trim()) {
+                        formGroup.classList.remove('error');
+                        formGroup.querySelector('.error-message').style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Enhanced UX: Clear error on focus
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('focus', function() {
+                const formGroup = this.closest('.form-group');
+                if (formGroup.classList.contains('error')) {
+                    formGroup.classList.remove('error');
+                    formGroup.querySelector('.error-message').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
