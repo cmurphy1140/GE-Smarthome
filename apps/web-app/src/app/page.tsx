@@ -28,15 +28,14 @@ import {
   Users,
   Waves
 } from 'lucide-react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' }
+    y: 0
   }
 }
 
@@ -54,7 +53,7 @@ const hoverCard = {
     y: -10,
     scale: 1.02,
     boxShadow: '0px 24px 55px rgba(15, 23, 42, 0.14)',
-    transition: { type: 'spring', stiffness: 280, damping: 24 }
+    transition: { type: 'spring' as const, stiffness: 280, damping: 24 }
   }
 }
 
@@ -63,53 +62,37 @@ const tiers = [
     icon: Lightbulb,
     label: 'Phase 01',
     title: 'GE Proseo Certified Installer',
-    summary:
-      'Launch with connected lighting experiences that strengthen your brand while keeping installs fast and repeatable.',
-    revenue: 'Avg. project value $5K–$15K',
-    benefits: [
-      'Exclusive pricing on GE Proseo fixtures',
-      'Quick-start scenes and commissioning playbooks',
-      'Marketing starter kit with co-branded assets'
-    ]
+    summary: 'Launch with connected lighting experiences that strengthen your brand.',
+    revenue: '$5K–$15K avg',
+    keyBenefit: 'Exclusive GE Proseo pricing',
+    focus: 'Smart Lighting'
   },
   {
     icon: Award,
     label: 'Phase 02',
     title: 'Connected Home Specialist',
-    summary:
-      'Introduce layered controls, sensors, and voice integrations to deliver seamless lighting-led smart homes.',
-    revenue: 'Avg. project value $15K–$45K',
-    benefits: [
-      'Advanced controls & energy management training',
-      'Dedicated design desk for specification reviews',
-      'Bundle incentives on accessories and sensors'
-    ]
+    summary: 'Introduce layered controls, sensors, and voice integrations.',
+    revenue: '$15K–$45K avg',
+    keyBenefit: 'Advanced controls training',
+    focus: 'Smart Controls'
   },
   {
     icon: Diamond,
     label: 'Phase 03',
     title: 'Savant Systems Integrator',
-    summary:
-      'Expand into high-margin automation with whole-home orchestration and premium client experiences.',
-    revenue: 'Avg. project value $45K–$120K',
-    benefits: [
-      'Savant University accreditation pathways',
-      'Shared pipeline forecasting with channel strategist',
-      'Access to demo gear grants and showroom support'
-    ]
+    summary: 'Expand into high-margin automation with whole-home orchestration.',
+    revenue: '$45K–$120K avg',
+    keyBenefit: 'Savant University access',
+    focus: 'Home Automation'
   },
   {
     icon: Trophy,
     label: 'Phase 04',
     title: 'Savant Ambassador',
-    summary:
-      'Lead flagship installs with concierge project services, co-marketing, and priority launch access.',
-    revenue: 'Avg. project value $120K+',
-    benefits: [
-      'Invite-only innovation previews & beta programs',
-      'Joint PR + event activation budget',
-      'Executive escalation channel and roadmap input'
-    ]
+    summary: 'Lead flagship installs with concierge project services.',
+    revenue: '$120K+ avg',
+    keyBenefit: 'Innovation preview access',
+    focus: 'Flagship Projects'
   }
 ]
 
@@ -144,19 +127,19 @@ const pillars = [
     icon: Sparkles,
     title: 'Signature Portfolio',
     description: 'Deliver the most polished smart home experiences backed by GE Lighting innovation and Savant engineering.',
-    bullets: ['Curated Cync lighting & controls', 'Whole-home scenes with Savant Pro', 'Premium brand cachet in every proposal']
+    badge: 'Premium Brand'
   },
   {
     icon: ShieldCheck,
     title: 'Trusted Partnership',
     description: 'A true co-selling motion with marketing support, regional enablement, and concierge service for your clients.',
-    bullets: ['Co-branded campaign toolkits', 'Geo-targeted lead distribution', 'Dedicated success playbooks']
+    badge: 'Co-Selling'
   },
   {
     icon: LineChart,
     title: 'Profitable Growth',
     description: 'Unlock better margins, tiered incentives, and rebate programs that scale with your business momentum.',
-    bullets: ['Volume-based rebates', 'Quarterly business reviews', 'Priority access to new product launches']
+    badge: 'Higher Margins'
   }
 ]
 
@@ -188,12 +171,9 @@ const verticals = [
     title: 'Electrical Contractors',
     headline: 'Professional Lighting Solutions',
     summary:
-      'Move beyond commodity installs with GE Proseo presets, energy reporting, and retrofit-friendly controls that keep crews efficient.',
-    highlights: [
-      'Commission rooms in minutes with pre-built lighting recipes',
-      'Capture recurring revenue with maintenance & monitoring add-ons',
-      'Dedicated concierge to bundle permitting documentation and cut sheets'
-    ],
+      'Move beyond commodity installs with GE Proseo presets, energy reporting, and retrofit-friendly controls.',
+    keyBenefit: 'Commission rooms in minutes',
+    projectValue: '$5K-$15K avg',
     cta: 'Blueprint your first Proseo upsell',
     href: '/signup?vertical=electrical'
   },
@@ -203,12 +183,9 @@ const verticals = [
     title: 'Security Installers',
     headline: 'Smart Security Integration',
     summary:
-      'Elevate surveillance projects with presence simulation, entry lighting, and Savant scenes that sync with your preferred platforms.',
-    highlights: [
-      'Integrate motion and access alerts with lighting-based deterrence',
-      'Deliver premium monitoring tiers leveraging the Savant ecosystem',
-      'Co-market safety campaigns with geo-targeted homeowner offers'
-    ],
+      'Elevate surveillance projects with presence simulation, entry lighting, and Savant scenes that sync with platforms.',
+    keyBenefit: 'Motion alerts + lighting deterrence',
+    projectValue: '$10K-$25K avg',
     cta: 'Design a security + lighting package',
     href: '/signup?vertical=security'
   },
@@ -218,12 +195,9 @@ const verticals = [
     title: 'A/V Integrators',
     headline: 'Complete Home Automation',
     summary:
-      'Bundle GE Lighting, multi-room audio, and Savant Pro control to launch signature entertainment and wellness scenes.',
-    highlights: [
-      'Pre-configured Savant scenes for cinema, wellness, and hosting',
-      'High-touch design desk for complex audio, shading, and control stacks',
-      'Launch-ready showroom demos with co-op marketing dollars'
-    ],
+      'Bundle GE Lighting, multi-room audio, and Savant Pro control for signature entertainment and wellness scenes.',
+    keyBenefit: 'Pre-configured Savant scenes',
+    projectValue: '$25K-$75K avg',
     cta: 'Curate your next flagship install',
     href: '/signup?vertical=av'
   }
@@ -233,19 +207,19 @@ const resources = [
   {
     icon: Users,
     title: 'Lead Intelligence',
-    copy: 'Intent data, regional programs, and curated introductions to high-value projects.',
+    copy: 'Intent data and curated introductions to high-value projects.',
     tag: 'Pipeline'
   },
   {
     icon: Globe2,
     title: 'Showroom Amplification',
-    copy: 'Interactive demo scripts, virtual walkthroughs, and digital signage assets ready to deploy.',
+    copy: 'Interactive demos and digital assets ready to deploy.',
     tag: 'Experience'
   },
   {
     icon: CalendarCheck,
     title: 'White-Glove Support',
-    copy: '24/7 escalation paths, design consultation, and field engineering for complex installs.',
+    copy: '24/7 escalation paths and field engineering support.',
     tag: 'Support'
   }
 ]
@@ -301,15 +275,6 @@ export default function Home() {
 
   const ActiveTierIcon = tiers[activeTier].icon
 
-  const backgroundGrid = useMemo(
-    () =>
-      Array.from({ length: 12 }, (_, index) => ({
-        delay: index * 0.08 + 0.6,
-        left: `${(index % 4) * 25}%`,
-        top: `${Math.floor(index / 4) * 33}%`
-      })),
-    []
-  )
 
   const heroBackgroundStyles = {
     backgroundImage:
@@ -388,6 +353,7 @@ export default function Home() {
         >
           <motion.div
             variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white"
           >
             Professional Smart Home Solutions
@@ -395,6 +361,7 @@ export default function Home() {
 
           <motion.h1
             variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
             className="mt-8 text-5xl font-bold leading-tight text-white md:text-7xl"
           >
             Build Immersive GE Smarthomes, by Savant AI
@@ -402,6 +369,7 @@ export default function Home() {
 
           <motion.p
             variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
             className="mx-auto mt-8 max-w-3xl text-xl text-blue-100 md:text-2xl leading-relaxed"
           >
             Partner with industry leaders to deliver cutting-edge smart home experiences.
@@ -410,6 +378,7 @@ export default function Home() {
 
           <motion.div
             variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
             className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <Link
@@ -431,6 +400,7 @@ export default function Home() {
 
           <motion.div
             variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
             className="mt-16 grid grid-cols-3 gap-8 text-center"
           >
             <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
@@ -528,16 +498,13 @@ export default function Home() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
                     <pillar.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-6 text-xl font-semibold text-slate-900">{pillar.title}</h3>
+                  <div className="flex items-center justify-between mt-6">
+                    <h3 className="text-xl font-semibold text-slate-900">{pillar.title}</h3>
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                      {pillar.badge}
+                    </span>
+                  </div>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
-                  <ul className="mt-6 space-y-3 text-sm text-slate-600">
-                    {pillar.bullets.map(point => (
-                      <li key={point} className="flex items-start gap-3">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-blue-600" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </motion.article>
             ))}
@@ -644,14 +611,15 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-sm leading-relaxed text-slate-600">{vertical.summary}</p>
-                  <ul className="space-y-3 text-sm text-slate-600">
-                    {vertical.highlights.map(point => (
-                      <li key={point} className="flex items-start gap-3">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-blue-600" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      <span className="text-sm font-medium text-slate-700">{vertical.keyBenefit}</span>
+                    </div>
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                      {vertical.projectValue}
+                    </span>
+                  </div>
                   <Link
                     href={vertical.href}
                     className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-900"
@@ -731,17 +699,18 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">{tiers[activeTier].summary}</p>
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/50 px-4 py-2 text-sm font-semibold text-blue-700">
-                  {tiers[activeTier].revenue}
+                <div className="flex items-center justify-between mt-4">
+                  <div className="rounded-2xl border border-blue-100 bg-blue-50/50 px-4 py-2 text-sm font-semibold text-blue-700">
+                    {tiers[activeTier].revenue}
+                  </div>
+                  <span className="inline-flex items-center rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 px-3 py-1 text-xs font-semibold text-blue-800">
+                    {tiers[activeTier].focus}
+                  </span>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-600">
-                  {tiers[activeTier].benefits.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-blue-600" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-4 flex items-center gap-3 rounded-2xl border border-green-100 bg-green-50/50 px-4 py-3">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <span className="text-sm font-medium text-green-800">{tiers[activeTier].keyBenefit}</span>
+                </div>
               </motion.div>
             </AnimatePresence>
           </motion.div>
@@ -815,11 +784,11 @@ export default function Home() {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
                     <resource.icon className="h-6 w-6" />
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-100/80">
+                  <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
                     {resource.tag}
                   </span>
                 </div>
@@ -834,10 +803,16 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 px-10 py-12 text-white shadow-[0_24px_60px_rgba(37,99,235,0.35)]"
+            className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 px-8 py-12 text-white shadow-[0_24px_60px_rgba(37,99,235,0.35)] md:flex md:items-stretch md:gap-12"
           >
-            <div className="absolute inset-y-0 right-10 hidden w-40 rotate-6 rounded-3xl border border-white/30 bg-white/10 md:block" />
-            <div className="relative max-w-2xl">
+            <div className="relative mb-8 flex-1 overflow-hidden rounded-2xl border border-white/20 bg-white/10 md:mb-0">
+              <img
+                src="/dealer-cta.png"
+                alt="GE Smarthome dealers collaborating"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="relative flex-1 self-center">
               <h3 className="text-2xl font-semibold leading-tight md:text-3xl">
                 Need a tailored enablement path?
               </h3>
@@ -846,7 +821,7 @@ export default function Home() {
               </p>
               <Link
                 href="/signup"
-                className="mt-6 inline-flex items-center gap-3 text-sm font-semibold text-white"
+                className="mt-6 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-1 hover:text-blue-900"
               >
                 Connect with our team
                 <Rocket className="h-4 w-4" />
