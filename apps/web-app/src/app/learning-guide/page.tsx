@@ -369,8 +369,8 @@ function LearningGuideHero() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative bg-gradient-to-br from-blue-950/50 to-blue-900/50 p-8 rounded-2xl backdrop-blur-sm">
                   <Image
-                    src="/Gemini_Generated_Image_yp0k5typ0k5typ0k.png"
-                    alt="GE Smart Lighting Innovation"
+                    src="/ge-smart-bulb-showcase.png"
+                    alt="GE Smart Bulb with Spiral Filament Technology"
                     width={400}
                     height={288}
                     className="h-72 w-auto object-contain drop-shadow-2xl mx-auto"
@@ -380,10 +380,10 @@ function LearningGuideHero() {
             </div>
             
             <div className="text-center space-y-4">
-              <h2 className="text-2xl font-bold text-white">Innovation in Every Light</h2>
+              <h2 className="text-2xl font-bold text-white">GE Smart Bulb Technology</h2>
               <p className="text-blue-100 text-base leading-relaxed max-w-2xl mx-auto">
-                Experience the future of smart lighting with GE&apos;s cutting-edge technology. Our intelligent lighting solutions 
-                transform every space into an energy-efficient, fully automated environment that adapts to your lifestyle.
+                Discover the revolutionary GE smart bulb featuring spiral filament technology and intelligent controls.
+                Our premium smart lighting combines classic Edison aesthetics with modern connectivity for the perfect blend of style and functionality.
               </p>
               <div className="flex justify-center gap-4 mt-6">
                 <div className="text-center">

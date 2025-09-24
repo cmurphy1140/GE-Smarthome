@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 
 interface SectionHeaderProps {
   eyebrow?: string
+  eyebrowNode?: ReactNode
   title: ReactNode
   description?: ReactNode
   align?: 'left' | 'center'
@@ -23,6 +24,7 @@ const baseAnimation = {
 
 export function SectionHeader({
   eyebrow,
+  eyebrowNode,
   title,
   description,
   align = 'center',
@@ -48,7 +50,9 @@ export function SectionHeader({
       viewport={{ once: true, margin: '-72px' }}
       className={`space-y-3 ${alignmentClass} ${widthClass} ${className ?? ''}`.trim()}
     >
-      {eyebrow ? (
+      {eyebrowNode ? (
+        eyebrowNode
+      ) : eyebrow ? (
         <span className={eyebrowClasses}>
           {eyebrow}
         </span>

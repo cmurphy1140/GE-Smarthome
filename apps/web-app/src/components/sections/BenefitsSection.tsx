@@ -217,24 +217,24 @@ export default function BenefitsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="rounded-3xl border border-blue-800/30 bg-blue-900/40 backdrop-blur-sm p-8 shadow-[0_24px_60px_rgba(15,23,42,0.2)]"
+            className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/20 text-blue-300">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950/10 text-blue-950">
                 <BarChart3 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">Calculate your ROI</h3>
-                <p className="text-sm text-blue-100">See how much additional revenue you could generate with improved margins and incentives.</p>
+                <h3 className="text-lg font-semibold text-slate-900">Calculate your ROI</h3>
+                <p className="text-sm text-slate-600">See how much additional revenue you could generate with improved margins and incentives.</p>
               </div>
             </div>
 
             <div className="mt-8 space-y-6">
               {roiCalculator.inputs.map(input => (
                 <div key={input.key}>
-                  <label className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-blue-300">
+                  <label className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">
                     {input.label}
-                    <span className="text-white">
+                    <span className="text-slate-900">
                       {input.key === 'value' ? `$${roiInputs[input.key].toLocaleString()}` : `${roiInputs[input.key]}${input.key === 'margin' ? '%' : ''}`}
                     </span>
                   </label>
@@ -249,9 +249,9 @@ export default function BenefitsSection() {
                         [input.key]: parseInt(event.target.value, 10)
                       }))
                     }
-                    className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-blue-800/40"
+                    className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200"
                   />
-                  <div className="mt-2 flex justify-between text-xs text-blue-300">
+                  <div className="mt-2 flex justify-between text-xs text-slate-500">
                     <span>{input.key === 'value' ? `$${input.min.toLocaleString()}` : input.min}</span>
                     <span>{input.key === 'value' ? `$${input.max.toLocaleString()}` : input.max}</span>
                   </div>
@@ -265,25 +265,25 @@ export default function BenefitsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="flex flex-col justify-between rounded-3xl border border-blue-800/30 bg-blue-900/40 backdrop-blur-sm p-8 shadow-[0_24px_60px_rgba(15,23,42,0.2)]"
+            className="flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
           >
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm font-semibold text-blue-200">
+              <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
                 <span>Monthly revenue increase</span>
-                <span className="text-2xl font-semibold text-white">+${roi.monthlyIncrease.toLocaleString()}</span>
+                <span className="text-2xl font-semibold text-slate-900">+${roi.monthlyIncrease.toLocaleString()}</span>
               </div>
-              <div className="flex items-center justify-between text-sm font-semibold text-blue-200">
+              <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
                 <span>Annual revenue increase</span>
-                <span className="text-2xl font-semibold text-white">+${roi.annualIncrease.toLocaleString()}</span>
+                <span className="text-2xl font-semibold text-slate-900">+${roi.annualIncrease.toLocaleString()}</span>
               </div>
-              <div className="flex items-center justify-between text-sm font-semibold text-blue-200">
+              <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
                 <span>Margin improvement</span>
-                <span className="text-2xl font-semibold text-white">+{roi.marginImprovement.toFixed(1)}%</span>
+                <span className="text-2xl font-semibold text-slate-900">+{roi.marginImprovement.toFixed(1)}%</span>
               </div>
             </div>
             <Link
               href="/signup"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900"
             >
               Start earning more
               <Rocket className="h-4 w-4" />

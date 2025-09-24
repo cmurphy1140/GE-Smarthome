@@ -36,9 +36,6 @@ export default function Home() {
       <Header />
       <main className="space-y-0">
         <HeroSection />
-        <section id="about">
-          <AboutSection />
-        </section>
         <section id="program">
           <PillarsSection />
         </section>
@@ -57,6 +54,9 @@ export default function Home() {
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
           </Suspense>
+        </section>
+        <section id="about">
+          <AboutSection />
         </section>
       </main>
       <Footer />
