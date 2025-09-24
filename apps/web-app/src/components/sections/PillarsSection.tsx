@@ -158,11 +158,17 @@ function PillarsSectionComponent() {
               </div>
 
               <div className="relative">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-slate-400 group-hover:text-white transition-colors">
-                    <span className="text-lg font-semibold">Visit store</span>
-                    <ExternalLink className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 backdrop-blur border border-white/10 group-hover:bg-white/10 transition-all duration-300">
+                  <div>
+                    <p className="text-white font-semibold text-lg mb-1 flex items-center gap-2">
+                      Visit Partner Store
+                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </p>
+                    <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">
+                      Start shopping with exclusive access
+                    </p>
                   </div>
+                  <ExternalLink className="h-6 w-6 text-slate-400 group-hover:text-white transition-colors" />
                 </div>
               </div>
             </motion.a>
