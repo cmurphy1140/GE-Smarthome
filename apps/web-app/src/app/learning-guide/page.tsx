@@ -19,6 +19,7 @@ import {
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeader } from '@/components/common/SectionHeader'
+import { IntegrationDiagram } from '@/components/sections/IntegrationDiagram'
 
 const heroStats = [
   { value: '140+', label: 'Years of innovation' },
@@ -515,6 +516,10 @@ export default function LearningGuidePage() {
               </div>
             </motion.div>
           </div>
+        </section>
+
+        <section className="py-24">
+          <IntegrationDiagram />
         </section>
 
         <section id="technology" className="mx-auto max-w-6xl px-4 sm:px-6">
