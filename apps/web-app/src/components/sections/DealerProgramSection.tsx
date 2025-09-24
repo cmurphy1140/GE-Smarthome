@@ -1,6 +1,5 @@
 'use client'
 
-import { memo } from 'react'
 import { ShieldCheck, Headphones, Sparkles } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
 
@@ -22,7 +21,7 @@ const highlights = [
   }
 ] as const
 
-function DealerProgramSectionComponent() {
+export function DealerProgramSection() {
   return (
     <section className="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 py-24 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -53,5 +52,3 @@ function DealerProgramSectionComponent() {
     </section>
   )
 }
-
-export const DealerProgramSection = memo(DealerProgramSectionComponent)

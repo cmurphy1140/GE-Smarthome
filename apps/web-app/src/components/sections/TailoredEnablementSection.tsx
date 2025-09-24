@@ -4,10 +4,9 @@ import { motion } from 'framer-motion'
 import { Rocket, Play } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { memo } from 'react'
 import { fadeInUp } from '../common/OptimizedMotion'
 
-function TailoredEnablementSectionComponent() {
+export function TailoredEnablementSection() {
   return (
     <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 py-24 text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.18),_transparent_65%)]" />
@@ -68,4 +67,3 @@ function TailoredEnablementSectionComponent() {
   )
 }
 
-export const TailoredEnablementSection = memo(TailoredEnablementSectionComponent)
