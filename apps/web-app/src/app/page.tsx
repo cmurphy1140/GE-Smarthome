@@ -186,7 +186,7 @@ const verticals = [
     id: 'electrical',
     icon: Cable,
     title: 'Electrical Contractors',
-    headline: 'Energize lighting packages with programmable scenes',
+    headline: 'Professional Lighting Solutions',
     summary:
       'Move beyond commodity installs with GE Proseo presets, energy reporting, and retrofit-friendly controls that keep crews efficient.',
     highlights: [
@@ -201,7 +201,7 @@ const verticals = [
     id: 'security',
     icon: Shield,
     title: 'Security Installers',
-    headline: 'Layer lighting with adaptive security automations',
+    headline: 'Smart Security Integration',
     summary:
       'Elevate surveillance projects with presence simulation, entry lighting, and Savant scenes that sync with your preferred platforms.',
     highlights: [
@@ -216,7 +216,7 @@ const verticals = [
     id: 'av',
     icon: Waves,
     title: 'A/V Integrators',
-    headline: 'Own the whole-room experience with Savant orchestration',
+    headline: 'Complete Home Automation',
     summary:
       'Bundle GE Lighting, multi-room audio, and Savant Pro control to launch signature entertainment and wellness scenes.',
     highlights: [
@@ -615,7 +615,7 @@ export default function Home() {
                 Tailored playbooks for every smart home professional
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Electrical contractors, security specialists, and A/V integrators each get a runway that matches their workflow, margins, and client expectations.
+                Professional smart home solutions tailored to your business expertise.
               </p>
             </motion.div>
           </div>
