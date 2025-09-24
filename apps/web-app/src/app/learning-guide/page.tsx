@@ -2,6 +2,16 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  Lightbulb,
+  Home,
+  BarChart3,
+  Star,
+  Link2,
+  Building2,
+  Battery,
+  TrendingUp
+} from 'lucide-react'
 
 const timeline = [
   {
@@ -32,7 +42,7 @@ const timeline = [
 
 const productFamilies = [
   {
-    icon: '💡',
+    icon: Lightbulb,
     title: 'GE Proseo Smart Lighting',
     summary: 'Accessible, retrofit-friendly smart lighting solutions for every budget.',
     items: [
@@ -55,7 +65,7 @@ const productFamilies = [
     ]
   },
   {
-    icon: '🏠',
+    icon: Home,
     title: 'Savant Home Automation',
     summary: 'Premium control, energy resilience, and orchestration for luxury environments.',
     items: [
@@ -83,7 +93,7 @@ const productFamilies = [
 
 const marketPosition = [
   {
-    icon: '📊',
+    icon: BarChart3,
     title: 'Entry Level — GE Proseo',
     bullets: [
       'DIY-friendly installs with retrofit compatibility',
@@ -92,7 +102,7 @@ const marketPosition = [
     ]
   },
   {
-    icon: '⭐️',
+    icon: Star,
     title: 'Premium — Savant Integration',
     bullets: [
       'Whole-home automation with concierge support',
@@ -101,7 +111,7 @@ const marketPosition = [
     ]
   },
   {
-    icon: '🔗',
+    icon: Link2,
     title: 'Seamless Scalability',
     bullets: [
       'Start with smart bulbs and switches, expand to Savant scenes',
@@ -202,7 +212,7 @@ const trainingTracks = [
 
 const advantages = [
   {
-    icon: '🏛️',
+    icon: Building2,
     title: 'Legacy & Trust',
     bullets: [
       '140+ years of GE lighting innovation',
@@ -211,7 +221,7 @@ const advantages = [
     ]
   },
   {
-    icon: '🔋',
+    icon: Battery,
     title: 'Energy Resilience',
     bullets: [
       'Grid-independent backup and load management',
@@ -220,7 +230,7 @@ const advantages = [
     ]
   },
   {
-    icon: '📈',
+    icon: TrendingUp,
     title: 'Scalable Solutions',
     bullets: [
       'Consistent app experience from bulb to whole-home',
@@ -352,8 +362,8 @@ export default function LearningGuidePage() {
               >
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-2xl text-white shadow-lg shadow-blue-500/30">
-                      {family.icon}
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+                      <family.icon className="h-8 w-8" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-semibold text-slate-900">{family.title}</h3>
@@ -394,7 +404,9 @@ export default function LearningGuidePage() {
                 viewport={{ once: true, margin: '-80px' }}
                 className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
               >
-                <div className="text-3xl">{card.icon}</div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
+                  <card.icon className="h-6 w-6" />
+                </div>
                 <h3 className="mt-4 text-xl font-semibold text-slate-900">{card.title}</h3>
                 <ul className="mt-6 space-y-3 text-sm text-slate-600">
                   {card.bullets.map(point => (
@@ -520,7 +532,9 @@ export default function LearningGuidePage() {
                 viewport={{ once: true, margin: '-80px' }}
                 className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
               >
-                <div className="text-3xl">{card.icon}</div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
+                  <card.icon className="h-6 w-6" />
+                </div>
                 <h3 className="mt-4 text-xl font-semibold text-slate-900">{card.title}</h3>
                 <ul className="mt-6 space-y-3 text-sm text-slate-600">
                   {card.bullets.map(point => (
