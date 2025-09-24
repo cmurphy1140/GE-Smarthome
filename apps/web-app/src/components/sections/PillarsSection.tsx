@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, Star, ArrowRight, Users, Clock, Award } from 'lucide-react'
 import { memo } from 'react'
 import { SectionHeader } from '../common/SectionHeader'
+import { fadeInUp, staggerChildren } from '../common/OptimizedMotion'
 
 const pillars = [
   {
@@ -42,41 +43,6 @@ const pillars = [
   }
 ]
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.2, 0.6, 0.3, 1] }
-  }
-} as const
-
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-} as const
-
-const slideIn = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: [0.2, 0.6, 0.3, 1] }
-  }
-} as const
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.2, 0.6, 0.3, 1] }
-  }
-} as const
 
 
 function PillarsSectionComponent() {
