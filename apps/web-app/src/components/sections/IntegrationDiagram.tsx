@@ -183,13 +183,13 @@ const slideContent = [
 
 export function IntegrationDiagram() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const diagramRef = useRef(null)
   const isInView = useInView(diagramRef, { once: true, amount: 0.3 })
 
-  const SLIDE_DURATION = 5000 // 5 seconds per slide
+  const SLIDE_DURATION = 4000 // 4 seconds per slide
 
   useEffect(() => {
     if (isPlaying) {
@@ -247,22 +247,30 @@ export function IntegrationDiagram() {
   }
 
   const deviceVariants = {
-    hidden: { scale: 0, opacity: 0, rotate: -180 },
+    hidden: { scale: 0, opacity: 0, rotate: -360, y: -50 },
     visible: {
       scale: 1,
       opacity: 1,
       rotate: 0,
+      y: 0,
       transition: {
         type: "spring" as const,
-        stiffness: 120,
-        damping: 15,
-        rotate: { duration: 0.6, ease: "easeOut" as const }
+        stiffness: 150,
+        damping: 20,
+        rotate: { duration: 1.2, ease: "easeOut" as const },
+        scale: { duration: 0.8, ease: "backOut" as const }
       }
     },
     active: {
-      scale: 1.15,
-      boxShadow: "0 0 40px rgba(59, 130, 246, 0.6)",
-      transition: { duration: 0.3, type: "spring" as const, stiffness: 200 }
+      scale: 1.4,
+      y: -8,
+      boxShadow: "0 0 60px rgba(59, 130, 246, 0.8), 0 0 120px rgba(59, 130, 246, 0.4)",
+      transition: {
+        duration: 0.5,
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 25
+      }
     }
   }
 
@@ -270,14 +278,21 @@ export function IntegrationDiagram() {
     hidden: { pathLength: 0, opacity: 0 },
     visible: {
       pathLength: 1,
-      opacity: 0.6,
-      transition: { duration: 1, delay: 0.5 }
+      opacity: 0.4,
+      transition: { duration: 1.5, delay: 0.8, ease: "easeInOut" as const }
     },
     active: {
       opacity: 1,
       stroke: "#3b82f6",
-      strokeWidth: 3,
-      transition: { duration: 0.3 }
+      strokeWidth: 4,
+      filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        repeatDelay: 0.5
+      }
     }
   }
 
@@ -381,32 +396,89 @@ export function IntegrationDiagram() {
 
                 return (
                   <g key={step.id}>
+                    {/* Outer Glow Ring for Active Items */}
+                    {isActive && (
+                      <motion.circle
+                        cx={`${step.position.x}%`}
+                        cy={`${step.position.y}%`}
+                        r="12"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="1"
+                        opacity="0.3"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [0.3, 0.1, 0.3]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut" as const
+                        }}
+                      />
+                    )}
+
+                    {/* Main Device Circle */}
                     <motion.circle
                       cx={`${step.position.x}%`}
                       cy={`${step.position.y}%`}
-                      r="6"
-                      fill={isActive ? "#3b82f6" : "#e2e8f0"}
+                      r={isActive ? "10" : "8"}
+                      fill={isActive ? "#3b82f6" : "#f1f5f9"}
                       stroke={isActive ? "#1d4ed8" : "#94a3b8"}
-                      strokeWidth="2"
+                      strokeWidth={isActive ? "3" : "2"}
                       variants={deviceVariants}
                       initial="hidden"
                       animate={isInView ? (isActive ? "active" : "visible") : "hidden"}
-                      className="transition-all duration-500"
+                      className="transition-all duration-500 drop-shadow-lg"
+                      filter={isActive ? "drop-shadow(0 4px 20px rgba(59, 130, 246, 0.4))" : "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))"}
                     />
+
+                    {/* Icon Container */}
                     <motion.foreignObject
-                      x={`${step.position.x - 2}%`}
-                      y={`${step.position.y - 2}%`}
-                      width="4%"
-                      height="4%"
+                      x={`${step.position.x - 4}%`}
+                      y={`${step.position.y - 4}%`}
+                      width="8%"
+                      height="8%"
                       variants={deviceVariants}
                       initial="hidden"
                       animate={isInView ? (isActive ? "active" : "visible") : "hidden"}
                       className="pointer-events-none"
                     >
                       <div className="flex h-full w-full items-center justify-center">
-                        <StepIcon
-                          className={`h-4 w-4 ${isActive ? 'text-white' : 'text-slate-400'}`}
-                        />
+                        <motion.div
+                          animate={isActive ? {
+                            rotate: [0, 10, -10, 0],
+                            scale: [1, 1.1, 1]
+                          } : {}}
+                          transition={{
+                            duration: 1.5,
+                            repeat: isActive ? Infinity : 0,
+                            repeatDelay: 1
+                          }}
+                        >
+                          <StepIcon
+                            className={`${isActive ? 'h-8 w-8 text-white' : 'h-6 w-6 text-slate-500'} transition-all duration-300 drop-shadow-sm`}
+                          />
+                        </motion.div>
+                      </div>
+                    </motion.foreignObject>
+
+                    {/* Floating Label */}
+                    <motion.foreignObject
+                      x={`${step.position.x - 6}%`}
+                      y={`${step.position.y + 8}%`}
+                      width="12%"
+                      height="6%"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                      className="pointer-events-none"
+                    >
+                      <div className="flex items-center justify-center">
+                        <div className="rounded-lg bg-blue-950 px-2 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
+                          {step.title}
+                        </div>
                       </div>
                     </motion.foreignObject>
                   </g>
@@ -425,16 +497,38 @@ export function IntegrationDiagram() {
                 <motion.div
                   key={step.id}
                   variants={deviceVariants}
-                  className={`group flex items-center gap-3 rounded-xl border p-3 transition-all duration-300 hover:scale-105 ${getDeviceColor(step.type, isActive)}`}
+                  className={`group flex items-center gap-3 rounded-xl border p-3 transition-all duration-500 ${getDeviceColor(step.type, isActive)}`}
                   whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                    transition: { duration: 0.2, type: "spring", stiffness: 300 }
+                    scale: 1.08,
+                    y: -4,
+                    rotate: 1,
+                    transition: { duration: 0.3, type: "spring", stiffness: 400 }
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.92 }}
+                  animate={isActive ? {
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                      "0 4px 20px rgba(0, 0, 0, 0.1)",
+                      "0 8px 40px rgba(59, 130, 246, 0.3)",
+                      "0 4px 20px rgba(0, 0, 0, 0.1)"
+                    ]
+                  } : {}}
                 >
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg transition-all group-hover:scale-110 ${isActive ? 'bg-current/15' : 'bg-current/5'}`}>
-                    <StepIcon className="h-5 w-5 transition-transform group-hover:rotate-12" />
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all group-hover:scale-125 ${isActive ? 'bg-current/20' : 'bg-current/8'}`}>
+                    <motion.div
+                      animate={isActive ? {
+                        rotate: [0, 360],
+                        scale: [1, 1.2, 1]
+                      } : {}}
+                      transition={{
+                        duration: 2,
+                        repeat: isActive ? Infinity : 0,
+                        repeatDelay: 1,
+                        ease: "easeInOut" as const
+                      }}
+                    >
+                      <StepIcon className={`${isActive ? 'h-7 w-7' : 'h-6 w-6'} transition-all duration-300 group-hover:rotate-12`} />
+                    </motion.div>
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-sm font-semibold truncate">{step.title}</h4>
@@ -476,12 +570,36 @@ export function IntegrationDiagram() {
                 >
                   <SkipBack className="h-4 w-4" />
                 </button>
-                <button
+                <motion.button
                   onClick={togglePlay}
                   className="flex h-8 w-8 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-blue-600 transition-all hover:border-blue-300 hover:bg-blue-100"
+                  animate={isPlaying ? {
+                    scale: [1, 1.1, 1],
+                    boxShadow: [
+                      "0 2px 8px rgba(59, 130, 246, 0.2)",
+                      "0 4px 16px rgba(59, 130, 246, 0.4)",
+                      "0 2px 8px rgba(59, 130, 246, 0.2)"
+                    ]
+                  } : {}}
+                  transition={{
+                    duration: 2,
+                    repeat: isPlaying ? Infinity : 0,
+                    ease: "easeInOut" as const
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                </button>
+                  <motion.div
+                    animate={isPlaying ? { rotate: 360 } : {}}
+                    transition={{
+                      duration: 8,
+                      repeat: isPlaying ? Infinity : 0,
+                      ease: "linear" as const
+                    }}
+                  >
+                    {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                  </motion.div>
+                </motion.button>
                 <button
                   onClick={nextSlide}
                   className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50"
@@ -505,19 +623,34 @@ export function IntegrationDiagram() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95, rotateX: -10 }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                exit={{ opacity: 0, y: -30, scale: 0.95, rotateX: 10 }}
+                transition={{
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 25
+                }}
                 className="space-y-4"
               >
                 <div>
-                  <h4 className="text-xl font-bold text-blue-950">
+                  <motion.h4
+                    className="text-xl font-bold text-blue-950"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.4, type: "spring", stiffness: 300 }}
+                  >
                     {currentContent.title}
-                  </h4>
-                  <p className="mt-2 text-sm text-slate-600">
+                  </motion.h4>
+                  <motion.p
+                    className="mt-2 text-sm text-slate-600"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
+                  >
                     {currentContent.description}
-                  </p>
+                  </motion.p>
                 </div>
 
                 <div className="rounded-xl bg-slate-50 p-4">
