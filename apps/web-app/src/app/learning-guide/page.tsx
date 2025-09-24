@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
@@ -233,11 +235,6 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
 }
 
-export const metadata = {
-  title: 'Learning Guide | GE Smarthome Dealer Program',
-  description:
-    'Deep dive into GE Proseo and Savant offerings, partner tiers, and training resources for the GE Smarthome dealer ecosystem.'
-}
 
 export default function LearningGuidePage() {
   return (
