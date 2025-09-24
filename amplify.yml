@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd apps/web-app
+        - npm ci
+    build:
+      commands:
+        - cd apps/web-app
+        - npm run build
+        - cp -r .next/static .next/standalone/.next/
+        - cp -r public .next/standalone/
+  artifacts:
+    baseDirectory: apps/web-app/.next/standalone
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - apps/web-app/node_modules/**/*
+      - apps/web-app/.next/cache/**/*
