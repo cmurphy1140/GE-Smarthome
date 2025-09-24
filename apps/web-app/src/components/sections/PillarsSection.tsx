@@ -52,13 +52,13 @@ function PillarsSectionComponent() {
         <SectionHeader
           eyebrowNode={(
             <span className="inline-flex rounded-full bg-white px-1.5 py-0.5 shadow-[0_12px_24px_rgba(15,23,42,0.12)] ring-1 ring-slate-200">
-              <span className="inline-flex items-center rounded-full border border-blue-900/20 px-5 py-1 text-sm font-semibold uppercase tracking-[0.45em] text-slate-800">
+              <span className="inline-flex items-center rounded-full border border-blue-900/20 px-5 py-1 text-sm font-semibold uppercase tracking-[0.45em] text-slate-600">
                 Partner Pillars
               </span>
             </span>
           )}
-          title="Everything you need to succeed"
-          description="Support, portfolio, and exclusive access—unified in one partnership."
+          title={<span className="text-slate-800">Everything you need to succeed</span>}
+          description={<span className="text-slate-600">Support, portfolio, and exclusive access—unified in one partnership.</span>}
           align="center"
           className="max-w-2xl mx-auto"
         />
@@ -79,7 +79,7 @@ function PillarsSectionComponent() {
                 viewport={{ once: true, margin: '-80px' }}
                 whileHover={{ y: -3 }}
                 className={`
-                  group relative rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:border-white/40 hover:shadow-2xl hover:bg-white/25
+                  group relative rounded-2xl border border-white/40 bg-white/80 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:border-white/50 hover:shadow-2xl hover:bg-white/90
                 `}
               >
                 <div className="relative">
@@ -96,7 +96,7 @@ function PillarsSectionComponent() {
                     </span>
                   </div>
 
-                  <p className="mt-3 text-base leading-relaxed text-blue-900 font-medium">
+                  <p className="mt-3 text-base leading-relaxed text-slate-600 font-medium">
                     {pillar.description}
                   </p>
                 </div>
@@ -200,7 +200,7 @@ function PillarsSectionComponent() {
           viewport={{ once: true, margin: '-80px' }}
           className="mt-12 text-center"
         >
-          <p className="text-base text-slate-600 font-medium">
+          <p className="text-base text-slate-500 font-medium">
             Up to 40% dealer discounts • Priority fulfillment • 24/7 technical support
           </p>
         </motion.div>
