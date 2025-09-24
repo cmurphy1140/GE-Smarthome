@@ -377,70 +377,103 @@ export default function Home() {
 
       <section
         ref={heroRef}
-        className="relative overflow-hidden py-28 md:py-32 text-white"
+        className="relative overflow-hidden py-32 md:py-40 text-white"
         style={heroBackgroundStyles}
       >
         <motion.div
           initial="hidden"
           animate={heroInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="relative mx-auto max-w-5xl px-6 text-center"
+          className="relative mx-auto max-w-4xl px-6 text-center"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white"
           >
-            A Modern Dealer Experience
+            Professional Smart Home Solutions
           </motion.div>
+
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-semibold leading-tight text-white md:text-6xl"
+            className="mt-8 text-5xl font-bold leading-tight text-white md:text-7xl"
           >
-            Build immersive smart homes with a partner engineered for growth
+            Build Immersive GE Smarthomes, by Savant AI
           </motion.h1>
+
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-6 max-w-2xl text-lg text-blue-100 md:text-xl"
+            className="mx-auto mt-8 max-w-3xl text-xl text-blue-100 md:text-2xl leading-relaxed"
           >
-            Join a curated network of professionals elevating every install with GE Lighting innovation and Savant control.
-            Access concierge support, tailored enablement, and co-marketing that amplifies your brand.
+            Partner with industry leaders to deliver cutting-edge smart home experiences.
+            Access exclusive tools, training, and support to grow your business.
           </motion.p>
-          <motion.div variants={fadeInUp} className="mt-10 flex flex-col items-center justify-center gap-4 md:flex-row">
+
+          <motion.div
+            variants={fadeInUp}
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
             <Link
               href="/signup"
-              className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-base font-semibold text-blue-700 shadow-lg shadow-blue-500/40 transition-all hover:-translate-y-1 hover:bg-blue-100"
+              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-bold text-blue-700 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-blue-500/40 hover:bg-blue-50"
             >
-              Begin the Application
-              <ArrowRight className="h-5 w-5" />
+              <span>Become a Dealer</span>
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
-            <a
-              href="#pillars"
-              className="inline-flex items-center gap-2 text-base font-semibold text-blue-100 transition-colors hover:text-white"
+
+            <button
+              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group inline-flex items-center gap-2 rounded-full border-2 border-white/60 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white"
             >
-              Explore the Program
-              <Star className="h-4 w-4" />
-            </a>
-            <Link
-              href="/learning-guide"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-1 hover:bg-white/10"
-            >
-              View Learning Guide
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <span>Learn More</span>
+              <Star className="h-5 w-5 transition-transform group-hover:rotate-12" />
+            </button>
+          </motion.div>
+
+          <motion.div
+            variants={fadeInUp}
+            className="mt-16 grid grid-cols-3 gap-8 text-center"
+          >
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">280+</div>
+              <div className="text-sm text-blue-100 mt-2">Active Dealers</div>
+            </div>
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">48hrs</div>
+              <div className="text-sm text-blue-100 mt-2">Fast Onboarding</div>
+            </div>
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">24/7</div>
+              <div className="text-sm text-blue-100 mt-2">Expert Support</div>
+            </div>
           </motion.div>
         </motion.div>
 
+        {/* Simplified background elements */}
         <div className="pointer-events-none absolute inset-0">
-          {backgroundGrid.map((cell, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 0.18, scale: 1 }}
-              transition={{ duration: 1.2, delay: cell.delay }}
-              style={{ left: cell.left, top: cell.top }}
-              className="absolute h-36 w-36 rounded-3xl border border-blue-100/60 bg-white/40"
-            />
-          ))}
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-500/20 blur-3xl"
+          />
+          <motion.div
+            animate={{
+              rotate: [360, 0],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-400/20 to-blue-500/20 blur-3xl"
+          />
         </div>
       </section>
 
@@ -465,7 +498,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="pillars" className="relative py-24">
+      <section id="about" className="relative py-24">
         <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
@@ -756,7 +789,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="resources" className="relative py-24">
+      <section id="benefits" className="relative py-24">
         <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
