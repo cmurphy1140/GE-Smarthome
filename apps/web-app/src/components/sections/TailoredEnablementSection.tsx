@@ -26,7 +26,7 @@ export function TailoredEnablementSection() {
               <h3 className="mt-4 text-2xl font-semibold text-white md:text-3xl">
                 Ready to transform your smart home business?
               </h3>
-              <p className="mt-3 text-base leading-relaxed text-blue-100">
+              <p className="mt-3 text-xl font-bold leading-relaxed text-blue-100">
                 Join over 280+ successful dealers who have accelerated their growth with GE Smarthome. Get personalized support, premium products, and proven systems.
               </p>
             </div>
