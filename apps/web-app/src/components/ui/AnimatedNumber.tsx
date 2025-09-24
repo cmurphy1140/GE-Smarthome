@@ -6,18 +6,24 @@ import { useInView } from 'framer-motion'
 
 interface AnimatedNumberProps {
   value: number
+  prefix?: string
   suffix?: string
+  decimals?: number
+  className?: string
 }
 
-function AnimatedNumberComponent({ value, suffix }: AnimatedNumberProps) {
+function AnimatedNumberComponent({ value, prefix = '', suffix = '', decimals = 0, className }: AnimatedNumberProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const count = useMotionValue(0)
-  const rounded = useTransform(count, latest => Math.floor(latest))
-  const [display, setDisplay] = useState('0')
+  const formatted = useTransform(count, latest => {
+    const nextValue = decimals > 0 ? latest.toFixed(decimals) : Math.round(latest).toString()
+    return `${prefix}${nextValue}${suffix}`
+  })
+  const [display, setDisplay] = useState(() => `${prefix}${(0).toFixed(decimals)}${suffix}`)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-  useMotionValueEvent(rounded, 'change', latest => {
-    setDisplay(`${latest}${suffix ?? ''}`)
+  useMotionValueEvent(formatted, 'change', latest => {
+    setDisplay(latest)
   })
 
   useEffect(() => {
@@ -27,7 +33,12 @@ function AnimatedNumberComponent({ value, suffix }: AnimatedNumberProps) {
   }, [count, value, isInView])
 
   return (
-    <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900">
+    <span
+      ref={ref}
+      className={
+        className ?? 'text-5xl font-bold tracking-tight text-slate-900 md:text-6xl lg:text-7xl'
+      }
+    >
       {display}
     </span>
   )

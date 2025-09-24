@@ -33,12 +33,12 @@ export function SectionHeader({
   const widthClass = align === 'center' ? 'max-w-3xl' : 'max-w-2xl'
   
   const eyebrowClasses = variant === 'dark' 
-    ? "inline-flex items-center rounded-full border border-blue-700/40 bg-blue-800/30 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-blue-200"
-    : "inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500"
+    ? "inline-flex items-center rounded-full border border-blue-300/50 bg-blue-700/40 px-4 py-1.5 text-base font-bold uppercase tracking-[0.15em] text-blue-50 shadow-sm"
+    : "inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-1.5 text-base font-bold uppercase tracking-[0.15em] text-slate-700 shadow-sm"
   
   const titleClasses = variant === 'dark'
-    ? "text-2xl font-semibold leading-tight text-white md:text-3xl lg:text-4xl"
-    : "text-2xl font-semibold leading-tight text-slate-900 md:text-3xl lg:text-4xl"
+    ? "text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl"
+    : "text-3xl font-bold leading-tight text-slate-900 md:text-4xl lg:text-5xl"
 
   return (
     <motion.div
@@ -46,19 +46,19 @@ export function SectionHeader({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-72px' }}
-      className={`space-y-4 ${alignmentClass} ${widthClass} ${className ?? ''}`.trim()}
+      className={`space-y-3 ${alignmentClass} ${widthClass} ${className ?? ''}`.trim()}
     >
       {eyebrow ? (
         <span className={eyebrowClasses}>
           {eyebrow}
         </span>
       ) : null}
-      <div className="space-y-4">
+      <div className="space-y-3">
         <div className={titleClasses}>
           {title}
         </div>
         {description ? (
-          <p className={variant === 'dark' ? "text-base leading-relaxed text-blue-100 md:text-lg lg:text-xl" : "text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"}>
+          <p className={variant === 'dark' ? "text-xl leading-snug text-blue-50 md:text-2xl lg:text-3xl font-medium" : "text-xl leading-snug text-slate-700 md:text-2xl lg:text-3xl font-medium"}>
             {description}
           </p>
         ) : null}

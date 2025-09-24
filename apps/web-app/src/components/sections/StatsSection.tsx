@@ -4,9 +4,12 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { memo } from 'react'
 
+import { AnimatedNumber } from '../ui/AnimatedNumber'
+
 const stats = [
-  { value: '280+', label: 'Active partners' },
-  { value: '$2.5M+', label: 'Incentives paid' }
+  { value: 280, suffix: '+', label: 'Active partners' },
+  { value: 2.5, prefix: '$', suffix: 'M+', label: 'Incentives paid', decimals: 1 },
+  { value: 48, suffix: ' hr', label: 'Average onboarding' }
 ] as const
 
 function StatsSectionComponent() {
@@ -31,11 +34,22 @@ function StatsSectionComponent() {
             <p className="text-sm leading-relaxed text-blue-100 md:text-base lg:text-lg">
               Connect with a community of smart home professionals backed by GE Lighting&apos;s 140+ years of innovation and Savant&apos;s cutting-edge automation technology.
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-4 sm:grid-cols-3">
               {stats.map(item => (
-                <div key={item.label} className="rounded-2xl border border-white/20 bg-white/10 p-5 text-center backdrop-blur">
-                  <p className="text-2xl font-semibold text-white">{item.value}</p>
-                  <p className="text-xs uppercase tracking-[0.25em] text-blue-200">{item.label}</p>
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/15 bg-white/10 p-5 text-center shadow-[0_14px_30px_rgba(8,11,24,0.35)] backdrop-blur"
+                >
+                  <AnimatedNumber
+                    value={item.value}
+                    prefix={'prefix' in item ? item.prefix : undefined}
+                    suffix={item.suffix}
+                    decimals={'decimals' in item ? item.decimals : 0}
+                    className="text-3xl font-semibold text-white md:text-4xl"
+                  />
+                  <p className="mt-2 text-xs uppercase tracking-[0.25em] text-blue-200">
+                    {item.label}
+                  </p>
                 </div>
               ))}
             </div>

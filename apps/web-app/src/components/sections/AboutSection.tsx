@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 import { Lightbulb, Home, Zap, HelpCircle } from 'lucide-react'
 import { SectionHeader } from '@/components/common/SectionHeader'
-import { FaqPopup } from '@/components/ui/FaqPopup'
+import FaqPopup from '@/components/ui/FaqPopup'
 
 export function AboutSection() {
   const ref = useRef(null)

@@ -3,15 +3,16 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { AboutSection } from '@/components/sections/AboutSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { TailoredEnablementSection } from '@/components/sections/TailoredEnablementSection'
 import { PartnerTiersSection } from '@/components/sections/PartnerTiersSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import { Suspense, lazy } from 'react'
 
-const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection'))
-const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection'))
-const FaqSection = lazy(() => import('@/components/sections/FaqSection'))
+const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection').then(mod => ({ default: mod.default })))
+const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection').then(mod => ({ default: mod.default })))
+const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
 
 function SectionSkeleton() {
   return (
@@ -31,23 +32,32 @@ function SectionSkeleton() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-950 via-blue-900 to-slate-800 text-white">
+    <div className="min-h-screen bg-white text-slate-900">
       <Header />
       <main className="space-y-0">
         <HeroSection />
-        <PillarsSection />
+        <section id="about">
+          <AboutSection />
+        </section>
+        <section id="program">
+          <PillarsSection />
+        </section>
         <TailoredEnablementSection />
         <PartnerTiersSection />
         <StatsSection />
         <Suspense fallback={<SectionSkeleton />}>
           <VerticalsSection />
         </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <BenefitsSection />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <FaqSection />
-        </Suspense>
+        <section id="benefits">
+          <Suspense fallback={<SectionSkeleton />}>
+            <BenefitsSection />
+          </Suspense>
+        </section>
+        <section id="faqs">
+          <Suspense fallback={<SectionSkeleton />}>
+            <FaqSection />
+          </Suspense>
+        </section>
       </main>
       <Footer />
     </div>

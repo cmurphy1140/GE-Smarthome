@@ -5,6 +5,14 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import React, { useRef, memo } from 'react'
 
+import { AnimatedNumber } from '@/components/ui/AnimatedNumber'
+
+const heroStats = [
+  { value: 280, suffix: '+', label: 'Active partners' },
+  { value: 48, suffix: ' hr', label: 'Average onboarding' },
+  { value: 24, suffix: '/7', label: 'Dedicated support' }
+] as const
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0 }
@@ -85,18 +93,21 @@ function HeroSectionComponent() {
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
           className="mt-12 grid grid-cols-1 gap-4 text-center sm:grid-cols-3"
         >
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-            <div className="text-3xl font-semibold text-white">280+</div>
-            <div className="mt-1 text-xs uppercase tracking-[0.3em] text-blue-100">Active partners</div>
-          </div>
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-            <div className="text-3xl font-semibold text-white">48 hr</div>
-            <div className="mt-1 text-xs uppercase tracking-[0.3em] text-blue-100">Average onboarding</div>
-          </div>
-          <div className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-            <div className="text-3xl font-semibold text-white">24/7</div>
-            <div className="mt-1 text-xs uppercase tracking-[0.3em] text-blue-100">Dedicated support</div>
-          </div>
+          {heroStats.map(stat => (
+            <div
+              key={stat.label}
+              className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm"
+            >
+              <AnimatedNumber
+                value={stat.value}
+                suffix={stat.suffix}
+                className="text-3xl font-semibold text-white"
+              />
+              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-blue-100">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 

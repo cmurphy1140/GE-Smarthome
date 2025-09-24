@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
-    "build:speed": "bash ./scripts/speed-build.sh",
-    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint",
-    "deploy:vercel": "npx vercel --prod"
+    "lint": "next lint",
+    "preview": "npm run build && npm run start"
   },
   "dependencies": {
     "framer-motion": "^12.23.19",
@@ -19,9 +17,6 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@next/bundle-analyzer": "^15.5.4",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -29,5 +24,9 @@
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, CheckCircle } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -173,15 +173,9 @@ export default function SignupPage() {
             <div className="mt-8 flex flex-col gap-3">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-900"
+                className="inline-flex items-center justify-center rounded-full bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-900"
               >
-                Return to homepage
-              </Link>
-              <Link
-                href="/learning-guide"
-                className="inline-flex items-center justify-center rounded-full border border-blue-950/40 px-6 py-3 text-sm font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-950/10"
-              >
-                Explore the learning guide
+                Home
               </Link>
             </div>
           </motion.div>
@@ -213,14 +207,7 @@ export default function SignupPage() {
                   href="/"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-950/10"
                 >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back to homepage
-                </Link>
-                <Link
-                  href="/learning-guide"
-                  className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-white/10"
-                >
-                  View learning guide
+                  Home
                 </Link>
               </div>
               {defaults && (
@@ -241,7 +228,7 @@ export default function SignupPage() {
           </div>
         </section>
 
-        <section className="relative z-10 -mt-16 md:-mt-20">
+        <section id="application" className="relative z-10 -mt-16 md:-mt-20">
           <div className="mx-auto max-w-5xl px-4 sm:px-6">
             <motion.div
               initial="hidden"

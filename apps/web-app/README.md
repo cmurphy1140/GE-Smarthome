@@ -1,11 +1,20 @@
-# GE Smarthome Web App
+# GE Smarthome Dealer Program
 
-This Next.js application powers an interactive version of the GE Smarthome dealer experience. It mirrors the static marketing prototype while unlocking reusable components, API integrations, and modern build tooling.
+A modern Next.js 15 application showcasing the GE Smarthome dealer partnership program.
+
+## Quick Start
+
+```bash
+cd apps/web-app
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Prerequisites
-- **Node.js 20.x** – the repo ships with `.node-version` so `nvm use` (or Homebrew’s `node@20`) keeps things consistent.
-- **npm 10+** – installed with Node 20.
-- (Optional) [Vercel CLI](https://vercel.com/docs/cli) for one-command deployments.
+- **Node.js 18+**
+- **npm 8+**
 
 ## Tech Stack
 - Next.js App Router with TypeScript
@@ -13,16 +22,14 @@ This Next.js application powers an interactive version of the GE Smarthome deale
 - ESLint + TypeScript strict mode
 - PostCSS pipeline with autoprefixer support
 
-## Available Scripts
+## Development Commands
+
 ```bash
-npm install        # install dependencies
-npm run dev        # start the development server on http://localhost:3000
-npm run build      # create a production build in .next/
-npm run build:speed # cached install + tuned build (see scripts/speed-build.sh)
-npm run start      # run the production server
-npm run lint       # lint the project
-npm run build:analyze # visualize the bundle with next build --analyze
-npm run deploy:vercel # deploy the latest build to Vercel (requires CLI auth)
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run start      # Start production server
+npm run preview    # Build and start production server
+npm run lint       # Run ESLint
 ```
 
 ## Project Structure
