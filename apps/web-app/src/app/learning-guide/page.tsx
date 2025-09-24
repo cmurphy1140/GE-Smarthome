@@ -290,6 +290,47 @@ export default function LearningGuidePage() {
           </motion.div>
         </section>
 
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 p-1"
+        >
+          <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-8 md:p-12">
+            <div className="grid gap-12 md:grid-cols-2 md:items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-white md:text-4xl">
+                  Next-Generation Smart Home Control
+                </h2>
+                <p className="mt-4 text-lg text-blue-100">
+                  Experience the future of home automation with GE Smarthome's intuitive control systems.
+                  From energy management to lighting scenes, everything is at your fingertips.
+                </p>
+                <div className="mt-8 grid grid-cols-2 gap-6 text-sm">
+                  <div>
+                    <div className="text-2xl font-bold text-green-400">78%</div>
+                    <div className="text-blue-200">Energy Efficiency</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-cyan-400">24/7</div>
+                    <div className="text-blue-200">Smart Monitoring</div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-xl"></div>
+                <img
+                  src="/smart-home-control-panel.jpg"
+                  alt="GE Smarthome Control Panel showing energy monitoring, security status, and home automation controls"
+                  className="relative rounded-2xl shadow-2xl"
+                  width={600}
+                  height={600}
+                />
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         <section>
           <div className="mx-auto max-w-3xl text-center">
             <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Partnership Timeline</span>

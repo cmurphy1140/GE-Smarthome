@@ -274,6 +274,21 @@
         }
 
         /* Form Section */
+        .prefill-banner {
+            display: none;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            background: rgba(232, 244, 253, 0.6);
+            padding: 1rem 1.25rem;
+            color: var(--secondary-blue);
+            font-weight: 600;
+        }
+
+        .prefill-banner.active {
+            display: block;
+        }
+
         .form-section {
             background: var(--white);
             border-radius: 16px;
@@ -609,6 +624,7 @@
                 <p class="animate-fade-in-up animate-delay-3">Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
             </div>
 
+            <div id="prefillBanner" class="prefill-banner"></div>
             <form class="application-form" id="dealerForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -666,10 +682,12 @@
                     <label for="businessFocus">Professional Group <span class="required">*</span></label>
                     <select id="businessFocus" name="businessFocus" required>
                         <option value="">Select your professional group</option>
-                        <option value="installer">Installer (Custom Integration & AV Professional)</option>
-                        <option value="builder">Builder (New Home Construction)</option>
-                        <option value="architect">Architect (Design Professional)</option>
-                        <option value="remodeler">Remodeler (Renovation Contractor)</option>
+                        <option value="custom-integrator">Custom Integrator / AV Professional</option>
+                        <option value="security-installer">Security Installer</option>
+                        <option value="licensed-electrician">Licensed Electrician</option>
+                        <option value="home-builder">Home Builder</option>
+                        <option value="remodeler-contractor">Remodeler / Contractor</option>
+                        <option value="retailer">Retailer</option>
                     </select>
                     <div class="error-message">Please select your professional group</div>
                 </div>
@@ -747,6 +765,49 @@
     </main>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const vertical = (urlParams.get('vertical') || '').toLowerCase();
+        const verticalPrefills = {
+            electrical: {
+                businessFocus: 'licensed-electrician',
+                targetTier: 'authorized-partner',
+                interestReason: 'We deliver electrical packages and want to add GE Proseo lighting with a clear path into Savant automation.',
+                label: 'Electrical contractors'
+            },
+            security: {
+                businessFocus: 'security-installer',
+                targetTier: 'authorized-partner',
+                interestReason: 'We provide security and monitoring services and need adaptive lighting scenes that integrate with Savant.',
+                label: 'Security installers'
+            },
+            av: {
+                businessFocus: 'custom-integrator',
+                targetTier: 'premier-partner',
+                interestReason: 'We craft immersive entertainment spaces and want to bundle Savant orchestration with GE Proseo lighting.',
+                label: 'Custom integrators & AV teams'
+            }
+        };
+
+        (function applyVerticalPrefill() {
+            const defaults = verticalPrefills[vertical];
+            if (!defaults) return;
+
+            const focusField = document.getElementById('businessFocus');
+            const tierField = document.getElementById('targetTier');
+            const reasonField = document.getElementById('interestReason');
+            const banner = document.getElementById('prefillBanner');
+
+            if (focusField && !focusField.value) focusField.value = defaults.businessFocus;
+            if (tierField && !tierField.value) tierField.value = defaults.targetTier;
+            if (reasonField && reasonField.value.trim() === '') {
+                reasonField.value = defaults.interestReason;
+            }
+            if (banner) {
+                banner.innerHTML = `We pre-filled this application for <strong>${defaults.label}</strong>. Update any details that need to change.`;
+                banner.classList.add('active');
+            }
+        })();
+
         // Form validation and submission handling
         document.getElementById('dealerForm').addEventListener('submit', function(e) {
             e.preventDefault();

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -33,9 +34,42 @@ const scaleIn = {
   }
 }
 
+const focusPrefills: Record<string, {
+  businessFocus: string
+  targetTier: string
+  interestReason: string
+  label: string
+}> = {
+  electrical: {
+    businessFocus: 'licensed-electrician',
+    targetTier: 'authorized-dealer',
+    interestReason:
+      'We lead electrical projects and want to layer in profitable GE Proseo lighting packages with a migration path to Savant.',
+    label: 'Electrical Contractors'
+  },
+  security: {
+    businessFocus: 'security-installer',
+    targetTier: 'authorized-dealer',
+    interestReason:
+      'We deliver security and monitoring solutions and need coordinated lighting scenes and Savant automations for premium packages.',
+    label: 'Security Installers'
+  },
+  av: {
+    businessFocus: 'custom-integrator',
+    targetTier: 'premier-partner',
+    interestReason:
+      'We design whole-room entertainment experiences and want to bundle Savant control with GE Proseo lighting and controls.',
+    label: 'Custom Integrators & AV Teams'
+  }
+}
+
 export default function SignupPage() {
+  const searchParams = useSearchParams()
+  const vertical = searchParams.get('vertical')?.toLowerCase() ?? ''
+  const defaults = focusPrefills[vertical] ?? null
+
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     companyName: '',
     contactName: '',
     email: '',
@@ -45,15 +79,15 @@ export default function SignupPage() {
     city: '',
     state: '',
     zipCode: '',
-    businessFocus: '',
+    businessFocus: defaults?.businessFocus ?? '',
     yearsInBusiness: '',
     annualRevenue: '',
     teamSize: '',
-    targetTier: '',
+    targetTier: defaults?.targetTier ?? '',
     currentBrands: '',
     certifications: '',
-    interestReason: ''
-  })
+    interestReason: defaults?.interestReason ?? ''
+  }))
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false)
 
@@ -173,10 +207,25 @@ export default function SignupPage() {
               Please complete the inquiry form below to begin your application.
               A regional channel manager will review your information and contact you within 3-5 business days.
             </p>
+            {defaults && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-sm font-semibold text-blue-50"
+              >
+                Tailored for {defaults.label} — adjust any field to fit your business.
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Form Content */}
           <motion.div variants={fadeInUp} className="p-8">
+            {defaults && (
+              <div className="mb-6 rounded-2xl border border-blue-100 bg-blue-50/60 px-4 py-3 text-sm text-blue-700">
+                We pre-filled this application for {defaults.label}. Update any details so we can tailor onboarding.
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <motion.div
                 variants={staggerContainer}
