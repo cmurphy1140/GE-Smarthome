@@ -63,7 +63,7 @@ function PillarsSectionComponent() {
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
               <motion.article
                 key={pillar.title}
-                variants={fadeIn}
+                variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
@@ -77,9 +77,14 @@ function PillarsSectionComponent() {
                     <pillar.icon className="h-6 w-6" />
                   </div>
 
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">
-                    {pillar.title}
-                  </h3>
+                  <div className="mt-4 flex items-center gap-2 mb-2">
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {pillar.title}
+                    </h3>
+                    <span className="inline-flex items-center rounded-full bg-blue-100/80 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                      {pillar.badge}
+                    </span>
+                  </div>
 
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {pillar.description}
