@@ -1,0 +1,12 @@
+# Node and Next.js build artifacts
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+**/out/
+.vercel/
+**/.vercel/
+
+# Miscellaneous
+.DS_Store

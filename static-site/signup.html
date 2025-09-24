@@ -141,22 +141,129 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-gray);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo svg {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.05);
         }
 
         .logo-subtitle {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--medium-gray);
             font-weight: 400;
             margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .nav-link::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 94, 184, 0.08);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+        }
+
+        .nav-button {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .nav-button:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
         }
 
         /* Main Content Container */
@@ -381,6 +488,10 @@
             .nav-container {
                 padding: 0 1rem;
             }
+
+            .nav-links {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -452,8 +563,40 @@
     <header class="header animate-fade-in-down">
         <nav class="nav-container">
             <div class="logo">
-                GE Smarthome Dealer Program
-                <div class="logo-subtitle">in partnership with Savant</div>
+                <svg width="220" height="50" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- GE Monogram -->
+                    <g id="ge-monogram">
+                        <circle cx="25" cy="25" r="24" fill="#005EB8" stroke="#005EB8" stroke-width="1"/>
+                        <text x="25" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">GE</text>
+                    </g>
+
+                    <!-- Connecting Element -->
+                    <line x1="50" y1="25" x2="70" y2="25" stroke="#005EB8" stroke-width="2"/>
+
+                    <!-- Savant Logo Text -->
+                    <g id="savant-text">
+                        <text x="75" y="20" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="600" fill="#382e2b">SAVANT</text>
+                        <text x="75" y="35" font-family="Montserrat, Arial, sans-serif" font-size="10" font-weight="400" fill="#666">Smart Home Technology</text>
+                    </g>
+
+                    <!-- Program Text -->
+                    <g id="program-text">
+                        <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#005EB8">DEALER PROGRAM</text>
+                    </g>
+                </svg>
+                <div class="logo-subtitle">GE Smarthome + Savant Partnership</div>
+            </div>
+            <div class="nav-links">
+                <div class="nav-item dropdown">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <div class="dropdown-content">
+                        <a href="index.html#benefits">Program Benefits</a>
+                        <a href="index.html#professional-groups">Professional Groups</a>
+                        <a href="index.html#program-tiers">Partnership Tiers</a>
+                    </div>
+                </div>
+                <a href="learning-guide.html" class="nav-link">Learning Guide</a>
+                <a href="signup.html" class="nav-button">Apply Now</a>
             </div>
         </nav>
     </header>
@@ -520,17 +663,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="businessFocus">Primary Business Focus <span class="required">*</span></label>
+                    <label for="businessFocus">Professional Group <span class="required">*</span></label>
                     <select id="businessFocus" name="businessFocus" required>
-                        <option value="">Select your primary business focus</option>
-                        <option value="custom-integrator">Custom Integrator / AV Professional</option>
-                        <option value="security-installer">Security Installer</option>
-                        <option value="licensed-electrician">Licensed Electrician</option>
-                        <option value="home-builder">Home Builder</option>
-                        <option value="remodeler-contractor">Remodeler / Contractor</option>
-                        <option value="retailer">Retailer</option>
+                        <option value="">Select your professional group</option>
+                        <option value="installer">Installer (Custom Integration & AV Professional)</option>
+                        <option value="builder">Builder (New Home Construction)</option>
+                        <option value="architect">Architect (Design Professional)</option>
+                        <option value="remodeler">Remodeler (Renovation Contractor)</option>
                     </select>
-                    <div class="error-message">Please select your business focus</div>
+                    <div class="error-message">Please select your professional group</div>
                 </div>
 
                 <div class="form-group">
@@ -568,9 +709,8 @@
                     <label for="targetTier">Which program tier interests you most?</label>
                     <select id="targetTier" name="targetTier">
                         <option value="">Select program tier</option>
-                        <option value="authorized-dealer">Authorized Dealer (Entry Level)</option>
-                        <option value="premier-partner">Premier Partner ($50K+ commitment)</option>
-                        <option value="elite-integrator">Elite Integrator ($150K+ commitment)</option>
+                        <option value="authorized-partner">Authorized Partner ($3,500 annual commitment)</option>
+                        <option value="premier-partner">Premier Partner ($10,000 annual commitment)</option>
                         <option value="unsure">I need more information to decide</option>
                     </select>
                 </div>
@@ -661,7 +801,7 @@
 
                 if (!value) {
                     showError(fieldName, field.getAttribute('type') === 'email' ? 'Valid email address is required' :
-                             fieldName === 'businessFocus' ? 'Please select your business focus' :
+                             fieldName === 'businessFocus' ? 'Please select your professional group' :
                              fieldName === 'annualRevenue' ? 'Please select your revenue range' :
                              'This field is required');
                     isValid = false;

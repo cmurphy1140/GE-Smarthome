@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE Smarthome Dealer Program - Partner with Industry Leaders</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            font-feature-settings: "kern" on, "liga" on, "calt" on;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.6s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+
+        /* Color Variables inspired by GE branding */
+        :root {
+            --ge-blue: #005EB8;
+            --ge-light-blue: #E8F4FD;
+            --dark-gray: #2C2C2C;
+            --medium-gray: #666666;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --accent-blue: #0078D4;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo svg {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.05);
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+            font-weight: 400;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--ge-blue);
+        }
+
+        .nav-link::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .nav-link::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 94, 184, 0.08);
+            color: var(--ge-blue);
+            border-left-color: var(--ge-blue);
+        }
+
+        .cta-button {
+            background: var(--ge-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid var(--ge-blue);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 94, 184, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 94, 184, 0.9), rgba(0, 120, 212, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><rect fill="%23e9ecef" x="100" y="150" width="300" height="200" rx="10"/><rect fill="%23dee2e6" x="450" y="100" width="250" height="150" rx="8"/><rect fill="%23ced4da" x="750" y="200" width="350" height="250" rx="12"/><circle fill="%23adb5bd" cx="200" cy="400" r="50"/><circle fill="%236c757d" cx="900" cy="450" r="75"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--white);
+            color: var(--ge-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 4rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--ge-light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: var(--ge-blue);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Professional Groups Section */
+        .professional-groups {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .group-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .group-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .group-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--ge-light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--ge-blue);
+            transition: all 0.3s ease;
+        }
+
+        .group-card:hover .group-icon {
+            background: var(--ge-blue);
+            color: var(--white);
+        }
+
+        .group-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .group-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .group-benefits {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .group-benefits li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .group-benefits li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5 12h14m-7-7l7 7-7 7' stroke='%23005EB8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        /* Program Tiers Section */
+        .program-tiers {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--ge-light-blue), var(--light-gray));
+        }
+
+        .tier-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tier-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .tier-card.featured {
+            border-color: var(--ge-blue);
+            border-width: 3px;
+        }
+
+        .tier-card.featured:hover {
+            transform: translateY(-3px);
+        }
+
+        .tier-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tier-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            background: var(--medium-gray);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-badge.featured {
+            background: var(--ge-blue);
+            color: var(--white);
+        }
+
+        .tier-features ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark-gray);
+            line-height: 1.5;
+        }
+
+        .tier-features li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M20 6L9 17l-5-5' stroke='%23005EB8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .tier-requirement {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            text-align: center;
+        }
+
+        .tier-requirement strong {
+            color: var(--dark-gray);
+        }
+
+        /* Product Ecosystem Section */
+        .products {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .products-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .products h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        .products p {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            border: 2px solid var(--ge-blue);
+            color: var(--ge-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .secondary-button:hover {
+            background: var(--ge-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Become a Dealer Section */
+        .become-dealer {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .dealer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dealer-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .dealer-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .dealer-header p {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .dealer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .dealer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .info-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--ge-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .benefits-list,
+        .requirements-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .benefits-list li,
+        .requirements-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark-gray);
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .benefits-list li:last-child,
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.1rem;
+            width: 8px;
+            height: 8px;
+            background: var(--ge-blue);
+            border-radius: 50%;
+        }
+
+        .requirements-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.1rem;
+            width: 8px;
+            height: 8px;
+            background: var(--medium-gray);
+            border-radius: 2px;
+        }
+
+        .application-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 2px solid var(--ge-blue);
+            text-align: center;
+        }
+
+        .application-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .application-card p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .application-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .dealer-cta {
+            background: var(--ge-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dealer-cta:hover {
+            background: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        .info-link {
+            color: var(--ge-blue);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem;
+            border: 2px solid var(--ge-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .info-link:hover {
+            background: var(--ge-blue);
+            color: var(--white);
+        }
+
+        .contact-info {
+            background: rgba(0, 94, 184, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--ge-blue);
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .contact-info strong {
+            color: var(--ge-blue);
+        }
+
+        @media (max-width: 768px) {
+            .dealer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .dealer-header h2 {
+                font-size: 2rem;
+            }
+
+            .application-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .dropdown-content {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                padding: 0;
+            }
+
+            .dropdown-content a {
+                padding: 0.5rem 0;
+                border-left: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .benefit-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .tiers-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .tier-card.featured {
+                transform: none;
+            }
+
+            .tier-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .tier-card {
+                padding: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Offset for fixed header */
+        section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header animate-fade-in-down">
+        <nav class="nav-container">
+            <div class="logo">
+                <svg width="220" height="50" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- GE Monogram -->
+                    <g id="ge-monogram">
+                        <circle cx="25" cy="25" r="24" fill="#005EB8" stroke="#005EB8" stroke-width="1"/>
+                        <text x="25" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">GE</text>
+                    </g>
+
+                    <!-- Connecting Element -->
+                    <line x1="50" y1="25" x2="70" y2="25" stroke="#005EB8" stroke-width="2"/>
+
+                    <!-- Savant Logo Text -->
+                    <g id="savant-text">
+                        <text x="75" y="20" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="600" fill="#382e2b">SAVANT</text>
+                        <text x="75" y="35" font-family="Montserrat, Arial, sans-serif" font-size="10" font-weight="400" fill="#666">Smart Home Technology</text>
+                    </g>
+
+                    <!-- Program Text -->
+                    <g id="program-text">
+                        <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#005EB8">DEALER PROGRAM</text>
+                    </g>
+                </svg>
+                <div class="logo-subtitle">GE Smarthome + Savant Partnership</div>
+            </div>
+            <div class="nav-links">
+                <div class="nav-item dropdown">
+                    <a href="#benefits" class="nav-link">Why Partner With Us</a>
+                    <div class="dropdown-content">
+                        <a href="#benefits">Program Benefits</a>
+                        <a href="#professional-groups">Professional Groups</a>
+                        <a href="#program-tiers">Partnership Tiers</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#products" class="nav-link">Product Ecosystem</a>
+                    <div class="dropdown-content">
+                        <a href="#products">GE Proseo Smarthome</a>
+                        <a href="#products">Savant Home Automation</a>
+                        <a href="#products">Integration Solutions</a>
+                    </div>
+                </div>
+                <a href="learning-guide.html" class="nav-link">Learning Guide</a>
+                <a href="signup.html" class="cta-button">Become a Dealer</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animate-fade-in-up">The Future is Bright. Partner with GE Smarthome and Savant.</h1>
+            <p class="animate-fade-in-up animate-delay-1">An exclusive opportunity for smart home professionals to amplify their business with two industry-leading brands. Offer your clients the best in intelligent home technology and seamless home automation.</p>
+            <a href="signup.html" class="hero-cta animate-fade-in-up animate-delay-2">Apply to Join Now</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title animate-fade-in-up">A Partnership Engineered for Your Growth</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-scale-in animate-delay-1">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>Premium Product Portfolio + Demo Program</h3>
+                    <p>Exclusive access to GE Proseo and Savant ecosystems with free demo units, model home programs, and early access to new product launches. Showcase the future of intelligent home technology to your clients.</p>
+                </div>
+
+                <div class="benefit-card animate-scale-in animate-delay-2">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Tiered Rewards & Regional Support</h3>
+                    <p>Progressive benefits based on performance with dedicated regional account managers. Free shipping on orders over $3,000, competitive pricing tiers, and priority support escalation.</p>
+                </div>
+
+                <div class="benefit-card animate-scale-in animate-delay-3">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 0 9-1 9-5"/>
+                        </svg>
+                    </div>
+                    <h3>Comprehensive Training Academy</h3>
+                    <p>Multi-tier certification program with regional trainers, monthly webinars, and specialized courses for Savant whole-home integration. Plus access to our exclusive Dealer Advisory Board.</p>
+                </div>
+
+                <div class="benefit-card animate-scale-in animate-delay-4">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 3v18h2V3z"/>
+                            <path d="M14 8.5c0 .83-.67 1.5-1.5 1.5S11 9.33 11 8.5 11.67 7 12.5 7s1.5.67 1.5 1.5z"/>
+                            <path d="M18 2H6C4.89 2 4 2.89 4 4v16c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2z"/>
+                            <path d="M9 12h6v4H9z"/>
+                        </svg>
+                    </div>
+                    <h3>Complete Marketing Resource Library</h3>
+                    <p>Professional dealer portal with product images, videos, digital ads, spec sheets, and co-branded marketing materials. Real-time inventory tracking and expedited technical support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Groups Section -->
+    <section id="professional-groups" class="professional-groups">
+        <div class="container">
+            <h2 class="section-title">Designed for Your Professional Focus</h2>
+            <p class="tier-subtitle">Tailored resources and support for every type of smart home professional</p>
+            <div class="groups-grid">
+                <div class="group-card animate-scale-in animate-delay-1">
+                    <div class="group-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h3>Installers</h3>
+                    <p>Custom integration and AV professionals get priority technical support, installation guides, and dedicated training for complex Savant whole-home systems.</p>
+                    <ul class="group-benefits">
+                        <li>Advanced technical documentation</li>
+                        <li>Installation best practices library</li>
+                        <li>Priority technical support hotline</li>
+                    </ul>
+                </div>
+
+                <div class="group-card animate-scale-in animate-delay-2">
+                    <div class="group-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <h3>Builders</h3>
+                    <p>New construction specialists receive pre-wire specifications, bulk order pricing, and construction timeline integration support for seamless smart home delivery.</p>
+                    <ul class="group-benefits">
+                        <li>Pre-construction planning tools</li>
+                        <li>Bulk pricing for developments</li>
+                        <li>Construction timeline support</li>
+                    </ul>
+                </div>
+
+                <div class="group-card animate-scale-in animate-delay-3">
+                    <div class="group-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <path d="M14 2v6h6"/>
+                            <path d="M16 13H8"/>
+                            <path d="M16 17H8"/>
+                            <path d="M10 9H8"/>
+                        </svg>
+                    </div>
+                    <h3>Architects</h3>
+                    <p>Design professionals access specification sheets, aesthetic integration guides, and co-branded materials to seamlessly incorporate smart home technology into architectural plans.</p>
+                    <ul class="group-benefits">
+                        <li>Detailed specification library</li>
+                        <li>Aesthetic integration guides</li>
+                        <li>CAD files and design resources</li>
+                    </ul>
+                </div>
+
+                <div class="group-card animate-scale-in animate-delay-4">
+                    <div class="group-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Remodelers</h3>
+                    <p>Renovation contractors get retrofit solutions, upgrade pathways, and project planning tools to modernize existing homes with intelligent home technology systems.</p>
+                    <ul class="group-benefits">
+                        <li>Retrofit solution guides</li>
+                        <li>Upgrade pathway planning</li>
+                        <li>Project timeline tools</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Tiers Section -->
+    <section id="program-tiers" class="program-tiers">
+        <div class="container">
+            <h2 class="section-title">Choose Your Partnership Level</h2>
+            <p class="tier-subtitle">Flexible program tiers designed to match your business growth and expertise level</p>
+            <div class="tiers-grid">
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3>Authorized Partner</h3>
+                        <div class="tier-badge">Start Here</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Access to core GE Proseo product line</li>
+                            <li>Online training and certification</li>
+                            <li>Basic marketing materials</li>
+                            <li>Standard dealer pricing (15% discount)</li>
+                            <li>Email and chat support</li>
+                            <li>Quarterly product webinars</li>
+                            <li>Access to dealer portal</li>
+                        </ul>
+                    </div>
+                    <div class="tier-requirement">
+                        <strong>Requirements:</strong> $3,500 minimum annual sales commitment
+                    </div>
+                </div>
+
+                <div class="tier-card featured">
+                    <div class="tier-header">
+                        <h3>Premier Partner</h3>
+                        <div class="tier-badge featured">Enhanced Benefits</div>
+                    </div>
+                    <div class="tier-features">
+                        <ul>
+                            <li>Full GE Proseo + Savant product access</li>
+                            <li>Regional trainer support & live demos</li>
+                            <li>Demo unit program & display materials</li>
+                            <li>Enhanced pricing tiers (25% discount)</li>
+                            <li>Priority phone support & dedicated rep</li>
+                            <li>Marketing co-op funds (2% of purchases)</li>
+                            <li>Early access to new products</li>
+                            <li>Exclusive training events & certifications</li>
+                        </ul>
+                    </div>
+                    <div class="tier-requirement">
+                        <strong>Requirements:</strong> $10,000 minimum annual sales commitment
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Dealer Section -->
+    <section id="become-dealer" class="become-dealer">
+        <div class="container">
+            <div class="dealer-content">
+                <div class="dealer-header">
+                    <h2>Become an Authorized Dealer</h2>
+                    <p>Join our network of professional smart home integrators and grow your business with industry-leading products and support.</p>
+                </div>
+
+                <div class="dealer-grid">
+                    <div class="dealer-info">
+                        <div class="info-card">
+                            <h3>Partnership Benefits</h3>
+                            <ul class="benefits-list">
+                                <li>Competitive dealer pricing structure</li>
+                                <li>Comprehensive technical training</li>
+                                <li>Marketing and sales support</li>
+                                <li>Dedicated account management</li>
+                                <li>Priority technical support</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Requirements</h3>
+                            <ul class="requirements-list">
+                                <li>Established smart home business</li>
+                                <li>Valid business license and insurance</li>
+                                <li>Technical installation capabilities</li>
+                                <li>Commitment to product training</li>
+                                <li>Professional service standards</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="dealer-application">
+                        <div class="application-card">
+                            <h3>Ready to Partner with Us?</h3>
+                            <p>Complete our dealer application to begin the approval process. Our team will review your submission and contact you within 3-5 business days.</p>
+                            <div class="application-actions">
+                                <a href="signup.html" class="dealer-cta">Submit Application</a>
+                                <a href="learning-guide.html" class="info-link">Learn More</a>
+                            </div>
+                            <div class="contact-info">
+                                <p><strong>Questions?</strong> Contact our Partner Development team</p>
+                                <p>Email: partners@gesavant.com | Phone: 1-800-654-8483</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Dealer Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; GE Smarthome, a Savant company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Guide - GE Smarthome Dealer Program</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            font-feature-settings: "kern" on, "liga" on, "calt" on;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+
+        /* Color Variables */
+        :root {
+            --ge-blue: #005EB8;
+            --ge-light-blue: #E8F4FD;
+            --dark-gray: #2C2C2C;
+            --medium-gray: #666666;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --accent-blue: #0078D4;
+            --success-green: #28a745;
+            --warning-orange: #fd7e14;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo svg {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.05);
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+            font-weight: 400;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--ge-blue);
+        }
+
+        .back-btn {
+            background: var(--ge-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--ge-light-blue), var(--light-gray));
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+            border-radius: 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--medium-gray);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--ge-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark-gray);
+            line-height: 1.5;
+        }
+
+        .card ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M20 6L9 17l-5-5' stroke='%23005EB8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            color: var(--success-green);
+            font-weight: 700;
+        }
+
+        /* Company Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ge-blue);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 2rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 2rem;
+            text-align: left;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            width: 20px;
+            height: 20px;
+            background: var(--ge-blue);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .timeline-year {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ge-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-description {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Product Categories */
+        .product-category {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ge-blue), var(--accent-blue));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .category-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-info p {
+            color: var(--medium-gray);
+            font-size: 1.125rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-item p {
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--ge-light-blue), rgba(232, 244, 253, 0.5));
+            border: 1px solid var(--ge-blue);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-box.warning {
+            background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.05));
+            border-color: var(--warning-orange);
+        }
+
+        .info-box h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 50px;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 1rem;
+                text-align: left;
+            }
+
+            .timeline-marker {
+                left: 20px;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .category-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header animate-fade-in-down">
+        <nav class="nav-container">
+            <div class="logo">
+                <svg width="220" height="50" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- GE Monogram -->
+                    <g id="ge-monogram">
+                        <circle cx="25" cy="25" r="24" fill="#005EB8" stroke="#005EB8" stroke-width="1"/>
+                        <text x="25" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">GE</text>
+                    </g>
+
+                    <!-- Connecting Element -->
+                    <line x1="50" y1="25" x2="70" y2="25" stroke="#005EB8" stroke-width="2"/>
+
+                    <!-- Savant Logo Text -->
+                    <g id="savant-text">
+                        <text x="75" y="20" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="600" fill="#382e2b">SAVANT</text>
+                        <text x="75" y="35" font-family="Montserrat, Arial, sans-serif" font-size="10" font-weight="400" fill="#666">Smart Home Technology</text>
+                    </g>
+
+                    <!-- Program Text -->
+                    <g id="program-text">
+                        <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" font-weight="500" fill="#005EB8">LEARNING GUIDE</text>
+                    </g>
+                </svg>
+                <div class="logo-subtitle">GE Smarthome + Savant Partnership</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="signup.html">Apply Now</a>
+                <a href="index.html" class="back-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero animate-scale-in">
+                <div class="hero-content">
+                    <h1 class="animate-fade-in-up">Complete Learning Guide</h1>
+                    <p class="animate-fade-in-up animate-delay-1">
+                        Master the GE Smarthome and Savant ecosystems. Understand our products, program benefits,
+                        and company history to become a successful dealer partner.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Company Overview -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Company Overview</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Understanding the powerhouse partnership between GE Smarthome and Savant
+                </p>
+
+                <div class="timeline animate-fade-in-up animate-delay-2">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1878</div>
+                            <div class="timeline-title">GE Smarthome Founded</div>
+                            <div class="timeline-description">
+                                Thomas Edison establishes the Edison Electric Light Company, which becomes GE Smarthome.
+                                Over 140+ years of lighting innovation and expertise.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2005</div>
+                            <div class="timeline-title">Savant Systems Founded</div>
+                            <div class="timeline-description">
+                                Savant emerges as a premium home automation company, focusing on luxury residential
+                                control systems and energy management solutions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-title">Strategic Acquisition</div>
+                            <div class="timeline-description">
+                                Savant Systems acquires GE Smarthome on July 1, 2020, creating "GE Smarthome, a Savant company"
+                                and combining lighting expertise with home automation leadership.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-title">Unified Ecosystem</div>
+                            <div class="timeline-description">
+                                Launch of the comprehensive dealer program integrating GE Proseo smart home technology
+                                with Savant's premium home automation platform.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Ecosystem -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Product Ecosystem</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Comprehensive smart home solutions from entry-level to luxury installations
+                </p>
+
+                <!-- GE Proseo Products -->
+                <div class="product-category animate-fade-in-up animate-delay-2">
+                    <div class="category-header">
+                        <div class="category-icon">💡</div>
+                        <div class="category-info">
+                            <h3>GE Proseo Smarthome Technology</h3>
+                            <p>Accessible smart home technology solutions for every home and budget</p>
+                        </div>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product-item">
+                            <h4>Smart Bulbs</h4>
+                            <p>Direct Connect LED bulbs, Full Color options, Reveal® technology, and Dynamic Effects bulbs with music sync capabilities.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>Smart Switches</h4>
+                            <p>On/Off and Dimmer switches in toggle/paddle styles. No neutral wire options available for older homes.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>Light Strips & Panels</h4>
+                            <p>Full Color Light Strips, Hexagon Panel Lights for wall art, and Outdoor Patio String Lights.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>Specialty Controls</h4>
+                            <p>Keypad Dimmer Switches, Ceiling Fan Smart Switches, and motion sensors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savant Products -->
+                <div class="product-category animate-fade-in-up animate-delay-3">
+                    <div class="category-header">
+                        <div class="category-icon">🏠</div>
+                        <div class="category-info">
+                            <h3>Savant Home Automation</h3>
+                            <p>Premium whole-home control systems with energy resilience</p>
+                        </div>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product-item">
+                            <h4>Control Systems</h4>
+                            <p>Comprehensive automation for home technology, music, video, and climate control across entire properties.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>Energy Management</h4>
+                            <p>Integrated power backup solutions and grid-independent energy systems for true home resilience.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>User Interfaces</h4>
+                            <p>Intuitive control panels, mobile apps, and voice integration for seamless home management.</p>
+                        </div>
+                        <div class="product-item">
+                            <h4>Integration Platform</h4>
+                            <p>Professional-grade system that connects and controls third-party devices and systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box animate-fade-in-up animate-delay-4">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Unified Experience
+                    </h4>
+                    <p>
+                        The Proseo App, powered by Savant, provides seamless integration between GE Proseo products and Savant systems.
+                        This allows dealers to offer solutions ranging from simple smart bulb installations to comprehensive
+                        whole-home automation systems.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Market Positioning -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Market Positioning</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Understanding our competitive advantages and target markets
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Entry Level - GE Proseo</h3>
+                        <p>Accessible smart home technology for mainstream consumers:</p>
+                        <ul>
+                            <li>DIY-friendly installation</li>
+                            <li>Competitive pricing</li>
+                            <li>Works with Alexa & Google</li>
+                            <li>No hub required options</li>
+                            <li>Retrofit compatibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12,2 15,8.5 22,9.3 17,14.1 18.2,21 12,17.8 5.8,21 7,14.1 2,9.3 9,8.5"/>
+                            </svg>
+                        </div>
+                        <h3>Premium - Savant Integration</h3>
+                        <p>Professional-grade solutions for luxury homes:</p>
+                        <ul>
+                            <li>Whole-home automation</li>
+                            <li>Energy resilience features</li>
+                            <li>Professional installation</li>
+                            <li>Custom programming</li>
+                            <li>24/7 system monitoring</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔗</div>
+                        <h3>Seamless Scalability</h3>
+                        <p>Unique ability to grow with customer needs:</p>
+                        <ul>
+                            <li>Start with simple smart bulbs</li>
+                            <li>Add switches and controls</li>
+                            <li>Integrate with Savant system</li>
+                            <li>Expand to full automation</li>
+                            <li>Future-proof investments</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dealer Program Benefits -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Dealer Program Structure</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Two-tier program designed to match your business growth and sales volume
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </div>
+                        <h3>Authorized Partner</h3>
+                        <p><strong>Entry Level:</strong> Perfect for businesses starting their smart home journey</p>
+                        <ul>
+                            <li>Access to core GE Proseo product line</li>
+                            <li>Online training and certification</li>
+                            <li>Basic marketing materials</li>
+                            <li>Standard dealer pricing (15% discount)</li>
+                            <li>Email and chat support</li>
+                            <li>Quarterly product webinars</li>
+                            <li>Access to dealer portal</li>
+                        </ul>
+                        <div class="info-box">
+                            <h4>Requirements: $3,500 minimum annual sales commitment</h4>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                                <path d="M4 22h16"/>
+                                <path d="M10 14.66V17c0 .55.47.98.97 1.21C12.58 18.79 15.66 20 15.66 20c.47.28 1.05.28 1.52 0C17.18 20 20.26 18.79 21.97 18.21c.5-.23.97-.66.97-1.21v-2.34"/>
+                                <path d="M6 9a6 6 0 0 0 12 0"/>
+                            </svg>
+                        </div>
+                        <h3>Premier Partner</h3>
+                        <p><strong>Enhanced Benefits:</strong> For established professionals ready to scale</p>
+                        <ul>
+                            <li>Full GE Proseo + Savant product access</li>
+                            <li>Regional trainer support & live demos</li>
+                            <li>Demo unit program & display materials</li>
+                            <li>Enhanced pricing tiers (25% discount)</li>
+                            <li>Priority phone support & dedicated rep</li>
+                            <li>Marketing co-op funds (2% of purchases)</li>
+                            <li>Early access to new products</li>
+                            <li>Exclusive training events & certifications</li>
+                        </ul>
+                        <div class="info-box">
+                            <h4>Requirements: $10,000 minimum annual sales commitment</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Professional Groups -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Tailored for Your Professional Focus</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Specialized resources and support for four distinct professional groups
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                        </div>
+                        <h3>Installers</h3>
+                        <p><strong>Custom Integration & AV Professionals:</strong> Advanced technical support and training</p>
+                        <ul>
+                            <li>Priority technical support hotline</li>
+                            <li>Advanced installation documentation</li>
+                            <li>Complex Savant whole-home system training</li>
+                            <li>Installation best practices library</li>
+                            <li>Dedicated technical account managers</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21h18"/>
+                                <path d="M5 21V7l8-4v18"/>
+                                <path d="M19 21V11l-6-4"/>
+                            </svg>
+                        </div>
+                        <h3>Builders</h3>
+                        <p><strong>New Construction Specialists:</strong> Pre-wire and bulk order support</p>
+                        <ul>
+                            <li>Pre-construction planning tools</li>
+                            <li>Bulk pricing for developments</li>
+                            <li>Construction timeline integration</li>
+                            <li>Pre-wire specifications and guides</li>
+                            <li>Model home demo programs</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6"/>
+                                <path d="M16 13H8"/>
+                                <path d="M16 17H8"/>
+                                <path d="M10 9H8"/>
+                            </svg>
+                        </div>
+                        <h3>Architects</h3>
+                        <p><strong>Design Professionals:</strong> Specification and aesthetic integration resources</p>
+                        <ul>
+                            <li>Detailed specification library</li>
+                            <li>CAD files and design resources</li>
+                            <li>Aesthetic integration guides</li>
+                            <li>Co-branded marketing materials</li>
+                            <li>Design consultation support</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Remodelers</h3>
+                        <p><strong>Renovation Contractors:</strong> Retrofit solutions and upgrade pathways</p>
+                        <ul>
+                            <li>Retrofit solution guides</li>
+                            <li>Upgrade pathway planning</li>
+                            <li>Project timeline tools</li>
+                            <li>Existing home integration support</li>
+                            <li>Before/after case studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Specifications -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Technical Specifications</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Key technical details dealers need to know for successful installations
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">📡</div>
+                        <h3>Connectivity Options</h3>
+                        <ul>
+                            <li><strong>Direct Connect:</strong> Works immediately out of box</li>
+                            <li><strong>Bluetooth:</strong> Local control and pairing</li>
+                            <li><strong>2.4 GHz Wi-Fi:</strong> Remote control capabilities</li>
+                            <li><strong>Savant Integration:</strong> Professional protocol support</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Installation Requirements</h3>
+                        <ul>
+                            <li><strong>Neutral Wire:</strong> Some switches require, others don't</li>
+                            <li><strong>Ground Wire:</strong> Required for all switch installations</li>
+                            <li><strong>Load Capacity:</strong> 600W max for dimmers</li>
+                            <li><strong>Compatibility:</strong> Works with existing fixtures</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                        </div>
+                        <h3>Professional Features</h3>
+                        <ul>
+                            <li><strong>Scheduling:</strong> Advanced time-based controls</li>
+                            <li><strong>Scene Setting:</strong> Custom home environments</li>
+                            <li><strong>Music Sync:</strong> Dynamic effects with audio</li>
+                            <li><strong>Voice Control:</strong> Alexa, Google, Siri support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box warning animate-fade-in-up animate-delay-3">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        Installation Note
+                    </h4>
+                    <p>
+                        Always verify home wiring before installation. Homes built before 1980s may lack neutral wires.
+                        GE Proseo offers "no neutral wire required" options specifically for these installations.
+                        Professional electrical knowledge is recommended for switch installations.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Training Resources -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Training & Certification</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Comprehensive education program to ensure dealer success
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">🎓</div>
+                        <h3>Online Learning Platform</h3>
+                        <ul>
+                            <li>Self-paced training modules</li>
+                            <li>Product knowledge assessments</li>
+                            <li>Installation best practices</li>
+                            <li>Sales technique training</li>
+                            <li>Troubleshooting guides</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">👨‍🏫</div>
+                        <h3>Regional Training</h3>
+                        <ul>
+                            <li>In-person workshops</li>
+                            <li>Hands-on product demos</li>
+                            <li>Q&A with experts</li>
+                            <li>Networking opportunities</li>
+                            <li>Advanced integration techniques</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📱</div>
+                        <h3>Ongoing Support</h3>
+                        <ul>
+                            <li>Monthly webinars</li>
+                            <li>Product update notifications</li>
+                            <li>Technical support hotline</li>
+                            <li>Dealer community forum</li>
+                            <li>Video troubleshooting library</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Competitive Advantages -->
+            <section class="section">
+                <h2 class="section-title animate-fade-in-up">Why Choose GE Smarthome & Savant</h2>
+                <p class="section-subtitle animate-fade-in-up animate-delay-1">
+                    Unique market advantages that set our partnership apart
+                </p>
+
+                <div class="card-grid animate-fade-in-up animate-delay-2">
+                    <div class="card">
+                        <div class="card-icon">🏛️</div>
+                        <h3>Legacy & Trust</h3>
+                        <p>140+ years of GE Smarthome innovation combined with Savant's premium automation expertise.</p>
+                        <ul>
+                            <li>Household name recognition</li>
+                            <li>Proven reliability</li>
+                            <li>Customer confidence</li>
+                            <li>Brand equity advantage</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔋</div>
+                        <h3>Energy Resilience</h3>
+                        <p>Unique focus on energy independence and backup power solutions.</p>
+                        <ul>
+                            <li>Grid-independent capabilities</li>
+                            <li>Smart energy management</li>
+                            <li>Battery backup integration</li>
+                            <li>Future-proof technology</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📈</div>
+                        <h3>Scalable Solutions</h3>
+                        <p>Seamless path from entry-level to luxury installations.</p>
+                        <ul>
+                            <li>Start small, grow big</li>
+                            <li>Consistent app experience</li>
+                            <li>Investment protection</li>
+                            <li>Upsell opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
