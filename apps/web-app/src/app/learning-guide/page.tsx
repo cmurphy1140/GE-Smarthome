@@ -11,31 +11,11 @@ import {
   Link2,
   Building2,
   Battery,
-  TrendingUp,
-  LineChart,
-  ShieldCheck,
-  Sparkles
+  TrendingUp
 } from 'lucide-react'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-const pillars = [
-  {
-    icon: Sparkles,
-    title: 'Signature Portfolio',
-    description: 'Deliver the most polished smart home experiences backed by GE Lighting innovation and Savant engineering.'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Trusted Partnership',
-    description: 'A true co-selling motion with marketing support, regional enablement, and concierge service for your clients.'
-  },
-  {
-    icon: LineChart,
-    title: 'Profitable Growth',
-    description: 'Unlock better margins, tiered incentives, and rebate programs that scale with your business momentum.'
-  }
-]
 
 const productFamilies = [
   {
@@ -414,138 +394,53 @@ export default function LearningGuidePage() {
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Program Pillars</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">
-              Core elements of partnership
-            </h2>
-          </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {pillars.map(pillar => (
-              <motion.article
-                key={pillar.title}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="rounded-lg border border-slate-200/60 bg-white/80 p-6 transition-colors hover:border-slate-300/60 hover:bg-white"
-              >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
-                  <pillar.icon className="h-5 w-5 text-slate-600" />
-                </div>
-                <h3 className="text-lg font-medium text-slate-900">{pillar.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
-              </motion.article>
-            ))}
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Partner Journey</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">From first conversation to flagship installation</h2>
+            <p className="mt-4 text-base text-slate-600">Every step is guided by your channel strategist with resources tailored to your business model and growth targets.</p>
           </div>
 
-          <motion.div 
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-16"
-          >
-            <div className="text-center mb-12">
-              <h3 className="text-xl font-light text-slate-900">Partnership tiers</h3>
-              <p className="mt-2 text-sm text-slate-500 max-w-lg mx-auto">
-                Two levels designed to match your business stage and growth objectives
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-lg border border-slate-200/60 bg-white/80 p-6">
-                <div className="mb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">
-                      <Building2 className="h-4 w-4 text-slate-600" />
-                    </div>
-                    <h4 className="text-lg font-medium text-slate-900">Authorized Partner</h4>
-                  </div>
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">$3,500 annual commitment</p>
-                </div>
-                
-                <ul className="space-y-3 text-sm text-slate-600">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
-                    <span>Core GE Proseo access with 15% dealer discount</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
-                    <span>Self-paced training and quarterly webinars</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
-                    <span>Email/chat support and portal resources</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
-                    <span>Basic marketing materials</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="rounded-lg border border-slate-300/60 bg-slate-50/50 p-6">
-                <div className="mb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-200">
-                      <Star className="h-4 w-4 text-slate-700" />
-                    </div>
-                    <h4 className="text-lg font-medium text-slate-900">Premier Partner</h4>
-                  </div>
-                  <p className="text-xs font-medium text-slate-600 uppercase tracking-wider">$10,000 annual commitment</p>
-                </div>
-                
-                <ul className="space-y-3 text-sm text-slate-600">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
-                    <span>Full GE Proseo + Savant portfolio with 25% discount</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
-                    <span>Regional trainers and demo-unit programs</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
-                    <span>Dedicated rep and priority support</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
-                    <span>Marketing fund (2%) and early access</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="text-lg font-medium text-blue-600">Partner Journey</span>
-            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">From first conversation to flagship installation</h2>
-            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Every step is guided by your channel strategist with resources tailored to your business model and growth targets.</p>
-          </div>
-
-          <div className="mt-20 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 space-y-16">
             <motion.div
               variants={fadeIn}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+              viewport={{ once: true, margin: '-100px' }}
+              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
             >
-              <div className="mb-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
-                  <span className="text-xl font-bold">01</span>
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    <span className="text-lg font-bold text-blue-700">01</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Discover Phase</p>
+                    <h3 className="text-xl font-medium text-slate-900">Meet your channel strategist</h3>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Discover</p>
-                  <h3 className="text-2xl font-bold text-slate-900">Meet your channel strategist</h3>
+                <p className="text-base text-slate-600 leading-relaxed mb-6">Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical and business objectives.</p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Initial Assessment</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Comprehensive review of your current smart home capabilities, target market, and growth objectives to identify optimal partnership opportunities.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Market Analysis</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Deep dive into your local market dynamics, competitive landscape, and customer demographics to tailor our approach to your region.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Portfolio Mapping</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Strategic alignment of GE Proseo and Savant solutions with your existing services and future expansion plans.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Success Planning</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Development of a customized roadmap with clear milestones, revenue targets, and growth metrics for your first 12 months.</p>
                 </div>
               </div>
-              <p className="text-lg leading-relaxed text-slate-700 mb-6">Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical.</p>
-              <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-2 text-base font-semibold text-green-700">
-                <span>48 hr welcome call</span>
-                <ArrowRight className="h-5 w-5" />
+
+              <div className="mt-6 rounded-lg border border-green-200/60 bg-green-50/50 p-4">
+                <p className="text-sm font-medium text-green-800">Timeline: 48-hour welcome call scheduled within first week of partnership approval</p>
               </div>
             </motion.div>
 
@@ -553,23 +448,43 @@ export default function LearningGuidePage() {
               variants={fadeIn}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ delay: 0.1 }}
-              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+              viewport={{ once: true, margin: '-100px' }}
+              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
             >
-              <div className="mb-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
-                  <span className="text-xl font-bold">02</span>
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    <span className="text-lg font-bold text-blue-700">02</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Integration Phase</p>
+                    <h3 className="text-xl font-medium text-slate-900">Activate the GE × Savant toolkit</h3>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Integrate</p>
-                  <h3 className="text-2xl font-bold text-slate-900">Activate the GE × Savant toolkit</h3>
+                <p className="text-base text-slate-600 leading-relaxed mb-6">Hands-on enablement, demo gear, and sales accelerators built around your team's most valuable opportunities and existing workflows.</p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Technical Training</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Comprehensive certification programs covering installation, configuration, and troubleshooting for both GE Proseo and Savant systems.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Demo Kit Program</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Access to demonstration equipment and showroom displays to showcase capabilities and close more high-value projects.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Sales Enablement</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Co-branded marketing materials, pricing guides, and proposal templates designed to accelerate your sales cycle.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Support Integration</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Direct access to technical support teams and integration with your existing service workflows for seamless operations.</p>
                 </div>
               </div>
-              <p className="text-lg leading-relaxed text-slate-700 mb-6">Hands-on enablement, demo gear, and sales accelerators built around your team's most valuable opportunities.</p>
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-base font-semibold text-blue-700">
-                <span>1:1 enablement track</span>
-                <ArrowRight className="h-5 w-5" />
+
+              <div className="mt-6 rounded-lg border border-blue-200/60 bg-blue-50/50 p-4">
+                <p className="text-sm font-medium text-blue-800">Duration: 30-day intensive onboarding with 1:1 enablement track and regional training sessions</p>
               </div>
             </motion.div>
 
@@ -577,23 +492,43 @@ export default function LearningGuidePage() {
               variants={fadeIn}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ delay: 0.2 }}
-              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+              viewport={{ once: true, margin: '-100px' }}
+              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
             >
-              <div className="mb-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
-                  <span className="text-xl font-bold">03</span>
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    <span className="text-lg font-bold text-blue-700">03</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Scale Phase</p>
+                    <h3 className="text-xl font-medium text-slate-900">Grow with data-backed insights</h3>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Scale</p>
-                  <h3 className="text-2xl font-bold text-slate-900">Grow with data-backed insights</h3>
+                <p className="text-base text-slate-600 leading-relaxed mb-6">Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs designed to accelerate close rates and expand market presence.</p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Performance Analytics</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Detailed reporting on sales performance, customer satisfaction, and market penetration with actionable insights for growth.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Co-Marketing Programs</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Targeted digital campaigns, local event sponsorships, and co-branded marketing initiatives to expand your reach.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Advanced Training</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Ongoing education on new products, advanced integration techniques, and emerging smart home technologies.</p>
+                </div>
+                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                  <p className="font-medium text-slate-900">Strategic Planning</p>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Quarterly business reviews and strategic planning sessions to optimize growth and identify new market opportunities.</p>
                 </div>
               </div>
-              <p className="text-lg leading-relaxed text-slate-700 mb-6">Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs to accelerate close rates.</p>
-              <div className="inline-flex items-center gap-2 rounded-full bg-purple-50 px-4 py-2 text-base font-semibold text-purple-700">
-                <span>3× project velocity</span>
-                <ArrowRight className="h-5 w-5" />
+
+              <div className="mt-6 rounded-lg border border-purple-200/60 bg-purple-50/50 p-4">
+                <p className="text-sm font-medium text-purple-800">Results: Average 3× increase in project velocity and 40-60% improvement in profit margins within first year</p>
               </div>
             </motion.div>
           </div>
