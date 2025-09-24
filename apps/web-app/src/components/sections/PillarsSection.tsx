@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, Star, ArrowRight, Users, Clock, Award } from 'lucide-react'
+import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, ArrowRight, Users, Clock, Award } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
 import { fadeInUp } from '../common/OptimizedMotion'
 
@@ -98,7 +98,7 @@ function PillarsSectionComponent() {
             ))}
           </div>
 
-          {/* Right Column - Large Partner Store Card */}
+          {/* Right Column - Minimalist Partner Store Card */}
           {pillars.filter(pillar => pillar.isShop).map((pillar) => (
             <motion.a
               key={pillar.title}
@@ -109,71 +109,42 @@ function PillarsSectionComponent() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-80px' }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className="group relative rounded-2xl border p-8 transition-all duration-300 bg-gradient-to-br from-slate-900 to-blue-950 border-slate-700 text-white cursor-pointer min-h-[400px] flex flex-col justify-between"
+              whileHover={{ y: -2 }}
+              className="group relative rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/20 via-transparent to-purple-600/20" />
-
-              <div className="relative">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl transition-transform duration-300 bg-white/10 backdrop-blur-sm text-white group-hover:scale-110 mb-6">
-                  <pillar.icon className="h-8 w-8" />
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-600 transition-colors group-hover:bg-slate-200">
+                  <pillar.icon className="h-6 w-6" />
                 </div>
+                <ExternalLink className="h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+              </div>
 
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  {pillar.title}
-                </h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                {pillar.title}
+              </h3>
 
-                <p className="text-base leading-relaxed text-slate-300 mb-6">
-                  {pillar.description}
-                </p>
+              <p className="text-slate-600 mb-6 leading-relaxed">
+                {pillar.description}
+              </p>
 
-                <div className="mb-6 flex items-center gap-3">
-                  <span className="rounded-full bg-emerald-400/20 px-4 py-2 text-sm font-medium text-emerald-300">
-                    Partner Exclusive
-                  </span>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span className="text-slate-700">Up to 40% dealer pricing</span>
                 </div>
-
-                <div className="grid gap-4 sm:grid-cols-2 mb-8">
-                  <div className="flex items-center gap-3 rounded-xl bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
-                      <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-white">Dealer Pricing</p>
-                      <p className="text-xs text-slate-300">Up to 40% off MSRP</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 rounded-xl bg-white/5 p-4 backdrop-blur-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20">
-                      <LineChart className="h-4 w-4 text-blue-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-white">Priority Support</p>
-                      <p className="text-xs text-slate-300">Fast-track orders</p>
-                    </div>
-                  </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                  <span className="text-slate-700">Priority fulfillment</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                  <span className="text-slate-700">Latest innovations</span>
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 backdrop-blur border border-white/10 group-hover:bg-white/10 transition-all duration-300">
-                  <div>
-                    <p className="text-white font-semibold text-lg mb-1 flex items-center gap-2">
-                      Visit Partner Store
-                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </p>
-                    <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">
-                      Start shopping with exclusive access
-                    </p>
-                  </div>
-                  <ExternalLink className="h-6 w-6 text-slate-400 group-hover:text-white transition-colors" />
-                </div>
+              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                <span className="text-sm font-medium text-slate-900">Visit Store</span>
+                <ArrowRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-slate-600" />
               </div>
             </motion.a>
           ))}
