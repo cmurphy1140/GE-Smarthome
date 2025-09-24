@@ -37,33 +37,6 @@ const pillars = [
   }
 ]
 
-const timeline = [
-  {
-    year: '1878',
-    title: 'GE Smarthome Founded',
-    description:
-      'Thomas Edison establishes the Edison Electric Light Company, laying the groundwork for more than a century of lighting innovation.'
-  },
-  {
-    year: '2005',
-    title: 'Savant Systems Founded',
-    description:
-      'Savant launches as a premium home automation company focused on luxury control systems and energy management.'
-  },
-  {
-    year: '2020',
-    title: 'Strategic Acquisition',
-    description:
-      'Savant acquires GE Smarthome, creating a unified ecosystem that blends lighting expertise with automation leadership.'
-  },
-  {
-    year: '2024',
-    title: 'Unified Dealer Ecosystem',
-    description:
-      'The combined dealer program debuts, pairing GE Proseo smart lighting with Savant’s flagship automation platform.'
-  }
-]
-
 const productFamilies = [
   {
     icon: Lightbulb,
@@ -293,14 +266,14 @@ export default function LearningGuidePage() {
 
   const heroBackgroundStyles = {
     backgroundImage:
-      'linear-gradient(rgba(15, 23, 42, 0.65), rgba(37, 99, 235, 0.55)), url(/hero-bg.png)',
+      'linear-gradient(rgba(15, 23, 42, 0.75), rgba(37, 99, 235, 0.65)), url(/smarthome-diagram.png)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-blue-50 text-slate-900">
+    <div className="min-h-screen bg-white text-slate-900">
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -437,41 +410,16 @@ export default function LearningGuidePage() {
         </div>
       </section>
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-20">
+      <main className="mx-auto flex max-w-5xl flex-col gap-32 px-6 py-24">
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Partnership Timeline</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">How GE Lighting and Savant converged</h2>
-          </div>
-          <div className="mt-12 space-y-6">
-            {timeline.map(item => (
-              <motion.div
-                key={item.year}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="rounded-3xl border border-blue-100 bg-white/90 px-6 py-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] md:flex md:items-center md:gap-8"
-              >
-                <div className="flex flex-col items-start gap-2 md:w-1/4">
-                  <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">{item.year}</span>
-                  <p className="text-lg font-semibold text-slate-900">{item.title}</p>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600 md:mt-0 md:flex-1">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Program Pillars</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900 md:text-4xl">
-              Everything you need to deliver a signature smart home experience
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Program Pillars</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">
+              Core elements of partnership
             </h2>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
             {pillars.map(pillar => (
               <motion.article
                 key={pillar.title}
@@ -479,27 +427,184 @@ export default function LearningGuidePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="group relative overflow-hidden rounded-3xl border border-blue-100 bg-white/90 p-8 transition-transform hover:-translate-y-1"
+                className="rounded-lg border border-slate-200/60 bg-white/80 p-6 transition-colors hover:border-slate-300/60 hover:bg-white"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 via-white to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-                    <pillar.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-6 text-xl font-semibold text-slate-900">{pillar.title}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
+                  <pillar.icon className="h-5 w-5 text-slate-600" />
                 </div>
+                <h3 className="text-lg font-medium text-slate-900">{pillar.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
               </motion.article>
             ))}
+          </div>
+
+          <motion.div 
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-16"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-xl font-light text-slate-900">Partnership tiers</h3>
+              <p className="mt-2 text-sm text-slate-500 max-w-lg mx-auto">
+                Two levels designed to match your business stage and growth objectives
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-lg border border-slate-200/60 bg-white/80 p-6">
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">
+                      <Building2 className="h-4 w-4 text-slate-600" />
+                    </div>
+                    <h4 className="text-lg font-medium text-slate-900">Authorized Partner</h4>
+                  </div>
+                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">$3,500 annual commitment</p>
+                </div>
+                
+                <ul className="space-y-3 text-sm text-slate-600">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
+                    <span>Core GE Proseo access with 15% dealer discount</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
+                    <span>Self-paced training and quarterly webinars</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
+                    <span>Email/chat support and portal resources</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
+                    <span>Basic marketing materials</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-lg border border-slate-300/60 bg-slate-50/50 p-6">
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-200">
+                      <Star className="h-4 w-4 text-slate-700" />
+                    </div>
+                    <h4 className="text-lg font-medium text-slate-900">Premier Partner</h4>
+                  </div>
+                  <p className="text-xs font-medium text-slate-600 uppercase tracking-wider">$10,000 annual commitment</p>
+                </div>
+                
+                <ul className="space-y-3 text-sm text-slate-600">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
+                    <span>Full GE Proseo + Savant portfolio with 25% discount</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
+                    <span>Regional trainers and demo-unit programs</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
+                    <span>Dedicated rep and priority support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-slate-500 shrink-0" />
+                    <span>Marketing fund (2%) and early access</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        <section>
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="text-lg font-medium text-blue-600">Partner Journey</span>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">From first conversation to flagship installation</h2>
+            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Every step is guided by your channel strategist with resources tailored to your business model and growth targets.</p>
+          </div>
+
+          <div className="mt-20 grid gap-8 md:grid-cols-3">
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+            >
+              <div className="mb-6">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
+                  <span className="text-xl font-bold">01</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Discover</p>
+                  <h3 className="text-2xl font-bold text-slate-900">Meet your channel strategist</h3>
+                </div>
+              </div>
+              <p className="text-lg leading-relaxed text-slate-700 mb-6">Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical.</p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-2 text-base font-semibold text-green-700">
+                <span>48 hr welcome call</span>
+                <ArrowRight className="h-5 w-5" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ delay: 0.1 }}
+              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+            >
+              <div className="mb-6">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
+                  <span className="text-xl font-bold">02</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Integrate</p>
+                  <h3 className="text-2xl font-bold text-slate-900">Activate the GE × Savant toolkit</h3>
+                </div>
+              </div>
+              <p className="text-lg leading-relaxed text-slate-700 mb-6">Hands-on enablement, demo gear, and sales accelerators built around your team's most valuable opportunities.</p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-base font-semibold text-blue-700">
+                <span>1:1 enablement track</span>
+                <ArrowRight className="h-5 w-5" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ delay: 0.2 }}
+              className="group rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+            >
+              <div className="mb-6">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 mb-4">
+                  <span className="text-xl font-bold">03</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">Scale</p>
+                  <h3 className="text-2xl font-bold text-slate-900">Grow with data-backed insights</h3>
+                </div>
+              </div>
+              <p className="text-lg leading-relaxed text-slate-700 mb-6">Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs to accelerate close rates.</p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-purple-50 px-4 py-2 text-base font-semibold text-purple-700">
+                <span>3× project velocity</span>
+                <ArrowRight className="h-5 w-5" />
+              </div>
+            </motion.div>
           </div>
         </section>
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Product Ecosystem</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">From approachable lighting to flagship automation</h2>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Product Ecosystem</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">Technology portfolio</h2>
           </div>
-          <div className="mt-12 space-y-12">
+          <div className="mt-16 space-y-16">
             {productFamilies.map(family => (
               <motion.div
                 key={family.title}
@@ -507,31 +612,33 @@ export default function LearningGuidePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-100px' }}
-                className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
               >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-                      <family.icon className="h-8 w-8" />
+                <div className="mb-8">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
+                      <family.icon className="h-6 w-6 text-slate-600" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-semibold text-slate-900">{family.title}</h3>
-                      <p className="mt-2 text-sm text-slate-600">{family.summary}</p>
+                      <h3 className="text-xl font-medium text-slate-900">{family.title}</h3>
+                      <p className="text-sm text-slate-500">{family.summary}</p>
                     </div>
                   </div>
                 </div>
-                <div className="mt-8 grid gap-6 md:grid-cols-2">
+                
+                <div className="grid gap-6 md:grid-cols-2">
                   {family.items.map(item => (
-                    <div key={item.heading} className="rounded-2xl border border-blue-50 bg-blue-50/40 p-5">
-                      <p className="text-base font-semibold text-slate-900">{item.heading}</p>
-                      <p className="mt-2 text-sm text-slate-600">{item.copy}</p>
+                    <div key={item.heading} className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
+                      <p className="font-medium text-slate-900">{item.heading}</p>
+                      <p className="mt-2 text-sm text-slate-600 leading-relaxed">{item.copy}</p>
                     </div>
                   ))}
                 </div>
+                
                 {family.footer ? (
-                  <p className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/40 p-4 text-sm text-blue-700">
-                    {family.footer}
-                  </p>
+                  <div className="mt-6 rounded-lg border border-slate-200/60 bg-slate-50/50 p-4">
+                    <p className="text-sm text-slate-600">{family.footer}</p>
+                  </div>
                 ) : null}
               </motion.div>
             ))}
@@ -540,10 +647,10 @@ export default function LearningGuidePage() {
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Market Positioning</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Match every client to the right journey</h2>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Market Positioning</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">Portfolio range</h2>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
             {marketPosition.map(card => (
               <motion.div
                 key={card.title}
@@ -551,16 +658,16 @@ export default function LearningGuidePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                className="rounded-lg border border-slate-200/60 bg-white/80 p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                  <card.icon className="h-6 w-6" />
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
+                  <card.icon className="h-5 w-5 text-slate-600" />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-slate-900">{card.title}</h3>
-                <ul className="mt-6 space-y-3 text-sm text-slate-600">
+                <h3 className="text-lg font-medium text-slate-900">{card.title}</h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
                   {card.bullets.map(point => (
                     <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
+                      <span className="mt-2 h-1 w-1 rounded-full bg-slate-400" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -571,11 +678,12 @@ export default function LearningGuidePage() {
         </section>
 
         <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Dealer Program</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Choose the tier that matches your runway</h2>
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="text-lg font-medium text-blue-600">Dealer Program</span>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">Partnership program structure</h2>
+            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Two distinct partnership levels designed to match your business stage and growth objectives.</p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
+          <div className="mt-20 grid gap-8 md:grid-cols-2">
             {dealerTiers.map(tier => (
               <motion.div
                 key={tier.name}
@@ -583,23 +691,27 @@ export default function LearningGuidePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="flex h-full flex-col gap-6 rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                className="rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
               >
-                <div>
-                  <h3 className="text-2xl font-semibold text-slate-900">{tier.name}</h3>
-                  <p className="mt-3 text-sm text-slate-600">{tier.description}</p>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-slate-900">{tier.name}</h3>
+                  <p className="mt-3 text-lg text-slate-600 leading-relaxed">{tier.description}</p>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-600">
+
+                <ul className="space-y-3 text-base text-slate-700 mb-6">
                   {tier.highlights.map(point => (
                     <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
-                      <span>{point}</span>
+                      <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-blue-600 shrink-0" />
+                      <span className="leading-relaxed">{point}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="rounded-2xl border border-blue-100 bg-blue-50/40 px-4 py-3 text-sm font-semibold text-blue-700">
-                  Requirements: {tier.requirement}
-                </p>
+
+                <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+                  <p className="text-sm font-semibold text-green-800 uppercase tracking-wider">
+                    {tier.requirement}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -607,71 +719,114 @@ export default function LearningGuidePage() {
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Partner Playbooks</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Toolkits tailored to your professional focus</h2>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Partner Playbooks</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">Specialized resources for your focus</h2>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {professionalSegments.map(segment => (
+
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {professionalSegments.map((segment, index) => (
               <motion.div
                 key={segment.title}
                 variants={fadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="flex h-full flex-col gap-4 rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                transition={{ delay: index * 0.05 }}
+                className="group relative"
               >
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-900">{segment.title}</h3>
-                  <p className="text-sm text-slate-500">{segment.subtitle}</p>
+                <div className="rounded-lg border border-slate-200/60 bg-white/80 p-6 transition-all duration-200 hover:border-slate-300/80 hover:bg-white">
+                  <div className="mb-4">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 transition-colors group-hover:bg-slate-200">
+                      <span className="text-sm font-medium text-slate-700">{segment.title.charAt(0)}</span>
+                    </div>
+                    <h3 className="text-lg font-medium text-slate-900">{segment.title}</h3>
+                    <p className="text-sm text-slate-500">{segment.subtitle}</p>
+                  </div>
+                  
+                  <ul className="space-y-2">
+                    {segment.bullets.map((point, bulletIndex) => (
+                      <li key={bulletIndex} className="flex items-start gap-3 text-sm text-slate-600">
+                        <div className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
+                        <span className="leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-600">
-                  {segment.bullets.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             ))}
           </div>
         </section>
 
         <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Training & Certification</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Education programs engineered for momentum</h2>
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="text-lg font-medium text-blue-600">Training & Certification</span>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">Guided learning pathways</h2>
+            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Comprehensive training programs designed to accelerate your expertise and maximize your success with GE and Savant solutions.</p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {trainingTracks.map(track => (
+
+          <div className="mt-20 space-y-16">
+            {trainingTracks.map((track, index) => (
               <motion.div
                 key={track.title}
                 variants={fadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="flex h-full flex-col gap-4 rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                transition={{ delay: index * 0.1 }}
+                className="group"
               >
-                <h3 className="text-xl font-semibold text-slate-900">{track.title}</h3>
-                <ul className="space-y-3 text-sm text-slate-600">
-                  {track.bullets.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-start gap-8 md:gap-12">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 text-xl font-bold transition-all group-hover:scale-105">
+                    {index + 1}
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="mb-8">
+                      <h3 className="text-2xl font-bold text-slate-900 md:text-3xl">{track.title}</h3>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                      {track.bullets.map((point, bulletIndex) => (
+                        <div
+                          key={bulletIndex}
+                          className="rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_18px_50px_rgba(15,23,42,0.10)]"
+                        >
+                          <p className="text-xl text-slate-700 leading-relaxed font-medium md:text-2xl">{point}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {index < trainingTracks.length - 1 && (
+                  <div className="mt-12 flex justify-center">
+                    <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-20 text-center"
+          >
+            <div className="inline-flex items-center gap-3 rounded-full border border-green-200 bg-green-50 px-6 py-4 text-lg font-semibold text-green-800">
+              <div className="h-3 w-3 rounded-full bg-green-600" />
+              Professional certification available upon completion
+            </div>
+          </motion.div>
         </section>
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Competitive Edge</span>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Why dealers choose the GE × Savant alliance</h2>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Competitive Edge</span>
+            <h2 className="mt-3 text-2xl font-light text-slate-900">Partnership advantages</h2>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
             {advantages.map(card => (
               <motion.div
                 key={card.title}
@@ -679,16 +834,16 @@ export default function LearningGuidePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                className="rounded-lg border border-slate-200/60 bg-white/80 p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                  <card.icon className="h-6 w-6" />
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
+                  <card.icon className="h-5 w-5 text-slate-600" />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-slate-900">{card.title}</h3>
-                <ul className="mt-6 space-y-3 text-sm text-slate-600">
+                <h3 className="text-lg font-medium text-slate-900">{card.title}</h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
                   {card.bullets.map(point => (
                     <li key={point} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
+                      <span className="mt-2 h-1 w-1 rounded-full bg-slate-400" />
                       <span>{point}</span>
                     </li>
                   ))}
