@@ -11,24 +11,18 @@ import {
 } from 'framer-motion'
 import {
   ArrowRight,
-  Award,
   Cable,
   CalendarCheck,
   CheckCircle2,
-  Diamond,
+  ChevronDown,
   Globe2,
-  Lightbulb,
-  LineChart,
   Rocket,
   Shield,
-  ShieldCheck,
-  Sparkles,
   Star,
-  Trophy,
   Users,
   Waves
 } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 
 const fadeInUp = {
@@ -47,54 +41,7 @@ const staggerContainer = {
   }
 }
 
-const hoverCard = {
-  rest: { y: 0, scale: 1, boxShadow: '0px 18px 45px rgba(15, 23, 42, 0.08)' },
-  hover: {
-    y: -10,
-    scale: 1.02,
-    boxShadow: '0px 24px 55px rgba(15, 23, 42, 0.14)',
-    transition: { type: 'spring' as const, stiffness: 280, damping: 24 }
-  }
-}
 
-const tiers = [
-  {
-    icon: Lightbulb,
-    label: 'Phase 01',
-    title: 'GE Proseo Certified Installer',
-    summary: 'Launch with connected lighting experiences that strengthen your brand.',
-    revenue: '$5K–$15K avg',
-    keyBenefit: 'Exclusive GE Proseo pricing',
-    focus: 'Smart Lighting'
-  },
-  {
-    icon: Award,
-    label: 'Phase 02',
-    title: 'Connected Home Specialist',
-    summary: 'Introduce layered controls, sensors, and voice integrations.',
-    revenue: '$15K–$45K avg',
-    keyBenefit: 'Advanced controls training',
-    focus: 'Smart Controls'
-  },
-  {
-    icon: Diamond,
-    label: 'Phase 03',
-    title: 'Savant Systems Integrator',
-    summary: 'Expand into high-margin automation with whole-home orchestration.',
-    revenue: '$45K–$120K avg',
-    keyBenefit: 'Savant University access',
-    focus: 'Home Automation'
-  },
-  {
-    icon: Trophy,
-    label: 'Phase 04',
-    title: 'Savant Ambassador',
-    summary: 'Lead flagship installs with concierge project services.',
-    revenue: '$120K+ avg',
-    keyBenefit: 'Innovation preview access',
-    focus: 'Flagship Projects'
-  }
-]
 
 const navItems = [
   { id: 'about', label: 'About' },
@@ -122,44 +69,21 @@ const stats = [
   }
 ]
 
-const pillars = [
-  {
-    icon: Sparkles,
-    title: 'Signature Portfolio',
-    description: 'Deliver the most polished smart home experiences backed by GE Lighting innovation and Savant engineering.',
-    badge: 'Premium Brand'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Trusted Partnership',
-    description: 'A true co-selling motion with marketing support, regional enablement, and concierge service for your clients.',
-    badge: 'Co-Selling'
-  },
-  {
-    icon: LineChart,
-    title: 'Profitable Growth',
-    description: 'Unlock better margins, tiered incentives, and rebate programs that scale with your business momentum.',
-    badge: 'Higher Margins'
-  }
-]
 
 const journey = [
   {
     title: 'Discover',
     headline: 'Meet your channel strategist',
-    detail: 'Explore portfolio fit and map your launch goals during a curated strategy session.',
     metric: '48 hr welcome call'
   },
   {
     title: 'Integrate',
-    headline: 'Activate the GE x Savant toolkit',
-    detail: 'Hands-on enablement, demo gear, and sales accelerators tailored to your vertical.',
+    headline: 'Activate the GE Smarthome toolkit',
     metric: '1:1 enablement track'
   },
   {
     title: 'Scale',
     headline: 'Grow with data-backed insights',
-    detail: 'Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs.',
     metric: '3x project velocity'
   }
 ]
@@ -270,10 +194,9 @@ export default function Home() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
   const [activeStage, setActiveStage] = useState(0)
-  const [activeTier, setActiveTier] = useState(0)
+  const [activeVertical, setActiveVertical] = useState(0)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
-  const ActiveTierIcon = tiers[activeTier].icon
 
 
   const heroBackgroundStyles = {
@@ -468,49 +391,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="relative py-24">
-        <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Program Pillars</span>
-              <h2 className="mt-4 text-3xl font-semibold text-slate-900 md:text-4xl">
-                Everything you need to deliver a signature smart home experience
-              </h2>
-            </motion.div>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {pillars.map(pillar => (
-              <motion.article
-                key={pillar.title}
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-                variants={hoverCard}
-                className="group relative overflow-hidden rounded-3xl border border-blue-100 bg-white/90 p-8"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 via-white to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-                    <pillar.icon className="h-6 w-6" />
-                  </div>
-                  <div className="flex items-center justify-between mt-6">
-                    <h3 className="text-xl font-semibold text-slate-900">{pillar.title}</h3>
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                      {pillar.badge}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section id="journey" className="relative border-y border-slate-200 bg-white/80 py-24 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl flex-col gap-14 px-6 md:flex-row md:items-center">
@@ -557,7 +437,6 @@ export default function Home() {
                     <h3 className="mt-1 text-xl font-semibold text-slate-900">{stage.headline}</h3>
                   </div>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{stage.detail}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
                   {stage.metric}
                   <ArrowRight className="h-4 w-4" />
@@ -569,99 +448,7 @@ export default function Home() {
       </section>
 
       <section id="verticals" className="relative border-y border-slate-200 bg-white/80 py-24 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Who We Serve</span>
-              <h2 className="mt-4 text-3xl font-semibold text-slate-900 md:text-4xl">
-                Tailored playbooks for every smart home professional
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600">
-                Professional smart home solutions tailored to your business expertise.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {verticals.map((vertical, index) => {
-              const Icon = vertical.icon
-              return (
-                <motion.article
-                  key={vertical.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
-                  className="group relative flex h-full flex-col gap-6 rounded-3xl border border-blue-100 bg-white/90 p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform hover:-translate-y-2"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
-                        {vertical.title}
-                      </p>
-                      <h3 className="mt-1 text-lg font-semibold text-slate-900">{vertical.headline}</h3>
-                    </div>
-                  </div>
-                  <p className="text-sm leading-relaxed text-slate-600">{vertical.summary}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm font-medium text-slate-700">{vertical.keyBenefit}</span>
-                    </div>
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                      {vertical.projectValue}
-                    </span>
-                  </div>
-                  <Link
-                    href={vertical.href}
-                    className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-900"
-                  >
-                    {vertical.cta}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </motion.article>
-              )
-            })}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="flex flex-col items-center gap-4 rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 via-white to-blue-100 px-8 py-10 text-center shadow-[0_18px_45px_rgba(15,23,42,0.08)] md:flex-row md:justify-between md:text-left"
-          >
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Next Step</p>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900">Start with a discovery session tailored to your trade</h3>
-              <p className="mt-3 text-sm text-slate-600">Share upcoming projects and we will map training, demo gear, and margin models around your pipeline.</p>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 md:justify-end">
-              {verticals.map(vertical => (
-                <Link
-                  key={`cta-${vertical.id}`}
-                  href={vertical.href}
-                  className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-400 hover:text-blue-900"
-                >
-                  {vertical.title}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="path" className="relative border-b border-slate-200 bg-gradient-to-br from-blue-50 via-white to-blue-100/60 py-24 backdrop-blur-xl">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.2fr]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -670,93 +457,102 @@ export default function Home() {
             className="space-y-6"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
-              Path to Savant Ambassador
+              Who We Serve
             </span>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
-              Start with smart lighting, scale into full Savant ecosystems
+              Tailored playbooks for every smart home professional
             </h2>
             <p className="text-sm leading-relaxed text-slate-600">
-              Each tier unlocks higher-margin experiences, deeper enablement, and co-branded marketing muscle so you can move from quick installs to flagship smart homes without losing momentum.
+              Professional smart home solutions tailored to your business expertise.
             </p>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tiers[activeTier].title}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-5 rounded-3xl border border-blue-200 bg-white/80 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.08)]"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-                    <ActiveTierIcon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
-                      {tiers[activeTier].label}
-                    </p>
-                    <h3 className="text-xl font-semibold text-slate-900">{tiers[activeTier].title}</h3>
-                  </div>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-600">{tiers[activeTier].summary}</p>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="rounded-2xl border border-blue-100 bg-blue-50/50 px-4 py-2 text-sm font-semibold text-blue-700">
-                    {tiers[activeTier].revenue}
-                  </div>
-                  <span className="inline-flex items-center rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 px-3 py-1 text-xs font-semibold text-blue-800">
-                    {tiers[activeTier].focus}
-                  </span>
-                </div>
-                <div className="mt-4 flex items-center gap-3 rounded-2xl border border-green-100 bg-green-50/50 px-4 py-3">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
-                  <span className="text-sm font-medium text-green-800">{tiers[activeTier].keyBenefit}</span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+
+            {/* Dropdown Selector */}
+            <div className="space-y-4">
+              <p className="text-sm font-semibold text-slate-700">Select your business type:</p>
+              <div className="grid gap-3">
+                {verticals.map((vertical, index) => {
+                  const Icon = vertical.icon
+                  const isActive = activeVertical === index
+                  return (
+                    <motion.button
+                      key={vertical.id}
+                      type="button"
+                      onMouseEnter={() => setActiveVertical(index)}
+                      onFocus={() => setActiveVertical(index)}
+                      onClick={() => setActiveVertical(index)}
+                      initial={{ opacity: 0, x: -24 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: '-80px' }}
+                      transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
+                      className={`group flex w-full items-center gap-4 rounded-2xl border px-6 py-4 text-left transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        isActive
+                          ? 'border-blue-300 bg-blue-50/80 shadow-[0_8px_30px_rgba(37,99,235,0.12)]'
+                          : 'border-slate-200 bg-white/60 hover:border-blue-200 hover:bg-blue-50/40'
+                      }`}
+                    >
+                      <div className={`flex h-12 w-12 items-center justify-center rounded-xl shadow-lg transition-colors ${
+                        isActive ? 'bg-blue-600 text-white shadow-blue-500/30' : 'bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600'
+                      }`}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-slate-900">{vertical.title}</p>
+                        <p className="text-xs text-slate-500">{vertical.projectValue}</p>
+                      </div>
+                      <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform ${
+                        isActive ? 'rotate-180 text-blue-600' : 'group-hover:text-slate-600'
+                      }`} />
+                    </motion.button>
+                  )
+                })}
+              </div>
+            </div>
           </motion.div>
 
-          <div className="space-y-4">
-            {tiers.map((tier, index) => {
-              const isActive = activeTier === index
-              return (
-                <motion.button
-                  key={tier.title}
-                  type="button"
-                  onMouseEnter={() => setActiveTier(index)}
-                  onFocus={() => setActiveTier(index)}
-                  onClick={() => setActiveTier(index)}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.05 }}
-                  className={`group flex w-full items-center justify-between gap-4 rounded-3xl border px-6 py-5 text-left transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                    isActive
-                      ? 'border-blue-300 bg-white/90 shadow-[0_18px_45px_rgba(15,23,42,0.08)]'
-                      : 'border-white/40 bg-white/50 hover:border-blue-200 hover:bg-white'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className={`flex h-10 w-10 items-center justify-center rounded-2xl border text-sm font-semibold transition-colors ${
-                      isActive ? 'border-blue-500 bg-blue-600 text-white' : 'border-blue-100 bg-blue-50 text-blue-700'
-                    }`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
-                        {tier.label}
-                      </p>
-                      <p className="mt-1 text-base font-semibold text-slate-900">{tier.title}</p>
-                    </div>
-                  </div>
-                  <ArrowRight className={`h-4 w-4 transition-transform ${
-                    isActive ? 'translate-x-1 text-blue-600' : 'text-blue-400 group-hover:translate-x-1 group-hover:text-blue-600'
-                  }`} />
-                </motion.button>
-              )
-            })}
-          </div>
+          {/* Active Vertical Details */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={verticals[activeVertical].id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-6 rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 via-white to-blue-100/60 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)]"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+                  {React.createElement(verticals[activeVertical].icon, { className: 'h-8 w-8' })}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold text-slate-900">{verticals[activeVertical].headline}</h3>
+                  <p className="text-sm font-medium text-blue-600">{verticals[activeVertical].title}</p>
+                </div>
+              </div>
+
+              <p className="text-sm leading-relaxed text-slate-600">{verticals[activeVertical].summary}</p>
+
+              <div className="flex items-center justify-between rounded-2xl border border-green-100 bg-green-50/50 px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <span className="text-sm font-medium text-green-800">{verticals[activeVertical].keyBenefit}</span>
+                </div>
+                <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                  {verticals[activeVertical].projectValue}
+                </span>
+              </div>
+
+              <Link
+                href={verticals[activeVertical].href}
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-1 hover:bg-blue-700"
+              >
+                {verticals[activeVertical].cta}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
+
 
       <section id="benefits" className="relative py-24">
         <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6">
@@ -931,9 +727,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex items-center gap-4 text-sm text-slate-500">
-            <a href="#pillars" className="transition-colors hover:text-slate-900">
+            <Link href="/learning-guide" className="transition-colors hover:text-slate-900">
               Program Pillars
-            </a>
+            </Link>
             <a href="#journey" className="transition-colors hover:text-slate-900">
               Partner Journey
             </a>

@@ -276,12 +276,12 @@
         /* Form Section */
         .prefill-banner {
             display: none;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 102, 204, 0.2);
-            background: rgba(232, 244, 253, 0.6);
-            padding: 1rem 1.25rem;
-            color: var(--secondary-blue);
+            margin-top: 1.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.18);
+            padding: 0.85rem 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
             font-weight: 600;
         }
 
@@ -298,23 +298,39 @@
         }
 
         .form-header {
-            text-align: center;
             margin-bottom: 3rem;
+            padding: clamp(2.5rem, 5vw, 3.5rem);
+            border-radius: 20px;
+            background-image: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(15, 23, 42, 0.75)), url('signup-hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
         }
 
-        .form-header h1 {
+        .form-hero {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-hero-text {
+            text-align: center;
+        }
+
+        .form-hero-text h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--dark-gray);
             margin-bottom: 1rem;
         }
 
-        .form-header p {
+        .form-hero-text p {
             font-size: 1.125rem;
-            color: var(--medium-gray);
             line-height: 1.6;
             max-width: 600px;
             margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Form Styles */
@@ -487,11 +503,11 @@
                 margin-top: 1rem;
             }
 
-            .form-header h1 {
+            .form-hero-text h1 {
                 font-size: 2rem;
             }
 
-            .form-header p {
+            .form-hero-text p {
                 font-size: 1rem;
             }
 
@@ -506,6 +522,22 @@
 
             .nav-links {
                 display: none;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .form-hero {
+                grid-template-columns: 1.05fr 0.95fr;
+                align-items: center;
+            }
+
+            .form-hero-text {
+                text-align: left;
+            }
+
+            .form-hero-text p {
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
@@ -620,11 +652,15 @@
     <main class="main-container">
         <section class="form-section animate-scale-in animate-delay-1">
             <div class="form-header">
-                <h1 class="animate-fade-in-up animate-delay-2">Join an Elite Network of Smart Home Professionals</h1>
-                <p class="animate-fade-in-up animate-delay-3">Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
+                <div class="form-hero">
+                    <div class="form-hero-text">
+                        <h1 class="animate-fade-in-up animate-delay-2">Join an Elite Network of Smart Home Professionals</h1>
+                        <p class="animate-fade-in-up animate-delay-3">Please complete the inquiry form below to begin your application. A regional channel manager will review your information and contact you within 3-5 business days to discuss the next steps.</p>
+                        <div id="prefillBanner" class="prefill-banner"></div>
+                    </div>
+                </div>
             </div>
 
-            <div id="prefillBanner" class="prefill-banner"></div>
             <form class="application-form" id="dealerForm">
                 <div class="form-row">
                     <div class="form-group">

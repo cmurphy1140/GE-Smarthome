@@ -198,25 +198,34 @@ export default function SignupPage() {
           {/* Form Header */}
           <motion.div
             variants={fadeInUp}
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-12 text-white text-center"
+            style={{
+              backgroundImage:
+                'linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(15, 23, 42, 0.75)), url(/signup-hero.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+            className="rounded-t-2xl px-8 py-16 text-white"
           >
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Join an Elite Network of Smart Home Professionals
-            </h1>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Please complete the inquiry form below to begin your application.
-              A regional channel manager will review your information and contact you within 3-5 business days.
-            </p>
-            {defaults && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-sm font-semibold text-blue-50"
-              >
-                Tailored for {defaults.label} — adjust any field to fit your business.
-              </motion.div>
-            )}
+            <div className="mx-auto max-w-4xl text-center">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">
+                Join an Elite Network of Smart Home Professionals
+              </h1>
+              <p className="text-xl opacity-90 mx-auto max-w-2xl">
+                Please complete the inquiry form below to begin your application.
+                A regional channel manager will review your information and contact you within 3-5 business days.
+              </p>
+              {defaults && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-sm font-semibold text-blue-50"
+                >
+                  Tailored for {defaults.label} — adjust any field to fit your business.
+                </motion.div>
+              )}
+            </div>
           </motion.div>
 
           {/* Form Content */}

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
+  ArrowRight,
   Lightbulb,
   Home,
   BarChart3,
@@ -10,8 +11,31 @@ import {
   Link2,
   Building2,
   Battery,
-  TrendingUp
+  TrendingUp,
+  LineChart,
+  ShieldCheck,
+  Sparkles
 } from 'lucide-react'
+import { useInView } from 'framer-motion'
+import { useRef } from 'react'
+
+const pillars = [
+  {
+    icon: Sparkles,
+    title: 'Signature Portfolio',
+    description: 'Deliver the most polished smart home experiences backed by GE Lighting innovation and Savant engineering.'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Trusted Partnership',
+    description: 'A true co-selling motion with marketing support, regional enablement, and concierge service for your clients.'
+  },
+  {
+    icon: LineChart,
+    title: 'Profitable Growth',
+    description: 'Unlock better margins, tiered incentives, and rebate programs that scale with your business momentum.'
+  }
+]
 
 const timeline = [
   {
@@ -242,11 +266,39 @@ const advantages = [
 
 const fadeIn = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
+} as const
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+  }
+} as const
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 }
+  }
 }
 
 
 export default function LearningGuidePage() {
+  const heroRef = useRef(null)
+  const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
+
+  const heroBackgroundStyles = {
+    backgroundImage:
+      'linear-gradient(rgba(15, 23, 42, 0.65), rgba(37, 99, 235, 0.55)), url(/hero-bg.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-blue-50 text-slate-900">
       <motion.header
@@ -279,46 +331,113 @@ export default function LearningGuidePage() {
         </nav>
       </motion.header>
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-20">
-        <section className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mx-auto max-w-3xl"
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
-              Learning Hub
-            </span>
-            <h1 className="mt-6 text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
-              Master the GE Proseo to Savant growth journey
-            </h1>
-            <p className="mt-6 text-lg text-slate-600">
-              Build confidence in the combined portfolio, align your services to the right tier, and equip your team with
-              the training needed to deliver unforgettable smart home experiences.
-            </p>
-          </motion.div>
-        </section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 p-1"
+      <section
+        ref={heroRef}
+        className="relative overflow-hidden py-32 md:py-40 text-white"
+        style={heroBackgroundStyles}
+      >
+        <motion.div
+          initial="hidden"
+          animate={heroInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
+          className="relative mx-auto max-w-4xl px-6 text-center"
         >
-          <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-4 md:p-8">
-            <div className="relative">
-              <div className="absolute -inset-8 rounded-2xl bg-gradient-to-r from-blue-500/30 to-cyan-500/30 blur-2xl"></div>
-              <img
-                src="/smart-home-control-panel.jpg"
-                alt="GE Smarthome Control Panel showing energy monitoring, security status, and home automation controls"
-                className="relative w-full rounded-2xl shadow-2xl"
-                width={1200}
-                height={800}
-              />
+          <motion.div
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white"
+          >
+            Learning Hub
+          </motion.div>
+
+          <motion.h1
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            className="mt-8 text-5xl font-bold leading-tight text-white md:text-7xl"
+          >
+            Master the GE Proseo to Savant growth journey
+          </motion.h1>
+
+          <motion.p
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+            className="mx-auto mt-8 max-w-3xl text-xl text-blue-100 md:text-2xl leading-relaxed"
+          >
+            Build confidence in the combined portfolio, align your services to the right tier, and equip your team with the training needed to deliver unforgettable smart home experiences.
+          </motion.p>
+
+          <motion.div
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <Link
+              href="/signup"
+              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-bold text-blue-700 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-blue-500/40 hover:bg-blue-50"
+            >
+              <span>Apply Now</span>
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2 rounded-full border-2 border-white/60 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white"
+            >
+              <span>Homepage</span>
+              <Star className="h-5 w-5 transition-transform group-hover:rotate-12" />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+            className="mt-16 grid grid-cols-3 gap-8 text-center"
+          >
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">140+</div>
+              <div className="text-sm text-blue-100 mt-2">Years of Innovation</div>
             </div>
-          </div>
-        </motion.section>
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">2K+</div>
+              <div className="text-sm text-blue-100 mt-2">Products Available</div>
+            </div>
+            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white">24/7</div>
+              <div className="text-sm text-blue-100 mt-2">Training Support</div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Background elements */}
+        <div className="pointer-events-none absolute inset-0">
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-500/20 blur-3xl"
+          />
+          <motion.div
+            animate={{
+              rotate: [360, 0],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-400/20 to-blue-500/20 blur-3xl"
+          />
+        </div>
+      </section>
+
+      <main className="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-20">
 
         <section>
           <div className="mx-auto max-w-3xl text-center">
@@ -341,6 +460,36 @@ export default function LearningGuidePage() {
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-slate-600 md:mt-0 md:flex-1">{item.description}</p>
               </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Program Pillars</span>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900 md:text-4xl">
+              Everything you need to deliver a signature smart home experience
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {pillars.map(pillar => (
+              <motion.article
+                key={pillar.title}
+                variants={fadeIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-80px' }}
+                className="group relative overflow-hidden rounded-3xl border border-blue-100 bg-white/90 p-8 transition-transform hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 via-white to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+                    <pillar.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-6 text-xl font-semibold text-slate-900">{pillar.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
+                </div>
+              </motion.article>
             ))}
           </div>
         </section>
