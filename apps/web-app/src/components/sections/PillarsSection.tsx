@@ -2,9 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, Star, ArrowRight, Users, Clock, Award } from 'lucide-react'
-import { memo } from 'react'
 import { SectionHeader } from '../common/SectionHeader'
-import { fadeInUp, staggerChildren } from '../common/OptimizedMotion'
+import { fadeInUp } from '../common/OptimizedMotion'
 
 const pillars = [
   {
@@ -43,7 +42,12 @@ const pillars = [
   }
 ]
 
-
+const accentStyles = {
+  blue: 'border-blue-200 hover:border-blue-300',
+  green: 'border-green-200 hover:border-green-300',
+  purple: 'border-purple-200 hover:border-purple-300',
+  orange: 'border-orange-200 hover:border-orange-300'
+}
 
 function PillarsSectionComponent() {
   return (
@@ -101,7 +105,7 @@ function PillarsSectionComponent() {
               href={pillar.href}
               target="_blank"
               rel="noopener noreferrer"
-              variants={fadeIn}
+              variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-80px' }}
@@ -177,7 +181,7 @@ function PillarsSectionComponent() {
 
         {/* Supporting info */}
         <motion.div
-          variants={fadeIn}
+          variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
@@ -192,4 +196,4 @@ function PillarsSectionComponent() {
   )
 }
 
-export const PillarsSection = memo(PillarsSectionComponent)
+export const PillarsSection = PillarsSectionComponent
