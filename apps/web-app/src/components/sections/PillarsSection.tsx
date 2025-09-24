@@ -1,36 +1,44 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, Star } from 'lucide-react'
+import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, Star, ArrowRight, Users, Clock, Award } from 'lucide-react'
 import { memo } from 'react'
 import { SectionHeader } from '../common/SectionHeader'
 
 const pillars = [
   {
-    icon: ShieldCheck,
+    icon: Users,
     title: 'Dedicated strategist',
     description: '1:1 guidance from onboarding through expansion with regional expertise.',
-    accent: 'blue'
+    accent: 'blue',
+    badge: 'Personal'
   },
   {
-    icon: LineChart,
+    icon: Clock,
     title: '24/7 support',
     description: 'Priority access to technical specialists and rapid-response troubleshooting.',
-    accent: 'green'
+    accent: 'green',
+    badge: 'Always On'
   },
   {
-    icon: Sparkles,
+    icon: Award,
     title: 'Premium portfolio',
     description: 'GE Lighting innovation backed by Savant automation to differentiate every install.',
-    accent: 'purple'
+    accent: 'purple',
+    badge: 'Exclusive'
   },
   {
     icon: ShoppingBag,
-    title: 'Partner store',
-    description: 'Exclusive dealer pricing and priority fulfillment for premium smart lighting.',
+    title: 'Partner Store',
+    description: 'Access premium smart lighting with exclusive dealer pricing and priority fulfillment.',
     accent: 'orange',
     isShop: true,
-    href: 'https://shop.gelighting.com/'
+    href: 'https://shop.gelighting.com/',
+    features: [
+      { icon: ShieldCheck, text: 'Up to 40% off MSRP', highlight: 'Dealer Pricing' },
+      { icon: LineChart, text: 'Fast-track orders', highlight: 'Priority Support' },
+      { icon: Sparkles, text: 'Latest innovations', highlight: 'Premium Products' }
+    ]
   }
 ]
 
@@ -43,11 +51,31 @@ const fadeIn = {
   }
 } as const
 
-const accentStyles = {
-  blue: 'bg-blue-50 text-blue-950 border-blue-100',
-  green: 'bg-blue-50 text-blue-950 border-blue-100',
-  purple: 'bg-blue-50 text-blue-950 border-blue-100',
-  orange: 'bg-blue-50 text-blue-950 border-blue-100'
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+} as const
+
+const slideIn = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: [0.2, 0.6, 0.3, 1] }
+  }
+} as const
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.2, 0.6, 0.3, 1] }
+  }
 } as const
 
 

@@ -5,15 +5,7 @@ import { Rocket, Play } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { memo } from 'react'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.2, 0.6, 0.3, 1] }
-  }
-} as const
+import { fadeInUp } from '../common/OptimizedMotion'
 
 function TailoredEnablementSectionComponent() {
   return (
