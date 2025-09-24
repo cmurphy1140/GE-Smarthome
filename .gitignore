@@ -8,5 +8,16 @@ out/
 .vercel/
 **/.vercel/
 
+# Development and logs
+*.log
+dev.log
+
+# Generated images (if not needed)
+Gemini_Generated_Image_*.png
+
+# Environment files
+.env*
+!.env.example
+
 # Miscellaneous
 .DS_Store

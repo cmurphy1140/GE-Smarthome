@@ -149,7 +149,7 @@
             position: relative;
             padding: clamp(6rem, 10vw, 8rem) 0;
             overflow: hidden;
-            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(37, 99, 235, 0.65)), url('hero-bg.png');
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(37, 99, 235, 0.65)), url('assets/hero-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -922,7 +922,6 @@
             </div>
             <nav class="nav-links" aria-label="Primary">
                 <a href="#pillars">Program Pillars</a>
-                <a href="#journey">Partner Journey</a>
                 <a href="#verticals">Who We Serve</a>
                 <a href="#path">Tier Progression</a>
                 <a href="#resources">Dealer Benefits</a>
@@ -1109,71 +1108,82 @@
                         </ul>
                     </article>
                 </div>
+
+                <div class="mt-16">
+                    <div class="section-header">
+                        <span class="eyebrow">Dealer Program</span>
+                        <h3>Two partnership tiers designed for your growth stage</h3>
+                        <p>Whether you're launching your smart home practice or scaling into premium automation, we have a program that matches your business model and revenue targets.</p>
+                    </div>
+
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <article class="card">
+                            <span class="icon-circle" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9,22 9,12 15,12 15,22" />
+                                </svg>
+                            </span>
+                            <h4>Authorized Partner</h4>
+                            <p>Entry-level track for businesses launching their smart home practice.</p>
+                            <ul>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Core GE Proseo catalog access with 15% discount
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Self-paced training and quarterly webinars
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Email/chat support and portal resources
+                                </li>
+                            </ul>
+                            <div class="tier-revenue">$3,500 minimum annual commitment</div>
+                        </article>
+
+                        <article class="card">
+                            <span class="icon-circle" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                </svg>
+                            </span>
+                            <h4>Premier Partner</h4>
+                            <p>Enhanced benefits for established teams ready to scale into Savant automation.</p>
+                            <ul>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Full GE Proseo + Savant portfolio with 25% discount
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Regional trainers and demo-unit programs
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="m5 12 5 5L20 7" />
+                                    </svg>
+                                    Dedicated rep, priority support, and marketing fund (2%)
+                                </li>
+                            </ul>
+                            <div class="tier-revenue">$10,000 minimum annual commitment</div>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="section journey" id="journey" aria-labelledby="journey-title">
-            <div class="container journey-layout">
-                <div>
-                    <span class="eyebrow">Partner Journey</span>
-                    <h2 id="journey-title">From first conversation to flagship installation</h2>
-                    <p style="color: var(--slate-600); margin-top: 1rem; max-width: 420px;">Every step is guided by your channel strategist with resources tailored to your business model and growth targets.</p>
-                </div>
-                <div class="journey-steps" role="tablist" aria-label="Partner journey">
-                    <button class="journey-step" data-stage="0" aria-pressed="false" role="tab">
-                        <div style="display:flex; align-items:center;">
-                            <span class="stage-number">01</span>
-                            <div>
-                                <p class="brand-tagline" style="letter-spacing:0.3em;">Discover</p>
-                                <h3>Meet your channel strategist</h3>
-                            </div>
-                        </div>
-                        <p>Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical.</p>
-                        <span class="journey-metric">
-                            48 hr welcome call
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M5 12h14" />
-                                <path d="m12 5 7 7-7 7" />
-                            </svg>
-                        </span>
-                    </button>
-                    <button class="journey-step" data-stage="1" aria-pressed="false" role="tab">
-                        <div style="display:flex; align-items:center;">
-                            <span class="stage-number">02</span>
-                            <div>
-                                <p class="brand-tagline" style="letter-spacing:0.3em;">Integrate</p>
-                                <h3>Activate the GE × Savant toolkit</h3>
-                            </div>
-                        </div>
-                        <p>Hands-on enablement, demo gear, and sales accelerators built around your team’s most valuable opportunities.</p>
-                        <span class="journey-metric">
-                            1:1 enablement track
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M5 12h14" />
-                                <path d="m12 5 7 7-7 7" />
-                            </svg>
-                        </span>
-                    </button>
-                    <button class="journey-step" data-stage="2" aria-pressed="false" role="tab">
-                        <div style="display:flex; align-items:center;">
-                            <span class="stage-number">03</span>
-                            <div>
-                                <p class="brand-tagline" style="letter-spacing:0.3em;">Scale</p>
-                                <h3>Grow with data-backed insights</h3>
-                            </div>
-                        </div>
-                        <p>Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs to accelerate close rates.</p>
-                        <span class="journey-metric">
-                            3× project velocity
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M5 12h14" />
-                                <path d="m12 5 7 7-7 7" />
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </section>
 
         <section class="section vertical" id="verticals" aria-labelledby="verticals-title">
             <div class="container">
@@ -1420,7 +1430,7 @@
                 </div>
                 <div class="cta-banner" role="region" aria-label="Enablement studio">
                     <div class="cta-banner-image">
-                        <img src="dealer-cta.png" alt="GE Smarthome dealers collaborating" />
+                        <img src="assets/dealer-cta.png" alt="GE Smarthome dealers collaborating" />
                     </div>
                     <div class="cta-banner-copy">
                         <h3>Need a tailored enablement path?</h3>
@@ -1506,7 +1516,6 @@
             </div>
             <nav class="footer-links" aria-label="Footer">
                 <a href="#pillars">Program Pillars</a>
-                <a href="#journey">Partner Journey</a>
                 <a href="#verticals">Who We Serve</a>
                 <a href="#path">Tier Progression</a>
                 <a href="learning-guide.html">Learning Guide</a>

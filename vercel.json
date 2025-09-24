@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "installCommand": "cd apps/web-app && npm ci",
+  "buildCommand": "cd apps/web-app && npm run build:speed",
+  "outputDirectory": "apps/web-app/.next",
+  "env": {
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}

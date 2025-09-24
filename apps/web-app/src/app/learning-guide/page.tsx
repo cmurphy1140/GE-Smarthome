@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import {
   ArrowRight,
   Lightbulb,
@@ -13,9 +14,16 @@ import {
   Battery,
   TrendingUp
 } from 'lucide-react'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
 
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { SectionHeader } from '@/components/common/SectionHeader'
+
+const heroStats = [
+  { value: '140+', label: 'Years of innovation' },
+  { value: '2K+', label: 'Products available' },
+  { value: '24/7', label: 'Training support' }
+] as const
 
 const productFamilies = [
   {
@@ -66,7 +74,7 @@ const productFamilies = [
     footer:
       'The Savant-powered Proseo App keeps the homeowner journey seamless — from quick bulb upgrades to flagship automation projects.'
   }
-]
+] as const
 
 const marketPosition = [
   {
@@ -96,7 +104,7 @@ const marketPosition = [
       'Unlock upsell opportunities as client needs evolve'
     ]
   }
-]
+] as const
 
 const dealerTiers = [
   {
@@ -119,7 +127,7 @@ const dealerTiers = [
     ],
     requirement: '$10,000 minimum annual commitment'
   }
-]
+] as const
 
 const professionalSegments = [
   {
@@ -158,34 +166,7 @@ const professionalSegments = [
       'Tools to scope packages around project milestones'
     ]
   }
-]
-
-const trainingTracks = [
-  {
-    title: 'Online Learning Platform',
-    bullets: [
-      'Self-paced certification modules',
-      'Installation best practices and troubleshooting',
-      'Sales technique refreshers for every tier'
-    ]
-  },
-  {
-    title: 'Regional Training',
-    bullets: [
-      'Hands-on workshops with demo kit access',
-      'Live Q&A with product specialists',
-      'Networking with peers across your market'
-    ]
-  },
-  {
-    title: 'Ongoing Support',
-    bullets: [
-      'Monthly webinars and roadmap previews',
-      'Dealer community forums and escalation paths',
-      'Video libraries for quick field refreshers'
-    ]
-  }
-]
+] as const
 
 const advantages = [
   {
@@ -215,20 +196,101 @@ const advantages = [
       'Investment protection with one unified stack'
     ]
   }
-]
+] as const
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
-} as const
+const journeyPhases = [
+  {
+    step: '01',
+    phase: 'Discover phase',
+    title: 'Meet your channel strategist',
+    description:
+      'Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical and business objectives.',
+    cards: [
+      {
+        heading: 'Initial assessment',
+        copy: 'Review current smart home capabilities, target market, and growth objectives to pinpoint partnership opportunities.'
+      },
+      {
+        heading: 'Market analysis',
+        copy: 'Understand local dynamics, competitors, and customer demographics to localize go-to-market motions.'
+      },
+      {
+        heading: 'Portfolio mapping',
+        copy: 'Align GE Proseo and Savant solutions with existing services and your expansion roadmap.'
+      },
+      {
+        heading: 'Success planning',
+        copy: 'Build a 12-month plan with clear milestones, revenue targets, and enablement touchpoints.'
+      }
+    ],
+    highlight: {
+      tone: 'green',
+      text: 'Timeline: 48-hour welcome call scheduled within the first week of partnership approval.'
+    }
+  },
+  {
+    step: '02',
+    phase: 'Integration phase',
+    title: 'Activate the GE × Savant toolkit',
+    description:
+      'Hands-on enablement, demo gear, and sales accelerators built around your team’s highest-impact opportunities.',
+    cards: [
+      {
+        heading: 'Technical training',
+        copy: 'Certification tracks covering installation, configuration, and troubleshooting for GE Proseo and Savant systems.'
+      },
+      {
+        heading: 'Demo kit program',
+        copy: 'Access showroom displays and field kits that help prospects experience signature scenes firsthand.'
+      },
+      {
+        heading: 'Sales enablement',
+        copy: 'Co-branded marketing assets, pricing guides, and proposal templates calibrated to your vertical.'
+      },
+      {
+        heading: 'Support integration',
+        copy: 'Direct access to technical support and streamlined escalation paths woven into your service workflows.'
+      }
+    ],
+    highlight: {
+      tone: 'blue',
+      text: 'Duration: 30-day intensive onboarding with 1:1 enablement track and regional training sessions.'
+    }
+  },
+  {
+    step: '03',
+    phase: 'Scale phase',
+    title: 'Grow with data-backed insights',
+    description:
+      'Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs to accelerate close rates.',
+    cards: [
+      {
+        heading: 'Performance analytics',
+        copy: 'Access dashboards that surface sales performance, customer satisfaction, and market penetration trends.'
+      },
+      {
+        heading: 'Co-marketing programs',
+        copy: 'Targeted digital campaigns, local event sponsorships, and co-branded promotions to expand reach.'
+      },
+      {
+        heading: 'Advanced training',
+        copy: 'Ongoing education covering new product releases, advanced integrations, and emerging smart home tech.'
+      },
+      {
+        heading: 'Strategic planning',
+        copy: 'Quarterly business reviews outlining new market opportunities and revenue targets for the year ahead.'
+      }
+    ],
+    highlight: {
+      tone: 'purple',
+      text: 'Results: Partners average 3× project velocity and 40–60% profit uplift within the first year.'
+    }
+  }
+] as const
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.17, 0.67, 0.35, 1] } }
 } as const
 
 const staggerContainer = {
@@ -237,549 +299,325 @@ const staggerContainer = {
     opacity: 1,
     transition: { staggerChildren: 0.12 }
   }
-}
+} as const
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+} as const
 
-export default function LearningGuidePage() {
+function LearningGuideHero() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
 
-  const heroBackgroundStyles = {
-    backgroundImage:
-      'linear-gradient(rgba(15, 23, 42, 0.75), rgba(37, 99, 235, 0.65)), url(/smarthome-diagram.png)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
-  }
-
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl"
-      >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex flex-col">
-            <span className="text-sm font-medium uppercase tracking-[0.3em] text-blue-600">
-              GE Lighting × Savant
-            </span>
-            <span className="text-xl font-semibold text-slate-900">Dealer Learning Guide</span>
-          </div>
-          <div className="flex items-center gap-4 text-sm font-semibold text-blue-700">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 text-blue-700 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-400 hover:text-blue-900"
-            >
-              Homepage
-            </Link>
-            <Link
-              href="/signup"
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-white shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-1 hover:bg-blue-700"
-            >
-              Apply Now
-            </Link>
-          </div>
-        </nav>
-      </motion.header>
-
-      <section
-        ref={heroRef}
-        className="relative overflow-hidden py-32 md:py-40 text-white"
-        style={heroBackgroundStyles}
-      >
+    <section
+      ref={heroRef}
+      className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 py-28 text-white md:py-36"
+    >
+      <div className="absolute inset-0 bg-[url('/smarthome-diagram.png')] bg-cover bg-center opacity-20 mix-blend-soft-light" />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-16 px-4 sm:px-6 md:grid-cols-[1.05fr_0.95fr]">
         <motion.div
           initial="hidden"
           animate={heroInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="relative mx-auto max-w-4xl px-6 text-center"
+          className="space-y-8"
         >
-          <motion.div
+          <motion.span
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/80"
           >
-            Learning Hub
-          </motion.div>
+            Learning guide
+          </motion.span>
 
           <motion.h1
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            className="mt-8 text-5xl font-bold leading-tight text-white md:text-7xl"
+            className="text-4xl font-semibold leading-tight md:text-5xl"
           >
             Master the GE Proseo to Savant growth journey
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-            className="mx-auto mt-8 max-w-3xl text-xl text-blue-100 md:text-2xl leading-relaxed"
+            className="text-base leading-relaxed text-blue-100 md:text-lg"
           >
-            Build confidence in the combined portfolio, align your services to the right tier, and equip your team with the training needed to deliver unforgettable smart home experiences.
+            Build confidence in the combined portfolio, align your services with the right partnership tier, and equip your team with the enablement needed to deliver signature smart home experiences.
           </motion.p>
 
           <motion.div
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex flex-col gap-4 sm:flex-row"
           >
             <Link
               href="/signup"
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-bold text-blue-700 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-blue-500/40 hover:bg-blue-50"
+              className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-3 text-sm font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-950/10"
             >
-              <span>Apply Now</span>
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              Start your application
+              <ArrowRight className="h-4 w-4" />
             </Link>
-
             <Link
               href="/"
-              className="group inline-flex items-center gap-2 rounded-full border-2 border-white/60 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-white/10"
             >
-              <span>Homepage</span>
-              <Star className="h-5 w-5 transition-transform group-hover:rotate-12" />
+              Explore homepage
             </Link>
           </motion.div>
 
           <motion.div
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-            className="mt-16 grid grid-cols-3 gap-8 text-center"
+            className="grid gap-4 rounded-3xl border border-white/20 bg-white/5 px-6 py-6 text-left backdrop-blur-sm sm:grid-cols-3"
           >
-            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white">140+</div>
-              <div className="text-sm text-blue-100 mt-2">Years of Innovation</div>
-            </div>
-            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white">2K+</div>
-              <div className="text-sm text-blue-100 mt-2">Products Available</div>
-            </div>
-            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white">24/7</div>
-              <div className="text-sm text-blue-100 mt-2">Training Support</div>
-            </div>
+            {heroStats.map(stat => (
+              <div key={stat.label} className="flex flex-col gap-1">
+                <span className="text-2xl font-semibold text-white sm:text-3xl">{stat.value}</span>
+                <span className="text-xs uppercase tracking-[0.3em] text-blue-100">{stat.label}</span>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
 
-        {/* Background elements */}
-        <div className="pointer-events-none absolute inset-0">
-          <motion.div
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-500/20 blur-3xl"
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+          className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur"
+        >
+          <div className="space-y-6">
+            <h2 className="text-lg font-semibold text-white">Partner enablement snapshots</h2>
+            <div className="space-y-4 text-sm text-blue-100">
+              <p>• 48-hour welcome call with regional channel strategist.</p>
+              <p>• Demo gear roadmap tailored to your first flagship project.</p>
+              <p>• 30-day immersive onboarding and certification tracks.</p>
+              <p>• Quarterly business reviews with shared performance dashboards.</p>
+            </div>
+            <div className="rounded-2xl bg-white/10 p-4 text-sm text-blue-100">
+              <span className="font-semibold text-white">Tip:</span> Pair this guide with the homepage overview to align go-to-market messaging with technical training.
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+export default function LearningGuidePage() {
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <Header />
+      <main className="space-y-24 pb-24">
+        <LearningGuideHero />
+
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            align="left"
+            eyebrow="Partner journey"
+            title="From first conversation to flagship installation"
+            description="Every phase is supported by channel strategists, enablement specialists, and performance data tuned to your business model."
           />
-          <motion.div
-            animate={{
-              rotate: [360, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-400/20 to-blue-500/20 blur-3xl"
-          />
-        </div>
-      </section>
-
-      <main className="mx-auto flex max-w-5xl flex-col gap-32 px-6 py-24">
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Partner Journey</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">From first conversation to flagship installation</h2>
-            <p className="mt-4 text-base text-slate-600">Every step is guided by your channel strategist with resources tailored to your business model and growth targets.</p>
-          </div>
-
-          <div className="mt-16 space-y-16">
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
-            >
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-                    <span className="text-lg font-bold text-blue-700">01</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Discover Phase</p>
-                    <h3 className="text-xl font-medium text-slate-900">Meet your channel strategist</h3>
-                  </div>
-                </div>
-                <p className="text-base text-slate-600 leading-relaxed mb-6">Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical and business objectives.</p>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Initial Assessment</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Comprehensive review of your current smart home capabilities, target market, and growth objectives to identify optimal partnership opportunities.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Market Analysis</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Deep dive into your local market dynamics, competitive landscape, and customer demographics to tailor our approach to your region.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Portfolio Mapping</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Strategic alignment of GE Proseo and Savant solutions with your existing services and future expansion plans.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Success Planning</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Development of a customized roadmap with clear milestones, revenue targets, and growth metrics for your first 12 months.</p>
-                </div>
-              </div>
-
-              <div className="mt-6 rounded-lg border border-green-200/60 bg-green-50/50 p-4">
-                <p className="text-sm font-medium text-green-800">Timeline: 48-hour welcome call scheduled within first week of partnership approval</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
-            >
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-                    <span className="text-lg font-bold text-blue-700">02</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Integration Phase</p>
-                    <h3 className="text-xl font-medium text-slate-900">Activate the GE × Savant toolkit</h3>
-                  </div>
-                </div>
-                <p className="text-base text-slate-600 leading-relaxed mb-6">Hands-on enablement, demo gear, and sales accelerators built around your team's most valuable opportunities and existing workflows.</p>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Technical Training</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Comprehensive certification programs covering installation, configuration, and troubleshooting for both GE Proseo and Savant systems.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Demo Kit Program</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Access to demonstration equipment and showroom displays to showcase capabilities and close more high-value projects.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Sales Enablement</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Co-branded marketing materials, pricing guides, and proposal templates designed to accelerate your sales cycle.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Support Integration</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Direct access to technical support teams and integration with your existing service workflows for seamless operations.</p>
-                </div>
-              </div>
-
-              <div className="mt-6 rounded-lg border border-blue-200/60 bg-blue-50/50 p-4">
-                <p className="text-sm font-medium text-blue-800">Duration: 30-day intensive onboarding with 1:1 enablement track and regional training sessions</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
-            >
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-                    <span className="text-lg font-bold text-blue-700">03</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Scale Phase</p>
-                    <h3 className="text-xl font-medium text-slate-900">Grow with data-backed insights</h3>
-                  </div>
-                </div>
-                <p className="text-base text-slate-600 leading-relaxed mb-6">Quarterly reviews, shared pipeline forecasting, and targeted co-marketing programs designed to accelerate close rates and expand market presence.</p>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Performance Analytics</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Detailed reporting on sales performance, customer satisfaction, and market penetration with actionable insights for growth.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Co-Marketing Programs</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Targeted digital campaigns, local event sponsorships, and co-branded marketing initiatives to expand your reach.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Advanced Training</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Ongoing education on new products, advanced integration techniques, and emerging smart home technologies.</p>
-                </div>
-                <div className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                  <p className="font-medium text-slate-900">Strategic Planning</p>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">Quarterly business reviews and strategic planning sessions to optimize growth and identify new market opportunities.</p>
-                </div>
-              </div>
-
-              <div className="mt-6 rounded-lg border border-purple-200/60 bg-purple-50/50 p-4">
-                <p className="text-sm font-medium text-purple-800">Results: Average 3× increase in project velocity and 40-60% improvement in profit margins within first year</p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Product Ecosystem</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">Technology portfolio</h2>
-          </div>
-          <div className="mt-16 space-y-16">
-            {productFamilies.map(family => (
+          <div className="mt-12 space-y-12">
+            {journeyPhases.map(phase => (
               <motion.div
-                key={family.title}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-100px' }}
-                className="border-b border-slate-200/60 pb-12 last:border-b-0 last:pb-0"
-              >
-                <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
-                      <family.icon className="h-6 w-6 text-slate-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-medium text-slate-900">{family.title}</h3>
-                      <p className="text-sm text-slate-500">{family.summary}</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="grid gap-6 md:grid-cols-2">
-                  {family.items.map(item => (
-                    <div key={item.heading} className="rounded-lg border border-slate-200/60 bg-white/60 p-4">
-                      <p className="font-medium text-slate-900">{item.heading}</p>
-                      <p className="mt-2 text-sm text-slate-600 leading-relaxed">{item.copy}</p>
-                    </div>
-                  ))}
-                </div>
-                
-                {family.footer ? (
-                  <div className="mt-6 rounded-lg border border-slate-200/60 bg-slate-50/50 p-4">
-                    <p className="text-sm text-slate-600">{family.footer}</p>
-                  </div>
-                ) : null}
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Market Positioning</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">Portfolio range</h2>
-          </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {marketPosition.map(card => (
-              <motion.div
-                key={card.title}
-                variants={fadeIn}
+                key={phase.step}
+                variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="rounded-lg border border-slate-200/60 bg-white/80 p-6"
+                className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.08)]"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
-                  <card.icon className="h-5 w-5 text-slate-600" />
+                <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950/10 text-lg font-semibold text-blue-950">
+                      {phase.step}
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">{phase.phase}</p>
+                      <h3 className="mt-2 text-xl font-semibold text-slate-900">{phase.title}</h3>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-medium text-slate-900">{card.title}</h3>
-                <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                  {card.bullets.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-2 h-1 w-1 rounded-full bg-slate-400" />
-                      <span>{point}</span>
-                    </li>
+
+                <p className="mt-6 text-base text-slate-600">{phase.description}</p>
+
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  {phase.cards.map(card => (
+                    <div
+                      key={card.heading}
+                      className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4"
+                    >
+                      <p className="font-semibold text-slate-900">{card.heading}</p>
+                      <p className="mt-2 text-sm text-slate-600 leading-relaxed">{card.copy}</p>
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                <div
+                  className={`mt-6 rounded-2xl border px-5 py-4 text-sm font-medium ${
+                    phase.highlight.tone === 'green'
+                      ? 'border-green-200 bg-green-50 text-green-800'
+                      : phase.highlight.tone === 'purple'
+                        ? 'border-purple-200 bg-purple-50 text-purple-800'
+                        : 'border-blue-950/30 bg-blue-950/10 text-blue-950'
+                  }`}
+                >
+                  {phase.highlight.text}
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="text-lg font-medium text-blue-600">Dealer Program</span>
-            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">Partnership program structure</h2>
-            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Two distinct partnership levels designed to match your business stage and growth objectives.</p>
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Product ecosystem"
+            title="Lighting and automation portfolio"
+            description="Guide clients from retrofit-ready upgrades to full Savant automation with a unified stack of hardware, software, and enablement."
+          />
+
+          <div className="mt-12 space-y-10">
+            {productFamilies.map(family => {
+              const Icon = family.icon
+              return (
+                <motion.div
+                  key={family.title}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-80px' }}
+                  className="rounded-3xl border border-blue-950/15 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.05)]"
+                >
+                  <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950/10 text-blue-950">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-slate-900">{family.title}</h3>
+                        <p className="mt-2 text-sm text-slate-600">{family.summary}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 grid gap-4 md:grid-cols-2">
+                    {family.items.map(item => (
+                      <div key={item.heading} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+                        <p className="font-semibold text-slate-900">{item.heading}</p>
+                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">{item.copy}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {'footer' in family && family.footer ? (
+                    <div className="mt-6 rounded-2xl bg-blue-950/10 p-4 text-sm font-medium text-blue-950">
+                      {family.footer}
+                    </div>
+                  ) : null}
+                </motion.div>
+              )
+            })}
           </div>
-          <div className="mt-20 grid gap-8 md:grid-cols-2">
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Market positioning"
+            title="Frame the value across every stage"
+            description="Anchor your proposals with a clear path from entry-level packages to premium Savant-led experiences."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {marketPosition.map(position => {
+              const Icon = position.icon
+              return (
+                <motion.div
+                  key={position.title}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-80px' }}
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-950/10 text-blue-950">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="text-base font-semibold text-slate-900">{position.title}</p>
+                  </div>
+                  <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                    {position.bullets.map(bullet => (
+                      <li key={bullet} className="flex gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-950" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Program tiers"
+            title="Choose the partnership level that matches your momentum"
+            description="Scale from foundational lighting packages to full Savant automation with incentives that grow alongside your pipeline."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {dealerTiers.map(tier => (
               <motion.div
                 key={tier.name}
-                variants={fadeIn}
+                variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                className="rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]"
+                className="flex h-full flex-col justify-between rounded-3xl border border-blue-950/20 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
               >
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-slate-900">{tier.name}</h3>
-                  <p className="mt-3 text-lg text-slate-600 leading-relaxed">{tier.description}</p>
-                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900">{tier.name}</h3>
+                  <p className="mt-3 text-sm text-slate-600">{tier.description}</p>
 
-                <ul className="space-y-3 text-base text-slate-700 mb-6">
-                  {tier.highlights.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-blue-600 shrink-0" />
-                      <span className="leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3">
-                  <p className="text-sm font-semibold text-green-800 uppercase tracking-wider">
-                    {tier.requirement}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Partner Playbooks</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">Specialized resources for your focus</h2>
-          </div>
-
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {professionalSegments.map((segment, index) => (
-              <motion.div
-                key={segment.title}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ delay: index * 0.05 }}
-                className="group relative"
-              >
-                <div className="rounded-lg border border-slate-200/60 bg-white/80 p-6 transition-all duration-200 hover:border-slate-300/80 hover:bg-white">
-                  <div className="mb-4">
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 transition-colors group-hover:bg-slate-200">
-                      <span className="text-sm font-medium text-slate-700">{segment.title.charAt(0)}</span>
-                    </div>
-                    <h3 className="text-lg font-medium text-slate-900">{segment.title}</h3>
-                    <p className="text-sm text-slate-500">{segment.subtitle}</p>
-                  </div>
-                  
-                  <ul className="space-y-2">
-                    {segment.bullets.map((point, bulletIndex) => (
-                      <li key={bulletIndex} className="flex items-start gap-3 text-sm text-slate-600">
-                        <div className="mt-2 h-1 w-1 rounded-full bg-slate-400 shrink-0" />
-                        <span className="leading-relaxed">{point}</span>
+                  <ul className="mt-6 space-y-3 text-sm text-slate-600">
+                    {tier.highlights.map(highlight => (
+                      <li key={highlight} className="flex items-start gap-3">
+                        <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-950" />
+                        <span>{highlight}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+                <div className="mt-8 inline-flex w-fit rounded-full bg-blue-950/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-blue-950">
+                  {tier.requirement}
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="text-lg font-medium text-blue-600">Training & Certification</span>
-            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl leading-tight">Guided learning pathways</h2>
-            <p className="mt-6 text-xl leading-relaxed text-slate-700 md:text-2xl font-medium">Comprehensive training programs designed to accelerate your expertise and maximize your success with GE and Savant solutions.</p>
-          </div>
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Who we serve"
+            title="Enablement tailored to every professional segment"
+            description="Specialized playbooks and resources ensure each trade can launch, scale, and differentiate with the GE Lighting × Savant stack."
+          />
 
-          <div className="mt-20 space-y-16">
-            {trainingTracks.map((track, index) => (
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {professionalSegments.map(segment => (
               <motion.div
-                key={track.title}
-                variants={fadeIn}
+                key={segment.title}
+                variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
               >
-                <div className="flex items-start gap-8 md:gap-12">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 text-xl font-bold transition-all group-hover:scale-105">
-                    {index + 1}
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="mb-8">
-                      <h3 className="text-2xl font-bold text-slate-900 md:text-3xl">{track.title}</h3>
-                    </div>
-
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {track.bullets.map((point, bulletIndex) => (
-                        <div
-                          key={bulletIndex}
-                          className="rounded-2xl border border-blue-100 bg-white p-8 shadow-[0_12px_40px_rgba(15,23,42,0.06)] transition-all hover:border-blue-200 hover:shadow-[0_18px_50px_rgba(15,23,42,0.10)]"
-                        >
-                          <p className="text-xl text-slate-700 leading-relaxed font-medium md:text-2xl">{point}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {index < trainingTracks.length - 1 && (
-                  <div className="mt-12 flex justify-center">
-                    <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-20 text-center"
-          >
-            <div className="inline-flex items-center gap-3 rounded-full border border-green-200 bg-green-50 px-6 py-4 text-lg font-semibold text-green-800">
-              <div className="h-3 w-3 rounded-full bg-green-600" />
-              Professional certification available upon completion
-            </div>
-          </motion.div>
-        </section>
-
-        <section>
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Competitive Edge</span>
-            <h2 className="mt-3 text-2xl font-light text-slate-900">Partnership advantages</h2>
-          </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {advantages.map(card => (
-              <motion.div
-                key={card.title}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="rounded-lg border border-slate-200/60 bg-white/80 p-6"
-              >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100">
-                  <card.icon className="h-5 w-5 text-slate-600" />
-                </div>
-                <h3 className="text-lg font-medium text-slate-900">{card.title}</h3>
-                <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                  {card.bullets.map(point => (
-                    <li key={point} className="flex items-start gap-3">
-                      <span className="mt-2 h-1 w-1 rounded-full bg-slate-400" />
-                      <span>{point}</span>
+                <h3 className="text-lg font-semibold text-slate-900">{segment.title}</h3>
+                <p className="mt-1 text-sm text-slate-500">{segment.subtitle}</p>
+                <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                  {segment.bullets.map(bullet => (
+                    <li key={bullet} className="flex gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-950" />
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
@@ -788,32 +626,75 @@ export default function LearningGuidePage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 px-10 py-12 text-white shadow-[0_24px_60px_rgba(37,99,235,0.35)]">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-100">Next Step</p>
-              <h3 className="mt-2 text-2xl font-semibold md:text-3xl">Ready to translate the playbook into revenue?</h3>
-              <p className="mt-3 text-sm text-blue-100">
-                Share your upcoming projects and we’ll map the right enablement, demo gear, and incentive structure to get you onboarding fast.
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Why GE × Savant"
+            title="Hard-earned advantages you can bring to market"
+            description="Leverage the credibility, resilience, and scalability of two category-leading brands in every proposal."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {advantages.map(advantage => {
+              const Icon = advantage.icon
+              return (
+                <motion.div
+                  key={advantage.title}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-80px' }}
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-950/10 text-blue-950">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="text-base font-semibold text-slate-900">{advantage.title}</p>
+                  </div>
+                  <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                    {advantage.bullets.map(bullet => (
+                      <li key={bullet} className="flex gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-950" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="rounded-3xl border border-blue-950/30 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 px-10 py-12 text-white shadow-[0_30px_80px_rgba(15,23,42,0.25)] md:flex md:items-center md:justify-between md:gap-10">
+            <div className="space-y-4 md:max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+                Concierge enablement
+              </span>
+              <h3 className="text-2xl font-semibold md:text-3xl">Ready to build your learning roadmap?</h3>
+              <p className="text-sm leading-relaxed text-blue-100">
+                Share your portfolio and we’ll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
               </p>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 md:justify-end">
+            <div className="mt-6 flex flex-col gap-3 md:mt-0">
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-1 hover:text-blue-900"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-950/10"
               >
-                Start Application
+                Apply for the dealer program
+                <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-white/10"
               >
-                Explore Homepage
+                Return to homepage
               </Link>
             </div>
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   )
 }

@@ -4,6 +4,7 @@ A consolidated home for the GE Smarthome dealer experience. The repository now k
 
 ## Repository Layout
 - `static-site/` – original HTML prototype (`index.html`, `signup.html`, `learning-guide.html`) for quick reference or lightweight hosting.
+  - `assets/` – organized image assets (hero-bg.png, dealer-cta.png, signup-hero.png)
 - `apps/web-app/` – Next.js application with the modernized onboarding experience and shared design tokens.
 
 ## Static Prototype Snapshot (`static-site/`)
