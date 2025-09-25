@@ -15,8 +15,56 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GE Smart Home Dealer Program | Partnership with Savant",
-  description: "Join the GE Smart Home dealer network. Partner with industry leaders to deliver cutting-edge Smart Home experiences with exclusive tools, training, and support.",
+  title: "GE Smart Home Dealer Program | Partnership with Savant AI",
+  description: "Join the GE Smart Home dealer network powered by Savant AI. Access exclusive smart lighting, thermostats, security systems, and automation solutions. Get 24/7 support, dealer pricing, and comprehensive training to build your signature smart home business.",
+  keywords: [
+    "GE Smart Home",
+    "Savant AI",
+    "Smart Lighting",
+    "Smart Thermostats",
+    "Home Automation",
+    "Dealer Program",
+    "Smart Home Installation",
+    "Electrical Contractors",
+    "HVAC Contractors",
+    "Security Systems"
+  ],
+  authors: [{ name: "GE Lighting" }],
+  creator: "GE Lighting",
+  publisher: "GE Lighting",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ge-smarthome.vercel.app',
+    title: 'GE Smart Home Dealer Program | Partnership with Savant AI',
+    description: 'Join the GE Smart Home dealer network powered by Savant AI. Access exclusive smart lighting, thermostats, security systems, and automation solutions.',
+    siteName: 'GE Smart Home',
+    images: [
+      {
+        url: '/ge-smart-bulb-showcase.png',
+        width: 1200,
+        height: 630,
+        alt: 'GE Smart Home Products Showcase',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GE Smart Home Dealer Program | Partnership with Savant AI',
+    description: 'Join the GE Smart Home dealer network powered by Savant AI. Access exclusive smart lighting, thermostats, security systems, and automation solutions.',
+    images: ['/ge-smart-bulb-showcase.png'],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

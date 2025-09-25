@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import type { Metadata } from 'next'
 import {
   ArrowRight,
   Lightbulb,
@@ -403,10 +404,13 @@ function LearningGuideHero() {
                 <div className="relative bg-gradient-to-br from-blue-950/50 to-blue-900/50 p-8 rounded-2xl backdrop-blur-sm">
                   <Image
                     src="/bulb.png"
-                    alt="GE Smart Bulb Technology"
+                    alt="GE Smart Bulb Technology - Revolutionary smart lighting with spiral filament design and intelligent controls"
                     width={400}
                     height={288}
-                    className="h-72 w-auto object-contain drop-shadow-2xl mx-auto"
+                    className="h-72 w-auto object-contain drop-shadow-2xl mx-auto transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                 </div>
               </div>
