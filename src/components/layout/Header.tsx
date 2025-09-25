@@ -116,9 +116,13 @@ export function Header() {
           className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
           aria-label="GE Smart Home - Go to homepage"
         >
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-900 text-base font-semibold uppercase tracking-[0.2em] text-white">
-            GE
-          </span>
+          <div className="inline-flex h-12 w-12 items-center justify-center">
+            <img 
+              src="/ge-logo.svg" 
+              alt="GE Logo" 
+              className="h-10 w-10"
+            />
+          </div>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
             <span className="text-sm uppercase tracking-[0.2em] text-blue-200">Powered by Savant AI</span>
             <span className="text-xl font-semibold text-white">GE Smart Home</span>
