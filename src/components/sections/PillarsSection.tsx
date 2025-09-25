@@ -107,8 +107,8 @@ function PillarsSectionComponent() {
               >
                 <div className="relative">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 bg-gradient-to-br from-slate-100 to-slate-200 group-hover:from-blue-100 group-hover:to-blue-200 group-hover:scale-110 shadow-sm">
-                      <pillar.icon className="h-8 w-8 text-slate-600 group-hover:text-blue-600" strokeWidth={1.5} />
+                    <div className="flex h-20 w-20 items-center justify-center rounded-3xl transition-all duration-300 bg-gradient-to-br from-blue-100 to-blue-200 group-hover:from-blue-200 group-hover:to-blue-300 group-hover:scale-110 shadow-lg border-2 border-blue-200">
+                      <pillar.icon className="h-10 w-10 text-blue-700 group-hover:text-blue-800" strokeWidth={2} />
                     </div>
 
                     <div className="flex-1">
