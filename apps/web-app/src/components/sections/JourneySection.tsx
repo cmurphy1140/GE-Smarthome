@@ -6,13 +6,13 @@ import { SectionHeader } from '../common/SectionHeader'
 
 // SVG Icons for different trades
 const ElectricianIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-950">
     <path d="M20 4L16 16H24L20 36L24 24H16L20 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.1"/>
   </svg>
 )
 
 const HVACIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-green-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-950">
     <rect x="6" y="12" width="28" height="16" rx="4" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
     <path d="M12 18h16M12 22h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     <path d="M20 8v4M20 28v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -22,7 +22,7 @@ const HVACIcon = () => (
 )
 
 const PlumberIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-orange-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-950">
     <path d="M12 8v24M28 8v24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
     <rect x="10" y="14" width="4" height="12" rx="2" fill="currentColor" fillOpacity="0.2"/>
     <rect x="26" y="14" width="4" height="12" rx="2" fill="currentColor" fillOpacity="0.2"/>
@@ -32,7 +32,7 @@ const PlumberIcon = () => (
 )
 
 const SecurityIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-purple-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-950">
     <path d="M20 4l-8 4v12c0 8 8 16 8 16s8-8 8-16V8l-8-4z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
     <path d="M16 18l3 3 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>

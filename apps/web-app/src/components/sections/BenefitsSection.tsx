@@ -212,12 +212,12 @@ export default function BenefitsSection() {
                       {/* Enhanced Icon with Animation */}
                       <div className="flex justify-center">
                         <div className="relative">
-                          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-blue-600 shadow-2xl">
+                          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-blue-950 shadow-2xl">
                             <benefit.icon className="h-14 w-14 text-white" />
                           </div>
                           {/* Animated ring */}
                           <motion.div
-                            className="absolute inset-0 rounded-full border-4 border-blue-200"
+                            className="absolute inset-0 rounded-full border-4 border-blue-400"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                           />

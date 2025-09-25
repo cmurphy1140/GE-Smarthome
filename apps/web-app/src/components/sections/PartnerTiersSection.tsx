@@ -25,7 +25,6 @@ function PartnerTiersSectionComponent() {
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           title="Partnership benefits designed for builders, integrators, and security pros"
-          description="Choose the track that matches your focus today and grow into the full GE Lighting × Savant ecosystem with dedicated support."
           variant="dark"
           titleSize="small"
         />
