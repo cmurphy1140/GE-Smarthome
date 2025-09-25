@@ -34,20 +34,20 @@ function StatsSectionComponent() {
             <p className="text-sm leading-relaxed text-blue-100 md:text-base lg:text-lg">
               Connect with a community of smart home professionals backed by GE Lighting&apos;s 140+ years of innovation and Savant&apos;s cutting-edge automation technology.
             </p>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-3">
               {stats.map(item => (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-white/15 bg-white/10 p-5 text-center shadow-[0_14px_30px_rgba(8,11,24,0.35)] backdrop-blur"
+                  className="rounded-2xl border border-white/15 bg-white/10 p-8 text-center shadow-[0_14px_30px_rgba(8,11,24,0.35)] backdrop-blur min-h-[140px] flex flex-col justify-center"
                 >
                   <AnimatedNumber
                     value={item.value}
                     prefix={'prefix' in item ? item.prefix : undefined}
                     suffix={item.suffix}
                     decimals={'decimals' in item ? item.decimals : 0}
-                    className="text-3xl font-semibold text-white md:text-4xl"
+                    className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
                   />
-                  <p className="mt-2 text-md uppercase tracking-[0.25em] text-blue-200">
+                  <p className="mt-3 text-sm uppercase tracking-[0.25em] text-blue-200 md:text-base font-medium">
                     {item.label}
                   </p>
                 </div>

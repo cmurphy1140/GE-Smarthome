@@ -136,16 +136,17 @@ export function Header() {
           {isSignup && (
             <>
               <Link
-                href="/"
+                href="/learning-guide"
                 className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 px-5 py-2 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
               >
-                Home
+                Resources
               </Link>
               <Link
-                href="/learning-guide"
-                className="inline-flex items-center justify-center rounded-full bg-blue-800 border border-blue-700 px-5 py-2 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+                href="/"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-white/30 px-5 py-2 text-base font-semibold text-blue-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
               >
-                Resources
+                Home
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </>
           )}
