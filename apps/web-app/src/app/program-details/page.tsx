@@ -5,8 +5,6 @@ import { Footer } from '@/components/layout/Footer'
 import { TailoredEnablementSection } from '@/components/sections/TailoredEnablementSection'
 import { PartnerTiersSection } from '@/components/sections/PartnerTiersSection'
 import { Suspense, lazy } from 'react'
-
-const IntegrationSlideshow = lazy(() => import('@/components/sections/IntegrationSlideshow').then(mod => ({ default: mod.default })))
 const JourneySection = lazy(() => import('@/components/sections/JourneySection').then(mod => ({ default: mod.default })))
 const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection').then(mod => ({ default: mod.default })))
 const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection').then(mod => ({ default: mod.default })))
@@ -35,9 +33,6 @@ export default function ProgramDetails() {
         <section id="enablement">
           <TailoredEnablementSection />
         </section>
-        <Suspense fallback={<SectionSkeleton />}>
-          <IntegrationSlideshow />
-        </Suspense>
         <section id="journey">
           <Suspense fallback={<SectionSkeleton />}>
             <JourneySection />

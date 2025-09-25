@@ -216,14 +216,14 @@ function PillarsSectionComponent() {
                       className="flex items-center gap-6"
                     >
                       {/* Product Image */}
-                      <div className="flex-shrink-0 w-24 h-24 relative">
+                      <div className="flex-shrink-0 w-32 h-32 relative">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
                         <div className="absolute inset-2 flex items-center justify-center">
                           <Image
                             src={currentProduct.image}
                             alt={currentProduct.name}
-                            width={64}
-                            height={64}
+                            width={96}
+                            height={96}
                             className="object-contain max-w-full max-h-full"
                           />
                         </div>
