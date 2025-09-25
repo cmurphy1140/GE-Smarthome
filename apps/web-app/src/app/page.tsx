@@ -10,7 +10,7 @@ import { PartnerTiersSection } from '@/components/sections/PartnerTiersSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import { Suspense, lazy } from 'react'
 
-const JourneySection = lazy(() => import('@/components/sections/JourneySection').then(mod => ({ default: mod.default })))
+const IntegrationSlideshow = lazy(() => import('@/components/sections/IntegrationSlideshow').then(mod => ({ default: mod.default })))
 const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection').then(mod => ({ default: mod.default })))
 const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection').then(mod => ({ default: mod.default })))
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
@@ -42,7 +42,7 @@ export default function Home() {
         </section>
         <TailoredEnablementSection />
         <Suspense fallback={<SectionSkeleton />}>
-          <JourneySection />
+          <IntegrationSlideshow />
         </Suspense>
         <PartnerTiersSection />
         <StatsSection />
