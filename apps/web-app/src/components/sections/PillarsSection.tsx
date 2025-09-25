@@ -1,10 +1,7 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, ArrowRight, Users, Clock, Award, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ArrowRight, Users, Clock, Award } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
-import { fadeInUp } from '../common/OptimizedMotion'
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const pillars = [
@@ -76,25 +73,8 @@ const geProducts = [
 
 
 function PillarsSectionComponent() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % geProducts.length)
-    }, 4000) // Change slide every 4 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % geProducts.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + geProducts.length) % geProducts.length)
-  }
-
-  const currentProduct = geProducts[currentSlide]
+  // Use first product as static display
+  const currentProduct = geProducts[0]
 
   return (
     <section id="about" className="relative bg-white py-24 text-slate-900">
@@ -111,14 +91,9 @@ function PillarsSectionComponent() {
           {/* Left Column - Stacked Pillars */}
           <div className="space-y-4">
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
-              <motion.article
+              <article
                 key={pillar.title}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-500 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
               >
                 <div className="relative">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
@@ -138,20 +113,15 @@ function PillarsSectionComponent() {
                     {pillar.description}
                   </p>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
 
           {/* Right Column - Enhanced Partner Store Card with Product Carousel */}
           {pillars.filter(pillar => pillar.isShop).map((pillar) => (
-            <motion.div
+            <div
               key={pillar.title}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 shadow-2xl transition-all duration-700 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)]"
+              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 shadow-2xl transition-all duration-300 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)]"
             >
               {/* Animated background elements */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-900/30" />
@@ -189,32 +159,12 @@ function PillarsSectionComponent() {
               {/* Product Carousel Section */}
               <div className="relative px-10 pb-4">
                 <div className="relative bg-black/20 rounded-2xl p-6 backdrop-blur-sm border border-blue-800/30">
-                  {/* Navigation Buttons */}
-                  <div className="absolute top-4 right-4 flex gap-2 z-10">
-                    <button
-                      onClick={prevSlide}
-                      className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
-                    >
-                      <ChevronLeft className="h-4 w-4 text-white" />
-                    </button>
-                    <button
-                      onClick={nextSlide}
-                      className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
-                    >
-                      <ChevronRight className="h-4 w-4 text-white" />
-                    </button>
-                  </div>
 
                   {/* Product Slide */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentProduct.id}
-                      initial={{ opacity: 0, x: 100 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -100 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="flex items-center gap-6"
-                    >
+                  <div
+                    key={currentProduct.id}
+                    className="flex items-center gap-6"
+                  >
                       {/* Product Image */}
                       <div className="flex-shrink-0 w-32 h-32 relative">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
@@ -251,23 +201,8 @@ function PillarsSectionComponent() {
                           </span>
                         </div>
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Slide Indicators */}
-                  <div className="flex justify-center gap-2 mt-4">
-                    {geProducts.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentSlide
-                            ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
-                            : 'bg-white/30 hover:bg-white/50'
-                        }`}
-                      />
-                    ))}
                   </div>
+
                 </div>
               </div>
 
@@ -311,22 +246,16 @@ function PillarsSectionComponent() {
               {/* Interactive glow effect */}
               <div className="absolute inset-0 rounded-3xl border border-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Supporting info */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-12 text-center">
           <p className="text-sm text-slate-500 font-medium">
             Up to 40% dealer discounts • Priority fulfillment • 24/7 technical support
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

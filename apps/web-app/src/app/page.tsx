@@ -6,7 +6,6 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
-import { ProgramDetailsCTA } from '@/components/sections/ProgramDetailsCTA'
 import { Suspense, lazy } from 'react'
 
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
@@ -36,7 +35,6 @@ export default function Home() {
         <section id="program">
           <PillarsSection />
         </section>
-        <ProgramDetailsCTA />
         <StatsSection />
         <section id="faqs">
           <Suspense fallback={<SectionSkeleton />}>

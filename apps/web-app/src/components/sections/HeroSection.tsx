@@ -111,32 +111,10 @@ function HeroSectionComponent() {
         </motion.div>
       </motion.div>
 
-      {/* Background elements */}
+      {/* Static background elements */}
       <div className="pointer-events-none absolute inset-0">
-        <motion.div
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-900/25 to-blue-950/20 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: [360, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-blue-950/25 to-blue-900/20 blur-3xl"
-        />
+        <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-900/25 to-blue-950/20 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-blue-950/25 to-blue-900/20 blur-3xl" />
       </div>
     </section>
   )

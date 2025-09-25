@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
 interface SectionHeaderProps {
@@ -13,14 +12,6 @@ interface SectionHeaderProps {
   variant?: 'light' | 'dark'
 }
 
-const baseAnimation = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.17, 0.67, 0.35, 1] }
-  }
-} as const
 
 export function SectionHeader({
   eyebrow,
@@ -43,13 +34,7 @@ export function SectionHeader({
     : "text-3xl font-bold leading-tight text-slate-900 md:text-4xl lg:text-5xl"
 
   return (
-    <motion.div
-      variants={baseAnimation}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-72px' }}
-      className={`space-y-3 ${alignmentClass} ${widthClass} ${className ?? ''}`.trim()}
-    >
+    <div className={`space-y-3 ${alignmentClass} ${widthClass} ${className ?? ''}`.trim()}>
       {eyebrowNode ? (
         eyebrowNode
       ) : eyebrow ? (
@@ -67,6 +52,6 @@ export function SectionHeader({
           </p>
         ) : null}
       </div>
-    </motion.div>
+    </div>
   )
 }

@@ -1,15 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { useState } from 'react'
 import { Lightbulb, Home, Zap, HelpCircle } from 'lucide-react'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import FaqPopup from '@/components/ui/FaqPopup'
 
 export function AboutSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [isFaqOpen, setIsFaqOpen] = useState(false)
 
 const features = [
@@ -31,29 +27,17 @@ const features = [
 ]
 
   return (
-    <section ref={ref} className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-16 text-white">
+    <section className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-16 text-white">
       <div className="mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
         <SectionHeader
           title="Smart. Simple. Seamless."
           variant="dark"
         />          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="grid gap-4 md:grid-cols-3"
-          >
+          <div className="grid gap-4 md:grid-cols-3">
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 className="group rounded-xl bg-white/5 p-5 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
               >
                 <div className="mb-3 flex justify-center">
@@ -67,11 +51,11 @@ const features = [
                 <p className="text-base text-blue-50 font-medium leading-relaxed">
                   {feature.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-        </motion.div>
+        </div>
       </div>
 
       {/* Floating FAQ Bubble */}
