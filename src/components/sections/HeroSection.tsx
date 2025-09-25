@@ -71,7 +71,7 @@ function HeroSectionComponent() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-base text-blue-100 leading-relaxed md:text-lg"
           >
-            Unlock GE Lighting innovation and Savant automation in a single, elevated platform—complete with strategist guidance, premium hardware, and always-on expertise.
+            Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance, hardware, and always-on expertise.
           </motion.p>
 
         <motion.div
