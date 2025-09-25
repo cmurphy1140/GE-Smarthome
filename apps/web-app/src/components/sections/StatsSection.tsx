@@ -45,9 +45,9 @@ function StatsSectionComponent() {
                     prefix={'prefix' in item ? item.prefix : undefined}
                     suffix={item.suffix}
                     decimals={'decimals' in item ? item.decimals : 0}
-                    className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+                    className="text-2xl font-bold text-white md:text-3xl lg:text-4xl"
                   />
-                  <p className="mt-3 text-sm uppercase tracking-[0.25em] text-blue-200 md:text-base font-medium">
+                  <p className="mt-2 text-xs uppercase tracking-[0.25em] text-blue-200 md:text-sm font-medium">
                     {item.label}
                   </p>
                 </div>
