@@ -200,10 +200,10 @@ function PillarsSectionComponent() {
                             {currentProduct.category}
                           </span>
                         </div>
-                        <h4 className="text-lg font-semibold text-white mb-1 truncate">
+                        <h4 className="text-lg font-semibold text-white mb-1">
                           {currentProduct.name}
                         </h4>
-                        <p className="text-sm text-blue-200/70 mb-2 line-clamp-2">
+                        <p className="text-sm text-blue-200/70 mb-2">
                           {currentProduct.description}
                         </p>
                         <div className="flex items-center gap-3">
