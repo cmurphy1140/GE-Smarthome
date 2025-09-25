@@ -859,7 +859,7 @@ export default function LearningGuidePage() {
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Ready to build your learning roadmap?</h3>
               <p className="text-base leading-relaxed text-neutral-200">
-                Share your portfolio and we'll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
+                Share your portfolio and we&apos;ll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
               </p>
             </div>
 
