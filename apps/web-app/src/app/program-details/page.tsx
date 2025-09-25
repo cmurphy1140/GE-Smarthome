@@ -32,17 +32,25 @@ export default function ProgramDetails() {
     <div className="min-h-screen bg-white text-slate-900">
       <Header />
       <main className="space-y-0">
-        <TailoredEnablementSection />
+        <section id="enablement">
+          <TailoredEnablementSection />
+        </section>
         <Suspense fallback={<SectionSkeleton />}>
           <IntegrationSlideshow />
         </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <JourneySection />
-        </Suspense>
-        <PartnerTiersSection />
-        <Suspense fallback={<SectionSkeleton />}>
-          <VerticalsSection />
-        </Suspense>
+        <section id="journey">
+          <Suspense fallback={<SectionSkeleton />}>
+            <JourneySection />
+          </Suspense>
+        </section>
+        <section id="tiers">
+          <PartnerTiersSection />
+        </section>
+        <section id="verticals">
+          <Suspense fallback={<SectionSkeleton />}>
+            <VerticalsSection />
+          </Suspense>
+        </section>
         <section id="benefits">
           <Suspense fallback={<SectionSkeleton />}>
             <BenefitsSection />
