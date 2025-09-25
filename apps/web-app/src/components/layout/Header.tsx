@@ -8,9 +8,12 @@ import { usePathname } from 'next/navigation'
 
 // Consistent navigation buttons for all pages
 const getHeaderButtons = (currentPath: string) => {
-  const buttons = [
-    { href: '/', label: 'Home', isRoute: true }
-  ]
+  const buttons = []
+  
+  // Don't show Home button on home page
+  if (currentPath !== '/') {
+    buttons.push({ href: '/', label: 'Home', isRoute: true })
+  }
   
   if (currentPath !== '/learning-guide') {
     buttons.push({ href: '/learning-guide', label: 'Learn', isRoute: true })
@@ -109,12 +112,12 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-4 text-white sm:px-6">
         <Link href="/" className="flex items-center gap-3 text-left">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-900 text-sm font-semibold uppercase tracking-[0.2em] text-white">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-900 text-base font-semibold uppercase tracking-[0.2em] text-white">
             GE
           </span>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
-            <span className="text-sm uppercase tracking-[0.2em] text-blue-200">Lighting × Savant</span>
-            <span className="text-lg font-semibold text-white">Master the GE Smarthome</span>
+            <span className="text-base uppercase tracking-[0.2em] text-blue-200">Lighting × Savant</span>
+            <span className="text-xl font-semibold text-white">Master the GE Smarthome</span>
           </span>
         </Link>
 
@@ -172,14 +175,14 @@ export function Header() {
             <Link
               key={button.href}
               href={button.href}
-              className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+              className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-base font-semibold transition-all duration-200 ${
                 button.label === 'Apply Now'
                   ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                   : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
               }`}
             >
               {button.label}
-              {button.label === 'Apply Now' && <ArrowRight className="h-4 w-4" />}
+              {button.label === 'Apply Now' && <ArrowRight className="h-5 w-5" />}
             </Link>
           ))}
         </div>
@@ -191,7 +194,7 @@ export function Header() {
           aria-label="Toggle navigation"
           aria-expanded={mobileOpen}
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
 
@@ -226,7 +229,7 @@ export function Header() {
                 key={button.href}
                 href={button.href}
                 onClick={() => setMobileOpen(false)}
-                className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition-all duration-200 ${
+                className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 ${
                   button.label === 'Apply Now'
                     ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                     : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
@@ -241,14 +244,14 @@ export function Header() {
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
+                  className="inline-flex items-center justify-center rounded-lg bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
                 >
                   Home
                 </Link>
                 <Link
                   href="/learning-guide"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-full bg-blue-800 border border-blue-700 px-5 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="inline-flex items-center justify-center rounded-lg bg-blue-800 border border-blue-700 px-5 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
                 >
                   Resources
                 </Link>
@@ -258,10 +261,10 @@ export function Header() {
               <Link
                 href="/signup"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-base font-semibold text-blue-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-base font-semibold text-blue-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
               >
                 Apply Now
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-5 w-5" />
               </Link>
             )}
           </div>

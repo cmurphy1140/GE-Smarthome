@@ -34,19 +34,19 @@ const productFamilies = [
     items: [
       {
         heading: 'Smart Bulbs',
-        copy: 'Direct Connect LED, Reveal® color accuracy, Dynamic Effects with music sync and presets.'
+        copy: 'Direct Connect LED with color accuracy and music sync.'
       },
       {
         heading: 'Smart Switches',
-        copy: 'Toggle and paddle dimmers, no-neutral options for older homes, keypad controls for tailored scenes.'
+        copy: 'Toggle and paddle dimmers with no-neutral options.'
       },
       {
         heading: 'Light Strips & Panels',
-        copy: 'Indoor and outdoor strips, hexagon panels, and accent lighting ready for statement installs.'
+        copy: 'Indoor and outdoor strips with hexagon panels.'
       },
       {
         heading: 'Specialty Controls',
-        copy: 'Ceiling fan switches, motion sensors, and accessories that round out whole-room experiences.'
+        copy: 'Ceiling fan switches and motion sensors.'
       }
     ]
   },
@@ -57,19 +57,19 @@ const productFamilies = [
     items: [
       {
         heading: 'Control Systems',
-        copy: 'Whole-home scenes spanning lighting, audio, video, and comfort with Savant Pro.'
+        copy: 'Whole-home scenes with lighting, audio, video, and comfort.'
       },
       {
         heading: 'Energy Management',
-        copy: 'Grid-independent backup, intelligent load shedding, and energy dashboards.'
+        copy: 'Grid-independent backup with intelligent load shedding.'
       },
       {
         heading: 'User Interfaces',
-        copy: 'Touch panels, mobile app, and voice control that deliver a consistent branded experience.'
+        copy: 'Touch panels, mobile app, and voice control.'
       },
       {
         heading: 'Integration Platform',
-        copy: 'Professional-grade hardware and APIs that unify third-party devices across the property.'
+        copy: 'Professional-grade hardware and APIs for third-party devices.'
       }
     ],
     footer:
@@ -82,33 +82,33 @@ const marketPosition = [
     icon: BarChart3,
     title: 'Entry Level — GE Proseo',
     story:
-      'Retrofit-friendly upgrades, intuitive controls, and approachable pricing let you modernize existing homes without the complexity of rewiring. It is the perfect on-ramp for teams adding smart services to their core electrical or remodeling business.',
-    callout: 'Best fit for retrofit specialists and emerging smart home practices.'
+      'Retrofit-friendly upgrades with intuitive controls and approachable pricing. Perfect for teams adding smart services to electrical or remodeling business.',
+    callout: 'Best for retrofit specialists and emerging smart home practices.'
   },
   {
     icon: Star,
     title: 'Premium — Savant Integration',
     story:
-      'Pair Savant Pro control, energy resilience, and concierge-level support to deliver whole-home experiences that feel bespoke. This tier attracts luxury clients who expect orchestration across lighting, audio, comfort, and backup power.',
-    callout: 'Ideal for integrators delivering flagship residences and show homes.'
+      'Savant Pro control with energy resilience and concierge support. Delivers whole-home experiences for luxury clients expecting orchestration across all systems.',
+    callout: 'Ideal for integrators delivering flagship residences.'
   },
   {
     icon: Link2,
     title: 'Seamless Scalability',
     story:
-      'Because both stacks live inside one app, you can ladder clients from smart bulbs to full automation without forcing a platform change. Every upgrade respects previous investments while opening new subscription and service revenue.',
-    callout: 'Use as your upsell roadmap for long-term client relationships.'
+      'Both stacks live in one app. Ladder clients from smart bulbs to full automation without platform changes. Every upgrade opens new revenue streams.',
+    callout: 'Your upsell roadmap for long-term client relationships.'
   }
 ] as const
 
 const dealerTiers = [
   {
     name: 'Authorized Partner',
-    description: 'Entry-level track for businesses launching their smart home practice.',
+    description: 'Entry-level track for businesses launching smart home practice.',
     narrative: [
-      'Access the core GE Proseo catalog with healthy 15% dealer pricing, so you can prove demand without heavy up-front inventory.',
-      'Self-paced learning, quarterly webinars, and a content library keep your team sharp while fitting around busy project schedules.',
-      'Responsive email and chat support plug you into specialists any time a retrofit or integration question needs a fast answer.'
+      'Access GE Proseo catalog with 15% dealer pricing to prove demand without heavy inventory.',
+      'Self-paced learning, quarterly webinars, and content library for team development.',
+      'Responsive email and chat support for fast answers on retrofit and integration questions.'
     ],
     requirement: '$3,500 minimum annual commitment'
   },
@@ -116,9 +116,9 @@ const dealerTiers = [
     name: 'Premier Partner',
     description: 'Enhanced benefits for established teams ready to scale into Savant.',
     narrative: [
-      'Unlock the complete GE Proseo and Savant lineup with 25% discounting, demo-unit programs, and concierge equipment logistics.',
-      'Regional trainers embed with your team for live design charrettes, showroom activations, and launch events that create demand.',
-      'Dedicated representation, priority support queues, MDF funds, and early product access fuel aggressive growth goals.'
+      'Complete GE Proseo and Savant lineup with 25% discounting and demo-unit programs.',
+      'Regional trainers for live design sessions, showroom activations, and launch events.',
+      'Dedicated representation, priority support, MDF funds, and early product access.'
     ],
     requirement: '$10,000 minimum annual commitment'
   }
@@ -129,57 +129,25 @@ const professionalSegments = [
     title: 'Installers',
     subtitle: 'Custom integration & AV teams',
     narrative:
-      'Technical hotlines, advanced documentation, and Savant certification paths give your engineering crew instant answers while sales focuses on crafting experiential proposals. Dedicated technical account managers stay on-call for complex commissioning days.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9z" />
-      </svg>
-    )
+      'Technical hotlines, advanced documentation, and Savant certification paths. Dedicated technical account managers for complex commissioning.'
   },
   {
     title: 'Builders',
     subtitle: 'New-construction specialists',
     narrative:
-      'Pre-wire playbooks, scheduling templates, and bulk-order programs slide directly into your construction workflows. We supplement model-home demos and jobsite walkthroughs so every superintendent sees the value of embedding smart lighting before drywall.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-        <path d="M10 6h4" />
-        <path d="M10 10h4" />
-        <path d="M10 14h4" />
-        <path d="M10 18h4" />
-      </svg>
-    )
+      'Pre-wire playbooks, scheduling templates, and bulk-order programs. Model-home demos and jobsite walkthroughs for superintendents.'
   },
   {
     title: 'Architects & Designers',
     subtitle: 'Specification and aesthetic experts',
     narrative:
-      'CAD blocks, finish samples, and experience design sessions keep lighting layers aligned with your concept boards. Co-branded collateral and room-by-room guidance help clients understand how technology enhances the narratives you craft.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        <polyline points="3.27,6.96 12,12.01 20.73,6.96" />
-        <line x1="12" y1="22.08" x2="12" y2="12" />
-      </svg>
-    )
+      'CAD blocks, finish samples, and experience design sessions. Co-branded collateral and room-by-room guidance for clients.'
   },
   {
     title: 'Remodelers',
     subtitle: 'Renovation and retrofit pros',
     narrative:
-      'Retrofit wiring tips, ready-to-share case studies, and staged upgrade paths turn each renovation milestone into a smart home upsell. Our tools keep scope aligned with timeline pivots so crews stay efficient even in lived-in environments.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14,2 14,8 20,8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10,9 9,9 8,9" />
-      </svg>
-    )
+      'Retrofit wiring tips, case studies, and staged upgrade paths. Tools keep scope aligned with timeline pivots for efficient crews.'
   }
 ] as const
 
@@ -345,7 +313,7 @@ function LearningGuideHero() {
 
           <motion.p
             variants={fadeInUp}
-            className="text-base leading-relaxed text-neutral-600 md:text-lg"
+            className="text-lg leading-relaxed text-neutral-600 md:text-xl"
           >
             Build confidence in the combined portfolio, align your services with the right partnership tier, and equip your team with the enablement needed to deliver signature smart home experiences.
           </motion.p>
@@ -356,14 +324,14 @@ function LearningGuideHero() {
           >
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-neutral-900 px-8 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-800"
+              className="inline-flex items-center justify-center gap-3 rounded-full bg-neutral-900 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-800"
             >
               Start your application
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-8 py-3 text-sm font-semibold text-neutral-700 transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-200"
+              className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-8 py-3 text-base font-semibold text-neutral-700 transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-200"
             >
               Explore homepage
             </Link>
@@ -617,8 +585,8 @@ export default function LearningGuidePage() {
                   key={item.heading}
                   className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-transform duration-200 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
                 >
-                  <h4 className="text-sm font-semibold text-blue-950">{item.heading}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-neutral-600">{item.copy}</p>
+                  <h4 className="text-base font-semibold text-blue-950">{item.heading}</h4>
+                  <p className="mt-2 text-base leading-relaxed text-neutral-600">{item.copy}</p>
                 </div>
               ))}
             </div>
@@ -656,7 +624,7 @@ export default function LearningGuidePage() {
                     </div>
                     <p className="text-base font-semibold text-blue-950">{position.title}</p>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600">{position.story}</p>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-600">{position.story}</p>
                   <div className="mt-4 inline-flex rounded-xl border border-blue-950/15 bg-blue-950/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-blue-950">
                     {position.callout}
                   </div>
@@ -685,11 +653,11 @@ export default function LearningGuidePage() {
               >
                 <div>
                   <h3 className="text-xl font-semibold text-blue-950">{tier.name}</h3>
-                  <p className="mt-3 text-sm text-neutral-600">{tier.description}</p>
+                  <p className="mt-3 text-base text-neutral-600">{tier.description}</p>
 
                   <div className="mt-6 space-y-3">
                     {tier.narrative.map(paragraph => (
-                      <p key={paragraph} className="text-sm leading-relaxed text-neutral-600">
+                      <p key={paragraph} className="text-base leading-relaxed text-neutral-600">
                         {paragraph}
                       </p>
                     ))}
@@ -720,16 +688,11 @@ export default function LearningGuidePage() {
                 viewport={{ once: true, margin: '-80px' }}
                 className="group rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)] hover:-translate-y-1"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 rounded-xl bg-blue-50 p-3 text-blue-600 transition-colors duration-300 group-hover:bg-blue-100">
-                    {segment.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-blue-950">{segment.title}</h3>
-                    <p className="mt-1 text-sm text-neutral-500">{segment.subtitle}</p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-600">{segment.narrative}</p>
+                 <div>
+                   <h3 className="text-xl font-semibold text-blue-950">{segment.title}</h3>
+                   <p className="mt-2 text-base text-neutral-500">{segment.subtitle}</p>
+                 </div>
+                 <p className="mt-4 text-lg leading-relaxed text-neutral-600">{segment.narrative}</p>
               </motion.div>
             ))}
           </div>
@@ -760,7 +723,7 @@ export default function LearningGuidePage() {
                     </div>
                     <p className="text-base font-semibold text-blue-950">{advantage.title}</p>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600">{advantage.narrative}</p>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-600">{advantage.narrative}</p>
                 </motion.div>
               )
             })}
@@ -774,7 +737,7 @@ export default function LearningGuidePage() {
                 Concierge enablement
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Ready to build your learning roadmap?</h3>
-              <p className="text-sm leading-relaxed text-neutral-200">
+              <p className="text-base leading-relaxed text-neutral-200">
                 Share your portfolio and we’ll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
               </p>
             </div>

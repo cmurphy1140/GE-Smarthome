@@ -5,7 +5,6 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
-import { AboutSection } from '@/components/sections/AboutSection'
 import { Suspense, lazy } from 'react'
 
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
@@ -40,9 +39,6 @@ export default function Home() {
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
           </Suspense>
-        </section>
-        <section id="about">
-          <AboutSection />
         </section>
       </main>
       <Footer />

@@ -232,18 +232,10 @@ function PillarsSectionComponent() {
 
               {/* Features Section */}
               <div className="px-10 pb-6">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-4 text-sm group/item">
-                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Up to 40% dealer pricing</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm group/item">
-                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg shadow-blue-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Priority fulfillment</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm group/item">
-                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg shadow-purple-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Latest innovations</span>
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 shadow-lg">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50" />
+                    <span className="text-blue-100 font-medium">Up to 40% off dealer pricing</span>
                   </div>
                 </div>
               </div>

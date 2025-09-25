@@ -61,7 +61,7 @@ export function SectionHeader({
           {title}
         </div>
         {description ? (
-          <p className={variant === 'dark' ? "text-xl leading-snug text-blue-50 md:text-2xl lg:text-3xl font-medium" : "text-xl leading-snug text-slate-700 md:text-2xl lg:text-3xl font-medium"}>
+          <p className={variant === 'dark' ? "text-base leading-snug text-blue-50 md:text-lg lg:text-xl font-normal" : "text-base leading-snug text-slate-700 md:text-lg lg:text-xl font-normal"}>
             {description}
           </p>
         ) : null}
