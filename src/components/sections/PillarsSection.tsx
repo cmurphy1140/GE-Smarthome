@@ -233,7 +233,7 @@ function PillarsSectionComponent() {
                 <div className="flex justify-center">
                   <div className="inline-flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 shadow-lg">
                     <div className="h-2 w-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50" />
-                    <span className="text-blue-100 font-medium">Up to 40% off dealer pricing</span>
+                    <span className="text-blue-100 font-medium">Up to 30% off of MSRP pricing</span>
                   </div>
                 </div>
               </div>
