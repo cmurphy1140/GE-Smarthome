@@ -111,13 +111,17 @@ export function Header() {
       className="sticky top-0 z-50 border-b border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-4 text-white sm:px-6">
-        <Link href="/" className="flex items-center gap-3 text-left">
+        <Link 
+          href="/" 
+          className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+          aria-label="GE Smart Home - Go to homepage"
+        >
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-900 text-base font-semibold uppercase tracking-[0.2em] text-white">
             GE
           </span>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
-            <span className="text-base uppercase tracking-[0.2em] text-blue-200">Lighting × Savant</span>
-            <span className="text-xl font-semibold text-white">Master the GE Smarthome</span>
+            <span className="text-sm uppercase tracking-[0.2em] text-blue-200">Powered by Savant AI</span>
+            <span className="text-xl font-semibold text-white">GE Smart Home</span>
           </span>
         </Link>
 
@@ -126,7 +130,10 @@ export function Header() {
             <div className="relative" data-dropdown>
                <button
                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                 className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105"
+                 className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                 aria-expanded={dropdownOpen}
+                 aria-haspopup="true"
+                 aria-label="Open navigation menu"
                >
                  Navigation
                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
@@ -139,6 +146,8 @@ export function Header() {
                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
                    transition={{ duration: 0.2, ease: "easeOut" }}
                    className="absolute top-full left-0 mt-3 w-64 rounded-xl border border-blue-800/50 bg-blue-950/95 backdrop-blur-xl shadow-2xl z-50 overflow-hidden"
+                   role="menu"
+                   aria-label="Navigation menu"
                  >
                    <div className="py-3">
                      {currentNavLinks.map((link, index) => {
@@ -152,12 +161,14 @@ export function Header() {
                          >
                            <Component
                              href={link.href}
-                             className="flex items-center gap-3 px-5 py-4 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/50 hover:translate-x-1"
+                             className="flex items-center gap-3 px-5 py-4 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/50 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
                              onClick={() => setDropdownOpen(false)}
+                             role="menuitem"
+                             tabIndex={0}
                            >
                              <span className="flex-1">{link.label}</span>
                              {link.isExternal && (
-                               <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" />
+                               <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" aria-label="External link" />
                              )}
                            </Component>
                          </motion.div>
