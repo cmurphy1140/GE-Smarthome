@@ -8,7 +8,7 @@ import React, { useRef, memo } from 'react'
 import { AnimatedNumber } from '@/components/ui/AnimatedNumber'
 
 const heroStats = [
-  { value: 280, suffix: '+', label: 'Active partners' },
+  { value: 'Brand marketing to Millions of homes', suffix: '', label: 'Media Reach' },
   { value: 48, suffix: ' hr', label: 'Average onboarding' },
   { value: 24, suffix: '/7', label: 'Dedicated support' }
 ] as const
@@ -63,7 +63,7 @@ function HeroSectionComponent() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
             className="mt-8 text-4xl font-semibold leading-tight text-white md:text-5xl"
           >
-            Leverage cutting-edge technology to build signature GE smart homes
+            Leverage cutting-edge technology to build your signature GE Smart Homes
           </motion.h1>
 
           <motion.p
@@ -71,7 +71,7 @@ function HeroSectionComponent() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-base text-blue-100 leading-relaxed md:text-lg"
           >
-            Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance, hardware, and always-on expertise.
+            Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance and always-on expertise.
           </motion.p>
 
         <motion.div
@@ -81,7 +81,7 @@ function HeroSectionComponent() {
         >
           <Link
             href="/signup"
-            className="group inline-flex items-center justify-center gap-3 rounded-full px-16 py-4 text-lg font-semibold text-blue-950 bg-white shadow-lg hover:bg-blue-50 hover:shadow-xl transition-all duration-200 border border-blue-200"
+            className="group inline-flex items-center justify-center gap-3 rounded-full px-16 py-4 text-lg font-semibold text-blue-950 bg-white shadow-lg hover:bg-blue-50 hover:shadow-xl hover:shadow-glow transition-all duration-300 border border-blue-200 hover:border-blue-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             <span>Start Partnership</span>
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -91,19 +91,25 @@ function HeroSectionComponent() {
         <motion.div
           variants={fadeInUp}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-          className="mt-12 grid grid-cols-1 gap-4 text-center sm:grid-cols-3"
+          className="mt-12 grid grid-cols-1 gap-4 text-center sm:grid-cols-2 lg:grid-cols-3"
         >
           {heroStats.map(stat => (
             <div
               key={stat.label}
-              className="glass-card p-6"
+              className="glass-card p-6 hover:shadow-glow hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
             >
-              <AnimatedNumber
-                value={stat.value}
-                suffix={stat.suffix}
-                className="text-3xl font-semibold text-white"
-              />
-              <div className="mt-1 text-md uppercase tracking-[0.3em] text-blue-100">
+              {typeof stat.value === 'string' ? (
+                <div className="text-lg font-semibold text-white leading-tight group-hover:text-blue-100 transition-colors duration-300">
+                  {stat.value}
+                </div>
+              ) : (
+                <AnimatedNumber
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  className="text-3xl font-semibold text-white group-hover:text-blue-100 transition-colors duration-300"
+                />
+              )}
+              <div className="mt-1 text-md uppercase tracking-[0.3em] text-blue-100 group-hover:text-blue-200 transition-colors duration-300">
                 {stat.label}
               </div>
             </div>
