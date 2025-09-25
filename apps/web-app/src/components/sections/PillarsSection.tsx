@@ -33,7 +33,7 @@ const pillars = [
     description: 'Access premium smart lighting with exclusive dealer pricing and priority fulfillment.',
     accent: 'orange',
     isShop: true,
-    href: 'https://shop.gelighting.com/',
+    href: 'https://shop.gelighting.com/?gclsrc=aw.ds&gad_source=1&gad_campaignid=22976127503&gbraid=0AAAAACbsKFA1kPDpDd89zSdSxBhGBDbfu&gclid=Cj0KCQjw0NPGBhCDARIsAGAzpp3LOSatAdoZpwc2GjrIkxC8OAEJ-EtpNNxDw6LUODxhk-QwugUxAiUaArpBEALw_wcB',
     features: [
       { icon: ShieldCheck, text: 'Up to 40% off MSRP', highlight: 'Dealer Pricing' },
       { icon: LineChart, text: 'Fast-track orders', highlight: 'Priority Support' },
@@ -129,9 +129,12 @@ function PillarsSectionComponent() {
 
           {/* Right Column - Enhanced Partner Store Card with Product Carousel */}
           {pillars.filter(pillar => pillar.isShop).map((pillar) => (
-            <div
+            <a
               key={pillar.title}
-              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 shadow-2xl transition-all duration-300 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)]"
+              href={pillar.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 shadow-2xl transition-all duration-300 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)] cursor-pointer block"
             >
               {/* Animated background elements */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-900/30" />
@@ -147,14 +150,9 @@ function PillarsSectionComponent() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 transition-all duration-500 group-hover:bg-blue-400/30 group-hover:border-blue-300/50 group-hover:scale-110 group-hover:text-blue-200">
                     <pillar.icon className="h-8 w-8" />
                   </div>
-                  <a
-                    href={pillar.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:scale-110"
-                  >
-                    <ExternalLink className="h-5 w-5 text-blue-300 hover:text-blue-200 transition-colors duration-300" />
-                  </a>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/30 group-hover:scale-110">
+                    <ExternalLink className="h-5 w-5 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" />
+                  </div>
                 </div>
 
                 <h3 className="text-4xl font-bold text-white mb-4 group-hover:text-blue-100 transition-all duration-300 tracking-tight leading-tight">
@@ -176,14 +174,14 @@ function PillarsSectionComponent() {
                     className="flex items-center gap-6"
                   >
                       {/* Product Image */}
-                      <div className="flex-shrink-0 w-48 h-48 relative">
+                      <div className="flex-shrink-0 w-64 h-64 relative">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
-                        <div className="absolute inset-3 flex items-center justify-center">
+                        <div className="absolute inset-4 flex items-center justify-center">
                           <Image
                             src={currentProduct.image}
                             alt={currentProduct.name}
-                            width={160}
-                            height={160}
+                            width={200}
+                            height={200}
                             className="object-contain max-w-full max-h-full"
                           />
                         </div>
@@ -240,29 +238,22 @@ function PillarsSectionComponent() {
                 </div>
               </div>
 
-              {/* CTA Button */}
+              {/* CTA Section */}
               <div className="px-10 pb-10">
-                <a
-                  href={pillar.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5 backdrop-blur-sm transition-all duration-500 hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105 group/cta">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-blue-400/20 opacity-0 group-hover/cta:opacity-100 transition-all duration-500 animate-pulse" />
-                    <div className="relative flex items-center justify-between">
-                      <span className="text-lg font-bold tracking-wide text-white drop-shadow-sm">Visit Partner Store</span>
-                      <ArrowRight className="h-6 w-6 text-blue-100 transition-all duration-500 group-hover/cta:translate-x-3 group-hover/cta:text-white group-hover/cta:scale-110" />
-                    </div>
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5 backdrop-blur-sm transition-all duration-500 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/30 group-hover:scale-105">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
+                  <div className="relative flex items-center justify-between">
+                    <span className="text-lg font-bold tracking-wide text-white drop-shadow-sm">Visit Partner Store</span>
+                    <ArrowRight className="h-6 w-6 text-blue-100 transition-all duration-500 group-hover:translate-x-3 group-hover:text-white group-hover:scale-110" />
                   </div>
-                </a>
+                </div>
               </div>
 
               {/* Interactive glow effect */}
               <div className="absolute inset-0 rounded-3xl border border-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            </div>
+            </a>
           ))}
         </div>
 
