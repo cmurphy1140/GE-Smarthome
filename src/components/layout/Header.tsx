@@ -118,7 +118,7 @@ export function Header() {
         >
           <div className="inline-flex h-12 w-12 items-center justify-center">
             <img 
-              src="/ge-classic-logo.svg" 
+              src="/GE-Logo.png" 
               alt="GE Logo" 
               className="h-12 w-12"
             />
