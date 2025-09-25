@@ -43,29 +43,6 @@ const SecurityIcon = () => (
 export function TailoredEnablementSection() {
   return (
     <section className="relative bg-white py-24 overflow-hidden">
-      {/* Floating Logos */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* GE Logo */}
-        <motion.div
-          className="absolute top-20 left-10 opacity-25"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <Image
-            src="/ge-logo.svg"
-            alt="GE Logo"
-            width={80}
-            height={80}
-            className="text-blue-600"
-          />
-        </motion.div>
 
         {/* Savant Logo (using text for now) */}
         <motion.div
@@ -149,29 +126,6 @@ export function TailoredEnablementSection() {
           <SecurityIcon />
         </motion.div>
 
-        {/* Additional GE Logo */}
-        <motion.div
-          className="absolute bottom-20 left-1/4 opacity-25"
-          animate={{
-            y: [0, -10, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4
-          }}
-        >
-          <Image
-            src="/ge-logo.svg"
-            alt="GE Logo"
-            width={60}
-            height={60}
-            className="text-blue-600"
-          />
-        </motion.div>
-      </div>
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
         <div className="grid gap-8 rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-8 shadow-[0_30px_80px_rgba(8,11,24,0.45)] md:grid-cols-[1fr_1.2fr] text-white">
@@ -181,10 +135,10 @@ export function TailoredEnablementSection() {
                 Tailored enablement
               </div>
               <h3 className="mt-4 text-2xl font-semibold text-white md:text-3xl">
-                Ready to transform your smart home business?
+                Ready to transform your Smart Home business?
               </h3>
               <p className="mt-3 text-xl leading-relaxed text-blue-100">
-                Join over 280+ successful dealers who have accelerated their growth with GE Smarthome. Get personalized support, premium products, and proven systems.
+                Join over 280+ successful dealers who have accelerated their growth with GE Smart Home. Get personalized support, premium products, and proven systems.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
