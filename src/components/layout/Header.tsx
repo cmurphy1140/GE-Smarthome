@@ -31,23 +31,23 @@ const getHeaderButtons = (currentPath: string) => {
 }
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#program', label: 'Program' },
-  { href: '/program-details', label: 'Program Details', isRoute: true, isExternal: true },
-  { href: '/learning-guide', label: 'Learning Guide', isRoute: true, isExternal: true }
+  { href: '#about', label: 'About GE Smart Home' },
+  { href: '#program', label: 'Dealer Program' },
+  { href: '/program-details', label: 'Program Benefits', isRoute: true, isExternal: true },
+  { href: '/learning-guide', label: 'Resources & Training', isRoute: true, isExternal: true }
 ]
 
 const learningGuideNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = [
   { href: '#journey', label: 'Partnership Journey' },
-  { href: '#enablement', label: 'Enablement' },
-  { href: '#support', label: 'Support' },
-  { href: '#technology', label: 'Technology' }
+  { href: '#enablement', label: 'Training & Support' },
+  { href: '#support', label: '24/7 Support' },
+  { href: '#technology', label: 'Smart Home Technology' }
 ]
 
 const signupNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = []
 
 const programDetailsNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = [
-  { href: '#journey', label: 'Journey' }
+  { href: '#journey', label: 'Partnership Journey' }
 ]
 
 export function Header() {
