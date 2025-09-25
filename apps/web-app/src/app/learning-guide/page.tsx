@@ -626,7 +626,7 @@ export default function LearningGuidePage() {
                   </div>
                   <p className="mt-4 text-base leading-relaxed text-neutral-600">{position.story}</p>
                   <div className="mt-4 inline-flex rounded-xl border border-blue-950/15 bg-blue-950/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-blue-950">
-                    {position.callout}
+                    <strong>{position.callout}</strong>
                   </div>
                 </motion.article>
               )
