@@ -110,22 +110,22 @@ export function Header() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="sticky top-0 z-50 border-b border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 backdrop-blur-xl"
     >
-      <div className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-4 text-white sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-5 text-white sm:px-8">
         <Link 
           href="/" 
-          className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+          className="flex items-center gap-4 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
           aria-label="GE Smart Home - Go to homepage"
         >
-          <div className="inline-flex h-12 w-12 items-center justify-center">
+          <div className="inline-flex h-14 w-14 items-center justify-center">
             <img 
               src="/GE-Logo.png" 
               alt="GE Logo" 
-              className="h-12 w-12"
+              className="h-14 w-14 object-contain"
             />
           </div>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
-            <span className="text-sm uppercase tracking-[0.2em] text-blue-200">Powered by Savant AI</span>
-            <span className="text-xl font-semibold text-white">GE Smart Home</span>
+            <span className="text-sm uppercase tracking-[0.2em] text-blue-200 leading-tight">Powered by Savant AI</span>
+            <span className="text-xl font-semibold text-white leading-tight">GE Smart Home</span>
           </span>
         </Link>
 
@@ -134,7 +134,7 @@ export function Header() {
             <div className="relative" data-dropdown>
                <button
                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                 className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                 className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                  aria-expanded={dropdownOpen}
                  aria-haspopup="true"
                  aria-label="Open navigation menu"
@@ -185,12 +185,12 @@ export function Header() {
           )}
         </div>
 
-        <div className="hidden items-center gap-4 md:flex ml-auto">
+        <div className="hidden items-center gap-5 md:flex ml-auto">
           {headerButtons.map((button) => (
             <Link
               key={button.href}
               href={button.href}
-              className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-base font-semibold transition-all duration-200 ${
+              className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 ${
                 button.label === 'Apply Now'
                   ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                   : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
