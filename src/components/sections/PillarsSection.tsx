@@ -103,25 +103,29 @@ function PillarsSectionComponent() {
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
               <article
                 key={pillar.title}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
               >
                 <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
-                    <pillar.icon className="h-6 w-6 text-slate-500 group-hover:text-blue-500" />
-                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 bg-gradient-to-br from-slate-100 to-slate-200 group-hover:from-blue-100 group-hover:to-blue-200 group-hover:scale-110 shadow-sm">
+                      <pillar.icon className="h-8 w-8 text-slate-600 group-hover:text-blue-600" strokeWidth={1.5} />
+                    </div>
 
-                  <div className="mt-4 flex items-center gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-900">
-                      {pillar.title}
-                    </h3>
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-md font-medium text-blue-800 border border-blue-200">
-                      {pillar.badge}
-                    </span>
-                  </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-900">
+                          {pillar.title}
+                        </h3>
+                        <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800 border border-blue-200">
+                          {pillar.badge}
+                        </span>
+                      </div>
 
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600 group-hover:text-slate-800">
-                    {pillar.description}
-                  </p>
+                      <p className="text-base leading-relaxed text-slate-600 group-hover:text-slate-800">
+                        {pillar.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}
