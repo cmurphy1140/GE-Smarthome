@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#program', label: 'Program' },
-  { href: '#benefits', label: 'Benefits' },
+  { href: '/program-details', label: 'Program Details', isRoute: true },
   { href: '/learning-guide', label: 'Learning Guide', isRoute: true }
 ]
 
@@ -22,12 +22,21 @@ const learningGuideNavLinks: { href: string; label: string; isRoute?: boolean }[
 
 const signupNavLinks: { href: string; label: string; isRoute?: boolean }[] = []
 
+const programDetailsNavLinks: { href: string; label: string; isRoute?: boolean }[] = [
+  { href: '#enablement', label: 'Enablement' },
+  { href: '#journey', label: 'Journey' },
+  { href: '#tiers', label: 'Partnership Tiers' },
+  { href: '#verticals', label: 'Industries' },
+  { href: '#benefits', label: 'Benefits' }
+]
+
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
   const isLearningGuide = pathname === '/learning-guide'
   const isSignup = pathname === '/signup'
-  const currentNavLinks = isLearningGuide ? learningGuideNavLinks : isSignup ? signupNavLinks : navLinks
+  const isProgramDetails = pathname === '/program-details'
+  const currentNavLinks = isLearningGuide ? learningGuideNavLinks : isSignup ? signupNavLinks : isProgramDetails ? programDetailsNavLinks : navLinks
 
   useEffect(() => {
     if (!mobileOpen) return

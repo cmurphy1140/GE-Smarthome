@@ -5,14 +5,9 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
-import { TailoredEnablementSection } from '@/components/sections/TailoredEnablementSection'
-import { PartnerTiersSection } from '@/components/sections/PartnerTiersSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import { Suspense, lazy } from 'react'
 
-const IntegrationSlideshow = lazy(() => import('@/components/sections/IntegrationSlideshow').then(mod => ({ default: mod.default })))
-const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection').then(mod => ({ default: mod.default })))
-const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection').then(mod => ({ default: mod.default })))
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
 
 function SectionSkeleton() {
@@ -40,20 +35,7 @@ export default function Home() {
         <section id="program">
           <PillarsSection />
         </section>
-        <TailoredEnablementSection />
-        <Suspense fallback={<SectionSkeleton />}>
-          <IntegrationSlideshow />
-        </Suspense>
-        <PartnerTiersSection />
         <StatsSection />
-        <Suspense fallback={<SectionSkeleton />}>
-          <VerticalsSection />
-        </Suspense>
-        <section id="benefits">
-          <Suspense fallback={<SectionSkeleton />}>
-            <BenefitsSection />
-          </Suspense>
-        </section>
         <section id="faqs">
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
