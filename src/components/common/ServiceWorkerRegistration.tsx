@@ -2,9 +2,15 @@
 
 import { useEffect, useState } from 'react'
 
+// Define types for the BeforeInstallPromptEvent
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+}
+
 export function ServiceWorkerRegistration() {
   const [isOnline, setIsOnline] = useState(true)
-  const [swRegistration, setSwRegistration] = useState<ServiceWorkerRegistration | null>(null)
+  const [, setSwRegistration] = useState<ServiceWorkerRegistration | null>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
@@ -66,7 +72,7 @@ export function ServiceWorkerRegistration() {
       {/* Online/Offline indicator */}
       {!isOnline && (
         <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-center py-2 text-sm font-medium">
-          You're offline. Some features may be limited.
+          You&apos;re offline. Some features may be limited.
         </div>
       )}
       
@@ -80,13 +86,13 @@ export function ServiceWorkerRegistration() {
 
 // Install prompt component
 function InstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const [showInstallPrompt, setShowInstallPrompt] = useState(false)
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault()
-      setDeferredPrompt(e)
+      setDeferredPrompt(e as BeforeInstallPromptEvent)
       setShowInstallPrompt(true)
     }
 

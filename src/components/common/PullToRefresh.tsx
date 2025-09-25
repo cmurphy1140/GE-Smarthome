@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RefreshCw } from 'lucide-react'
 
@@ -24,7 +24,7 @@ export function PullToRefresh({
   const [canPull, setCanPull] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const handleTouchStart = (e: TouchEvent) => {
+  const handleTouchStart = useCallback((e: TouchEvent) => {
     if (disabled || isRefreshing) return
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
@@ -32,9 +32,9 @@ export function PullToRefresh({
       setCanPull(true)
       setStartY(e.touches[0].clientY)
     }
-  }
+  }, [disabled, isRefreshing])
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!canPull || disabled || isRefreshing) return
 
     const currentY = e.touches[0].clientY
@@ -45,9 +45,9 @@ export function PullToRefresh({
       setIsPulling(true)
       setPullDistance(Math.min(distance, threshold * 1.5))
     }
-  }
+  }, [canPull, disabled, isRefreshing, startY, threshold])
 
-  const handleTouchEnd = async () => {
+  const handleTouchEnd = useCallback(async () => {
     if (!canPull || disabled || isRefreshing) return
 
     if (pullDistance >= threshold) {
@@ -65,7 +65,7 @@ export function PullToRefresh({
     setPullDistance(0)
     setCanPull(false)
     setStartY(0)
-  }
+  }, [canPull, disabled, isRefreshing, pullDistance, onRefresh, threshold])
 
   useEffect(() => {
     if (disabled) return
@@ -79,7 +79,7 @@ export function PullToRefresh({
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [canPull, pullDistance, disabled, isRefreshing])
+  }, [canPull, pullDistance, disabled, isRefreshing, handleTouchStart, handleTouchMove, handleTouchEnd])
 
   const progress = Math.min(pullDistance / threshold, 1)
   const rotation = progress * 180
