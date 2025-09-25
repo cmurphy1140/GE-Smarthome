@@ -127,10 +127,10 @@ export default function VerticalsSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.08 }}
-                  className={`group flex w-full items-center justify-between gap-6 rounded-3xl border px-5 py-5 text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-slate-50 ${
+                  className={`group flex w-full items-center justify-between gap-6 rounded-3xl border px-5 py-5 text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-950 focus:ring-offset-2 focus:ring-offset-slate-50 ${
                     isActive
                       ? 'border-blue-950/30 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]'
-                      : 'border-blue-100 bg-blue-50/60 hover:border-blue-200 hover:bg-white'
+                      : 'border-blue-950/20 bg-blue-950/5 hover:border-blue-950/30 hover:bg-white'
                   }`}
                 >
                   <div className="flex items-center gap-5">
@@ -140,13 +140,13 @@ export default function VerticalsSection() {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-base font-semibold text-slate-900">{vertical.title}</p>
-                      <p className="mt-1 text-sm text-slate-600">{vertical.subtitle}</p>
+                      <p className="text-xl font-semibold text-slate-900">{vertical.title}</p>
+                      <p className="mt-1 text-lg text-slate-600">{vertical.subtitle}</p>
                     </div>
                   </div>
                   <ChevronDown
                     className={`h-5 w-5 transition-transform ${
-                      isActive ? 'rotate-180 text-blue-950' : 'text-blue-800 group-hover:text-blue-950'
+                      isActive ? 'rotate-180 text-blue-950' : 'text-blue-950 group-hover:text-blue-950'
                     }`}
                   />
                 </motion.button>
@@ -169,37 +169,37 @@ export default function VerticalsSection() {
                 {React.createElement(verticals[activeVertical].icon, { className: 'h-5 w-5' })}
               </div>
               <div className="space-y-1">
-                <p className="text-sm font-medium uppercase tracking-[0.3em] text-blue-900/70">
+                <p className="text-lg font-medium uppercase tracking-[0.3em] text-blue-950/70">
                   {verticals[activeVertical].title}
                 </p>
-                <h3 className="text-xl font-semibold text-slate-900">
+                <h3 className="text-3xl font-semibold text-slate-900">
                   {verticals[activeVertical].headline}
                 </h3>
               </div>
             </div>
 
-            <p className="text-base leading-relaxed text-slate-600">
+            <p className="text-xl leading-relaxed text-slate-600">
               {verticals[activeVertical].summary}
             </p>
 
             <div className="grid gap-8 md:grid-cols-2">
               <div className="space-y-4">
-                <h4 className="text-base font-semibold text-slate-900">Key features</h4>
-                <ul className="space-y-3 text-base text-slate-600">
+                <h4 className="text-xl font-semibold text-slate-900">Key features</h4>
+                <ul className="space-y-3 text-lg text-slate-600">
                   {verticals[activeVertical].features.slice(0, 3).map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-blue-950" />
+                      <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-blue-950" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="space-y-4">
-                <h4 className="text-base font-semibold text-slate-900">Business benefits</h4>
-                <ul className="space-y-3 text-base text-slate-600">
+                <h4 className="text-xl font-semibold text-slate-900">Business benefits</h4>
+                <ul className="space-y-3 text-lg text-slate-600">
                   {verticals[activeVertical].benefits.slice(0, 3).map((benefit, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-blue-950" />
+                      <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-blue-950" />
                       <span>{benefit}</span>
                     </li>
                   ))}
@@ -207,29 +207,29 @@ export default function VerticalsSection() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-blue-950/15 bg-blue-50 p-5 text-slate-600">
-              <span className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-900/70">Primary advantage</span>
-              <p className="mt-3 text-base font-medium text-slate-900">
+            <div className="rounded-2xl border border-blue-950/15 bg-blue-950/5 p-6 text-slate-600">
+              <span className="text-lg font-semibold uppercase tracking-[0.25em] text-blue-950/70">Primary advantage</span>
+              <p className="mt-3 text-xl font-medium text-slate-900">
                 {verticals[activeVertical].keyBenefit}
               </p>
             </div>
 
             <div className="grid gap-6 text-slate-600 md:grid-cols-3">
               <div>
-                <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-900/70">Market size</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">
+                <p className="text-lg font-medium uppercase tracking-[0.25em] text-blue-950/70">Market size</p>
+                <p className="mt-2 text-xl font-semibold text-slate-900">
                   {verticals[activeVertical].marketSize}
                 </p>
               </div>
               <div>
-                <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-900/70">Growth rate</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">
+                <p className="text-lg font-medium uppercase tracking-[0.25em] text-blue-950/70">Growth rate</p>
+                <p className="mt-2 text-xl font-semibold text-slate-900">
                   {verticals[activeVertical].growthRate}
                 </p>
               </div>
               <div>
-                <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-900/70">Project value</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">
+                <p className="text-lg font-medium uppercase tracking-[0.25em] text-blue-950/70">Project value</p>
+                <p className="mt-2 text-xl font-semibold text-slate-900">
                   {verticals[activeVertical].projectValue}
                 </p>
               </div>
@@ -237,10 +237,10 @@ export default function VerticalsSection() {
 
             <Link
               href={verticals[activeVertical].href}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-950 px-6 py-3 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900"
+              className="inline-flex items-center gap-2 rounded-full bg-white border-2 border-blue-950 px-8 py-4 text-xl font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-950/5"
             >
               {verticals[activeVertical].cta}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </motion.div>
         </AnimatePresence>

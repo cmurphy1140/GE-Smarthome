@@ -1,9 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, ArrowRight, Users, Clock, Award } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ExternalLink, ArrowRight, Users, Clock, Award, ChevronLeft, ChevronRight } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
 import { fadeInUp } from '../common/OptimizedMotion'
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const pillars = [
   {
@@ -42,8 +44,58 @@ const pillars = [
   }
 ]
 
+const geProducts = [
+  {
+    id: 1,
+    name: 'GE Smart Bulb',
+    description: 'Vintage-style smart filament bulb with warm lighting and app control',
+    image: '/bulb.png',
+    category: 'Smart Lighting',
+    price: '$24.99',
+    dealerPrice: '$14.99'
+  },
+  {
+    id: 2,
+    name: 'Soft White Bulbs',
+    description: 'Classic incandescent replacement with 1-year life guarantee',
+    image: '/soft-white.png',
+    category: 'Traditional',
+    price: '$8.99',
+    dealerPrice: '$5.39'
+  },
+  {
+    id: 3,
+    name: 'LED+ Color Bulb',
+    description: 'Full spectrum color changing LED with voice control compatibility',
+    image: '/led-light.png',
+    category: 'Smart LED',
+    price: '$49.99',
+    dealerPrice: '$29.99'
+  }
+]
+
 
 function PillarsSectionComponent() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % geProducts.length)
+    }, 4000) // Change slide every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % geProducts.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + geProducts.length) % geProducts.length)
+  }
+
+  const currentProduct = geProducts[currentSlide]
+
   return (
     <section id="about" className="relative bg-white py-24 text-slate-900">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
@@ -90,20 +142,16 @@ function PillarsSectionComponent() {
             ))}
           </div>
 
-          {/* Right Column - Enhanced Dark Blue Partner Store Card */}
+          {/* Right Column - Enhanced Partner Store Card with Product Carousel */}
           {pillars.filter(pillar => pillar.isShop).map((pillar) => (
-            <motion.a
+            <motion.div
               key={pillar.title}
-              href={pillar.href}
-              target="_blank"
-              rel="noopener noreferrer"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-80px' }}
-              whileHover={{ y: -8, scale: 1.04, rotateY: 2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-10 shadow-2xl transition-all duration-700 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)] hover:shadow-blue-900/40"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 shadow-2xl transition-all duration-700 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)]"
             >
               {/* Animated background elements */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-900/30" />
@@ -113,53 +161,157 @@ function PillarsSectionComponent() {
               <div className="absolute top-4 right-4 h-24 w-24 rounded-full bg-gradient-to-r from-blue-400/20 to-blue-600/20 blur-xl opacity-50 group-hover:opacity-80 transition-all duration-1000 group-hover:scale-150" />
               <div className="absolute bottom-6 left-6 h-16 w-16 rounded-full bg-gradient-to-r from-blue-500/15 to-blue-700/15 blur-lg opacity-40 group-hover:opacity-70 transition-all duration-1000 group-hover:scale-125" />
 
-              <div className="relative flex items-start justify-between mb-8">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 transition-all duration-500 group-hover:bg-blue-400/30 group-hover:border-blue-300/50 group-hover:scale-110 group-hover:text-blue-200">
-                  <pillar.icon className="h-8 w-8" />
+              {/* Header Section */}
+              <div className="relative p-10 pb-6">
+                <div className="relative flex items-start justify-between mb-8">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 transition-all duration-500 group-hover:bg-blue-400/30 group-hover:border-blue-300/50 group-hover:scale-110 group-hover:text-blue-200">
+                    <pillar.icon className="h-8 w-8" />
+                  </div>
+                  <a
+                    href={pillar.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:scale-110"
+                  >
+                    <ExternalLink className="h-5 w-5 text-blue-300 hover:text-blue-200 transition-colors duration-300" />
+                  </a>
                 </div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/30 group-hover:scale-110">
-                  <ExternalLink className="h-5 w-5 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" />
-                </div>
+
+                <h3 className="text-4xl font-bold text-white mb-4 group-hover:text-blue-100 transition-all duration-300 tracking-tight leading-tight">
+                  {pillar.title}
+                </h3>
+
+                <p className="text-blue-200/80 mb-6 text-lg leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">
+                  {pillar.description}
+                </p>
               </div>
 
-              <h3 className="text-4xl font-bold text-white mb-4 group-hover:text-blue-100 transition-all duration-300 tracking-tight leading-tight">
-                {pillar.title}
-              </h3>
+              {/* Product Carousel Section */}
+              <div className="relative px-10 pb-4">
+                <div className="relative bg-black/20 rounded-2xl p-6 backdrop-blur-sm border border-blue-800/30">
+                  {/* Navigation Buttons */}
+                  <div className="absolute top-4 right-4 flex gap-2 z-10">
+                    <button
+                      onClick={prevSlide}
+                      className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
+                    >
+                      <ChevronLeft className="h-4 w-4 text-white" />
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
+                    >
+                      <ChevronRight className="h-4 w-4 text-white" />
+                    </button>
+                  </div>
 
-              <p className="text-blue-200/80 mb-8 text-lg leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">
-                {pillar.description}
-              </p>
+                  {/* Product Slide */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentProduct.id}
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-center gap-6"
+                    >
+                      {/* Product Image */}
+                      <div className="flex-shrink-0 w-24 h-24 relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
+                        <div className="absolute inset-2 flex items-center justify-center">
+                          <Image
+                            src={currentProduct.image}
+                            alt={currentProduct.name}
+                            width={64}
+                            height={64}
+                            className="object-contain max-w-full max-h-full"
+                          />
+                        </div>
+                      </div>
 
-              <div className="space-y-4 mb-10">
-                <div className="flex items-center gap-4 text-base group/item">
-                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Up to 40% dealer pricing</span>
-                </div>
-                <div className="flex items-center gap-4 text-base group/item">
-                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg shadow-blue-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Priority fulfillment</span>
-                </div>
-                <div className="flex items-center gap-4 text-base group/item">
-                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg shadow-purple-400/50 group-hover/item:scale-125 transition-transform duration-300" />
-                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Latest innovations</span>
-                </div>
-              </div>
+                      {/* Product Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-200 border border-blue-400/20">
+                            {currentProduct.category}
+                          </span>
+                        </div>
+                        <h4 className="text-lg font-semibold text-white mb-1 truncate">
+                          {currentProduct.name}
+                        </h4>
+                        <p className="text-sm text-blue-200/70 mb-2 line-clamp-2">
+                          {currentProduct.description}
+                        </p>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm text-blue-300/60 line-through">
+                            {currentProduct.price}
+                          </span>
+                          <span className="text-base font-bold text-emerald-400">
+                            {currentProduct.dealerPrice}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
 
-              <div className="pt-6 border-t border-blue-800/30">
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5 backdrop-blur-sm transition-all duration-500 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/30 group-hover:scale-105">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
-                  <div className="relative flex items-center justify-between">
-                    <span className="text-lg font-bold tracking-wide text-white drop-shadow-sm">Visit Partner Store</span>
-                    <ArrowRight className="h-6 w-6 text-blue-100 transition-all duration-500 group-hover:translate-x-3 group-hover:text-white group-hover:scale-110" />
+                  {/* Slide Indicators */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {geProducts.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentSlide
+                            ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
+                            : 'bg-white/30 hover:bg-white/50'
+                        }`}
+                      />
+                    ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Features Section */}
+              <div className="px-10 pb-6">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4 text-sm group/item">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Up to 40% dealer pricing</span>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm group/item">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg shadow-blue-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Priority fulfillment</span>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm group/item">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg shadow-purple-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                    <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Latest innovations</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div className="px-10 pb-10">
+                <a
+                  href={pillar.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5 backdrop-blur-sm transition-all duration-500 hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105 group/cta">
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-blue-400/20 opacity-0 group-hover/cta:opacity-100 transition-all duration-500 animate-pulse" />
+                    <div className="relative flex items-center justify-between">
+                      <span className="text-lg font-bold tracking-wide text-white drop-shadow-sm">Visit Partner Store</span>
+                      <ArrowRight className="h-6 w-6 text-blue-100 transition-all duration-500 group-hover/cta:translate-x-3 group-hover/cta:text-white group-hover/cta:scale-110" />
+                    </div>
+                  </div>
+                </a>
               </div>
 
               {/* Interactive glow effect */}
               <div className="absolute inset-0 rounded-3xl border border-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            </motion.a>
+            </motion.div>
           ))}
         </div>
 

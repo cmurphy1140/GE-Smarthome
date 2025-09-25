@@ -188,21 +188,21 @@ export default function BenefitsSection() {
             {currentCategory.benefits.map(benefit => (
               <div
                 key={benefit.title}
-                className="h-full rounded-3xl border border-white/20 bg-white/10 p-7 shadow-[0_18px_45px_rgba(8,11,24,0.45)] backdrop-blur"
+                className="h-full rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(8,11,24,0.15)]"
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950 text-white">
                     <benefit.icon className="h-5 w-5" />
                   </div>
                   <div className="text-right">
-                    <p className="text-xl font-semibold text-white">{benefit.metric}</p>
-                    <p className="text-md uppercase tracking-[0.25em] text-blue-200">{benefit.metricLabel}</p>
+                    <p className="text-xl font-semibold text-slate-900">{benefit.metric}</p>
+                    <p className="text-md uppercase tracking-[0.25em] text-blue-950/70">{benefit.metricLabel}</p>
                   </div>
                 </div>
-                <h3 className="mt-6 text-lg font-semibold text-white">{benefit.title}</h3>
-                <p className="mt-2 text-sm font-medium text-blue-100/80">{benefit.subtitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-blue-100/80">{benefit.details}</p>
-                <div className="mt-6 inline-flex items-center gap-2 text-md font-semibold uppercase tracking-[0.3em] text-blue-200">
+                <h3 className="mt-6 text-lg font-semibold text-slate-900">{benefit.title}</h3>
+                <p className="mt-2 text-sm font-medium text-slate-600">{benefit.subtitle}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{benefit.details}</p>
+                <div className="mt-6 inline-flex items-center gap-2 text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
                   Learn more
                   <ChevronRight className="h-3.5 w-3.5" />
                 </div>
