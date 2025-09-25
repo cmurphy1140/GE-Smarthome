@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ServiceWorkerRegistration } from "@/components/common/ServiceWorkerRegistration";
+import { SmoothScroll, ScrollToTop } from "@/components/ui/SmoothScroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,12 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GE Smarthome Dealer Program | Partnership with Savant",
-  description: "Join the GE Smarthome dealer network. Partner with industry leaders to deliver cutting-edge smart home experiences with exclusive tools, training, and support.",
+  title: "GE Smart Home Dealer Program | Partnership with Savant",
+  description: "Join the GE Smart Home dealer network. Partner with industry leaders to deliver cutting-edge Smart Home experiences with exclusive tools, training, and support.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "GE Smarthome"
+    title: "GE Smart Home"
   },
   formatDetection: {
     telephone: true,
@@ -49,6 +50,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ServiceWorkerRegistration />
+        <SmoothScroll />
+        <ScrollToTop />
         {children}
       </body>
     </html>

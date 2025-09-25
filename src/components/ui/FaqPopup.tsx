@@ -10,8 +10,8 @@ interface FaqPopupProps {
 
 const faqs = [
   {
-    question: 'What makes GE Smarthome different?',
-    answer: 'GE Smarthome combines 140+ years of lighting expertise with Savant\'s award-winning smart home platform, delivering unmatched reliability and innovation.'
+    question: 'What makes GE Smart Home different?',
+    answer: 'GE Smart Home combines 140+ years of lighting expertise with Savant\'s award-winning Smart Home platform, delivering unmatched reliability and innovation.'
   },
   {
     question: 'How does the dealer program work?',

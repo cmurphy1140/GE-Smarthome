@@ -19,6 +19,7 @@ import {
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeader } from '@/components/common/SectionHeader'
+import { Breadcrumb, breadcrumbConfigs } from '@/components/ui/Breadcrumb'
 
 const heroStats = [
   { value: '140+', label: 'Years of innovation' },
@@ -108,7 +109,7 @@ const marketPosition = [
     title: 'Entry Level — GE Proseo',
     story:
       'Retrofit-friendly upgrades with intuitive controls and approachable pricing. Perfect for teams adding smart services to electrical or remodeling business.',
-    callout: 'Best for retrofit specialists and emerging smart home practices.'
+    callout: 'Best for retrofit specialists and emerging Smart Home practices.'
   },
   {
     icon: Star,
@@ -129,7 +130,7 @@ const marketPosition = [
 const dealerTiers = [
   {
     name: 'Authorized Partner',
-    description: 'Entry-level track for businesses launching smart home practice.',
+    description: 'Entry-level track for businesses launching Smart Home practice.',
     narrative: [
       'Access GE Proseo catalog with 15% dealer pricing to prove demand without heavy inventory.',
       'Online training and deployment platform with 10-minute setup and $3,500 comprehensive training investment.',
@@ -219,7 +220,7 @@ const journeyPhases = [
     description:
       'Explore portfolio fit and map your launch goals during a curated strategy session tailored to your vertical and business objectives.',
     story:
-      'Your discovery sprint opens with a strategist-led workshop that surfaces your current smart home capabilities, the markets you serve, and the outcomes you want in the first year. Together we map the services that differentiate you locally while lining up the right Savant and GE Proseo tools.',
+      'Your discovery sprint opens with a strategist-led workshop that surfaces your current Smart Home capabilities, the markets you serve, and the outcomes you want in the first year. Together we map the services that differentiate you locally while lining up the right Savant and GE Proseo tools.',
     touchpoints: [
       {
         title: 'Strategic intake',
@@ -348,7 +349,7 @@ function LearningGuideHero() {
             variants={fadeInUp}
             className="text-lg leading-relaxed text-neutral-600 md:text-xl"
           >
-            Build confidence in the combined portfolio, align your services with the right partnership tier, and equip your team with the enablement needed to deliver signature smart home experiences.
+            Build confidence in the combined portfolio, align your services with the right partnership tier, and equip your team with the enablement needed to deliver signature Smart Home experiences.
           </motion.p>
 
           <motion.div
@@ -451,6 +452,9 @@ export default function LearningGuidePage() {
     <div className="min-h-screen bg-neutral-100 text-slate-900">
       <Header />
       <main className="space-y-24 pb-24">
+        <div className="container-padding pt-6">
+          <Breadcrumb items={breadcrumbConfigs.learningGuide} />
+        </div>
         <LearningGuideHero />
 
         <section id="journey" className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -845,7 +849,7 @@ export default function LearningGuidePage() {
               
               <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
                 <p className="text-sm font-medium text-blue-950 mb-2">Growth Strategy</p>
-                <p className="text-sm text-neutral-600">Add more purchasing customers and leverage expansive hardware and software product portfolio for comprehensive smart home solutions.</p>
+                <p className="text-sm text-neutral-600">Add more purchasing customers and leverage expansive hardware and software product portfolio for comprehensive Smart Home solutions.</p>
               </div>
             </motion.div>
           </div>
