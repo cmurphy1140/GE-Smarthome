@@ -1,7 +1,8 @@
 'use client'
 
-import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ArrowRight, Users, Clock, Award } from 'lucide-react'
+import { Sparkles, ShieldCheck, LineChart, ShoppingBag, ArrowRight, Users, Clock, Award, ExternalLink } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const pillars = [
@@ -44,37 +45,46 @@ const pillars = [
 const geProducts = [
   {
     id: 1,
-    name: 'GE Smart Bulb',
-    description: 'Vintage-style smart filament bulb with warm lighting and app control',
-    image: '/bulb.png',
+    name: 'Cync Full Color Smart Bulbs',
+    description: 'Full color spectrum smart bulbs with direct connect technology and voice control',
+    image: '/cync-bulb.png',
     category: 'Smart Lighting',
-    price: '$24.99',
-    dealerPrice: '$14.99'
+    price: '$49.99',
+    dealerPrice: '$29.99'
   },
   {
     id: 2,
-    name: 'Soft White Bulbs',
-    description: 'Classic incandescent replacement with 1-year life guarantee',
+    name: 'Cync Soft White Smart Bulbs',
+    description: 'Soft white smart bulbs with simple setup and Alexa/Google compatibility',
     image: '/soft-white.png',
-    category: 'Traditional',
-    price: '$8.99',
-    dealerPrice: '$5.39'
+    category: 'Smart Lighting',
+    price: '$39.99',
+    dealerPrice: '$23.99'
   },
   {
     id: 3,
-    name: 'LED+ Color Bulb',
-    description: 'Full spectrum color changing LED with voice control compatibility',
+    name: 'GE LED+ Dimmable Smart Bulb',
+    description: 'Bright dimmable smart LED with remote control and energy efficiency',
     image: '/led-light.png',
     category: 'Smart LED',
-    price: '$49.99',
-    dealerPrice: '$29.99'
+    price: '$34.99',
+    dealerPrice: '$20.99'
   }
 ]
 
 
 function PillarsSectionComponent() {
-  // Use first product as static display
-  const currentProduct = geProducts[0]
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % geProducts.length)
+    }, 3000) // Change slide every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const currentProduct = geProducts[currentSlide]
 
   return (
     <section id="about" className="relative bg-white py-24 text-slate-900">
@@ -166,14 +176,14 @@ function PillarsSectionComponent() {
                     className="flex items-center gap-6"
                   >
                       {/* Product Image */}
-                      <div className="flex-shrink-0 w-32 h-32 relative">
+                      <div className="flex-shrink-0 w-48 h-48 relative">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
-                        <div className="absolute inset-2 flex items-center justify-center">
+                        <div className="absolute inset-3 flex items-center justify-center">
                           <Image
                             src={currentProduct.image}
                             alt={currentProduct.name}
-                            width={96}
-                            height={96}
+                            width={160}
+                            height={160}
                             className="object-contain max-w-full max-h-full"
                           />
                         </div>
@@ -203,6 +213,20 @@ function PillarsSectionComponent() {
                       </div>
                   </div>
 
+                  {/* Slide Indicators */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {geProducts.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentSlide
+                            ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
+                            : 'bg-white/30 hover:bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 

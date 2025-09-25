@@ -81,7 +81,7 @@ function HeroSectionComponent() {
         >
           <Link
             href="/signup"
-            className="group rounded-full px-12 py-4 text-lg font-semibold text-blue-950 bg-white shadow-lg hover:bg-blue-50 hover:shadow-xl transition-all duration-200 border border-blue-200"
+            className="group inline-flex items-center justify-center gap-3 rounded-full px-16 py-4 text-lg font-semibold text-blue-950 bg-white shadow-lg hover:bg-blue-50 hover:shadow-xl transition-all duration-200 border border-blue-200"
           >
             <span>Start Partnership</span>
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

@@ -35,7 +35,7 @@ const features = [
           variant="dark"
         />          {/* Features Grid */}
           <div className="grid gap-4 md:grid-cols-3">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
                 key={feature.title}
                 className="group rounded-xl bg-white/5 p-5 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
