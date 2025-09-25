@@ -41,7 +41,9 @@ export default function Home() {
           </Suspense>
         </section>
         <StatsSection />
-        <RoiCalculatorSection />
+        <section id="apply">
+          <RoiCalculatorSection />
+        </section>
       </main>
       <Footer />
     </div>
