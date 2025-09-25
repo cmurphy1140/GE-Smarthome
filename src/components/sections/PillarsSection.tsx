@@ -9,21 +9,21 @@ const pillars = [
   {
     icon: Users,
     title: 'Dedicated strategist',
-    description: '1:1 guidance from onboarding through expansion with regional expertise.',
+    description: 'Get personalized 1:1 guidance from onboarding through expansion with regional expertise. Your dedicated strategist will help you navigate the GE Smart Home ecosystem, identify growth opportunities, and develop custom solutions tailored to your market and customer base.',
     accent: 'blue',
     badge: 'Personal'
   },
   {
     icon: Clock,
     title: '24/7 support',
-    description: 'Priority access to technical specialists and rapid-response troubleshooting.',
+    description: 'Enjoy priority access to technical specialists and rapid-response troubleshooting around the clock. Our expert support team is always available to help resolve issues quickly, ensuring your installations run smoothly and your customers stay satisfied.',
     accent: 'green',
     badge: 'Always On'
   },
   {
     icon: Award,
     title: 'Premium portfolio',
-    description: 'GE Lighting innovation backed by Savant automation to differentiate every install.',
+    description: 'Access GE Lighting innovation backed by Savant automation to differentiate every install. Our premium product portfolio includes cutting-edge smart lighting solutions, advanced automation systems, and exclusive technologies that set your business apart from competitors.',
     accent: 'purple',
     badge: 'Exclusive'
   },
@@ -117,27 +117,27 @@ function PillarsSectionComponent() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
           {/* Left Column - Stacked Pillars */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
               <article
                 key={pillar.title}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
               >
                 <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
-                    <pillar.icon className="h-6 w-6 text-slate-500 group-hover:text-blue-500" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
+                    <pillar.icon className="h-8 w-8 text-slate-500 group-hover:text-blue-500" />
                   </div>
 
-                  <div className="mt-4 flex items-center gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-900">
+                  <div className="mt-6 flex items-center gap-3 mb-4">
+                    <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-900">
                       {pillar.title}
                     </h3>
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-md font-medium text-blue-800 border border-blue-200">
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1.5 text-sm font-semibold text-blue-800 border border-blue-200">
                       {pillar.badge}
                     </span>
                   </div>
 
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600 group-hover:text-slate-800">
+                  <p className="text-base leading-relaxed text-slate-600 group-hover:text-slate-800">
                     {pillar.description}
                   </p>
                 </div>
@@ -189,36 +189,36 @@ function PillarsSectionComponent() {
                   {/* Product Slide */}
                   <div
                     key={currentProduct.id}
-                    className="flex items-center gap-8"
+                    className="flex flex-col items-center gap-6"
                   >
                     {/* Product Image */}
-                    <div className="flex-shrink-0 w-80 h-80 relative">
+                    <div className="w-64 h-64 relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
-                      <div className="absolute inset-6 flex items-center justify-center">
+                      <div className="absolute inset-2 flex items-center justify-center">
                         <Image
                           src={currentProduct.image}
                           alt={currentProduct.name}
-                          width={280}
-                          height={280}
+                          width={240}
+                          height={240}
                           className="object-contain max-w-full max-h-full"
                         />
                       </div>
                     </div>
 
                     {/* Product Info */}
-                    <div className="flex-1 min-w-0 pr-4">
-                      <div className="flex items-center gap-2 mb-3">
+                    <div className="w-full text-center px-4">
+                      <div className="flex justify-center mb-3">
                         <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-500/20 text-blue-200 border border-blue-400/20">
                           {currentProduct.category}
                         </span>
                       </div>
-                      <h4 className="text-xl font-semibold text-white mb-2 leading-tight">
+                      <h4 className="text-xl font-semibold text-white mb-3 leading-tight">
                         {currentProduct.name}
                       </h4>
                       <p className="text-base text-blue-200/70 mb-4 leading-relaxed">
                         {currentProduct.description}
                       </p>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center justify-center gap-4">
                         <span className="text-base text-blue-300/60 line-through">
                           {currentProduct.price}
                         </span>

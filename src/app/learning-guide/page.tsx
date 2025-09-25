@@ -74,6 +74,31 @@ const productFamilies = [
     ],
     footer:
       'The Savant-powered Proseo App keeps the homeowner journey seamless — from quick bulb upgrades to flagship automation projects.'
+  },
+  {
+    icon: Building2,
+    title: 'Complete Smart Home Ecosystem',
+    summary: 'Comprehensive product portfolio covering lighting, climate, security, and automation.',
+    items: [
+      {
+        heading: 'GE Proseo Flex Strips',
+        copy: 'Flexible LED strips for accent lighting, under-cabinet, and architectural applications.'
+      },
+      {
+        heading: 'Smart Thermostats',
+        copy: 'Wi-Fi enabled climate control with scheduling, energy monitoring, and voice integration.'
+      },
+      {
+        heading: 'Security & Access',
+        copy: 'SIPAs, cameras, door stations, door locks, and comprehensive security monitoring.'
+      },
+      {
+        heading: 'Networking & Audio',
+        copy: 'Professional networking equipment and BT speakers for whole-home audio distribution.'
+      }
+    ],
+    footer:
+      'Complete ecosystem integration with third-party devices and networking solutions for professional installations.'
   }
 ] as const
 
@@ -107,6 +132,7 @@ const dealerTiers = [
     description: 'Entry-level track for businesses launching smart home practice.',
     narrative: [
       'Access GE Proseo catalog with 15% dealer pricing to prove demand without heavy inventory.',
+      'Online training and deployment platform with 10-minute setup and $3,500 comprehensive training investment.',
       'Self-paced learning, quarterly webinars, and content library for team development.',
       'Responsive email and chat support for fast answers on retrofit and integration questions.'
     ],
@@ -117,6 +143,7 @@ const dealerTiers = [
     description: 'Enhanced benefits for established teams ready to scale into Savant.',
     narrative: [
       'Complete GE Proseo and Savant lineup with 25% discounting and demo-unit programs.',
+      'Full ecosystem access including thermostats, SIPAs, cameras, door stations, door locks, networking, and BT speakers.',
       'Regional trainers for live design sessions, showroom activations, and launch events.',
       'Dedicated representation, priority support, MDF funds, and early product access.'
     ],
@@ -126,28 +153,34 @@ const dealerTiers = [
 
 const professionalSegments = [
   {
-    title: 'Installers',
-    subtitle: 'Custom integration & AV teams',
+    title: 'Electrical Contractors',
+    subtitle: 'Smart lighting & power specialists',
     narrative:
-      'Technical hotlines, advanced documentation, and Savant certification paths. Dedicated technical account managers for complex commissioning.'
+      'Access GE Proseo smart switches, outlets, and lighting controls with comprehensive electrical installation guides. Perfect for retrofit projects and new construction electrical work.'
   },
   {
-    title: 'Builders',
-    subtitle: 'New-construction specialists',
+    title: 'HVAC Contractors',
+    subtitle: 'Climate control & energy management',
     narrative:
-      'Pre-wire playbooks, scheduling templates, and bulk-order programs. Model-home demos and jobsite walkthroughs for superintendents.'
+      'Integrate smart thermostats and energy monitoring systems with existing HVAC infrastructure. Leverage GE Proseo Flex strips for zone control and energy efficiency optimization.'
   },
   {
-    title: 'Architects & Designers',
-    subtitle: 'Specification and aesthetic experts',
+    title: 'Security Contractors',
+    subtitle: 'Smart security & access control',
     narrative:
-      'CAD blocks, finish samples, and experience design sessions. Co-branded collateral and room-by-room guidance for clients.'
+      'Deploy SIPAs (Smart Integrated Power Accessories), cameras, door stations, and door locks. Complete security ecosystem with networking and monitoring capabilities.'
   },
   {
-    title: 'Remodelers',
-    subtitle: 'Renovation and retrofit pros',
+    title: 'Shade Installers',
+    subtitle: 'Automated window treatments',
     narrative:
-      'Retrofit wiring tips, case studies, and staged upgrade paths. Tools keep scope aligned with timeline pivots for efficient crews.'
+      'GE Proseo lighting and shading integration for complete room control. Smart switches and sensors work seamlessly with automated blinds and shades.'
+  },
+  {
+    title: 'AV Guys',
+    subtitle: 'Audio-visual & networking experts',
+    narrative:
+      'Integrate BT speakers, networking equipment, and control systems. Savant automation platform provides professional-grade AV control and distribution.'
   }
 ] as const
 
@@ -730,6 +763,94 @@ export default function LearningGuidePage() {
           </div>
         </section>
 
+        <section id="deployment" className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Deployment Environment"
+            title={<span className="text-blue-950">New App & Training Platform</span>}
+            description="Streamlined online purchasing, training, and deployment with comprehensive support for third-party integrations."
+          />
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <motion.div
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-950 bg-blue-950 text-white">
+                  <TrendingUp className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-950">Online Training & Deployment</h3>
+                  <p className="text-sm text-neutral-500">Quick setup, comprehensive training</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="text-2xl font-bold text-emerald-700">10 min</div>
+                    <div className="text-sm font-medium text-emerald-700">Quick Setup Time</div>
+                  </div>
+                  <p className="mt-2 text-sm text-emerald-600">Streamlined online purchasing and deployment process</p>
+                </div>
+                
+                <div className="rounded-2xl border border-blue-200 bg-blue-50 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="text-2xl font-bold text-blue-700">$3,500</div>
+                    <div className="text-sm font-medium text-blue-700">Training Investment</div>
+                  </div>
+                  <p className="mt-2 text-sm text-blue-600">Comprehensive training program with ongoing support</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-950 bg-blue-950 text-white">
+                  <Link2 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-950">Third-Party Integration</h3>
+                  <p className="text-sm text-neutral-500">Expand your ecosystem</p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <span className="text-sm font-medium text-neutral-700">Networking Equipment</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <span className="text-sm font-medium text-neutral-700">Security Cameras</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <span className="text-sm font-medium text-neutral-700">Door Lock Systems</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <span className="text-sm font-medium text-neutral-700">Audio/Video Distribution</span>
+                </div>
+              </div>
+              
+              <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
+                <p className="text-sm font-medium text-blue-950 mb-2">Growth Strategy</p>
+                <p className="text-sm text-neutral-600">Add more purchasing customers and leverage expansive hardware and software product portfolio for comprehensive smart home solutions.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         <section id="support" className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="rounded-3xl border border-blue-900/20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-10 py-12 text-white shadow-[0_30px_80px_rgba(15,23,42,0.25)]">
             <div className="space-y-4">
@@ -738,7 +859,7 @@ export default function LearningGuidePage() {
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Ready to build your learning roadmap?</h3>
               <p className="text-base leading-relaxed text-neutral-200">
-                Share your portfolio and we’ll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
+                Share your portfolio and we'll align the right training path, demo strategy, and integration milestones to accelerate your first year of growth.
               </p>
             </div>
 

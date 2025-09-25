@@ -31,15 +31,9 @@ const features = [
 ]
 
 export default function CyncFeaturesSection() {
-  console.log('CyncFeaturesSection is rendering')
   return (
     <section className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Debug Test */}
-        <div className="bg-red-500 text-white p-4 mb-4 text-center">
-          DEBUG: CyncFeaturesSection is rendering!
-        </div>
-        
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-4 py-2 mb-6">
