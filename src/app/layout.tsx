@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   authors: [{ name: "GE Lighting" }],
   creator: "GE Lighting",
   publisher: "GE Lighting",
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
