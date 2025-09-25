@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export interface ValidationRule {
   required?: boolean
@@ -134,3 +134,4 @@ export const validationRules = {
     maxLength: 50
   }
 }
+

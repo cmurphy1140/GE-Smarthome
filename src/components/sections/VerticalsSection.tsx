@@ -11,7 +11,7 @@ const verticals = [
     id: 'electrical',
     icon: Cable,
     title: 'Electrical Contractors',
-    subtitle: 'Transform standard electrical work into premium smart home experiences',
+    subtitle: 'Transform standard electrical work into premium Smart Home experiences',
     headline: 'Professional Smart Lighting Solutions',
     summary: 'Move beyond commodity installs with GE Proseo presets, energy reporting, and retrofit-friendly controls that keep crews efficient while delivering premium value to homeowners.',
     keyBenefit: 'Commission rooms in minutes with pre-built lighting recipes',
@@ -56,7 +56,7 @@ const verticals = [
       'Geofencing for automatic armed/disarmed lighting'
     ],
     benefits: [
-      'Expand into higher-margin smart home services',
+      'Expand into higher-margin Smart Home services',
       'Offer comprehensive security + convenience packages',
       'Increase customer retention through lifestyle benefits',
       'Access to co-marketing safety campaigns',
@@ -86,7 +86,7 @@ const verticals = [
     ],
     benefits: [
       'Position as premium whole-home solution provider',
-      'Command highest margins in smart home market',
+      'Command highest margins in Smart Home market',
       'Access to Savant University certification programs',
       'Design desk support for complex installations',
       'Launch-ready showroom demo equipment'
@@ -107,7 +107,7 @@ export default function VerticalsSection() {
           <SectionHeader
             align="left"
             eyebrow="Who we serve"
-            title="Tailored partner tracks for every smart home discipline"
+            title="Tailored partner tracks for every Smart Home discipline"
             description="Select the vertical that matches your core business. We layer on the playbooks, pricing, and enablement to help you lead in your market."
             className="md:pr-8"
           />
@@ -242,6 +242,7 @@ export default function VerticalsSection() {
               {verticals[activeVertical].cta}
               <ArrowRight className="h-5 w-5" />
             </Link>
+
           </motion.div>
         </AnimatePresence>
       </div>

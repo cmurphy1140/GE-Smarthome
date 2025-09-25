@@ -197,7 +197,7 @@ export default function SignupPage() {
                 Dealer program
               </span>
               <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-                Kick off your GE Smarthome partnership
+                Kick off your GE Smart Home partnership
               </h1>
               <p className="text-base leading-relaxed text-blue-100 md:text-lg">
                 Complete the inquiry form so our channel strategists can map the ideal onboarding plan, demo strategy, and Savant integration milestones for your team.
@@ -482,7 +482,7 @@ export default function SignupPage() {
                   {/* Interest Reason */}
                   <motion.div variants={fadeInUp} className="form-group md:col-span-2">
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
-                      Why are you interested in the GE Smarthome Dealer Program?
+                      Why are you interested in the GE Smart Home Dealer Program?
                     </label>
                     <motion.textarea
                       whileFocus={{ scale: 1.02 }}

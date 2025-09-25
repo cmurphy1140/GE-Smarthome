@@ -18,6 +18,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { SectionHeader } from '../common/SectionHeader'
+import { useTouchGestures, useMobileOptimizations } from '../common/TouchGestures'
 
 const benefitCategories = {
   financial: {
@@ -43,7 +44,7 @@ const benefitCategories = {
       {
         icon: BarChart3,
         title: 'Revenue growth',
-        subtitle: 'Average 40% increase in smart home revenue',
+        subtitle: 'Average 40% increase in Smart Home revenue',
         details: 'Dealers report significant revenue growth through premium product mix and enhanced customer lifetime value.',
         metric: '40%',
         metricLabel: 'Revenue increase'
@@ -116,15 +117,35 @@ type BenefitCategoryKey = keyof typeof benefitCategories
 
 export default function BenefitsSection() {
   const [activeCategory, setActiveCategory] = useState<BenefitCategoryKey>('financial')
+  const { isMobile, shouldAnimate } = useMobileOptimizations()
 
   const currentCategory = benefitCategories[activeCategory]
+  const categoryKeys = Object.keys(benefitCategories) as BenefitCategoryKey[]
+
+  // Touch gestures for mobile category switching
+  const touchGestures = useTouchGestures({
+    onSwipeLeft: () => {
+      if (isMobile) {
+        const currentIndex = categoryKeys.indexOf(activeCategory)
+        const nextIndex = (currentIndex + 1) % categoryKeys.length
+        setActiveCategory(categoryKeys[nextIndex])
+      }
+    },
+    onSwipeRight: () => {
+      if (isMobile) {
+        const currentIndex = categoryKeys.indexOf(activeCategory)
+        const prevIndex = currentIndex === 0 ? categoryKeys.length - 1 : currentIndex - 1
+        setActiveCategory(categoryKeys[prevIndex])
+      }
+    }
+  })
 
   return (
     <section id="benefits" className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Why dealers partner with GE"
-          title="Everything you need to grow your smart home business"
+          title="Everything you need to grow your Smart Home business"
           description="From premium profit margins to 24/7 support, discover how our partnership program accelerates your success."
           variant="dark"
         />
@@ -157,8 +178,9 @@ export default function BenefitsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: shouldAnimate ? 0.3 : 0 }}
             className="mt-8 space-y-8"
+            {...touchGestures}
           >
             {currentCategory.benefits.map((benefit, index) => (
               <motion.div
@@ -242,6 +264,21 @@ export default function BenefitsSection() {
           </motion.div>
         </AnimatePresence>
 
+        {/* Mobile swipe indicators */}
+        {isMobile && (
+          <div className="flex justify-center gap-2 mt-8">
+            {categoryKeys.map((key) => (
+              <button
+                key={key}
+                onClick={() => setActiveCategory(key)}
+                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  key === activeCategory ? 'bg-white' : 'bg-white/40'
+                }`}
+                aria-label={`Switch to ${benefitCategories[key].title}`}
+              />
+            ))}
+          </div>
+        )}
 
       </div>
     </section>

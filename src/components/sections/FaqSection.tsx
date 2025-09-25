@@ -8,7 +8,7 @@ import { SectionHeader } from '../common/SectionHeader'
 
 const faqs = [
   {
-    question: 'Who is the ideal GE Smarthome partner?',
+    question: 'Who is the ideal GE Smart Home partner?',
     answer: 'We work with custom integrators, security professionals, electricians, and builders who deliver premium connected experiences and want to add a marquee brand to their lineup.'
   },
   {

@@ -202,6 +202,7 @@ export function Header() {
           type="button"
           onClick={() => setMobileOpen(prev => !prev)}
           className="inline-flex items-center justify-center rounded-full border border-blue-800 p-3 text-blue-50 transition-all duration-200 hover:border-blue-600 hover:text-white active:scale-95 md:hidden"
+          style={{ minHeight: '44px', minWidth: '44px' }}
           aria-label="Toggle navigation"
           aria-expanded={mobileOpen}
         >

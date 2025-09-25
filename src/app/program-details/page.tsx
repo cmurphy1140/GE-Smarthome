@@ -5,9 +5,9 @@ import { Footer } from '@/components/layout/Footer'
 import { TailoredEnablementSection } from '@/components/sections/TailoredEnablementSection'
 import { PartnerTiersSection } from '@/components/sections/PartnerTiersSection'
 import { Suspense, lazy } from 'react'
-const JourneySection = lazy(() => import('@/components/sections/JourneySection').then(mod => ({ default: mod.default })))
-const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection').then(mod => ({ default: mod.default })))
-const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection').then(mod => ({ default: mod.default })))
+const JourneySection = lazy(() => import('@/components/sections/JourneySection'))
+const VerticalsSection = lazy(() => import('@/components/sections/VerticalsSection'))
+const BenefitsSection = lazy(() => import('@/components/sections/BenefitsSection'))
 
 function SectionSkeleton() {
   return (

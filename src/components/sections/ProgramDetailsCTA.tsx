@@ -27,7 +27,7 @@ export function ProgramDetailsCTA() {
 
           <p className="mb-8 text-lg text-blue-100 leading-relaxed">
             Explore detailed enablement programs, partnership tiers, industry verticals,
-            and comprehensive benefits that make GE Smarthome the premier dealer program.
+            and comprehensive benefits that make GE Smart Home the premier dealer program.
           </p>
 
           <Link

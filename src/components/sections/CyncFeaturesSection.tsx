@@ -1,6 +1,7 @@
 'use client'
 
 import { Smartphone, Mic, Lightbulb, Wifi, HelpCircle, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 const features = [
   {
@@ -71,10 +72,13 @@ export default function CyncFeaturesSection() {
 
         {/* Call to Action Button */}
         <div className="text-center">
-          <button className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5">
+          <Link 
+            href="/signup"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5"
+          >
             Get Started Today
             <ArrowRight className="h-5 w-5" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -95,8 +95,8 @@ export interface ApiResponse<T> {
 
 // Animation variants
 export interface AnimationVariants {
-  hidden: Record<string, any>
-  visible: Record<string, any>
+  hidden: Record<string, unknown>
+  visible: Record<string, unknown>
 }
 
 // Component props
@@ -119,3 +119,4 @@ export interface LoadingProps {
   message?: string
   error?: string
 }
+

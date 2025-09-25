@@ -126,7 +126,6 @@ export function TailoredEnablementSection() {
           <SecurityIcon />
         </motion.div>
 
-
       <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
         <div className="grid gap-8 rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-8 shadow-[0_30px_80px_rgba(8,11,24,0.45)] md:grid-cols-[1fr_1.2fr] text-white">
           <div className="flex flex-col justify-between space-y-6">

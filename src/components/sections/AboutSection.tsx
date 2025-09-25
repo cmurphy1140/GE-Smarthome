@@ -19,7 +19,7 @@ const timelineItems = [
     year: '2005',
     icon: Zap,
     title: 'Intelligence', 
-    description: 'Savant created the world\'s most intuitive smart home platform. Their AI learns your routines to deliver personalized comfort automatically.'
+    description: 'Savant created the world\'s most intuitive Smart Home platform. Their AI learns your routines to deliver personalized comfort automatically.'
   },
   {
     year: 'Today',

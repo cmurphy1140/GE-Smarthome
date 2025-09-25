@@ -29,10 +29,10 @@ function StatsSectionComponent() {
               Professional partnership
             </span>
             <h2 className="text-3xl font-semibold text-white md:text-4xl">
-              Join the GE Smarthome network
+              Join the GE Smart Home network
             </h2>
             <p className="text-sm leading-relaxed text-blue-100 md:text-base lg:text-lg">
-              Connect with a community of smart home professionals backed by GE Lighting&apos;s 140+ years of innovation and Savant&apos;s cutting-edge automation technology.
+              Connect with a community of Smart Home professionals backed by GE Lighting&apos;s 140+ years of innovation and Savant&apos;s cutting-edge automation technology.
             </p>
             <div className="grid gap-6 sm:grid-cols-3">
               {stats.map(item => (

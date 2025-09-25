@@ -9,7 +9,7 @@ import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
 import CyncFeaturesSection from '@/components/sections/CyncFeaturesSection'
 import { Suspense, lazy } from 'react'
 
-const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
+const FaqSection = lazy(() => import('@/components/sections/FaqSection'))
 
 function SectionSkeleton() {
   return (

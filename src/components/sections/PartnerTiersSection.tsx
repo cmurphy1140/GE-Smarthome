@@ -43,7 +43,7 @@ function PartnerTiersSectionComponent() {
                 <Home className="h-8 w-8" />
               </div>
               <h4 className="mt-8 text-3xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">Authorized Partner</h4>
-              <p className="mt-4 text-lg text-blue-200/80 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">Entry-level track for businesses launching their smart home practice.</p>
+              <p className="mt-4 text-lg text-blue-200/80 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">Entry-level track for businesses launching their Smart Home practice.</p>
 
               <ul className="mt-8 space-y-4 text-lg text-blue-200/80">
                 <li className="flex items-start gap-4 group/item">
