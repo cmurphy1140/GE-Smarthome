@@ -45,8 +45,8 @@ function HeroSectionComponent() {
       style={heroBackgroundStyles}
     >
       <motion.div
-        initial="hidden"
-        animate={heroInView ? 'visible' : 'hidden'}
+        initial="visible"
+        animate="visible"
         variants={staggerContainer}
         className="relative mx-auto max-w-4xl px-6 text-center"
       >

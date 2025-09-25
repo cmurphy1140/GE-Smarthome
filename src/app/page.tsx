@@ -1,16 +1,14 @@
 'use client'
 
+import { Suspense } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
-import { Suspense, lazy } from 'react'
-
-// Lazy load only heavy components for better code splitting
-const RoiCalculatorSection = lazy(() => import('@/components/sections/RoiCalculatorSection'))
-const CyncFeaturesSection = lazy(() => import('@/components/sections/CyncFeaturesSection'))
-const FaqSection = lazy(() => import('@/components/sections/FaqSection'))
+import { RoiCalculatorSection } from '@/components/sections/RoiCalculatorSection'
+import { CyncFeaturesSection } from '@/components/sections/CyncFeaturesSection'
+import { FaqSection } from '@/components/sections/FaqSection'
 
 function SectionSkeleton() {
   return (
@@ -39,18 +37,12 @@ export default function Home() {
         </section>
         <StatsSection />
         <section id="apply">
-          <Suspense fallback={<SectionSkeleton />}>
-            <RoiCalculatorSection />
-          </Suspense>
+          <RoiCalculatorSection />
         </section>
         <section id="faqs">
-          <Suspense fallback={<SectionSkeleton />}>
-            <FaqSection />
-          </Suspense>
+          <FaqSection />
         </section>
-        <Suspense fallback={<SectionSkeleton />}>
-          <CyncFeaturesSection />
-        </Suspense>
+        <CyncFeaturesSection />
       </main>
       <Footer />
     </div>

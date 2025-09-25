@@ -109,21 +109,21 @@ const marketPosition = [
     title: 'Entry Level — GE Proseo',
     story:
       'Retrofit-friendly upgrades with intuitive controls and approachable pricing. Perfect for teams adding smart services to electrical or remodeling business.',
-    callout: 'Best for retrofit specialists and emerging Smart Home practices.'
+    callout: 'Retrofit specialists.'
   },
   {
     icon: Star,
     title: 'Premium — Savant Integration',
     story:
       'Savant Pro control with energy resilience and concierge support. Delivers whole-home experiences for luxury clients expecting orchestration across all systems.',
-    callout: 'Ideal for integrators delivering flagship residences.'
+    callout: 'Flagship integrators.'
   },
   {
     icon: Link2,
     title: 'Seamless Scalability',
     story:
       'Both stacks live in one app. Ladder clients from smart bulbs to full automation without platform changes. Every upgrade opens new revenue streams.',
-    callout: 'Your upsell roadmap for long-term client relationships.'
+    callout: 'Upsell roadmap.'
   }
 ] as const
 
