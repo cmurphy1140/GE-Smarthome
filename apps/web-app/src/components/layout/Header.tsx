@@ -62,7 +62,7 @@ export function Header() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="sticky top-0 z-50 border-b border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 backdrop-blur-xl"
+      className="sticky top-0 z-50 glass-nav border-b border-blue-400/20"
     >
       <div className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-4 text-white sm:px-6">
         <Link href="/" className="flex items-center gap-3 text-left">

@@ -6,13 +6,13 @@ import { SectionHeader } from '../common/SectionHeader'
 
 // SVG Icons for different trades
 const ElectricianIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-blue-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-blue-400">
     <path d="M20 4L16 16H24L20 36L24 24H16L20 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.1"/>
   </svg>
 )
 
 const HVACIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-green-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-green-400">
     <rect x="6" y="12" width="28" height="16" rx="4" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
     <path d="M12 18h16M12 22h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     <path d="M20 8v4M20 28v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -22,7 +22,7 @@ const HVACIcon = () => (
 )
 
 const PlumberIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-orange-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-orange-400">
     <path d="M12 8v24M28 8v24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
     <rect x="10" y="14" width="4" height="12" rx="2" fill="currentColor" fillOpacity="0.2"/>
     <rect x="26" y="14" width="4" height="12" rx="2" fill="currentColor" fillOpacity="0.2"/>
@@ -32,14 +32,14 @@ const PlumberIcon = () => (
 )
 
 const SecurityIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-purple-400">
+  <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-purple-400">
     <path d="M20 4l-8 4v12c0 8 8 16 8 16s8-8 8-16V8l-8-4z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
     <path d="M16 18l3 3 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
 const DealerIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 50 50" fill="none" className="text-white">
+  <svg width="60" height="60" viewBox="0 0 50 50" fill="none" className="text-white">
     <rect x="10" y="15" width="30" height="20" rx="6" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.2"/>
     <circle cx="25" cy="25" r="6" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1"/>
     <path d="M19 31h12M22 34h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -114,19 +114,19 @@ const tradeIconVariants = {
 export default function JourneySection() {
 
   return (
-    <section id="journey" className="relative bg-slate-50 py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="journey" className="relative bg-slate-50 py-32">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Partner Journey"
           title="Connect. Enable. Scale."
           description="Build a network of certified trade partners and grow together through seamless collaboration"
           align="center"
-          className="mb-20"
+          className="mb-28"
         />
 
         {/* Journey Steps */}
         <motion.div
-          className="grid gap-16 md:gap-24"
+          className="grid gap-24 md:gap-32"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -139,47 +139,47 @@ export default function JourneySection() {
               className="relative"
             >
               {/* Step Header */}
-              <div className="mb-12 text-center">
+              <div className="mb-16 text-center">
                 <motion.div
-                  className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white shadow-lg"
+                  className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-600 text-4xl font-bold text-white shadow-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {stepIndex + 1}
                 </motion.div>
-                <h3 className="mb-2 text-3xl font-bold text-slate-900">{step.title}</h3>
-                <p className="text-lg text-slate-600 mb-1">{step.subtitle}</p>
-                <p className="text-slate-500 max-w-md mx-auto">{step.description}</p>
+                <h3 className="mb-4 text-5xl font-bold text-slate-900">{step.title}</h3>
+                <p className="text-3xl text-slate-600 mb-3">{step.subtitle}</p>
+                <p className="text-xl text-slate-500 max-w-2xl mx-auto">{step.description}</p>
               </div>
 
               {/* Visual Content */}
               {step.id === 'connect' && step.trades && (
                 <div className="relative">
                   {/* Dealer at center */}
-                  <div className="flex justify-center mb-8">
+                  <div className="flex justify-center mb-12">
                     <motion.div
-                      className="relative flex items-center justify-center rounded-2xl bg-blue-600 p-4 shadow-xl"
+                      className="relative flex items-center justify-center rounded-2xl bg-blue-600 p-6 shadow-xl"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.3, duration: 0.5 }}
                     >
                       <DealerIcon />
-                      <div className="absolute -bottom-8 text-center">
-                        <span className="text-sm font-semibold text-slate-900">GE Dealer</span>
+                      <div className="absolute -bottom-16 text-center">
+                        <span className="text-xl font-semibold text-slate-900">GE Dealer</span>
                       </div>
                     </motion.div>
                   </div>
 
                   {/* Connection lines and trade icons */}
                   <div className="relative">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-16 md:gap-24 max-w-5xl mx-auto">
                       {step.trades.map((trade, tradeIndex) => {
                         const IconComponent = trade.icon
                         const positions = [
-                          { x: -120, y: -120 }, // Top-left
-                          { x: 120, y: -120 },  // Top-right
-                          { x: -120, y: 120 },  // Bottom-left
-                          { x: 120, y: 120 }    // Bottom-right
+                          { x: -140, y: -140 }, // Top-left
+                          { x: 140, y: -140 },  // Top-right
+                          { x: -140, y: 140 },  // Bottom-left
+                          { x: 140, y: 140 }    // Bottom-right
                         ]
                         const position = positions[tradeIndex] || { x: 0, y: 0 }
 
@@ -194,12 +194,12 @@ export default function JourneySection() {
                               transition: { duration: 0.2 }
                             }}
                           >
-                            <div className="flex items-center justify-center w-20 h-20 rounded-xl bg-white shadow-lg border border-slate-200 mb-4 relative">
+                            <div className="flex items-center justify-center w-24 h-24 rounded-xl bg-white shadow-lg border border-slate-200 mb-6 relative">
                               <IconComponent />
 
                               {/* Animated connection line */}
                               <motion.div
-                                className="absolute w-32 h-px bg-gradient-to-r from-blue-400 to-blue-600/20"
+                                className="absolute w-40 h-px bg-gradient-to-r from-blue-400 to-blue-600/20"
                                 initial={{ scaleX: 0, opacity: 0 }}
                                 animate={{ scaleX: 1, opacity: 1 }}
                                 transition={{
@@ -210,14 +210,14 @@ export default function JourneySection() {
                                 style={{
                                   transformOrigin: '0 50%',
                                   transform: `rotate(${Math.atan2(position.y, position.x) * (180 / Math.PI) + 180}deg)`,
-                                  left: position.x > 0 ? '-128px' : '80px',
+                                  left: position.x > 0 ? '-160px' : '96px',
                                   top: '50%'
                                 }}
                               />
 
                               {/* Connection dot */}
                               <motion.div
-                                className="absolute w-2 h-2 bg-blue-500 rounded-full"
+                                className="absolute w-3 h-3 bg-blue-500 rounded-full"
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{
@@ -225,15 +225,15 @@ export default function JourneySection() {
                                   duration: 0.3
                                 }}
                                 style={{
-                                  left: position.x > 0 ? '-132px' : '84px',
+                                  left: position.x > 0 ? '-166px' : '102px',
                                   top: '50%',
                                   transform: 'translateY(-50%)'
                                 }}
                               />
                             </div>
 
-                            <h4 className="font-semibold text-slate-900 mb-1">{trade.name}</h4>
-                            <span className="text-sm text-blue-600 font-medium">{trade.count}</span>
+                            <h4 className="text-xl font-semibold text-slate-900 mb-2">{trade.name}</h4>
+                            <span className="text-lg text-blue-600 font-medium">{trade.count}</span>
                           </motion.div>
                         )
                       })}
@@ -246,7 +246,7 @@ export default function JourneySection() {
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.2, duration: 0.5 }}
                     >
-                      <div className="w-4 h-4 bg-blue-600 rounded-full shadow-lg" />
+                      <div className="w-6 h-6 bg-blue-600 rounded-full shadow-lg" />
                     </motion.div>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ export default function JourneySection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-blue-600 font-semibold">
+                  <div className="inline-flex items-center rounded-full bg-blue-50 px-8 py-4 text-xl text-blue-600 font-semibold">
                     {step.metric}
                   </div>
                 </motion.div>

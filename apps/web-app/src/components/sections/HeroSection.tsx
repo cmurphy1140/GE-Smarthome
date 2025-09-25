@@ -53,7 +53,7 @@ function HeroSectionComponent() {
           <motion.div
             variants={fadeInUp}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/90"
+            className="glass-button rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/90"
           >
             Powered by Savant AI
           </motion.div>
@@ -81,7 +81,7 @@ function HeroSectionComponent() {
         >
           <Link
             href="/signup"
-            className="group inline-flex items-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-semibold text-blue-950 shadow-2xl transition-all duration-200 hover:-translate-y-1 hover:bg-blue-950/10"
+            className="group glass-primary rounded-full px-10 py-4 text-lg font-semibold text-blue-950 glass-hover transition-all duration-200"
           >
             <span>Start Partnership</span>
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -96,7 +96,7 @@ function HeroSectionComponent() {
           {heroStats.map(stat => (
             <div
               key={stat.label}
-              className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm"
+              className="glass-card p-6"
             >
               <AnimatedNumber
                 value={stat.value}
