@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Menu, X, ArrowRight, ExternalLink, ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -33,7 +34,7 @@ const getHeaderButtons = (currentPath: string) => {
 const navLinks = [
   { href: '#about', label: 'About GE Smart Home' },
   { href: '#program', label: 'Dealer Program' },
-  { href: '/program-details', label: 'Program Benefits', isRoute: true, isExternal: true },
+  { href: '/program-details', label: 'Details', isRoute: true, isExternal: true },
   { href: '/learning-guide', label: 'Resources & Training', isRoute: true, isExternal: true }
 ]
 
@@ -117,10 +118,13 @@ export function Header() {
           aria-label="GE Smart Home - Go to homepage"
         >
           <div className="inline-flex h-20 w-20 items-center justify-center">
-            <img 
-              src="/GE-Logo.png" 
-              alt="GE Logo" 
+            <Image
+              src="/GE-Logo.png"
+              alt="GE Logo"
+              width={80}
+              height={80}
               className="h-20 w-20 object-contain"
+              priority
             />
           </div>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">

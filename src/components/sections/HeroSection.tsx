@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import React, { useRef, memo } from 'react'
 
@@ -28,7 +28,6 @@ const staggerContainer = {
 
 function HeroSectionComponent() {
   const heroRef = useRef(null)
-  const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
 
   const heroBackgroundStyles = {
     backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.82), rgba(8, 11, 24, 0.7)), url("/hero-bg.png")',
