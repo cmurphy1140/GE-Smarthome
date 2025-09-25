@@ -27,6 +27,7 @@ function PartnerTiersSectionComponent() {
           title="Partnership benefits designed for builders, integrators, and security pros"
           description="Choose the track that matches your focus today and grow into the full GE Lighting × Savant ecosystem with dedicated support."
           variant="dark"
+          titleSize="small"
         />
 
         <div className="mt-20 grid gap-8 md:grid-cols-2">

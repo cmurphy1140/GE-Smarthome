@@ -183,30 +183,86 @@ export default function BenefitsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="mt-12 grid gap-6 md:grid-cols-3"
+            className="mt-12 space-y-12"
           >
-            {currentCategory.benefits.map(benefit => (
-              <div
+            {currentCategory.benefits.map((benefit, index) => (
+              <motion.div
                 key={benefit.title}
-                className="h-full rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(8,11,24,0.15)]"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut', delay: index * 0.2 }}
+                className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.1)] transition-all duration-500 hover:shadow-[0_32px_80px_rgba(15,23,42,0.15)] hover:-translate-y-2 ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } flex flex-col`}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950 text-white">
-                    <benefit.icon className="h-5 w-5" />
+                {/* Visual Section with Large Metrics */}
+                <div className="relative flex-1 p-12 bg-gradient-to-br from-blue-50 via-white to-slate-50">
+                  <div className="flex items-center justify-center h-full">
+                    <div className="relative text-center">
+                      {/* Massive Metric Display */}
+                      <div className="mb-8">
+                        <div className="text-9xl font-black text-blue-600 mb-4 leading-none">
+                          {benefit.metric}
+                        </div>
+                        <div className="text-2xl font-bold text-slate-700 uppercase tracking-wider">
+                          {benefit.metricLabel}
+                        </div>
+                      </div>
+                      
+                      {/* Enhanced Icon with Animation */}
+                      <div className="flex justify-center">
+                        <div className="relative">
+                          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-blue-600 shadow-2xl">
+                            <benefit.icon className="h-14 w-14 text-white" />
+                          </div>
+                          {/* Animated ring */}
+                          <motion.div
+                            className="absolute inset-0 rounded-full border-4 border-blue-200"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xl font-semibold text-slate-900">{benefit.metric}</p>
-                    <p className="text-md uppercase tracking-[0.25em] text-blue-950/70">{benefit.metricLabel}</p>
+                  
+                  {/* Background decorations */}
+                  <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gradient-to-br from-blue-100/30 to-transparent" />
+                  <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-gradient-to-tr from-blue-50/50 to-transparent" />
+                </div>
+
+                {/* Content Section */}
+                <div className="flex-1 p-12 flex flex-col justify-center">
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-xl text-blue-600 font-semibold mb-4">
+                        {benefit.subtitle}
+                      </p>
+                      <p className="text-xl text-slate-600 leading-relaxed">
+                        {benefit.details}
+                      </p>
+                    </div>
+                    
+                    <div className="pt-6">
+                      <Link
+                        href="/signup"
+                        className="group inline-flex items-center gap-4 text-xl font-semibold text-blue-600 transition-all duration-300 hover:text-blue-700 hover:gap-6"
+                      >
+                        Learn more
+                        <motion.div
+                          animate={{ x: [0, 6, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          <ChevronRight className="h-6 w-6" />
+                        </motion.div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                <h3 className="mt-6 text-lg font-semibold text-slate-900">{benefit.title}</h3>
-                <p className="mt-2 text-sm font-medium text-slate-600">{benefit.subtitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{benefit.details}</p>
-                <div className="mt-6 inline-flex items-center gap-2 text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
-                  Learn more
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
