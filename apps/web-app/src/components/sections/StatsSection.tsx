@@ -38,16 +38,16 @@ function StatsSectionComponent() {
               {stats.map(item => (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-white/15 bg-white/10 p-8 text-center shadow-[0_14px_30px_rgba(8,11,24,0.35)] backdrop-blur min-h-[140px] flex flex-col justify-center"
+                  className="group rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-[0_14px_30px_rgba(8,11,24,0.35)] backdrop-blur min-h-[140px] flex flex-col justify-center transition-all duration-300 hover:border-white/30 hover:bg-white/15 hover:shadow-[0_20px_40px_rgba(8,11,24,0.45)]"
                 >
                   <AnimatedNumber
                     value={item.value}
                     prefix={'prefix' in item ? item.prefix : undefined}
                     suffix={item.suffix}
                     decimals={'decimals' in item ? item.decimals : 0}
-                    className="text-2xl font-bold text-white md:text-3xl lg:text-4xl"
+                    className="text-3xl font-bold text-white md:text-4xl lg:text-5xl drop-shadow-lg"
                   />
-                  <p className="mt-2 text-xs uppercase tracking-[0.25em] text-blue-200 md:text-sm font-medium">
+                  <p className="mt-3 text-sm uppercase tracking-[0.25em] text-blue-200 md:text-base font-medium">
                     {item.label}
                   </p>
                 </div>

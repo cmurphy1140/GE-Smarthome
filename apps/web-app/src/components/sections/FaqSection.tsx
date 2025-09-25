@@ -92,17 +92,19 @@ export default function FaqSection() {
           className="relative overflow-hidden rounded-3xl border border-blue-950/20 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-10 text-white shadow-[0_24px_60px_rgba(15,23,42,0.35)]"
         >
           <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-white/10" />
-          <div className="relative space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-2 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
-              Concierge access
-            </span>
-            <h3 className="text-2xl font-semibold md:text-3xl">Talk with a channel strategist</h3>
-            <p className="text-sm leading-relaxed text-blue-100">
-              Share your portfolio and we will map the right incentives, demo gear, and integration path for your team.
-            </p>
+          <div className="relative flex h-full flex-col justify-between space-y-8">
+            <div className="space-y-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-2 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
+                Concierge access
+              </span>
+              <h3 className="text-3xl font-semibold md:text-4xl">Talk with a channel strategist</h3>
+              <p className="text-lg leading-relaxed text-blue-100">
+                Share your portfolio and we will map the right incentives, demo gear, and integration path for your team.
+              </p>
+            </div>
             <Link
               href="/signup"
-              className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-100"
+              className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-100"
             >
               Schedule a call
               <ArrowRight className="h-5 w-5" />
