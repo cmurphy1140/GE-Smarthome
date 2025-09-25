@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
+import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
 import { Suspense, lazy } from 'react'
 
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
@@ -40,6 +41,7 @@ export default function Home() {
             <FaqSection />
           </Suspense>
         </section>
+        <RoiCalculatorSection />
       </main>
       <Footer />
     </div>

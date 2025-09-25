@@ -171,7 +171,7 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex ml-auto">
-          {headerButtons.map((button, index) => (
+          {headerButtons.map((button) => (
             <Link
               key={button.href}
               href={button.href}
@@ -206,7 +206,7 @@ export function Header() {
       >
         <div className="space-y-4 border-t border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 px-4 py-6 text-blue-50 sm:px-6">
           <nav className="flex flex-col gap-3">
-            {currentNavLinks.map((link, index) => {
+            {currentNavLinks.map((link) => {
               const Component = link.isRoute ? Link : 'a'
               return (
                 <Component
