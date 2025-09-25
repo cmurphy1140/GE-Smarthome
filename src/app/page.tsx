@@ -35,12 +35,12 @@ export default function Home() {
         <section id="program">
           <PillarsSection />
         </section>
-        <StatsSection />
         <section id="faqs">
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
           </Suspense>
         </section>
+        <StatsSection />
         <RoiCalculatorSection />
       </main>
       <Footer />
