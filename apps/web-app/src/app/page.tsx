@@ -3,9 +3,9 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { AboutSection } from '@/components/sections/AboutSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
+import { AboutSection } from '@/components/sections/AboutSection'
 import { Suspense, lazy } from 'react'
 
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))

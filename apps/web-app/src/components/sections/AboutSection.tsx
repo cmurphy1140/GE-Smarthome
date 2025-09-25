@@ -45,38 +45,13 @@ const features = [
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <h4 className="mb-2 text-xl font-bold text-white">
-                  {feature.title}
-                </h4>
-                <p className="text-base text-blue-50 font-medium leading-relaxed">
-                  {feature.description}
-                </p>
+                <h3 className="mb-2 text-lg font-semibold text-white">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-blue-100">{feature.description}</p>
               </div>
             ))}
           </div>
-
         </div>
       </div>
-
-      {/* Floating FAQ Bubble */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <button
-          onClick={() => setIsFaqOpen(true)}
-          className="group flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-900 to-blue-950 shadow-2xl transition-all duration-300 hover:scale-110 hover:from-blue-800 hover:to-blue-900 hover:shadow-3xl"
-        >
-          <HelpCircle className="h-8 w-8 text-white transition-transform group-hover:scale-110" />
-        </button>
-        
-        {/* Tooltip */}
-        <div className="absolute bottom-full right-0 mb-3 hidden group-hover:block">
-          <div className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white shadow-xl">
-            FAQ
-            <div className="absolute -bottom-1 right-4 h-2 w-2 rotate-45 bg-slate-900"></div>
-          </div>
-        </div>
-      </div>
-
-      <FaqPopup isOpen={isFaqOpen} onClose={() => setIsFaqOpen(false)} />
     </section>
   )
 }

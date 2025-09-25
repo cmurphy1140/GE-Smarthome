@@ -6,6 +6,27 @@ import { Menu, X, ArrowRight, ExternalLink } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
+// Consistent navigation buttons for all pages
+const getHeaderButtons = (currentPath: string) => {
+  const buttons = [
+    { href: '/', label: 'Home', isRoute: true }
+  ]
+  
+  if (currentPath !== '/signup') {
+    buttons.push({ href: '/signup', label: 'Apply Now', isRoute: true })
+  }
+  
+  if (currentPath !== '/learning-guide') {
+    buttons.push({ href: '/learning-guide', label: 'Learn', isRoute: true })
+  }
+  
+  if (currentPath !== '/program-details') {
+    buttons.push({ href: '/program-details', label: 'Program Details', isRoute: true })
+  }
+  
+  return buttons
+}
+
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#program', label: 'Program' },
@@ -33,6 +54,7 @@ export function Header() {
   const isSignup = pathname === '/signup'
   const isProgramDetails = pathname === '/program-details'
   const currentNavLinks = isLearningGuide ? learningGuideNavLinks : isSignup ? signupNavLinks : isProgramDetails ? programDetailsNavLinks : navLinks
+  const headerButtons = getHeaderButtons(pathname)
 
   useEffect(() => {
     if (!mobileOpen) return
@@ -98,67 +120,21 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-6 md:flex ml-auto">
-          {isLearningGuide && (
-            <>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 px-5 py-2 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
-              >
-                Home
-              </Link>
-              <Link
-                href="/signup"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-800 border border-blue-700 px-5 py-2 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
-              >
-                Apply Now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </>
-          )}
-          {isProgramDetails && (
-            <>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 px-5 py-2 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
-              >
-                Home
-              </Link>
-              <Link
-                href="/signup"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-800 border border-blue-700 px-5 py-2 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
-              >
-                Apply Now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </>
-          )}
-          {isSignup && (
-            <>
-              <Link
-                href="/learning-guide"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 px-5 py-2 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
-              >
-                Resources
-              </Link>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-white/30 px-5 py-2 text-base font-semibold text-blue-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
-              >
-                Home
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </>
-          )}
-          {!isLearningGuide && !isSignup && !isProgramDetails && (
+        <div className="hidden items-center gap-4 md:flex ml-auto">
+          {headerButtons.map((button, index) => (
             <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
+              key={button.href}
+              href={button.href}
+              className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                button.label === 'Apply Now'
+                  ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
+                  : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
+              }`}
             >
-              Apply Now
-              <ArrowRight className="h-4 w-4" />
+              {button.label}
+              {button.label === 'Apply Now' && <ArrowRight className="h-4 w-4" />}
             </Link>
-          )}
+          ))}
         </div>
 
         <button
