@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ServiceWorkerRegistration } from "@/components/common/ServiceWorkerRegistration";
 import { SmoothScroll, ScrollToTop } from "@/components/ui/SmoothScroll";
+import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -97,10 +98,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ServiceWorkerRegistration />
-        <SmoothScroll />
-        <ScrollToTop />
-        {children}
+        <ErrorBoundary>
+          <ServiceWorkerRegistration />
+          <SmoothScroll />
+          <ScrollToTop />
+          {children}
+        </ErrorBoundary>
       </body>
     </html>
   );
