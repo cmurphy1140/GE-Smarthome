@@ -1,51 +1,43 @@
-# Node and Next.js build artifacts
-node_modules/
-**/node_modules/
-.next/
-**/.next/
-out/
-**/out/
-.vercel/
-**/.vercel/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Development and logs
-*.log
-dev.log
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Generated images (if not needed)
-Gemini_Generated_Image_*.png
+# testing
+/coverage
 
-# Environment files
-.env*
-!.env.example
+# next.js
+/.next/
+/out/
 
-# TypeScript build info
-*.tsbuildinfo
-**/*.tsbuildinfo
+# production
+/build
 
-# Backup files
-*.backup
-**/*.backup
-*-backup.*
-
-# Development scripts
-start.sh
-
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS generated files
+# misc
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+*.pem
 
-# Temporary files
-*.tmp
-*.temp
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+src 2/
+src\ 2/

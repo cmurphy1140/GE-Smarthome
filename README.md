@@ -1,200 +1,78 @@
-# GE Smarthome Partnership Platform
+# GE Smarthome Dealer Program
 
-A modern, responsive web application built with Next.js for GE Lighting's smart home partnership program. This platform showcases the benefits of partnering with GE and Savant for dealers and trade professionals.
+A modern Next.js 15 application showcasing the GE Smarthome dealer partnership program.
 
-## 🚀 Live Demo
-
-- **AWS Amplify**: [https://master.d3cai7i9nseifu.amplifyapp.com](https://master.d3cai7i9nseifu.amplifyapp.com)
-- **GitHub Repository**: [https://github.com/cmurphy1140/GE-Smarthome](https://github.com/cmurphy1140/GE-Smarthome)
-
-## ✨ Features
-
-### 🏠 Homepage
-- **Hero Section**: Compelling value proposition with call-to-action
-- **Program Pillars**: Key partnership benefits with glass morphism design
-- **Statistics**: Impressive partnership metrics and achievements
-- **Partner Journey**: Interactive "Connect. Enable. Scale." process visualization
-- **Benefits Section**: Comprehensive dealer benefits with interactive categories
-- **FAQ Section**: Common questions with expandable answers
-- **ROI Calculator**: Interactive tool to calculate potential revenue increases
-
-### 📚 Learning Guide Page
-- **Product Families**: GE Proseo and Savant product overview
-- **Market Position**: Competitive advantages and market insights
-- **Dealer Tiers**: Partnership levels and requirements
-- **Professional Segments**: Target audience and use cases
-
-### 📋 Program Details Page
-- **Partnership Journey**: Detailed step-by-step process
-- **Tailored Enablement**: Support and training programs
-- **Floating Elements**: Animated logos and trade icons
-
-### 📝 Signup Page
-- **Application Form**: Streamlined partner registration
-- **Benefits Overview**: Key partnership advantages
-
-## 🛠️ Technology Stack
-
-- **Framework**: Next.js 15.5.4 with App Router
-- **Styling**: Tailwind CSS with custom components
-- **Animations**: Framer Motion for smooth interactions
-- **Icons**: Lucide React for consistent iconography
-- **TypeScript**: Full type safety throughout
-- **Deployment**: AWS Amplify with standalone build
-
-## 🎨 Design Features
-
-- **Responsive Design**: Mobile-first approach with breakpoint optimization
-- **Modern UI**: Clean, professional interface with blue gradient themes
-- **Interactive Elements**: Hover effects, animations, and micro-interactions
-- **Glass Morphism**: Contemporary design elements for visual appeal
-- **Accessibility**: Semantic HTML and keyboard navigation support
-
-## 📁 Project Structure
-
-```
-/
-├── apps/web-app/                 # Next.js application
-│   ├── src/
-│   │   ├── app/                 # App Router pages
-│   │   │   ├── page.tsx         # Homepage
-│   │   │   ├── learning-guide/  # Learning guide page
-│   │   │   ├── program-details/ # Program details page
-│   │   │   └── signup/          # Signup page
-│   │   ├── components/          # Reusable components
-│   │   │   ├── layout/          # Header, Footer
-│   │   │   ├── sections/        # Page sections
-│   │   │   ├── ui/              # UI components
-│   │   │   └── common/          # Shared utilities
-│   │   └── styles/              # Global styles
-│   ├── public/                  # Static assets
-│   ├── package.json
-│   ├── next.config.ts
-│   └── tailwind.config.js
-├── amplify.yml                  # AWS Amplify configuration
-├── DEPLOYMENT.md               # Deployment guide
-├── AMPLIFY_TROUBLESHOOTING.md  # Troubleshooting guide
-└── README.md                   # This file
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- npm 8+
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/cmurphy1140/GE-Smarthome.git
-   cd GE-Smarthome
-   ```
-
-2. **Install dependencies**
-   ```bash
-   cd apps/web-app
-   npm install
-   ```
-
-3. **Run development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-### Build for Production
+## Quick Start
 
 ```bash
-npm run build
-npm run start
+cd apps/web-app
+npm install
+npm run dev
 ```
 
-## 🌐 Deployment
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### AWS Amplify (Current)
-The app is configured for AWS Amplify deployment with:
-- Standalone Next.js build
-- Optimized for static hosting
-- Automatic deployments from GitHub
+## Prerequisites
+- **Node.js 18+**
+- **npm 8+**
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+## Tech Stack
+- Next.js App Router with TypeScript
+- Tailored global styles in `src/app/globals.css`
+- ESLint + TypeScript strict mode
+- PostCSS pipeline with autoprefixer support
 
-### Alternative Platforms
-- **Vercel**: Zero-config deployment (recommended for Next.js)
-- **Netlify**: Static site hosting
-- **GitHub Pages**: Free hosting option
+## Development Commands
 
-## 📊 Performance
+```bash
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run start      # Start production server
+npm run preview    # Build and start production server
+npm run lint       # Run ESLint
+```
 
-- **First Load JS**: ~158kB
-- **Static Generation**: All pages pre-rendered
-- **Image Optimization**: WebP and AVIF formats
-- **Bundle Optimization**: Tree-shaking and code splitting
-- **Caching**: Long-term cache headers for assets
+## Project Structure
+```
+src/app/
+├── layout.tsx    # Global app shell and metadata
+├── page.tsx      # Landing page
+├── signup/       # Dealer application route
+└── globals.css   # Shared design tokens and utilities
+```
 
-## 🎯 Key Sections
+## Conventions
+- Keep visual styles centralized in `globals.css` to mirror the static design system.
+- Use server components by default; opt into client components only when interaction is required.
+- Validate all changes with `npm run lint` before committing.
 
-### Partner Journey
-Interactive visualization showing the three-step process:
-1. **Connect**: Build trade network with certified professionals
-2. **Enable**: Equip partners with training and tools
-3. **Scale**: Grow together with data-driven insights
+## Speed Build Workflow
 
-### Benefits Calculator
-Interactive ROI calculator allowing dealers to:
-- Input monthly projects and values
-- Calculate potential revenue increases
-- See margin improvements
-- Estimate annual benefits
+For repeatable CI/local builds without reinstalls and telemetry noise:
 
-### Responsive Navigation
-- Desktop: Full navigation with dropdown menus
-- Mobile: Collapsible hamburger menu
-- Curved rectangle buttons for modern appearance
+```bash
+npm run build:speed
+```
 
-## 🔧 Development
+`scripts/speed-build.sh` ensures Node 20 is on the `PATH`, warms dependencies with `npm ci --prefer-offline`, lifts the Node memory ceiling, and calls `npx next build`. The script is safe to reuse in automation.
 
-### Available Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+## Deployment
 
-### Code Style
-- TypeScript for type safety
-- ESLint for code quality
-- Prettier for formatting
-- Tailwind CSS for styling
+### Vercel (recommended)
 
-## 📱 Browser Support
+```bash
+# first time
+npx vercel login
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+# from the repository root or apps/web-app
+npm run deploy:vercel
+```
 
-## 🤝 Contributing
+The included `vercel.json` points the build command at `apps/web-app` so no extra configuration is required. Override environment variables (e.g. analytics keys) through the Vercel dashboard.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### Self-hosted / Other Platforms
 
-## 📄 License
-
-This project is proprietary to GE Lighting and Savant Systems.
-
-## 📞 Support
-
-For technical support or questions:
-- Create an issue in this repository
-- Contact the development team
-- Check [AMPLIFY_TROUBLESHOOTING.md](./AMPLIFY_TROUBLESHOOTING.md) for deployment issues
-
----
-
-**Built with ❤️ for GE Lighting × Savant Partnership Program**
+1. `npm run build` (or `npm run build:speed` for cached installs).
+2. Copy the `.next`, `public`, and `package.json` files to your host.
+3. `npm install --omit=dev` on the server.
+4. `npm run start` to boot the production server.
