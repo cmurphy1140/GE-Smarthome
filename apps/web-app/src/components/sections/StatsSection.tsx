@@ -25,7 +25,7 @@ function StatsSectionComponent() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="space-y-5"
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-300">
+            <span className="text-md font-semibold uppercase tracking-[0.35em] text-blue-300">
               Professional partnership
             </span>
             <h2 className="text-3xl font-semibold text-white md:text-4xl">
@@ -47,7 +47,7 @@ function StatsSectionComponent() {
                     decimals={'decimals' in item ? item.decimals : 0}
                     className="text-3xl font-semibold text-white md:text-4xl"
                   />
-                  <p className="mt-2 text-xs uppercase tracking-[0.25em] text-blue-200">
+                  <p className="mt-2 text-md uppercase tracking-[0.25em] text-blue-200">
                     {item.label}
                   </p>
                 </div>
@@ -72,7 +72,7 @@ function StatsSectionComponent() {
                 className="h-full w-full object-cover"
                 priority
               />
-              <span className="absolute right-6 top-6 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-blue-900">
+              <span className="absolute right-6 top-6 rounded-full bg-white/90 px-4 py-1.5 text-md font-semibold uppercase tracking-[0.3em] text-blue-900">
                 GE × Savant
               </span>
             </div>

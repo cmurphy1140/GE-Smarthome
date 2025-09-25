@@ -193,7 +193,7 @@ export default function SignupPage() {
           <div className="absolute inset-0 bg-[url('/signup-hero.png')] bg-cover bg-center opacity-20 mix-blend-soft-light" />
           <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
                 Dealer program
               </span>
               <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
@@ -211,7 +211,7 @@ export default function SignupPage() {
                 </Link>
               </div>
               {defaults && (
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-blue-100">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-md font-semibold uppercase tracking-[0.25em] text-blue-100">
                   Prefilled for {defaults.label}
                 </div>
               )}

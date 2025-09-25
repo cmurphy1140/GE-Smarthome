@@ -103,7 +103,7 @@ function HeroSectionComponent() {
                 suffix={stat.suffix}
                 className="text-3xl font-semibold text-white"
               />
-              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-blue-100">
+              <div className="mt-1 text-md uppercase tracking-[0.3em] text-blue-100">
                 {stat.label}
               </div>
             </div>

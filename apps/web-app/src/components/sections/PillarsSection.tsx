@@ -42,32 +42,20 @@ const pillars = [
   }
 ]
 
-// Removed unused accentStyles as we now use glass morphism
 
 function PillarsSectionComponent() {
-  // Updated with glass morphism and dark blue background
   return (
-    <section id="about" className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-100/40 py-24 text-slate-900 overflow-hidden">
+    <section id="about" className="relative bg-white py-24 text-slate-900">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrowNode={(
-            <span className="inline-flex rounded-full bg-white px-1.5 py-0.5 shadow-[0_12px_24px_rgba(15,23,42,0.12)] ring-1 ring-slate-200">
-              <span className="inline-flex items-center rounded-full border border-blue-900/20 px-5 py-1 text-sm font-semibold uppercase tracking-[0.45em] text-slate-600">
-                Partner Pillars
-              </span>
-            </span>
-          )}
-          title={<span className="text-slate-800">Everything you need to succeed</span>}
-          description={<span className="text-slate-600">Support, portfolio, and exclusive access—unified in one partnership.</span>}
+          eyebrow="Partner pillars"
+          title="Everything you need to succeed"
+          description="Support, portfolio, and exclusive access—unified in one partnership."
           align="center"
           className="max-w-2xl mx-auto"
         />
 
-        {/* Dark blue background square - TEST */}
-        <div className="absolute inset-0 top-[40%] bottom-[10%] left-[5%] right-[5%] bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-blue-950/80 rounded-3xl backdrop-blur-sm shadow-2xl border border-blue-700/30 -z-10" />
-
-
-        <div className="mt-16 grid gap-6 lg:grid-cols-2 relative z-10">
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
           {/* Left Column - Stacked Pillars */}
           <div className="space-y-4">
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
@@ -77,26 +65,24 @@ function PillarsSectionComponent() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                whileHover={{ y: -3 }}
-                className={`
-                  group relative rounded-2xl border border-white/40 bg-white/80 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:border-white/50 hover:shadow-2xl hover:bg-white/90
-                `}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-500 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/20"
               >
                 <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-950/20 text-blue-950 transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-950/30">
-                    <pillar.icon className="h-6 w-6" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
+                    <pillar.icon className="h-6 w-6 text-slate-500 group-hover:text-blue-500" />
                   </div>
 
                   <div className="mt-4 flex items-center gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-blue-950">
+                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-900">
                       {pillar.title}
                     </h3>
-                    <span className="inline-flex items-center rounded-full bg-blue-950/10 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-md font-medium text-blue-800 border border-blue-200">
                       {pillar.badge}
                     </span>
                   </div>
 
-                  <p className="mt-3 text-base leading-relaxed text-slate-600 font-medium">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 group-hover:text-slate-800">
                     {pillar.description}
                   </p>
                 </div>
@@ -104,91 +90,76 @@ function PillarsSectionComponent() {
             ))}
           </div>
 
-          {/* Right Column - Partner Store Section (No Card Design) */}
+          {/* Right Column - Enhanced Dark Blue Partner Store Card */}
           {pillars.filter(pillar => pillar.isShop).map((pillar) => (
-            <div key={pillar.title} className="relative">
-              {/* Header Section */}
-              <motion.div
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="mb-8"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/90 text-blue-950 shadow-lg backdrop-blur-sm border border-white/50">
-                    <pillar.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-sm">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-blue-50 text-sm font-semibold">Premium smart lighting access</p>
+            <motion.a
+              key={pillar.title}
+              href={pillar.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              whileHover={{ y: -8, scale: 1.04, rotateY: 2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-10 shadow-2xl transition-all duration-700 hover:shadow-[0_25px_60px_-12px_rgba(30,58,138,0.4)] hover:shadow-blue-900/40"
+            >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-900/30" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-blue-800/10 via-blue-900/5 to-transparent" />
+
+              {/* Floating orbs animation */}
+              <div className="absolute top-4 right-4 h-24 w-24 rounded-full bg-gradient-to-r from-blue-400/20 to-blue-600/20 blur-xl opacity-50 group-hover:opacity-80 transition-all duration-1000 group-hover:scale-150" />
+              <div className="absolute bottom-6 left-6 h-16 w-16 rounded-full bg-gradient-to-r from-blue-500/15 to-blue-700/15 blur-lg opacity-40 group-hover:opacity-70 transition-all duration-1000 group-hover:scale-125" />
+
+              <div className="relative flex items-start justify-between mb-8">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 transition-all duration-500 group-hover:bg-blue-400/30 group-hover:border-blue-300/50 group-hover:scale-110 group-hover:text-blue-200">
+                  <pillar.icon className="h-8 w-8" />
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/30 group-hover:scale-110">
+                  <ExternalLink className="h-5 w-5 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" />
+                </div>
+              </div>
+
+              <h3 className="text-4xl font-bold text-white mb-4 group-hover:text-blue-100 transition-all duration-300 tracking-tight leading-tight">
+                {pillar.title}
+              </h3>
+
+              <p className="text-blue-200/80 mb-8 text-lg leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">
+                {pillar.description}
+              </p>
+
+              <div className="space-y-4 mb-10">
+                <div className="flex items-center gap-4 text-base group/item">
+                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Up to 40% dealer pricing</span>
+                </div>
+                <div className="flex items-center gap-4 text-base group/item">
+                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg shadow-blue-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Priority fulfillment</span>
+                </div>
+                <div className="flex items-center gap-4 text-base group/item">
+                  <div className="h-3 w-3 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg shadow-purple-400/50 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="text-blue-100/80 group-hover:text-white transition-colors duration-300 font-medium">Latest innovations</span>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-blue-800/30">
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-5 backdrop-blur-sm transition-all duration-500 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/30 group-hover:scale-105">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
+                  <div className="relative flex items-center justify-between">
+                    <span className="text-lg font-bold tracking-wide text-white drop-shadow-sm">Visit Partner Store</span>
+                    <ArrowRight className="h-6 w-6 text-blue-100 transition-all duration-500 group-hover:translate-x-3 group-hover:text-white group-hover:scale-110" />
                   </div>
                 </div>
-                <p className="text-white text-base leading-relaxed font-medium drop-shadow-sm">
-                  {pillar.description}
-                </p>
-              </motion.div>
+              </div>
 
-              {/* Benefits Grid */}
-              <motion.div
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="grid gap-4 mb-8"
-              >
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-white/25 backdrop-blur-sm border border-white/40 shadow-lg">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/40 text-emerald-200 mt-1 border border-emerald-400/30">
-                    <ShieldCheck className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold mb-1 drop-shadow-sm">Dealer Pricing</h4>
-                    <p className="text-slate-600 text-base font-semibold">Up to 40% off MSRP</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-white/25 backdrop-blur-sm border border-white/40 shadow-lg">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/40 text-blue-200 mt-1 border border-blue-400/30">
-                    <LineChart className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold mb-1 drop-shadow-sm">Priority Support</h4>
-                    <p className="text-slate-600 text-base font-semibold">Fast-track orders</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-white/25 backdrop-blur-sm border border-white/40 shadow-lg">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/40 text-purple-200 mt-1 border border-purple-400/30">
-                    <Sparkles className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold mb-1 drop-shadow-sm">Premium Products</h4>
-                    <p className="text-slate-600 text-base font-semibold">Latest innovations</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.a
-                href={pillar.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-white to-blue-50 px-8 py-5 text-lg font-bold text-blue-950 shadow-2xl transition-all duration-300 hover:shadow-[0_24px_48px_rgba(255,255,255,0.4)] hover:from-blue-50 hover:to-white border-2 border-white/50"
-              >
-                <ShoppingBag className="h-6 w-6" />
-                <span className="text-xl">Visit Partner Store</span>
-                <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
-                <ExternalLink className="h-5 w-5 opacity-80" />
-              </motion.a>
-            </div>
+              {/* Interactive glow effect */}
+              <div className="absolute inset-0 rounded-3xl border border-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </motion.a>
           ))}
         </div>
 
@@ -200,7 +171,7 @@ function PillarsSectionComponent() {
           viewport={{ once: true, margin: '-80px' }}
           className="mt-12 text-center"
         >
-          <p className="text-base text-slate-500 font-medium">
+          <p className="text-sm text-slate-500 font-medium">
             Up to 40% dealer discounts • Priority fulfillment • 24/7 technical support
           </p>
         </motion.div>

@@ -300,7 +300,7 @@ function LearningGuideHero() {
         >
           <motion.span
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-950"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-950"
           >
             Learning guide
           </motion.span>
@@ -345,7 +345,7 @@ function LearningGuideHero() {
             {heroStats.map(stat => (
               <div key={stat.label} className="flex flex-col gap-1">
                 <span className="text-2xl font-semibold text-blue-950 sm:text-3xl">{stat.value}</span>
-                <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">{stat.label}</span>
+                <span className="text-md uppercase tracking-[0.3em] text-neutral-500">{stat.label}</span>
               </div>
             ))}
           </motion.div>
@@ -359,8 +359,8 @@ function LearningGuideHero() {
         >
           <div className="space-y-8">
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-900/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-200 backdrop-blur-sm mb-6">
-                ✨ Smart Technology Showcase
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-900/30 px-4 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-200 backdrop-blur-sm mb-6">
+                 Smart Technology Showcase
               </div>
             </div>
             
@@ -369,8 +369,8 @@ function LearningGuideHero() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative bg-gradient-to-br from-blue-950/50 to-blue-900/50 p-8 rounded-2xl backdrop-blur-sm">
                   <Image
-                    src="/ge-smart-bulb-showcase.png"
-                    alt="GE Smart Bulb with Spiral Filament Technology"
+                    src="/bulb.png"
+                    alt="GE Smart Bulb Technology"
                     width={400}
                     height={288}
                     className="h-72 w-auto object-contain drop-shadow-2xl mx-auto"
@@ -381,22 +381,22 @@ function LearningGuideHero() {
             
             <div className="text-center space-y-4">
               <h2 className="text-2xl font-bold text-white">GE Smart Bulb Technology</h2>
-              <p className="text-blue-100 text-base leading-relaxed max-w-2xl mx-auto">
+              <p className="text-md text-base text-white leading-relaxed max-w-2xl mx-auto">
                 Discover the revolutionary GE smart bulb featuring spiral filament technology and intelligent controls.
                 Our premium smart lighting combines classic Edison aesthetics with modern connectivity for the perfect blend of style and functionality.
               </p>
               <div className="flex justify-center gap-4 mt-6">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white">50%</div>
-                  <div className="text-xs text-blue-200 uppercase tracking-wider">Energy Savings</div>
+                  <div className="text-sm text-blue-200 uppercase tracking-wider">Energy Savings</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white">24/7</div>
-                  <div className="text-xs text-blue-200 uppercase tracking-wider">Smart Control</div>
+                  <div className="text-sm text-blue-200 uppercase tracking-wider">Smart Control</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-white">100+</div>
-                  <div className="text-xs text-blue-200 uppercase tracking-wider">Smart Features</div>
+                  <div className="text-sm text-blue-200 uppercase tracking-wider">Smart Features</div>
                 </div>
               </div>
             </div>
@@ -431,7 +431,18 @@ export default function LearningGuidePage() {
                 description="Every phase is supported by channel strategists, enablement specialists, and performance data tuned to your business model."
               />
 
-              <div className="mt-10 space-y-3">
+              {/* Animated progress bar */}
+              <div className="relative mt-10 mb-6 h-2 w-full bg-blue-100 rounded-full overflow-hidden">
+                <motion.div
+                  layout
+                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-700 to-blue-400 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((activeJourneyPhase + 1) / journeyPhases.length) * 100}%` }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                />
+              </div>
+
+              <div className="mt-2 space-y-3">
                 {journeyPhases.map((phase, index) => {
                   const isActive = index === activeJourneyPhase
                   return (
@@ -441,15 +452,17 @@ export default function LearningGuidePage() {
                       onClick={() => setActiveJourneyPhase(index)}
                       whileHover={{ x: isActive ? 0 : 4 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`group w-full rounded-2xl border px-5 py-4 text-left transition-all duration-200 ${
+                      className={`group w-full rounded-2xl border px-5 py-4 text-left transition-all duration-200 relative overflow-hidden ${
                         isActive
                           ? 'border-blue-950 bg-white shadow-[0_15px_35px_rgba(15,23,42,0.12)]'
                           : 'border-neutral-200 bg-white/70 hover:border-blue-200 hover:bg-white'
                       }`}
                     >
+                      {/* Animated dot indicator */}
+                      <span className={`absolute left-0 top-1/2 -translate-y-1/2 ml-[-18px] h-3 w-3 rounded-full transition-all duration-300 ${isActive ? 'bg-blue-600 shadow-lg scale-125' : 'bg-blue-200 scale-100'}`}></span>
                       <div className="flex items-center justify-between gap-4">
                         <div>
-                          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-950">
+                          <span className="text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
                             {phase.phase}
                           </span>
                           <h3 className="mt-2 text-sm font-semibold text-neutral-900 transition-colors group-hover:text-blue-950">
@@ -472,10 +485,12 @@ export default function LearningGuidePage() {
               </div>
             </div>
 
+            {/* Animated details panel */}
             <motion.div
               key={currentJourneyPhase.step}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.45, ease: 'easeOut' }}
               className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-[0_20px_50px_rgba(15,23,42,0.08)]"
             >
@@ -484,7 +499,7 @@ export default function LearningGuidePage() {
                   {currentJourneyPhase.step}
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-950">
+                  <p className="text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
                     {currentJourneyPhase.phase}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold text-blue-950">
@@ -652,7 +667,7 @@ export default function LearningGuidePage() {
                     ))}
                   </div>
                 </div>
-                <div className="mt-8 inline-flex w-fit rounded-full bg-blue-950/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-blue-950">
+                <div className="mt-8 inline-flex w-fit rounded-full bg-blue-950/10 px-4 py-2 text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
                   {tier.requirement}
                 </div>
               </motion.div>
@@ -720,7 +735,7 @@ export default function LearningGuidePage() {
         <section id="support" className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="rounded-3xl border border-blue-900/20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-10 py-12 text-white shadow-[0_30px_80px_rgba(15,23,42,0.25)]">
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
                 Concierge enablement
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Ready to build your learning roadmap?</h3>

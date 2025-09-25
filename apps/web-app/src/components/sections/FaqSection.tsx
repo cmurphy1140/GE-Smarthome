@@ -93,7 +93,7 @@ export default function FaqSection() {
         >
           <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-white/10" />
           <div className="relative space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-2 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
               Concierge access
             </span>
             <h3 className="text-2xl font-semibold md:text-3xl">Talk with a channel strategist</h3>

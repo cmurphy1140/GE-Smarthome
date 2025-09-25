@@ -196,13 +196,13 @@ export default function BenefitsSection() {
                   </div>
                   <div className="text-right">
                     <p className="text-xl font-semibold text-white">{benefit.metric}</p>
-                    <p className="text-xs uppercase tracking-[0.25em] text-blue-200">{benefit.metricLabel}</p>
+                    <p className="text-md uppercase tracking-[0.25em] text-blue-200">{benefit.metricLabel}</p>
                   </div>
                 </div>
                 <h3 className="mt-6 text-lg font-semibold text-white">{benefit.title}</h3>
                 <p className="mt-2 text-sm font-medium text-blue-100/80">{benefit.subtitle}</p>
                 <p className="mt-3 text-sm leading-relaxed text-blue-100/80">{benefit.details}</p>
-                <div className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-blue-200">
+                <div className="mt-6 inline-flex items-center gap-2 text-md font-semibold uppercase tracking-[0.3em] text-blue-200">
                   Learn more
                   <ChevronRight className="h-3.5 w-3.5" />
                 </div>
@@ -232,7 +232,7 @@ export default function BenefitsSection() {
             <div className="mt-8 space-y-6">
               {roiCalculator.inputs.map(input => (
                 <div key={input.key}>
-                  <label className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">
+                  <label className="flex items-center justify-between text-md font-semibold uppercase tracking-[0.3em] text-slate-600">
                     {input.label}
                     <span className="text-slate-900">
                       {input.key === 'value' ? `$${roiInputs[input.key].toLocaleString()}` : `${roiInputs[input.key]}${input.key === 'margin' ? '%' : ''}`}
@@ -251,7 +251,7 @@ export default function BenefitsSection() {
                     }
                     className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200"
                   />
-                  <div className="mt-2 flex justify-between text-xs text-slate-500">
+                  <div className="mt-2 flex justify-between text-md text-slate-500">
                     <span>{input.key === 'value' ? `$${input.min.toLocaleString()}` : input.min}</span>
                     <span>{input.key === 'value' ? `$${input.max.toLocaleString()}` : input.max}</span>
                   </div>

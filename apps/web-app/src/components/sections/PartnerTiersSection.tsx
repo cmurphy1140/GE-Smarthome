@@ -16,44 +16,51 @@ const fadeIn = {
 
 function PartnerTiersSectionComponent() {
   return (
-    <section className="relative bg-slate-50 py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section className="relative bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 py-32">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(30,58,138,0.15),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(30,58,138,0.1),transparent_50%)]" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           title="Partnership benefits designed for builders, integrators, and security pros"
           description="Choose the track that matches your focus today and grow into the full GE Lighting × Savant ecosystem with dedicated support."
+          variant="dark"
         />
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
+        <div className="mt-20 grid gap-8 md:grid-cols-2">
           <motion.article
             variants={fadeIn}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="flex flex-col justify-between rounded-3xl border border-blue-950/20 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+            whileHover={{ y: -6, scale: 1.02 }}
+            className="group flex flex-col justify-between rounded-3xl border border-blue-400/20 bg-gradient-to-br from-slate-800/50 via-blue-900/30 to-slate-800/50 p-10 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-blue-300/40 hover:shadow-[0_25px_60px_-12px_rgba(59,130,246,0.3)]"
           >
             <div>
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-blue-950 text-white">
-                <Home className="h-6 w-6" />
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-500/50">
+                <Home className="h-8 w-8" />
               </div>
-              <h4 className="mt-6 text-xl font-semibold text-slate-900">Authorized Partner</h4>
-              <p className="mt-3 text-base text-slate-600">Entry-level track for businesses launching their smart home practice.</p>
+              <h4 className="mt-8 text-3xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">Authorized Partner</h4>
+              <p className="mt-4 text-lg text-blue-200/80 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">Entry-level track for businesses launching their smart home practice.</p>
 
-              <ul className="mt-6 space-y-3 text-base text-slate-600">
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Core GE Proseo catalog access with 15% discount.</span>
+              <ul className="mt-8 space-y-4 text-lg text-blue-200/80">
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Core GE Proseo catalog access with 15% discount.</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Self-paced training and quarterly webinars.</span>
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Self-paced training and quarterly webinars.</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Email/chat support and portal resources.</span>
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Email/chat support and portal resources.</span>
                 </li>
               </ul>
             </div>
-            <div className="mt-8 inline-flex w-fit rounded-full bg-blue-950/10 px-4 py-2 text-sm font-semibold text-blue-950">
+            <div className="mt-10 inline-flex w-fit rounded-full bg-gradient-to-r from-blue-600/20 to-blue-700/20 border border-blue-400/30 px-6 py-3 text-base font-bold text-blue-100 backdrop-blur-sm transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500/30 group-hover:to-blue-600/30 group-hover:border-blue-300/50 group-hover:text-white">
               $3,500 minimum annual commitment
             </div>
           </motion.article>
@@ -63,31 +70,37 @@ function PartnerTiersSectionComponent() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="flex flex-col justify-between rounded-3xl border border-blue-950/20 bg-white p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+            whileHover={{ y: -6, scale: 1.02 }}
+            className="group relative flex flex-col justify-between rounded-3xl border border-blue-300/30 bg-gradient-to-br from-blue-900/50 via-slate-800/30 to-blue-900/50 p-10 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-blue-200/50 hover:shadow-[0_25px_60px_-12px_rgba(59,130,246,0.4)] overflow-hidden"
           >
-            <div>
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-blue-950 text-white">
-                <Star className="h-6 w-6" />
-              </div>
-              <h4 className="mt-6 text-xl font-semibold text-slate-900">Premier Partner</h4>
-              <p className="mt-3 text-base text-slate-600">Enhanced benefits for established teams ready to scale into Savant automation.</p>
+            {/* Premium badge */}
+            <div className="absolute top-6 right-6 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-1 text-xs font-bold text-slate-900 shadow-lg">
+              PREMIER
+            </div>
 
-              <ul className="mt-6 space-y-3 text-base text-slate-600">
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Full GE Proseo + Savant portfolio with 25% discount.</span>
+            <div>
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-yellow-500/50">
+                <Star className="h-8 w-8" />
+              </div>
+              <h4 className="mt-8 text-3xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">Premier Partner</h4>
+              <p className="mt-4 text-lg text-blue-200/80 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-300">Enhanced benefits for established teams ready to scale into Savant automation.</p>
+
+              <ul className="mt-8 space-y-4 text-lg text-blue-200/80">
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Full GE Proseo + Savant portfolio with 25% discount.</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Regional trainers and demo-unit programs.</span>
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Regional trainers and demo-unit programs.</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Check className="mt-1 h-4 w-4 text-blue-950" />
-                  <span>Dedicated rep, priority support, and marketing fund (2%).</span>
+                <li className="flex items-start gap-4 group/item">
+                  <Check className="mt-1.5 h-5 w-5 text-emerald-400 group-hover/item:scale-125 transition-transform duration-300" />
+                  <span className="group-hover:text-blue-100 transition-colors duration-300">Dedicated rep, priority support, and marketing fund (2%).</span>
                 </li>
               </ul>
             </div>
-            <div className="mt-8 inline-flex w-fit rounded-full bg-blue-950/15 px-4 py-2 text-sm font-semibold text-blue-950">
+            <div className="mt-10 inline-flex w-fit rounded-full bg-gradient-to-r from-yellow-600/20 to-orange-600/20 border border-yellow-400/30 px-6 py-3 text-base font-bold text-yellow-100 backdrop-blur-sm transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-500/30 group-hover:to-orange-500/30 group-hover:border-yellow-300/50 group-hover:text-white">
               $10,000 minimum annual commitment
             </div>
           </motion.article>

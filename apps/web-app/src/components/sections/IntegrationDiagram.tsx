@@ -247,51 +247,102 @@ export function IntegrationDiagram() {
   }
 
   const deviceVariants = {
-    hidden: { scale: 0, opacity: 0, rotate: -360, y: -50 },
+    hidden: { 
+      scale: 0, 
+      opacity: 0, 
+      rotate: -720, 
+      y: -100,
+      filter: "blur(10px)"
+    },
     visible: {
       scale: 1,
       opacity: 1,
       rotate: 0,
       y: 0,
+      filter: "blur(0px)",
       transition: {
         type: "spring" as const,
-        stiffness: 150,
-        damping: 20,
-        rotate: { duration: 1.2, ease: "easeOut" as const },
-        scale: { duration: 0.8, ease: "backOut" as const }
+        stiffness: 200,
+        damping: 25,
+        rotate: { 
+          duration: 1.8, 
+          ease: "easeOut" as const,
+          type: "spring",
+          stiffness: 100
+        },
+        scale: { 
+          duration: 1.0, 
+          ease: "backOut" as const,
+          delay: 0.2
+        },
+        filter: {
+          duration: 0.8,
+          delay: 0.4
+        }
       }
     },
     active: {
-      scale: 1.4,
-      y: -8,
-      boxShadow: "0 0 60px rgba(59, 130, 246, 0.8), 0 0 120px rgba(59, 130, 246, 0.4)",
+      scale: 1.6,
+      y: -12,
+      rotate: [0, 10, -10, 0],
+      boxShadow: [
+        "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)",
+        "0 0 80px rgba(59, 130, 246, 0.9), 0 0 160px rgba(59, 130, 246, 0.5)",
+        "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)"
+      ],
+      filter: "brightness(1.2) saturate(1.3)",
       transition: {
-        duration: 0.5,
+        duration: 0.8,
         type: "spring" as const,
-        stiffness: 300,
-        damping: 25
+        stiffness: 400,
+        damping: 20,
+        rotate: {
+          duration: 2,
+          repeat: Infinity,
+          repeatDelay: 1,
+          ease: "easeInOut"
+        },
+        boxShadow: {
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }
       }
     }
   }
 
   const connectionVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
+    hidden: { 
+      pathLength: 0, 
+      opacity: 0,
+      strokeDasharray: "5,5"
+    },
     visible: {
       pathLength: 1,
-      opacity: 0.4,
-      transition: { duration: 1.5, delay: 0.8, ease: "easeInOut" as const }
+      opacity: 0.3,
+      strokeDasharray: "5,5",
+      transition: { 
+        pathLength: { duration: 2.0, delay: 1.2, ease: "easeInOut" as const },
+        opacity: { duration: 0.8, delay: 1.5 }
+      }
     },
     active: {
-      opacity: 1,
-      stroke: "#3b82f6",
-      strokeWidth: 4,
-      filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))",
+      pathLength: 1,
+      opacity: [0.7, 1, 0.7],
+      stroke: ["#3b82f6", "#06b6d4", "#8b5cf6", "#3b82f6"],
+      strokeWidth: [3, 6, 3],
+      strokeDasharray: "0",
+      filter: [
+        "drop-shadow(0 0 6px rgba(59, 130, 246, 0.4))",
+        "drop-shadow(0 0 12px rgba(6, 182, 212, 0.6))",
+        "drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))",
+        "drop-shadow(0 0 6px rgba(59, 130, 246, 0.4))"
+      ],
       transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
+        duration: 3,
         repeat: Infinity,
-        repeatType: "reverse" as const,
-        repeatDelay: 0.5
+        ease: "easeInOut" as const,
+        times: [0, 0.33, 0.66, 1]
       }
     }
   }
@@ -354,7 +405,7 @@ export function IntegrationDiagram() {
           transition={{ duration: 0.6 }}
           className="space-y-4"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-950">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-950">
             Integration Process
           </span>
           <h2 className="text-3xl font-semibold text-blue-950 md:text-4xl">
@@ -396,27 +447,77 @@ export function IntegrationDiagram() {
 
                 return (
                   <g key={step.id}>
-                    {/* Outer Glow Ring for Active Items */}
+                    {/* Multi-layered Glow Rings for Active Items */}
                     {isActive && (
-                      <motion.circle
-                        cx={`${step.position.x}%`}
-                        cy={`${step.position.y}%`}
-                        r="12"
-                        fill="none"
-                        stroke="#3b82f6"
-                        strokeWidth="1"
-                        opacity="0.3"
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{
-                          scale: [1, 1.3, 1],
-                          opacity: [0.3, 0.1, 0.3]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut" as const
-                        }}
-                      />
+                      <>
+                        {/* Outer pulse ring */}
+                        <motion.circle
+                          cx={`${step.position.x}%`}
+                          cy={`${step.position.y}%`}
+                          r="18"
+                          fill="none"
+                          stroke="#3b82f6"
+                          strokeWidth="0.5"
+                          opacity="0.2"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{
+                            scale: [0.5, 2, 0.5],
+                            opacity: [0.4, 0, 0.4],
+                            stroke: ["#3b82f6", "#06b6d4", "#8b5cf6", "#3b82f6"]
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeOut" as const,
+                            times: [0, 0.7, 1]
+                          }}
+                        />
+                        {/* Middle glow ring */}
+                        <motion.circle
+                          cx={`${step.position.x}%`}
+                          cy={`${step.position.y}%`}
+                          r="14"
+                          fill="none"
+                          stroke="#06b6d4"
+                          strokeWidth="1"
+                          opacity="0.4"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{
+                            scale: [1, 1.4, 1],
+                            opacity: [0.4, 0.1, 0.4],
+                            rotate: [0, 360]
+                          }}
+                          transition={{
+                            duration: 2.5,
+                            repeat: Infinity,
+                            ease: "easeInOut" as const,
+                            rotate: { duration: 8, ease: "linear", repeat: Infinity }
+                          }}
+                        />
+                        {/* Inner energy ring */}
+                        <motion.circle
+                          cx={`${step.position.x}%`}
+                          cy={`${step.position.y}%`}
+                          r="12"
+                          fill="none"
+                          stroke="#8b5cf6"
+                          strokeWidth="1.5"
+                          opacity="0.6"
+                          strokeDasharray="3,3"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [0.6, 0.2, 0.6],
+                            rotate: [360, 0]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut" as const,
+                            rotate: { duration: 6, ease: "linear", repeat: Infinity }
+                          }}
+                        />
+                      </>
                     )}
 
                     {/* Main Device Circle */}
@@ -476,7 +577,7 @@ export function IntegrationDiagram() {
                       className="pointer-events-none"
                     >
                       <div className="flex items-center justify-center">
-                        <div className="rounded-lg bg-blue-950 px-2 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
+                        <div className="rounded-lg bg-blue-950 px-2 py-1 text-md font-medium text-white shadow-lg backdrop-blur-sm">
                           {step.title}
                         </div>
                       </div>
@@ -532,7 +633,7 @@ export function IntegrationDiagram() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-sm font-semibold truncate">{step.title}</h4>
-                    <p className="text-xs opacity-75 line-clamp-2 lg:line-clamp-none">{step.description}</p>
+                    <p className="text-md opacity-75 line-clamp-2 lg:line-clamp-none">{step.description}</p>
                   </div>
                   {isActive && (
                     <motion.div
@@ -667,7 +768,7 @@ export function IntegrationDiagram() {
                     if (!step) return null
 
                     return (
-                      <div key={stepId} className="flex items-start gap-2 text-xs">
+                      <div key={stepId} className="flex items-start gap-2 text-md">
                         <CheckCircle className="mt-0.5 h-3 w-3 text-green-600" />
                         <div>
                           <span className="font-medium text-slate-900">{step.title}</span>
@@ -698,7 +799,7 @@ export function IntegrationDiagram() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`rounded-lg p-2 text-left text-xs transition-all ${
+                  className={`rounded-lg p-2 text-left text-md transition-all ${
                     index === currentSlide
                       ? 'bg-blue-100 text-blue-900'
                       : 'text-slate-600 hover:bg-slate-50'
