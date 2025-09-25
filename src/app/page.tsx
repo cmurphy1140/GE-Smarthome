@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
+import CyncFeaturesSection from '@/components/sections/CyncFeaturesSection'
 import { Suspense, lazy } from 'react'
 
 const FaqSection = lazy(() => import('@/components/sections/FaqSection').then(mod => ({ default: mod.default })))
@@ -35,15 +36,16 @@ export default function Home() {
         <section id="program">
           <PillarsSection />
         </section>
+        <StatsSection />
+        <section id="apply">
+          <RoiCalculatorSection />
+        </section>
         <section id="faqs">
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
           </Suspense>
         </section>
-        <StatsSection />
-        <section id="apply">
-          <RoiCalculatorSection />
-        </section>
+        <CyncFeaturesSection />
       </main>
       <Footer />
     </div>

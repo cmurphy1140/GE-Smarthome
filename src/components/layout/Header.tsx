@@ -126,7 +126,7 @@ export function Header() {
             <div className="relative" data-dropdown>
                <button
                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                 className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105"
+                 className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105"
                >
                  Navigation
                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
@@ -152,7 +152,7 @@ export function Header() {
                          >
                            <Component
                              href={link.href}
-                             className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/50 hover:translate-x-1"
+                             className="flex items-center gap-3 px-5 py-4 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/50 hover:translate-x-1"
                              onClick={() => setDropdownOpen(false)}
                            >
                              <span className="flex-1">{link.label}</span>
@@ -175,7 +175,7 @@ export function Header() {
             <Link
               key={button.href}
               href={button.href}
-              className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+              className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-base font-semibold transition-all duration-200 ${
                 button.label === 'Apply Now'
                   ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                   : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
@@ -212,7 +212,7 @@ export function Header() {
                 <Component
                   key={link.href}
                   href={link.href}
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-blue-200 transition-all duration-200 hover:bg-blue-900/60 hover:text-white hover:translate-x-1 active:scale-95"
+                  className="inline-flex items-center gap-2 rounded-lg px-5 py-4 text-base font-semibold text-blue-200 transition-all duration-200 hover:bg-blue-900/60 hover:text-white hover:translate-x-1 active:scale-95"
                   onClick={() => setMobileOpen(false)}
                 >
                   <span className="flex-1">{link.label}</span>
@@ -229,7 +229,7 @@ export function Header() {
                 key={button.href}
                 href={button.href}
                 onClick={() => setMobileOpen(false)}
-                className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 ${
                   button.label === 'Apply Now'
                     ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                     : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
@@ -244,14 +244,14 @@ export function Header() {
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg bg-white/10 border border-white/30 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
+                  className="inline-flex items-center justify-center rounded-lg bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
                 >
                   Home
                 </Link>
                 <Link
                   href="/learning-guide"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg bg-blue-800 border border-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="inline-flex items-center justify-center rounded-lg bg-blue-800 border border-blue-700 px-5 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
                 >
                   Resources
                 </Link>
@@ -261,7 +261,7 @@ export function Header() {
               <Link
                 href="/signup"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-blue-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-base font-semibold text-blue-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
               >
                 Apply Now
                 <ArrowRight className="h-5 w-5" />
