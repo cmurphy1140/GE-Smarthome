@@ -69,6 +69,24 @@ const geProducts = [
     category: 'Smart LED',
     price: '$34.99',
     dealerPrice: '$20.99'
+  },
+  {
+    id: 4,
+    name: 'Cync Smart Thermostat',
+    description: 'Wi-Fi enabled smart thermostat with voice control and scheduling features',
+    image: '/thermostat.png',
+    category: 'Smart Climate',
+    price: '$129.99',
+    dealerPrice: '$77.99'
+  },
+  {
+    id: 5,
+    name: 'Cync Solar Panel Accessory',
+    description: 'Sustainable solar panel accessory for outdoor battery cameras',
+    image: '/solor-panal.png',
+    category: 'Solar Accessories',
+    price: '$89.99',
+    dealerPrice: '$53.99'
   }
 ]
 
@@ -166,49 +184,49 @@ function PillarsSectionComponent() {
 
               {/* Product Carousel Section */}
               <div className="relative px-10 pb-4">
-                <div className="relative bg-black/20 rounded-2xl p-6 backdrop-blur-sm border border-blue-800/30">
+                <div className="relative bg-black/20 rounded-2xl p-8 backdrop-blur-sm border border-blue-800/30">
 
                   {/* Product Slide */}
                   <div
                     key={currentProduct.id}
-                    className="flex items-center gap-6"
+                    className="flex items-center gap-8"
                   >
-                      {/* Product Image */}
-                      <div className="flex-shrink-0 w-64 h-64 relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
-                        <div className="absolute inset-4 flex items-center justify-center">
-                          <Image
-                            src={currentProduct.image}
-                            alt={currentProduct.name}
-                            width={200}
-                            height={200}
-                            className="object-contain max-w-full max-h-full"
-                          />
-                        </div>
+                    {/* Product Image */}
+                    <div className="flex-shrink-0 w-80 h-80 relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/10" />
+                      <div className="absolute inset-6 flex items-center justify-center">
+                        <Image
+                          src={currentProduct.image}
+                          alt={currentProduct.name}
+                          width={280}
+                          height={280}
+                          className="object-contain max-w-full max-h-full"
+                        />
                       </div>
+                    </div>
 
-                      {/* Product Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-200 border border-blue-400/20">
-                            {currentProduct.category}
-                          </span>
-                        </div>
-                        <h4 className="text-lg font-semibold text-white mb-1 truncate">
-                          {currentProduct.name}
-                        </h4>
-                        <p className="text-sm text-blue-200/70 mb-2 line-clamp-2">
-                          {currentProduct.description}
-                        </p>
-                        <div className="flex items-center gap-3">
-                          <span className="text-sm text-blue-300/60 line-through">
-                            {currentProduct.price}
-                          </span>
-                          <span className="text-base font-bold text-emerald-400">
-                            {currentProduct.dealerPrice}
-                          </span>
-                        </div>
+                    {/* Product Info */}
+                    <div className="flex-1 min-w-0 pr-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-500/20 text-blue-200 border border-blue-400/20">
+                          {currentProduct.category}
+                        </span>
                       </div>
+                      <h4 className="text-xl font-semibold text-white mb-2 leading-tight">
+                        {currentProduct.name}
+                      </h4>
+                      <p className="text-base text-blue-200/70 mb-4 leading-relaxed">
+                        {currentProduct.description}
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <span className="text-base text-blue-300/60 line-through">
+                          {currentProduct.price}
+                        </span>
+                        <span className="text-lg font-bold text-emerald-400">
+                          {currentProduct.dealerPrice}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Slide Indicators */}
