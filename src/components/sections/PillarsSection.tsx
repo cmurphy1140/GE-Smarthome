@@ -121,7 +121,7 @@ function PillarsSectionComponent() {
             {pillars.filter(pillar => !pillar.isShop).map((pillar) => (
               <article
                 key={pillar.title}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/20 hover:shadow-[0_0_30px_rgba(30,58,138,0.3)]"
               >
                 <div className="relative">
                   <div className="flex h-16 w-16 items-center justify-center rounded-xl transition-all duration-300 bg-slate-100 group-hover:bg-blue-100 group-hover:scale-110">
