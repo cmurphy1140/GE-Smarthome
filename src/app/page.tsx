@@ -1,14 +1,15 @@
 'use client'
 
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
-import { HeroSection } from '@/components/sections/HeroSection'
-import { PillarsSection } from '@/components/sections/PillarsSection'
-import { StatsSection } from '@/components/sections/StatsSection'
-import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
-import CyncFeaturesSection from '@/components/sections/CyncFeaturesSection'
 import { Suspense, lazy } from 'react'
 
+// Lazy load all components for better code splitting
+const Header = lazy(() => import('@/components/layout/Header').then(mod => ({ default: mod.Header })))
+const Footer = lazy(() => import('@/components/layout/Footer').then(mod => ({ default: mod.Footer })))
+const HeroSection = lazy(() => import('@/components/sections/HeroSection').then(mod => ({ default: mod.HeroSection })))
+const PillarsSection = lazy(() => import('@/components/sections/PillarsSection').then(mod => ({ default: mod.PillarsSection })))
+const StatsSection = lazy(() => import('@/components/sections/StatsSection').then(mod => ({ default: mod.StatsSection })))
+const RoiCalculatorSection = lazy(() => import('@/components/sections/RoiCalculatorSection'))
+const CyncFeaturesSection = lazy(() => import('@/components/sections/CyncFeaturesSection'))
 const FaqSection = lazy(() => import('@/components/sections/FaqSection'))
 
 function SectionSkeleton() {
@@ -30,24 +31,38 @@ function SectionSkeleton() {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <Header />
+      <Suspense fallback={<div className="h-16 bg-blue-950 animate-pulse" />}>
+        <Header />
+      </Suspense>
       <main className="space-y-0">
-        <HeroSection />
+        <Suspense fallback={<SectionSkeleton />}>
+          <HeroSection />
+        </Suspense>
         <section id="program">
-          <PillarsSection />
+          <Suspense fallback={<SectionSkeleton />}>
+            <PillarsSection />
+          </Suspense>
         </section>
-        <StatsSection />
+        <Suspense fallback={<SectionSkeleton />}>
+          <StatsSection />
+        </Suspense>
         <section id="apply">
-          <RoiCalculatorSection />
+          <Suspense fallback={<SectionSkeleton />}>
+            <RoiCalculatorSection />
+          </Suspense>
         </section>
         <section id="faqs">
           <Suspense fallback={<SectionSkeleton />}>
             <FaqSection />
           </Suspense>
         </section>
-        <CyncFeaturesSection />
+        <Suspense fallback={<SectionSkeleton />}>
+          <CyncFeaturesSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

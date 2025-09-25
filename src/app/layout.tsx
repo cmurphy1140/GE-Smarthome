@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { ClientScrollToTop } from "@/components/ui/ClientScrollToTop";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import { FloatingActionButton } from "@/components/ui/FloatingActionButton";
+import { PerformanceMonitor } from "@/components/common/PerformanceMonitor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -104,6 +105,7 @@ export default function RootLayout({
           <ServiceWorkerRegistration />
           <SmoothScroll />
           <ClientScrollToTop />
+          <PerformanceMonitor />
           {children}
           <FloatingActionButton />
         </ErrorBoundary>
