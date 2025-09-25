@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ArrowUp, MessageCircle, Phone, Mail } from 'lucide-react'
-import { useMobileOptimizations } from '../common/TouchGestures'
 
 interface FloatingActionButtonProps {
   onScrollToTop?: () => void
@@ -18,7 +17,8 @@ export function FloatingActionButton({
 }: FloatingActionButtonProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [showScrollToTop, setShowScrollToTop] = useState(false)
-  const { isMobile, touchTargetSize } = useMobileOptimizations()
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const touchTargetSize = 44
 
   useEffect(() => {
     const handleScroll = () => {

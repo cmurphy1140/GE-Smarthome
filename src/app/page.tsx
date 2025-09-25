@@ -1,13 +1,13 @@
 'use client'
 
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { HeroSection } from '@/components/sections/HeroSection'
+import { PillarsSection } from '@/components/sections/PillarsSection'
+import { StatsSection } from '@/components/sections/StatsSection'
 import { Suspense, lazy } from 'react'
 
-// Lazy load all components for better code splitting
-const Header = lazy(() => import('@/components/layout/Header').then(mod => ({ default: mod.Header })))
-const Footer = lazy(() => import('@/components/layout/Footer').then(mod => ({ default: mod.Footer })))
-const HeroSection = lazy(() => import('@/components/sections/HeroSection').then(mod => ({ default: mod.HeroSection })))
-const PillarsSection = lazy(() => import('@/components/sections/PillarsSection').then(mod => ({ default: mod.PillarsSection })))
-const StatsSection = lazy(() => import('@/components/sections/StatsSection').then(mod => ({ default: mod.StatsSection })))
+// Lazy load only heavy components for better code splitting
 const RoiCalculatorSection = lazy(() => import('@/components/sections/RoiCalculatorSection'))
 const CyncFeaturesSection = lazy(() => import('@/components/sections/CyncFeaturesSection'))
 const FaqSection = lazy(() => import('@/components/sections/FaqSection'))
@@ -31,21 +31,13 @@ function SectionSkeleton() {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <Suspense fallback={<div className="h-16 bg-blue-950 animate-pulse" />}>
-        <Header />
-      </Suspense>
+      <Header />
       <main className="space-y-0">
-        <Suspense fallback={<SectionSkeleton />}>
-          <HeroSection />
-        </Suspense>
+        <HeroSection />
         <section id="program">
-          <Suspense fallback={<SectionSkeleton />}>
-            <PillarsSection />
-          </Suspense>
+          <PillarsSection />
         </section>
-        <Suspense fallback={<SectionSkeleton />}>
-          <StatsSection />
-        </Suspense>
+        <StatsSection />
         <section id="apply">
           <Suspense fallback={<SectionSkeleton />}>
             <RoiCalculatorSection />
@@ -60,9 +52,7 @@ export default function Home() {
           <CyncFeaturesSection />
         </Suspense>
       </main>
-      <Suspense fallback={<div className="h-32 bg-gray-100 animate-pulse" />}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
   )
 }
