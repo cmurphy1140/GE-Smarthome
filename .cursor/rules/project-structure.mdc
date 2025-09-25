@@ -1,0 +1,27 @@
+---
+alwaysApply: true
+---
+
+# GE Smarthome Project Structure
+
+## Main Application
+- **Entry Point**: [apps/web-app/src/app/page.tsx](mdc:apps/web-app/src/app/page.tsx) - Homepage
+- **Layout**: [apps/web-app/src/app/layout.tsx](mdc:apps/web-app/src/app/layout.tsx) - Root layout
+- **Routing**: Next.js App Router structure
+
+## Key Pages
+- **Homepage**: [apps/web-app/src/app/page.tsx](mdc:apps/web-app/src/app/page.tsx)
+- **Program Details**: [apps/web-app/src/app/program-details/page.tsx](mdc:apps/web-app/src/app/program-details/page.tsx)
+- **Learning Guide**: [apps/web-app/src/app/learning-guide/page.tsx](mdc:apps/web-app/src/app/learning-guide/page.tsx)
+- **Signup**: [apps/web-app/src/app/signup/page.tsx](mdc:apps/web-app/src/app/signup/page.tsx)
+
+## Components Structure
+- **Layout**: [apps/web-app/src/components/layout/](mdc:apps/web-app/src/components/layout/) - Header, Footer
+- **Sections**: [apps/web-app/src/components/sections/](mdc:apps/web-app/src/components/sections/) - Page sections
+- **UI**: [apps/web-app/src/components/ui/](mdc:apps/web-app/src/components/ui/) - Reusable UI components
+- **Common**: [apps/web-app/src/components/common/](mdc:apps/web-app/src/components/common/) - Shared utilities
+
+## Configuration
+- **Package**: [apps/web-app/package.json](mdc:apps/web-app/package.json)
+- **Tailwind**: [apps/web-app/tailwind.config.js](mdc:apps/web-app/tailwind.config.js)
+- **TypeScript**: [apps/web-app/tsconfig.json](mdc:apps/web-app/tsconfig.json)

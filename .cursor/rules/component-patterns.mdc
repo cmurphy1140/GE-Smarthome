@@ -1,0 +1,27 @@
+---
+globs: *.tsx,*.ts
+---
+
+# React Component Patterns
+
+## Component Structure
+- **Use 'use client' directive** for client-side components
+- **Import order**: React imports, then third-party, then local components
+- **Export patterns**: Use named exports for components
+
+## Navigation Components
+- **Header**: [apps/web-app/src/components/layout/Header.tsx](mdc:apps/web-app/src/components/layout/Header.tsx)
+  - Supports multiple page contexts (home, learning-guide, program-details, signup)
+  - Uses `usePathname` for conditional navigation
+  - External links show ExternalLink icon
+
+## Section Components
+- **HeroSection**: [apps/web-app/src/components/sections/HeroSection.tsx](mdc:apps/web-app/src/components/sections/HeroSection.tsx)
+- **PillarsSection**: [apps/web-app/src/components/sections/PillarsSection.tsx](mdc:apps/web-app/src/components/sections/PillarsSection.tsx)
+- **AboutSection**: [apps/web-app/src/components/sections/AboutSection.tsx](mdc:apps/web-app/src/components/sections/AboutSection.tsx)
+
+## Styling Guidelines
+- **Use Tailwind CSS** for all styling
+- **Consistent color scheme**: Blue-950, blue-900, white, slate colors
+- **Hover effects**: Use transition-all duration-300 for smooth interactions
+- **Responsive design**: Use md:, lg: breakpoints consistently

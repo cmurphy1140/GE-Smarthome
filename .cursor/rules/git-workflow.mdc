@@ -1,0 +1,28 @@
+---
+alwaysApply: true
+---
+
+# Git Workflow Rules
+
+## Commit Standards
+- **Use descriptive commit messages** with clear purpose
+- **Include emoji prefixes** for visual clarity (🚀, ✅, 🔧, etc.)
+- **Group related changes** in single commits
+- **Reference specific features** or optimizations
+
+## Branch Management
+- **Main branch**: `master` (primary development)
+- **Always push to origin** after local commits
+- **Use meaningful branch names** for feature development
+
+## File Management
+- **Clean up unused files** before committing
+- **Update .gitignore** for new file patterns
+- **Remove generated images** and temporary files
+- **Keep repository lean** and organized
+
+## Performance Commits
+- **Document performance improvements** clearly
+- **List specific optimizations** made
+- **Include before/after metrics** when available
+- **Explain visual impact** of changes

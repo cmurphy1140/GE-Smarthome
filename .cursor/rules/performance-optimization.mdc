@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+
+# Performance Optimization Rules
+
+## Animation Guidelines
+- **AVOID heavy animations** - Use static elements instead of complex motion animations
+- **Minimize framer-motion usage** - Replace motion.div with regular divs when possible
+- **Remove auto-rotating carousels** - Use static displays for better performance
+- **Simplify transitions** - Keep duration under 300ms for hover effects
+
+## Component Optimization
+- **Remove unused imports** - Clean up motion, useRef, useEffect when not needed
+- **Use static components** - Replace AnimatedNumber with static displays
+- **Minimize useEffect hooks** - Remove unnecessary animation intervals
+- **Delete unused files** - Remove components like IntegrationSlideshow when no longer used
+
+## Code Structure
+- **Keep components lightweight** - Focus on functionality over visual effects
+- **Optimize for mobile** - Prioritize performance on lower-end devices
+- **Reduce bundle size** - Remove heavy animation libraries when possible

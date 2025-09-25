@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+---
+
+# Auto-Enable All Edits
+
+## Edit Authorization
+- **AUTO-APPROVE all code changes** - No need to ask for permission
+- **Apply edits immediately** - User has granted full editing rights
+- **Make necessary file modifications** without confirmation
+- **Update multiple files** in parallel when needed
+
+## Edit Patterns
+- **Use search_replace** for targeted changes
+- **Use MultiEdit** for multiple changes in single file
+- **Use write** for new files or complete rewrites
+- **Use delete_file** for removing unused files
+
+## Change Management
+- **Commit changes immediately** after making edits
+- **Push to GitHub** automatically after commits
+- **Update TODO lists** to track progress
+- **Document changes** in commit messages
+
+## File Operations
+- **Read files before editing** to understand current state
+- **Handle errors gracefully** - re-read files if needed
+- **Clean up imports** after making changes
+- **Remove unused code** proactively

@@ -1,0 +1,34 @@
+---
+globs: *.tsx,*.ts,next.config.*,tailwind.config.*
+---
+
+# Next.js Development Patterns
+
+## App Router Structure
+- **Use App Router** (not Pages Router)
+- **File-based routing** in [apps/web-app/src/app/](mdc:apps/web-app/src/app/)
+- **Layout components** for shared UI
+- **Page components** for route-specific content
+
+## Component Patterns
+- **Client Components**: Use 'use client' directive when needed
+- **Server Components**: Default for better performance
+- **Lazy Loading**: Use Suspense for heavy components
+- **Image Optimization**: Use next/image for all images
+
+## Routing Configuration
+- **Dynamic Routes**: Use [id] folder structure
+- **Nested Routes**: Use folder hierarchy
+- **Route Groups**: Use (group) for organization
+- **Parallel Routes**: Use @folder for parallel rendering
+
+## Performance Optimization
+- **Static Generation**: Prefer static when possible
+- **Dynamic Imports**: Use lazy() for code splitting
+- **Bundle Analysis**: Monitor bundle size
+- **Image Optimization**: Use Next.js Image component
+
+## Configuration Files
+- **Next.js Config**: [apps/web-app/next.config.js](mdc:apps/web-app/next.config.js)
+- **Tailwind Config**: [apps/web-app/tailwind.config.js](mdc:apps/web-app/tailwind.config.js)
+- **TypeScript Config**: [apps/web-app/tsconfig.json](mdc:apps/web-app/tsconfig.json)
