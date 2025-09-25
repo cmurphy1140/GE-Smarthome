@@ -54,21 +54,21 @@ const geProducts = [
   },
   {
     id: 2,
-    name: 'Cync Soft White Smart Bulbs',
-    description: 'Soft white smart bulbs with simple setup and Alexa/Google compatibility',
-    image: '/soft-white.png',
-    category: 'Smart Lighting',
-    price: '$39.99',
-    dealerPrice: '$23.99'
+    name: 'Cync Smart Thermostat',
+    description: 'Smart thermostat with voice control, scheduling, and Wi-Fi connectivity',
+    image: '/thermostat.png',
+    category: 'Smart Climate',
+    price: '$129.99',
+    dealerPrice: '$77.99'
   },
   {
     id: 3,
-    name: 'GE LED+ Dimmable Smart Bulb',
-    description: 'Bright dimmable smart LED with remote control and energy efficiency',
-    image: '/led-light.png',
-    category: 'Smart LED',
-    price: '$34.99',
-    dealerPrice: '$20.99'
+    name: 'Cync Solar Panel Accessory',
+    description: 'Solar panel accessory for outdoor battery cameras with continuous power',
+    image: '/solor-panal.png',
+    category: 'Smart Security',
+    price: '$89.99',
+    dealerPrice: '$53.99'
   }
 ]
 
