@@ -3,31 +3,26 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Menu, X, ArrowRight, ExternalLink, ChevronDown } from 'lucide-react'
+import { Menu, X, ArrowRight, ExternalLink, ChevronDown, Home } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 // Consistent navigation buttons for all pages
 const getHeaderButtons = (currentPath: string) => {
   const buttons = []
-  
-  // Don't show Home button on home page
-  if (currentPath !== '/') {
-    buttons.push({ href: '/', label: 'Home', isRoute: true })
-  }
-  
+
   if (currentPath !== '/learning-guide') {
     buttons.push({ href: '/learning-guide', label: 'Learn', isRoute: true })
   }
-  
+
   if (currentPath !== '/program-details') {
     buttons.push({ href: '/program-details', label: 'Program Details', isRoute: true })
   }
-  
+
   if (currentPath !== '/signup') {
     buttons.push({ href: '/signup', label: 'Apply Now', isRoute: true })
   }
-  
+
   return buttons
 }
 
@@ -204,6 +199,15 @@ export function Header() {
               {button.label === 'Apply Now' && <ArrowRight className="h-5 w-5" />}
             </Link>
           ))}
+          {pathname !== '/' && (
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center rounded-lg p-4 bg-white/10 border border-white/30 text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
+              aria-label="Go to homepage"
+            >
+              <Home className="h-6 w-6" />
+            </Link>
+          )}
         </div>
 
         <button
@@ -264,8 +268,9 @@ export function Header() {
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
                 >
+                  <Home className="h-5 w-5" />
                   Home
                 </Link>
                 <Link

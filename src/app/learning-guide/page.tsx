@@ -323,13 +323,13 @@ function LearningGuideHero() {
       ref={heroRef}
       className="relative overflow-hidden bg-gradient-to-br from-neutral-200 via-white to-stone-100 py-28 text-slate-900 md:py-36"
     >
-      <div className="absolute inset-0 bg-[url('/smarthome-diagram.png')] bg-cover bg-center opacity-10 mix-blend-multiply" />
-      <div className="relative z-10 mx-auto grid max-w-6xl gap-16 px-4 sm:px-6 md:grid-cols-[1.05fr_0.95fr]">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-neutral-100 opacity-50" />
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           initial="hidden"
           animate={heroInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="space-y-8"
+          className="space-y-8 text-center"
         >
           <motion.span
             variants={fadeInUp}
@@ -347,14 +347,14 @@ function LearningGuideHero() {
 
           <motion.p
             variants={fadeInUp}
-            className="text-lg leading-relaxed text-neutral-600 md:text-xl"
+            className="text-lg leading-relaxed text-neutral-600 md:text-xl max-w-3xl mx-auto"
           >
             Build confidence in the combined portfolio, align your services with the right partnership tier, and equip your team with the enablement needed to deliver signature Smart Home experiences.
           </motion.p>
 
           <motion.div
             variants={fadeInUp}
-            className="flex flex-col gap-4 sm:flex-row"
+            className="flex flex-col gap-4 sm:flex-row justify-center"
           >
             <Link
               href="/signup"
@@ -373,7 +373,7 @@ function LearningGuideHero() {
 
           <motion.div
             variants={fadeInUp}
-            className="grid gap-4 rounded-3xl border border-neutral-200 bg-white px-6 py-6 text-left shadow-sm sm:grid-cols-3"
+            className="grid gap-4 rounded-3xl border border-neutral-200 bg-white px-6 py-6 text-left shadow-sm sm:grid-cols-3 max-w-4xl mx-auto"
           >
             {heroStats.map(stat => (
               <div key={stat.label} className="flex flex-col gap-1">
@@ -382,62 +382,6 @@ function LearningGuideHero() {
               </div>
             ))}
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
-          className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 p-8 shadow-xl"
-        >
-          <div className="space-y-8">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-900/30 px-4 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-200 backdrop-blur-sm mb-6">
-                 Smart Technology Showcase
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative bg-gradient-to-br from-blue-950/50 to-blue-900/50 p-8 rounded-2xl backdrop-blur-sm">
-                  <Image
-                    src="/bulb.png"
-                    alt="GE Smart Bulb Technology - Revolutionary smart lighting with spiral filament design and intelligent controls"
-                    width={400}
-                    height={288}
-                    className="h-72 w-auto object-contain drop-shadow-2xl mx-auto transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 500px"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center space-y-4">
-              <h2 className="text-2xl font-bold text-white">GE Smart Bulb Technology</h2>
-              <p className="text-md text-base text-white leading-relaxed max-w-2xl mx-auto">
-                Discover the revolutionary GE smart bulb featuring spiral filament technology and intelligent controls.
-                Our premium smart lighting combines classic Edison aesthetics with modern connectivity for the perfect blend of style and functionality.
-              </p>
-              <div className="flex justify-center gap-4 mt-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">50%</div>
-                  <div className="text-sm text-blue-200 uppercase tracking-wider">Energy Savings</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">24/7</div>
-                  <div className="text-sm text-blue-200 uppercase tracking-wider">Smart Control</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">100+</div>
-                  <div className="text-sm text-blue-200 uppercase tracking-wider">Smart Features</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
@@ -505,12 +449,12 @@ export default function LearningGuidePage() {
                           <span className="text-md font-semibold uppercase tracking-[0.3em] text-blue-950">
                             {phase.phase}
                           </span>
-                          <h3 className="mt-2 text-sm font-semibold text-neutral-900 transition-colors group-hover:text-blue-950">
+                          <h3 className="mt-2 text-base font-semibold text-neutral-900 transition-colors group-hover:text-blue-950">
                             {phase.title}
                           </h3>
                         </div>
                         <span
-                          className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold ${
+                          className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-base font-semibold ${
                             isActive
                               ? 'border-blue-950 bg-blue-950 text-white'
                               : 'border-neutral-300 bg-white text-blue-950'
@@ -548,24 +492,24 @@ export default function LearningGuidePage() {
                 </div>
               </div>
 
-              <p className="mt-6 text-base text-neutral-600">
+              <p className="mt-6 text-lg text-neutral-600">
                 {currentJourneyPhase.description}
               </p>
-              <p className="mt-4 text-base leading-relaxed text-neutral-600">
+              <p className="mt-4 text-lg leading-relaxed text-neutral-600">
                 {currentJourneyPhase.story}
               </p>
 
               <div className="mt-8 space-y-4">
                 {currentJourneyPhase.touchpoints.map(point => (
                   <div key={point.title} className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-                    <p className="text-sm font-semibold text-blue-950">{point.title}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-neutral-600">{point.copy}</p>
+                    <p className="text-base font-semibold text-blue-950">{point.title}</p>
+                    <p className="mt-2 text-base leading-relaxed text-neutral-600">{point.copy}</p>
                   </div>
                 ))}
               </div>
 
               <div
-                className={`mt-6 rounded-2xl border px-5 py-4 text-sm font-medium ${highlightToneStyles[currentJourneyPhase.highlight.tone]}`}
+                className={`mt-6 rounded-2xl border px-5 py-4 text-base font-medium ${highlightToneStyles[currentJourneyPhase.highlight.tone]}`}
               >
                 {currentJourneyPhase.highlight.text}
               </div>
@@ -615,7 +559,7 @@ export default function LearningGuidePage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-blue-950">{currentProductFamily.title}</h3>
-                  <p className="mt-2 text-sm text-neutral-600">{currentProductFamily.summary}</p>
+                  <p className="mt-2 text-lg text-neutral-600">{currentProductFamily.summary}</p>
                 </div>
               </div>
             </div>
