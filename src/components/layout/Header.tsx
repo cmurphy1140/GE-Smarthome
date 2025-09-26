@@ -16,7 +16,7 @@ const getHeaderButtons = (currentPath: string) => {
   }
 
   if (currentPath !== '/program-details') {
-    buttons.push({ href: '/program-details', label: 'Program Details', isRoute: true })
+    buttons.push({ href: '/program-details', label: 'Details', isRoute: true })
   }
 
   if (currentPath !== '/signup') {
@@ -99,8 +99,7 @@ export function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [dropdownOpen])
 
-  return (
-    <motion.header
+  return <motion.header
       initial={{ opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -114,7 +113,7 @@ export function Header() {
         >
           <div className="inline-flex h-20 w-20 items-center justify-center">
             <Image
-              src="/ge-classic-logo.svg"
+              src="/GE-Logo.png"
               alt="GE Logo"
               width={80}
               height={80}
@@ -296,5 +295,4 @@ export function Header() {
         </div>
       </motion.div>
     </motion.header>
-  )
 }
