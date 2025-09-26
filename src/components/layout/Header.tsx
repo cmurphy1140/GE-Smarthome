@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Menu, X, ArrowRight, ExternalLink, ChevronDown, Home } from 'lucide-react'
+import { Menu, X, ArrowRight, ExternalLink, Home } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -48,7 +48,6 @@ const programDetailsNavLinks: { href: string; label: string; isRoute?: boolean; 
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
   const pathname = usePathname()
   const isLearningGuide = pathname === '/learning-guide'
   const isSignup = pathname === '/signup'
@@ -84,20 +83,6 @@ export function Header() {
     }
   }, [mobileOpen])
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownOpen) {
-        const target = event.target as Element
-        if (!target.closest('[data-dropdown]')) {
-          setDropdownOpen(false)
-        }
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [dropdownOpen])
 
   return <motion.header
       initial={{ opacity: 1, y: 0 }}
@@ -129,57 +114,23 @@ export function Header() {
 
         <div className="hidden md:flex flex-1">
           {currentNavLinks.length > 0 && (
-            <div className="relative" data-dropdown>
-               <button
-                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                 className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-semibold text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                 aria-expanded={dropdownOpen}
-                 aria-haspopup="true"
-                 aria-label="Open navigation menu"
-               >
-                 Navigation
-                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
-               </button>
-              
-               {dropdownOpen && (
-                 <motion.div
-                   initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                   transition={{ duration: 0.2, ease: "easeOut" }}
-                   className="absolute top-full left-0 mt-3 w-64 rounded-xl border border-blue-800/50 bg-blue-950/95 backdrop-blur-xl shadow-2xl z-50 overflow-hidden"
-                   role="menu"
-                   aria-label="Navigation menu"
-                 >
-                   <div className="py-3">
-                     {currentNavLinks.map((link, index) => {
-                       const Component = link.isRoute ? Link : 'a'
-                       return (
-                         <motion.div
-                           key={link.href}
-                           initial={{ opacity: 0, x: -10 }}
-                           animate={{ opacity: 1, x: 0 }}
-                           transition={{ delay: index * 0.05 }}
-                         >
-                           <Component
-                             href={link.href}
-                             className="flex items-center gap-3 px-5 py-4 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/50 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
-                             onClick={() => setDropdownOpen(false)}
-                             role="menuitem"
-                             tabIndex={0}
-                           >
-                             <span className="flex-1">{link.label}</span>
-                             {link.isExternal && (
-                               <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" aria-label="External link" />
-                             )}
-                           </Component>
-                         </motion.div>
-                       )
-                     })}
-                   </div>
-                 </motion.div>
-               )}
-            </div>
+            <nav className="flex items-center gap-6">
+              {currentNavLinks.map((link) => {
+                const Component = link.isRoute ? Link : 'a'
+                return (
+                  <Component
+                    key={link.href}
+                    href={link.href}
+                    className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    <span>{link.label}</span>
+                    {link.isExternal && (
+                      <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" aria-label="External link" />
+                    )}
+                  </Component>
+                )
+              })}
+            </nav>
           )}
         </div>
 
