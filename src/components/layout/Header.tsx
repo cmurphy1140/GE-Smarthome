@@ -27,8 +27,8 @@ const getHeaderButtons = (currentPath: string) => {
 }
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#program', label: 'Program' },
+  { href: '#about', label: 'GE Smart Home Experience' },
+  { href: '#program', label: 'GE Smart Home Partnership' },
   { href: '/program-details', label: 'Details', isRoute: true, isExternal: true },
   { href: '/learning-guide', label: 'Resources', isRoute: true, isExternal: true }
 ]
