@@ -30,8 +30,8 @@ function HeroSectionComponent() {
       {/* Large format background image */}
       <div className="absolute inset-0">
         <Image
-          src="/hero-bg.png"
-          alt="GE Smart Home professional"
+          src="/ge-team-photo.png"
+          alt="GE Smart Home professional team"
           fill
           className="object-cover"
           priority
