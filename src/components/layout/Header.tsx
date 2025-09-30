@@ -27,10 +27,10 @@ const getHeaderButtons = (currentPath: string) => {
 }
 
 const navLinks = [
-  { href: '#about', label: 'About GE Smart Home' },
-  { href: '#program', label: 'Dealer Program' },
+  { href: '#about', label: 'About' },
+  { href: '#program', label: 'Program' },
   { href: '/program-details', label: 'Details', isRoute: true, isExternal: true },
-  { href: '/learning-guide', label: 'Resources & Training', isRoute: true, isExternal: true }
+  { href: '/learning-guide', label: 'Resources', isRoute: true, isExternal: true }
 ]
 
 const learningGuideNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = [
@@ -114,16 +114,16 @@ export function Header() {
 
         <div className="hidden md:flex flex-1">
           {currentNavLinks.length > 0 && (
-            <nav className="flex items-center gap-6">
+            <nav className="flex items-center gap-4">
               {currentNavLinks.map((link) => {
                 const Component = link.isRoute ? Link : 'a'
                 return (
-                  <Component
-                    key={link.href}
-                    href={link.href}
-                    className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-base font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    <span>{link.label}</span>
+                <Component
+                  key={link.href}
+                  href={link.href}
+                  className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap"
+                >
+                  <span>{link.label}</span>
                     {link.isExternal && (
                       <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" aria-label="External link" />
                     )}
@@ -134,19 +134,19 @@ export function Header() {
           )}
         </div>
 
-        <div className="hidden items-center gap-5 md:flex ml-auto">
+        <div className="hidden items-center gap-3 md:flex ml-auto">
           {headerButtons.map((button) => (
             <Link
               key={button.href}
               href={button.href}
-              className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 ${
+              className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
                 button.label === 'Apply Now'
                   ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
                   : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
               }`}
             >
               {button.label}
-              {button.label === 'Apply Now' && <ArrowRight className="h-5 w-5" />}
+              {button.label === 'Apply Now' && <ArrowRight className="h-4 w-4" />}
             </Link>
           ))}
           {pathname !== '/' && (
