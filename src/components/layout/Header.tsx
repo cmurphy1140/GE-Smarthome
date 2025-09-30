@@ -107,8 +107,8 @@ export function Header() {
             />
           </div>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
-            <span className="text-xl font-semibold text-white leading-tight">GE Smart Home</span>
-            <span className="text-sm uppercase tracking-[0.2em] text-blue-200 leading-tight">Powered by Savant AI</span>
+            <span className="text-xl font-bold text-white leading-tight">GE Smart Home</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-blue-200 leading-tight">Powered by Savant AI</span>
           </span>
         </Link>
 
