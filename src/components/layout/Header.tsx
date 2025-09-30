@@ -90,7 +90,7 @@ export function Header() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="sticky top-0 z-50 border-b border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 backdrop-blur-xl"
     >
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-3 py-2 text-white sm:px-4">
+      <div className="mx-auto flex max-w-6xl items-center gap-4 pl-2 pr-6 py-2 text-white sm:pl-2 sm:pr-8">
         <Link 
           href="/" 
           className="flex items-center gap-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
