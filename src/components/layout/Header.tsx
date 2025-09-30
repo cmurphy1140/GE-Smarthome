@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Menu, X, ArrowRight, Building2, MapPin, BookOpen, Home } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { DropdownMenu } from '@/components/ui/DropdownMenu'
 

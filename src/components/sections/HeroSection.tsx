@@ -1,17 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import React, { useRef, memo } from 'react'
-
-import { AnimatedNumber } from '@/components/ui/AnimatedNumber'
-
-const heroStats = [
-  { value: 'Brand marketing to Millions of homes', suffix: '', label: 'Media Reach' },
-  { value: 48, suffix: ' hr', label: 'Average onboarding' },
-  { value: 24, suffix: '/7', label: 'Dedicated support' }
-] as const
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
@@ -29,77 +22,109 @@ const staggerContainer = {
 function HeroSectionComponent() {
   const heroRef = useRef(null)
 
-  const heroBackgroundStyles = {
-    backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.82), rgba(8, 11, 24, 0.7)), url("/hero-bg.png")',
-    backgroundSize: '100%',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor: '#1e293b'
-  }
-
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden py-32 md:py-48 lg:py-56 text-white"
-      style={heroBackgroundStyles}
+      className="relative h-screen min-h-[600px] overflow-hidden"
     >
+      {/* Large format background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-bg.png"
+          alt="GE Smart Home professional"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
+      {/* Curved container overlay in top-left */}
       <motion.div
-        initial="visible"
+        initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="relative mx-auto max-w-4xl px-6 text-center"
+        className="absolute top-0 left-0 z-10"
       >
-          <motion.h1
-            variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-display-lg md:text-display-xl text-white font-bold leading-tight"
+        <div className="relative">
+          {/* Curved shape using SVG path */}
+          <svg
+            className="h-[500px] w-[600px] text-blue-950"
+            viewBox="0 0 600 500"
+            preserveAspectRatio="none"
           >
-            Leverage cutting-edge technology to build your signature GE Smart Homes
-          </motion.h1>
-
-          <motion.p
-            variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            className="mx-auto mt-8 max-w-2xl text-lg text-blue-100 leading-relaxed md:text-xl"
-          >
-            Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance and always-on expertise.
-          </motion.p>
-
-
-        <motion.div
-          variants={fadeInUp}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-          className="mt-12 grid grid-cols-1 gap-4 text-center sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {heroStats.map(stat => (
-            <div
-              key={stat.label}
-              className="glass-card p-6 hover:shadow-glow hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+            <path
+              d="M0,0 L600,0 Q600,200 500,300 L300,400 Q200,450 100,400 L0,300 Z"
+              fill="currentColor"
+            />
+          </svg>
+          
+          {/* Content inside curved container */}
+          <div className="absolute top-8 left-8 right-8">
+            <motion.div
+              variants={fadeInUp}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="space-y-6"
             >
-              {typeof stat.value === 'string' ? (
-                <div className="text-lg font-semibold text-white leading-tight group-hover:text-blue-100 transition-colors duration-300">
-                  {stat.value}
+              {/* Logo */}
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center overflow-visible">
+                  <Image
+                    src="/GE-Logo.png"
+                    alt="GE Logo"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain transform scale-[1.65] origin-left"
+                    priority
+                    unoptimized
+                  />
                 </div>
-              ) : (
-                <AnimatedNumber
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  className="text-3xl font-semibold text-white group-hover:text-blue-100 transition-colors duration-300"
-                />
-              )}
-              <div className="mt-1 text-md uppercase tracking-[0.3em] text-blue-100 group-hover:text-blue-200 transition-colors duration-300">
-                {stat.label}
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold text-white leading-tight">GE Smart Home</span>
+                  <span className="text-xs text-blue-200 leading-tight">Powered by Savant AI</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
 
-      {/* Static background elements */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-900/25 to-blue-950/20 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-gradient-to-tr from-blue-950/25 to-blue-900/20 blur-3xl" />
-      </div>
+              {/* Main heading */}
+              <motion.h1
+                variants={fadeInUp}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-md"
+              >
+                We Make Smart Homes, For Life
+              </motion.h1>
+
+              {/* Description */}
+              <motion.div
+                variants={fadeInUp}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+                className="flex items-start gap-3"
+              >
+                <div className="flex h-6 w-6 items-center justify-center text-white mt-1">
+                  <ArrowRight className="h-4 w-4 rotate-45" />
+                </div>
+                <p className="text-base md:text-lg text-blue-100 leading-relaxed max-w-sm">
+                  We&apos;re a leading provider of smart home solutions and automation systems. Partner with us to deliver cutting-edge technology that transforms how people live.
+                </p>
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div
+                variants={fadeInUp}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+                className="pt-4"
+              >
+                <Link
+                  href="/signup"
+                  className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-3 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-50"
+                >
+                  Start Partnership
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }
