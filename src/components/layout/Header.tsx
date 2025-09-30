@@ -96,14 +96,15 @@ export function Header() {
           className="flex items-center gap-4 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
           aria-label="GE Smart Home - Go to homepage"
         >
-          <div className="inline-flex h-20 w-20 items-center justify-center">
+          <div className="inline-flex h-24 w-24 items-center justify-center">
             <Image
-              src="/GE-Logo.png"
+              src="/ge-logo.svg"
               alt="GE Logo"
-              width={80}
-              height={80}
-              className="h-20 w-20 object-contain"
+              width={96}
+              height={96}
+              className="h-24 w-24 object-contain"
               priority
+              unoptimized
             />
           </div>
           <span className="hidden flex-col font-medium text-blue-100 sm:flex">
