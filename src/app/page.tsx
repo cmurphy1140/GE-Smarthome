@@ -5,9 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
-import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
 import CyncFeaturesSection from '@/components/sections/CyncFeaturesSection'
-import FaqSection from '@/components/sections/FaqSection'
 
 
 export default function Home() {
@@ -20,12 +18,6 @@ export default function Home() {
           <PillarsSection />
         </section>
         <StatsSection />
-        <section id="apply">
-          <RoiCalculatorSection />
-        </section>
-        <section id="faqs">
-          <FaqSection />
-        </section>
         <CyncFeaturesSection />
       </main>
       <Footer />

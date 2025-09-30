@@ -119,16 +119,25 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
 } as const
 
+
 function ProgramTiersHero() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
 
+  const heroBackgroundStyles = {
+    backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.75), rgba(8, 11, 24, 0.65)), url(/ge-team-photo.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#1e293b'
+  }
+
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden bg-gradient-to-br from-neutral-200 via-white to-stone-100 py-28 text-slate-900 md:py-36"
+      className="relative overflow-hidden py-28 text-white md:py-36"
+      style={heroBackgroundStyles}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-neutral-100 opacity-50" />
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           initial="hidden"
@@ -138,43 +147,25 @@ function ProgramTiersHero() {
         >
           <motion.span
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-950"
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-md font-semibold uppercase tracking-[0.35em] text-white/90"
           >
             Program Tiers
           </motion.span>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-semibold leading-tight text-neutral-900 md:text-5xl"
+            className="text-4xl font-semibold leading-tight text-white md:text-5xl"
           >
             Choose the partnership level that matches your momentum
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="text-lg leading-relaxed text-neutral-600 md:text-xl max-w-3xl mx-auto"
+            className="text-lg leading-relaxed text-blue-100 md:text-xl max-w-3xl mx-auto"
           >
             Scale from foundational lighting packages to full Savant automation with incentives that grow alongside your pipeline.
           </motion.p>
 
-          <motion.div
-            variants={fadeInUp}
-            className="flex flex-col gap-4 sm:flex-row justify-center"
-          >
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-neutral-900 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-800"
-            >
-              Start your application
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/learning-guide"
-              className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-8 py-3 text-base font-semibold text-neutral-700 transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-200"
-            >
-              Back to Learning Guide
-            </Link>
-          </motion.div>
 
           <motion.div
             variants={fadeInUp}
@@ -204,11 +195,6 @@ export default function ProgramTiersPage() {
         <ProgramTiersHero />
 
         <section className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SectionHeader
-            eyebrow="Program tiers"
-            title={<span className="text-blue-950">Choose the partnership level that matches your momentum</span>}
-            description="Scale from foundational lighting packages to full Savant automation with incentives that grow alongside your pipeline."
-          />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {dealerTiers.map(tier => (
@@ -409,6 +395,7 @@ export default function ProgramTiersPage() {
             </div>
           </div>
         </section>
+
       </main>
       <Footer />
     </div>

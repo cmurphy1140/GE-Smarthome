@@ -24,6 +24,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://ge-smarthome.vercel.app'),
   title: "GE Smart Home Dealer Program | Partnership with Savant AI",
   description: "Join the GE Smart Home dealer network powered by Savant AI. Access exclusive smart lighting, thermostats, security systems, and automation solutions. Get 24/7 support, dealer pricing, and comprehensive training to build your signature smart home business.",
+  icons: {
+    icon: [
+      { url: '/ge-favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/ge-favicon-32.png', sizes: '32x32', type: 'image/png' }
+    ]
+  },
   keywords: [
     "GE Smart Home",
     "Savant AI",

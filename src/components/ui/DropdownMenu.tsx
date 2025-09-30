@@ -50,17 +50,15 @@ export function DropdownMenu({ trigger, items, className = '' }: DropdownMenuPro
 
   return (
     <div ref={dropdownRef} className={`relative ${className}`}>
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap ${
-              className.includes('text-white') 
-                ? 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50 hover:shadow-lg' 
-                : 'bg-gradient-to-r from-blue-600 to-blue-700 border border-blue-600 text-white shadow-lg hover:from-blue-700 hover:to-blue-800 hover:shadow-xl'
-            }`}
-            aria-expanded={isOpen}
-            aria-haspopup="true"
-          >
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`inline-flex items-center gap-2 px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary-600 focus:outline-none whitespace-nowrap ${
+          className.includes('text-white') ? 'text-white hover:text-primary-200' : 'text-gray-700'
+        }`}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
         <span>{trigger}</span>
         <ChevronDown 
           className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
@@ -74,7 +72,7 @@ export function DropdownMenu({ trigger, items, className = '' }: DropdownMenuPro
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-gray-200 bg-white shadow-2xl z-50 backdrop-blur-sm"
+            className="absolute left-0 top-full mt-2 w-80 rounded-xl border border-gray-200 bg-white shadow-lg z-50"
           >
             <div className="p-2">
                   {items.map((item) => {

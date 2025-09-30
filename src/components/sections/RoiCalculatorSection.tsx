@@ -7,25 +7,42 @@ import { BarChart3, Rocket } from 'lucide-react'
 
 const roiCalculator = {
   inputs: [
-    { label: 'Monthly projects', key: 'projects', min: 1, max: 50, default: 5 },
-    { label: 'Average project value', key: 'value', min: 5000, max: 100000, default: 25000 },
-    { label: 'Current margin %', key: 'margin', min: 5, max: 40, default: 15 }
-  ]
+    { label: 'Smart home installs/month', key: 'projects', min: 1, max: 30, default: 8 },
+    { label: 'Avg GE products per install', key: 'products', min: 5, max: 50, default: 20 },
+    { label: 'Average product price', key: 'price', min: 15, max: 80, default: 35 }
+  ],
+  dealerDiscount: 0.35, // 35% off MSRP
+  competitorMargin: 0.25, // Typical competitor margin
+  additionalServices: 0.15 // 15% markup on installation services
 } as const
 
 export default function RoiCalculatorSection() {
-  const [roiInputs, setRoiInputs] = useState({ projects: 5, value: 25000, margin: 15 })
+  const [roiInputs, setRoiInputs] = useState({ projects: 8, products: 20, price: 35 })
 
   const calculateROI = () => {
-    const currentMonthlyRevenue = roiInputs.projects * roiInputs.value * (roiInputs.margin / 100)
-    const improvedMargin = Math.min(roiInputs.margin + 15, 35)
-    const newMonthlyRevenue = roiInputs.projects * roiInputs.value * (improvedMargin / 100)
-    const monthlyIncrease = newMonthlyRevenue - currentMonthlyRevenue
+    // Calculate monthly product sales volume
+    const monthlyProductSales = roiInputs.projects * roiInputs.products * roiInputs.price
+
+    // Dealer pricing: 35% off MSRP means 65% of retail price
+    const dealerCost = monthlyProductSales * (1 - roiCalculator.dealerDiscount)
+
+    // Competitor margin (what they'd make with other brands)
+    const competitorRevenue = monthlyProductSales * roiCalculator.competitorMargin
+
+    // GE dealer advantage: sell at retail, buy at 35% discount
+    const geAdvantage = monthlyProductSales - dealerCost
+
+    // Additional service markup opportunity
+    const serviceRevenue = monthlyProductSales * roiCalculator.additionalServices
+
+    // Total monthly advantage over competitors
+    const monthlyIncrease = geAdvantage - competitorRevenue + serviceRevenue
 
     return {
       monthlyIncrease,
       annualIncrease: monthlyIncrease * 12,
-      marginImprovement: improvedMargin - roiInputs.margin
+      dealerSavings: roiCalculator.dealerDiscount * 100,
+      totalProductVolume: monthlyProductSales
     }
   }
 
@@ -47,8 +64,8 @@ export default function RoiCalculatorSection() {
                 <BarChart3 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">Calculate your ROI</h3>
-                <p className="text-sm text-slate-600">See how much additional revenue you could generate with improved margins and incentives.</p>
+                <h3 className="text-xl font-semibold text-slate-900">GE Dealer Advantage Calculator</h3>
+                <p className="text-sm text-slate-600">Calculate your monthly advantage with 35% off MSRP on GE Smart Home products.</p>
               </div>
             </div>
 
@@ -58,7 +75,7 @@ export default function RoiCalculatorSection() {
                   <label className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.3em] text-slate-600">
                     {input.label}
                     <span className="text-slate-900">
-                      {input.key === 'value' ? `$${roiInputs[input.key].toLocaleString()}` : `${roiInputs[input.key]}${input.key === 'margin' ? '%' : ''}`}
+                      {input.key === 'price' ? `$${roiInputs[input.key]}` : roiInputs[input.key]}
                     </span>
                   </label>
                   <input
@@ -75,8 +92,8 @@ export default function RoiCalculatorSection() {
                     className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200"
                   />
                   <div className="mt-2 flex justify-between text-sm text-slate-500">
-                    <span>{input.key === 'value' ? `$${input.min.toLocaleString()}` : input.min}</span>
-                    <span>{input.key === 'value' ? `$${input.max.toLocaleString()}` : input.max}</span>
+                    <span>{input.key === 'price' ? `$${input.min}` : input.min}</span>
+                    <span>{input.key === 'price' ? `$${input.max}` : input.max}</span>
                   </div>
                 </div>
               ))}
@@ -91,24 +108,31 @@ export default function RoiCalculatorSection() {
             className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)]"
           >
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
-                <span>Monthly revenue increase</span>
-                <span className="text-2xl font-semibold text-slate-900">+${roi.monthlyIncrease.toLocaleString()}</span>
+              <div className="rounded-lg bg-green-50 p-4 border border-green-200">
+                <div className="text-sm font-semibold text-green-800 mb-1">Monthly Dealer Advantage</div>
+                <div className="text-3xl font-bold text-green-900">+${Math.round(roi.monthlyIncrease).toLocaleString()}</div>
+                <div className="text-xs text-green-700">vs. competitor products</div>
               </div>
+
               <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
-                <span>Annual revenue increase</span>
-                <span className="text-2xl font-semibold text-slate-900">+${roi.annualIncrease.toLocaleString()}</span>
+                <span>Annual advantage</span>
+                <span className="text-xl font-semibold text-slate-900">+${Math.round(roi.annualIncrease).toLocaleString()}</span>
               </div>
+
               <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
-                <span>Margin improvement</span>
-                <span className="text-2xl font-semibold text-slate-900">+{roi.marginImprovement.toFixed(1)}%</span>
+                <span>Dealer discount</span>
+                <span className="text-xl font-semibold text-blue-900">{roi.dealerSavings}% off MSRP</span>
+              </div>
+
+              <div className="text-xs text-slate-500 mt-3">
+                Based on ${Math.round(roi.totalProductVolume).toLocaleString()} monthly product volume
               </div>
             </div>
             <Link
               href="/signup"
               className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900"
             >
-              Start earning more
+              Become a GE Dealer
               <Rocket className="h-4 w-4" />
             </Link>
           </motion.div>

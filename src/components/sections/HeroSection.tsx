@@ -65,19 +65,6 @@ function HeroSectionComponent() {
             Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance and always-on expertise.
           </motion.p>
 
-        <motion.div
-          variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row"
-        >
-          <Link
-            href="/signup"
-            className="btn-primary group"
-          >
-            <span>Start Partnership</span>
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
 
         <motion.div
           variants={fadeInUp}

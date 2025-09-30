@@ -50,42 +50,23 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
 
 // Predefined breadcrumbs for common pages
 export const breadcrumbConfigs = {
-  learningGuide: [
-    { label: 'Learning Guide' }
-  ],
-  partnerJourney: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: 'Partner Journey' }
-  ],
-  productEcosystem: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: 'Product Ecosystem' }
+  smartHomeExperience: [
+    { label: 'Smart Home Experience' }
   ],
   programTiers: [
-    { label: 'Learning Guide', href: '/learning-guide' },
     { label: 'Program Tiers' }
   ],
-  technology: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: 'Smart Home Technology' }
+  partnerJourney: [
+    { label: 'Partner Journey' }
   ],
-  enablement: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: 'Training & Support' }
-  ],
-  deployment: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: 'Deployment' }
-  ],
-  support: [
-    { label: 'Learning Guide', href: '/learning-guide' },
-    { label: '24/7 Support' }
-  ],
-  programDetails: [
-    { label: 'Program Details' }
+  learnAboutGE: [
+    { label: 'Learn About GE Smart Home' }
   ],
   signup: [
     { label: 'Sign Up' }
+  ],
+  faq: [
+    { label: 'FAQ' }
   ]
 }
 
