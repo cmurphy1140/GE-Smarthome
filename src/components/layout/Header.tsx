@@ -11,10 +11,6 @@ import { usePathname } from 'next/navigation'
 const getHeaderButtons = (currentPath: string) => {
   const buttons = []
 
-  if (currentPath !== '/learning-guide') {
-    buttons.push({ href: '/learning-guide', label: 'Learn', isRoute: true })
-  }
-
   if (currentPath !== '/program-details') {
     buttons.push({ href: '/program-details', label: 'Details', isRoute: true })
   }
