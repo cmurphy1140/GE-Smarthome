@@ -53,6 +53,34 @@ export const breadcrumbConfigs = {
   learningGuide: [
     { label: 'Learning Guide' }
   ],
+  partnerJourney: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Partner Journey' }
+  ],
+  productEcosystem: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Product Ecosystem' }
+  ],
+  programTiers: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Program Tiers' }
+  ],
+  technology: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Smart Home Technology' }
+  ],
+  enablement: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Training & Support' }
+  ],
+  deployment: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: 'Deployment' }
+  ],
+  support: [
+    { label: 'Learning Guide', href: '/learning-guide' },
+    { label: '24/7 Support' }
+  ],
   programDetails: [
     { label: 'Program Details' }
   ],

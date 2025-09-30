@@ -49,38 +49,30 @@ function HeroSectionComponent() {
         variants={staggerContainer}
         className="relative mx-auto max-w-4xl px-6 text-center"
       >
-          <motion.div
-            variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="glass-button rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/90"
-          >
-            Powered by Savant AI
-          </motion.div>
-
           <motion.h1
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            className="mt-8 text-4xl font-semibold leading-tight text-white md:text-5xl"
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="text-display-lg md:text-display-xl text-white font-bold leading-tight"
           >
             Leverage cutting-edge technology to build your signature GE Smart Homes
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-            className="mx-auto mt-6 max-w-2xl text-base text-blue-100 leading-relaxed md:text-lg"
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            className="mx-auto mt-8 max-w-2xl text-lg text-blue-100 leading-relaxed md:text-xl"
           >
             Unlock the power of the GE Smart Home with quality products powered by savant AI—complete with strategist guidance and always-on expertise.
           </motion.p>
 
         <motion.div
           variants={fadeInUp}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
           className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row"
         >
           <Link
             href="/signup"
-            className="group inline-flex items-center justify-center gap-3 rounded-full px-16 py-4 text-lg font-semibold text-blue-950 bg-white shadow-lg hover:bg-blue-50 hover:shadow-xl hover:shadow-glow transition-all duration-300 border border-blue-200 hover:border-blue-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="btn-primary group"
           >
             <span>Start Partnership</span>
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

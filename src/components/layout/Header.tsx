@@ -3,54 +3,66 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Menu, X, ArrowRight, ExternalLink, Home } from 'lucide-react'
+import { Menu, X, ArrowRight, Building2, BookOpen, MapPin, Package, FileText, Home } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { DropdownMenu } from '@/components/ui/DropdownMenu'
 
-// Consistent navigation buttons for all pages
-const getHeaderButtons = (currentPath: string) => {
-  const buttons = []
-
-  if (currentPath !== '/program-details') {
-    buttons.push({ href: '/program-details', label: 'Details', isRoute: true })
+const experienceLinks = [
+  {
+    label: 'Program Tiers',
+    description: 'Compare partnership levels',
+    href: '/program-tiers',
+    icon: Building2
+  },
+  {
+    label: 'Learning Guide',
+    description: 'Training & enablement paths',
+    href: '/learning-guide',
+    icon: BookOpen
+  },
+  {
+    label: 'Smart Home Technology',
+    description: 'Product ecosystem overview',
+    href: '/technology',
+    icon: Home
   }
+]
 
-  if (currentPath !== '/signup') {
-    buttons.push({ href: '/signup', label: 'Apply Now', isRoute: true })
+const dealershipLinks = [
+  {
+    label: 'Partner Journey',
+    description: 'From first conversation to flagship installation',
+    href: '/partner-journey',
+    icon: MapPin
+  },
+  {
+    label: 'Product Ecosystem',
+    description: 'Lighting and automation portfolio',
+    href: '/product-ecosystem',
+    icon: Package
+  },
+  {
+    label: 'Program Details',
+    description: 'GE Smart Home experience overview',
+    href: '/program-details',
+    icon: FileText
   }
-
-  return buttons
-}
-
-const navLinks = [
-  { href: '/about', label: 'GE Smart Home Experience', isRoute: true },
-  { href: '#program', label: 'GE Smart Home Partnership' }
 ]
 
-const learningGuideNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = [
-  { href: '#journey', label: 'Partnership Journey' },
-  { href: '#enablement', label: 'Training & Support' },
-  { href: '#support', label: '24/7 Support' },
-  { href: '#technology', label: 'Smart Home Technology' }
+const utilityLinks: { label: string; href: string }[] = [
 ]
 
-const signupNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = []
-
-const programDetailsNavLinks: { href: string; label: string; isRoute?: boolean; isExternal?: boolean }[] = [
-  { href: '#journey', label: 'Partnership Journey' }
+const primaryLinks: { label: string; href: string }[] = [
+  { href: '#program', label: 'Our News' }
 ]
+
+type OpenState = 'menu' | 'experience' | 'dealership' | null
 
 export function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const pathname = usePathname()
-  const isLearningGuide = pathname === '/learning-guide'
-  const isSignup = pathname === '/signup'
-  const isProgramDetails = pathname === '/program-details'
-  const currentNavLinks = isLearningGuide ? learningGuideNavLinks : isSignup ? signupNavLinks : isProgramDetails ? programDetailsNavLinks : navLinks
-  const headerButtons = getHeaderButtons(pathname)
+  const [openState, setOpenState] = useState<OpenState>(null)
 
   useEffect(() => {
-    if (!mobileOpen) return
+    if (openState !== 'menu') return
 
     // Prevent body scroll when mobile menu is open
     const scrollY = window.scrollY
@@ -61,7 +73,7 @@ export function Header() {
 
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
-        setMobileOpen(false)
+        setOpenState(null)
       }
     }
 
@@ -75,170 +87,206 @@ export function Header() {
       window.scrollTo(0, scrollY)
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [mobileOpen])
-
-
-  return <motion.header
+  }, [openState])
+  return (
+    <motion.header
       initial={{ opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="sticky top-0 z-50 border-b border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 backdrop-blur-xl"
+      className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm"
     >
-      <div className="mx-auto flex max-w-6xl items-center gap-4 pl-2 pr-6 py-2 text-white sm:pl-2 sm:pr-8">
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
-          aria-label="GE Smart Home - Go to homepage"
-        >
-          <div className="inline-flex h-16 w-16 items-center justify-center">
+      <div className="mx-auto hidden max-w-7xl items-center justify-between px-6 py-2 text-xs font-medium text-gray-600 lg:flex">
+        <div className="flex items-center gap-6">
+          {utilityLinks.map(link => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="uppercase tracking-[0.2em] hover:text-blue-700 transition-colors duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1 sm:px-6 lg:px-8">
+            <Link 
+              href="/" 
+              className="flex items-center gap-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+              aria-label="GE Smart Home - Go to homepage"
+            >
+          <div className="inline-flex h-12 w-12 items-center justify-center overflow-visible">
             <Image
               src="/GE-Logo.png"
               alt="GE Logo"
-              width={64}
-              height={64}
-              className="h-16 w-16 object-contain"
+              width={48}
+              height={48}
+              className="h-12 w-12 object-contain transform scale-[1.65] origin-left"
               priority
               unoptimized
             />
           </div>
-          <span className="hidden flex-col font-medium text-blue-100 sm:flex">
-            <span className="text-lg font-bold text-white leading-tight">GE Smart Home</span>
-            <span className="text-xs uppercase tracking-[0.2em] text-blue-200 leading-tight">Powered by <span className="font-bold">Savant</span> AI</span>
-          </span>
+          <div className="flex flex-col">
+                <span className="text-xl font-bold text-gray-900 leading-tight">GE Smart Home</span>
+            <span className="text-xs text-gray-500 leading-tight">Powered by Savant AI</span>
+          </div>
         </Link>
 
-        <div className="hidden md:flex flex-1">
-          {currentNavLinks.length > 0 && (
-            <nav className="flex items-center gap-4">
-              {currentNavLinks.map((link) => {
-                const Component = link.isRoute ? Link : 'a'
-                return (
-                <Component
-                  key={link.href}
-                  href={link.href}
-                  className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-blue-200 transition-all duration-200 hover:text-white hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap"
-                >
-                  <span>{link.label}</span>
-                    {link.isExternal && (
-                      <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" aria-label="External link" />
-                    )}
-                  </Component>
-                )
-              })}
-            </nav>
-          )}
-        </div>
+        <div className="hidden items-center gap-8 lg:flex">
+          <div className="flex items-center gap-6">
+            {/* Smart Home Experience Dropdown */}
+            <DropdownMenu 
+              trigger="Smart Home Experience"
+              items={experienceLinks}
+            />
+            
+            {/* Smart Home Dealership Dropdown */}
+            <DropdownMenu 
+              trigger="Smart Home Dealership"
+              items={dealershipLinks}
+            />
 
-        <div className="hidden items-center gap-3 md:flex ml-auto">
-          {headerButtons.map((button) => (
+            {/* Other navigation links */}
+            {primaryLinks.map(link => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex items-center gap-4">
             <Link
-              key={button.href}
-              href={button.href}
-              className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
-                button.label === 'Apply Now'
-                  ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
-                  : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
-              }`}
+              href="/signup"
+              className="btn-primary"
             >
-              {button.label}
-              {button.label === 'Apply Now' && <ArrowRight className="h-4 w-4" />}
+              Become a Dealer
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Link>
-          ))}
-          {pathname !== '/' && (
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center rounded-lg p-4 bg-white/10 border border-white/30 text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-sm"
-              aria-label="Go to homepage"
-            >
-              <Home className="h-6 w-6" />
-            </Link>
-          )}
+          </div>
         </div>
 
         <button
           type="button"
-          onClick={() => setMobileOpen(prev => !prev)}
-          className="inline-flex items-center justify-center rounded-full border border-blue-800 p-3 text-blue-50 transition-all duration-200 hover:border-blue-600 hover:text-white active:scale-95 md:hidden"
+          onClick={() => setOpenState(prev => (prev === 'menu' ? null : 'menu'))}
+          className="inline-flex items-center justify-center rounded-md border border-gray-300 p-2 text-gray-700 transition-all duration-200 hover:border-gray-400 hover:text-gray-900 active:scale-95 lg:hidden"
           style={{ minHeight: '44px', minWidth: '44px' }}
           aria-label="Toggle navigation"
-          aria-expanded={mobileOpen}
+          aria-expanded={openState === 'menu'}
         >
-          {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          {openState === 'menu' ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       <motion.div
         initial={false}
-        animate={{ height: mobileOpen ? 'auto' : 0, opacity: mobileOpen ? 1 : 0 }}
+        animate={{ height: openState === 'menu' ? 'auto' : 0, opacity: openState === 'menu' ? 1 : 0 }}
         transition={{ duration: 0.25, ease: 'easeInOut' }}
-        className="overflow-hidden md:hidden"
+        className="overflow-hidden border-t border-gray-200 bg-white lg:hidden"
       >
-        <div className="space-y-4 border-t border-blue-900/60 bg-gradient-to-r from-blue-950 via-blue-950/95 to-black/90 px-4 py-6 text-blue-50 sm:px-6">
-          <nav className="flex flex-col gap-3">
-            {currentNavLinks.map((link) => {
-              const Component = link.isRoute ? Link : 'a'
-              return (
-                <Component
-                  key={link.href}
+        <div className="px-4 py-6 text-gray-900 sm:px-6">
+          <div className="space-y-4">
+            <div className="space-y-1 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+              Utility
+            </div>
+            <div className="flex flex-col gap-3">
+              {utilityLinks.map(link => (
+                <Link
+                  key={link.label}
                   href={link.href}
-                  className="inline-flex items-center gap-2 rounded-lg px-5 py-4 text-base font-semibold text-blue-200 transition-all duration-200 hover:bg-blue-900/60 hover:text-white hover:translate-x-1 active:scale-95"
-                  onClick={() => setMobileOpen(false)}
+                  className="text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-blue-700"
+                  onClick={() => setOpenState(null)}
                 >
-                  <span className="flex-1">{link.label}</span>
-                  {link.isExternal && (
-                    <ExternalLink className="h-4 w-4 opacity-60 transition-opacity duration-200 hover:opacity-100" />
-                  )}
-                </Component>
-              )
-            })}
-          </nav>
-          <div className="flex flex-col gap-3">
-            {headerButtons.map((button) => (
-              <Link
-                key={button.href}
-                href={button.href}
-                onClick={() => setMobileOpen(false)}
-                className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 ${
-                  button.label === 'Apply Now'
-                    ? 'bg-blue-800 border border-blue-700 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-700'
-                    : 'bg-white/10 border border-white/30 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50'
-                }`}
-              >
-                {button.label}
-                {button.label === 'Apply Now' && <ArrowRight className="h-5 w-5" />}
-              </Link>
-            ))}
-            {isSignup && (
-              <>
-                <Link
-                  href="/"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/10 border border-white/30 px-5 py-2.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/50"
-                >
-                  <Home className="h-5 w-5" />
-                  Home
+                  {link.label}
                 </Link>
-                <Link
-                  href="/learning-guide"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg bg-blue-800 border border-blue-700 px-5 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
-                >
-                  Resources
-                </Link>
-              </>
-            )}
-            {!isLearningGuide && !isSignup && !isProgramDetails && (
-              <Link
-                href="/signup"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-base font-semibold text-blue-950 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
-              >
-                Apply Now
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            )}
+              ))}
+            </div>
           </div>
+
+          <div className="mt-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+              Main Navigation
+            </div>
+            <div className="flex flex-col gap-3">
+              {primaryLinks.map(link => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-blue-700"
+                  onClick={() => setOpenState(null)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+              Smart Home Experience
+            </div>
+            <div className="flex flex-col gap-3">
+              {experienceLinks.map(link => {
+                const IconComponent = link.icon
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="rounded-md border border-gray-200 px-4 py-3 text-sm text-gray-700 transition-colors duration-200 hover:border-blue-600 hover:text-blue-700"
+                    onClick={() => setOpenState(null)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent className="h-4 w-4 text-blue-600" />
+                      <div>
+                        <span className="block font-semibold">{link.label}</span>
+                        <span className="block text-xs text-gray-500">{link.description}</span>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-2">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+              Smart Home Dealership
+            </div>
+            <div className="flex flex-col gap-3">
+              {dealershipLinks.map(link => {
+                const IconComponent = link.icon
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="rounded-md border border-gray-200 px-4 py-3 text-sm text-gray-700 transition-colors duration-200 hover:border-blue-600 hover:text-blue-700"
+                    onClick={() => setOpenState(null)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconComponent className="h-4 w-4 text-blue-600" />
+                      <div>
+                        <span className="block font-semibold">{link.label}</span>
+                        <span className="block text-xs text-gray-500">{link.description}</span>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+
+          <Link
+            href="/signup"
+            className="mt-8 inline-flex items-center gap-3 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+            onClick={() => setOpenState(null)}
+          >
+            Become a Dealer
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </motion.div>
     </motion.header>
+  )
 }

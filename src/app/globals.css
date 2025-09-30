@@ -5,6 +5,65 @@
 /* Import Glass Morphism Design System */
 @import '../styles/glass-morphism.css';
 
+/* GE Appliances Inspired Design System */
+@layer utilities {
+  /* Typography */
+  .text-display-2xl {
+    @apply text-6xl font-bold tracking-tight;
+  }
+  
+  .text-display-xl {
+    @apply text-5xl font-bold tracking-tight;
+  }
+  
+  .text-display-lg {
+    @apply text-4xl font-semibold tracking-tight;
+  }
+  
+  .text-display-md {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  
+  .text-display-sm {
+    @apply text-2xl font-semibold;
+  }
+  
+  .text-display-xs {
+    @apply text-xl font-semibold;
+  }
+
+  /* GE Appliances Card Styles */
+  .ge-card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  
+  .ge-card-elevated {
+    @apply bg-white rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-200;
+  }
+
+  /* Professional Spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .max-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* GE Appliances Button Styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-primary-700 bg-white border border-primary-200 rounded-lg shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,10 +81,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
   font-feature-settings: "kern" on, "liga" on, "calt" on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
   /* Mobile optimizations */
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
