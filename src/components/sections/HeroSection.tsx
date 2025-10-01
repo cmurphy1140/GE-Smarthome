@@ -34,7 +34,7 @@ function HeroSectionComponent() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl leading-tight"
           >
-            Design. Development. Maintenance.
+            Innovate. Integrate. Support.
           </motion.h1>
 
           {/* Circular video player */}
