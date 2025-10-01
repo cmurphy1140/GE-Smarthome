@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { Breadcrumb, breadcrumbConfigs } from '@/components/ui/Breadcrumb'
+import { StructuredData } from '@/components/common/StructuredData'
 
 const faqs = [
   {
@@ -79,8 +80,22 @@ const staggerContainer = {
 export default function FaqPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }
+
   return (
     <div className="min-h-screen bg-neutral-50 text-slate-900">
+      <StructuredData json={faqSchema} />
       <Header />
       <main className="space-y-24 pb-24">
         <div className="container-padding pt-6">

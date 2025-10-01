@@ -6,6 +6,7 @@ import { ClientScrollToTop } from "@/components/ui/ClientScrollToTop";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import { FloatingActionButton } from "@/components/ui/FloatingActionButton";
 import { PerformanceMonitor } from "@/components/common/PerformanceMonitor";
+import { StructuredData } from "@/components/common/StructuredData";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -60,6 +61,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -109,8 +113,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GE Smart Home",
+    "description": "GE Smart Home dealer program powered by Savant AI, offering exclusive smart lighting, thermostats, security systems, and automation solutions.",
+    "url": "https://ge-smarthome.vercel.app",
+    "logo": "https://ge-smarthome.vercel.app/GE-Logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "1-800-GE-SMART",
+      "contactType": "customer service",
+      "email": "partnersupport@gesmarthome.com"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1975 Noble Road, Building 313",
+      "addressLocality": "East Cleveland",
+      "addressRegion": "OH",
+      "postalCode": "44112",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.gelighting.com/",
+      "https://www.savant.com/"
+    ]
+  }
+
   return (
     <html lang="en">
+      <head>
+        <StructuredData json={organizationSchema} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

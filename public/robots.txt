@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ge-smarthome.vercel.app/sitemap.xml
+
+# Block access to sensitive paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
