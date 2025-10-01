@@ -21,45 +21,45 @@ const sections = [
   {
     number: '01',
     title: 'Innovate',
-    description: 'We pioneer cutting-edge smart home solutions that transform how people live, combining GE\'s 140+ years of innovation with Savant\'s advanced automation technology.',
+    description: 'Pioneer cutting-edge smart home solutions combining GE\'s 140+ years of innovation with Savant\'s advanced automation.',
     subsections: [
       {
         title: 'Smart Home Technology',
-        content: 'From GE Proseo smart lighting to Savant whole-home automation, we deliver products that set industry standards. Our portfolio spans lighting, climate control, security, and entertainment systems designed for modern living.'
+        content: 'Industry-leading products spanning lighting, climate control, security, and entertainment systems.'
       },
       {
         title: 'Product Development',
-        content: 'We continuously advance our technology stack with firmware updates, new integrations, and expanded product lines. Every innovation is tested to ensure reliability, security, and seamless user experiences across all devices.'
+        content: 'Continuous firmware updates, new integrations, and expanded product lines tested for reliability.'
       }
     ]
   },
   {
     number: '02',
     title: 'Integrate',
-    description: 'When partnering with dealers, we provide complete integration support including training, technical resources, and dedicated channel strategists to ensure successful installations.',
+    description: 'Complete integration support with training, technical resources, and dedicated channel strategists.',
     subsections: [
       {
         title: 'Dealer Enablement',
-        content: 'From day one, partners receive comprehensive training on product installation, system design, and sales strategies. Our regional trainers conduct live sessions, provide demo equipment, and offer ongoing certification programs tailored to your business.'
+        content: 'Comprehensive training, live sessions, demo equipment, and certification programs from day one.'
       },
       {
         title: 'System Integration',
-        content: 'Our smart home systems integrate seamlessly with third-party devices, networking equipment, and existing infrastructure. We provide professional-grade APIs, documentation, and technical support to ensure every installation exceeds expectations.'
+        content: 'Seamless third-party integration with professional APIs, documentation, and technical support.'
       }
     ]
   },
   {
     number: '03',
     title: 'Support',
-    description: 'Constant updating, dedicated assistance, and proactive monitoring ensure our dealers and their customers receive world-class support at every stage of the partnership.',
+    description: 'World-class support with dedicated assistance and proactive monitoring at every partnership stage.',
     subsections: [
       {
         title: '24/7 Technical Support',
-        content: 'Our dedicated support team provides round-the-clock assistance for installation questions, troubleshooting, and system optimization. Dealers receive priority response times and direct access to engineering expertise when needed.'
+        content: 'Round-the-clock assistance with priority response times and direct engineering access.'
       },
       {
         title: 'Business Growth Support',
-        content: 'Beyond technical help, we provide marketing resources, co-branded materials, MDF funds, and strategic guidance to help dealers grow their smart home practice. Quarterly business reviews ensure you\'re maximizing your partnership potential.'
+        content: 'Marketing resources, co-branded materials, MDF funds, and quarterly business reviews.'
       }
     ]
   }
@@ -94,14 +94,14 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
             >
               {/* Left column - Section info */}
-              <motion.div variants={fadeInUp} className="space-y-6">
-                <div className="text-gray-400 text-sm font-semibold">
+              <motion.div variants={fadeInUp} className="space-y-8">
+                <div className="text-gray-300 text-8xl font-bold">
                   {section.number}
                 </div>
-                <h3 className="text-4xl font-bold text-gray-900 lg:text-5xl">
+                <h3 className="text-5xl font-bold text-gray-900 lg:text-6xl xl:text-7xl">
                   {section.title}
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-xl text-gray-600 leading-relaxed">
                   {section.description}
                 </p>
                 <Link
