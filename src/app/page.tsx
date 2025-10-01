@@ -6,7 +6,6 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { WhatWeDoSection } from '@/components/sections/WhatWeDoSection'
 import { PartnerStoreSection } from '@/components/sections/PartnerStoreSection'
 import { SocialSidebar } from '@/components/common/SocialSidebar'
-import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import CyncFeaturesSection from '@/components/sections/CyncFeaturesSection'
 
@@ -22,9 +21,6 @@ export default function Home() {
         <PartnerStoreSection />
         
         {/* Original homepage sections */}
-        <section id="program">
-          <PillarsSection />
-        </section>
         <StatsSection />
         <CyncFeaturesSection />
       </main>
