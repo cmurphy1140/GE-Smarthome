@@ -83,7 +83,7 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
         </motion.div>
 
         {/* Content sections */}
-        <div className="space-y-32">
+        <div className="space-y-64">
           {sections.map((section) => (
             <motion.div
               key={section.number}
