@@ -33,7 +33,7 @@ const verticals = [
       'Build long-term customer relationships',
       'Access to technical hotline and field support'
     ],
-    cta: 'Blueprint your first Proseo upsell',
+    cta: 'Apply Now',
     href: '/signup?vertical=electrical'
   },
   {
@@ -62,7 +62,7 @@ const verticals = [
       'Access to co-marketing safety campaigns',
       'Priority support for complex integrations'
     ],
-    cta: 'Design a security + lighting package',
+    cta: 'Apply Now',
     href: '/signup?vertical=security'
   },
   {
@@ -91,7 +91,7 @@ const verticals = [
       'Design desk support for complex installations',
       'Launch-ready showroom demo equipment'
     ],
-    cta: 'Curate your next flagship install',
+    cta: 'Apply Now',
     href: '/signup?vertical=av'
   }
 ]

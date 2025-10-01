@@ -14,8 +14,6 @@ import {
   Zap,
   Speaker,
   Thermometer,
-  Camera,
-  Lock,
   PlayCircle,
   CheckCircle
 } from 'lucide-react'
@@ -127,20 +125,20 @@ function SmartHomeShowcaseHero() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
 
-  const heroBackgroundStyles = {
-    backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.75), rgba(8, 11, 24, 0.65)), url(/smarthome-hero.png), linear-gradient(135deg, #1e293b, #0f172a)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor: '#1e293b'
-  }
-
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden py-28 text-white md:py-36"
-      style={heroBackgroundStyles}
+      className="relative overflow-hidden py-28 text-white md:py-36 bg-slate-800"
     >
+      <Image
+        src="/smarthome-hero.png"
+        alt="Smart home technology showcase"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/75 via-blue-950/65 to-slate-900/75" />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial="hidden"
@@ -220,7 +218,6 @@ function SmartHomeShowcaseHero() {
 export default function SmartHomeExperiencePage() {
   const [activeCategory, setActiveCategory] = useState(0)
   const currentCategory = productCategories[activeCategory]
-  const CurrentIcon = currentCategory.icon
 
   return (
     <div className="min-h-screen bg-neutral-50 text-slate-900">

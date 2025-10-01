@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
@@ -124,20 +125,20 @@ function ProgramTiersHero() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, amount: 0.4 })
 
-  const heroBackgroundStyles = {
-    backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.75), rgba(8, 11, 24, 0.65)), url(/ge-team-photo.png)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor: '#1e293b'
-  }
-
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden py-28 text-white md:py-36"
-      style={heroBackgroundStyles}
+      className="relative overflow-hidden py-28 text-white md:py-36 bg-slate-800"
     >
+      <Image
+        src="/ge-team-photo.png"
+        alt="GE Smart Home team photo"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/75 via-blue-950/65 to-slate-900/75" />
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           initial="hidden"
@@ -388,7 +389,7 @@ export default function ProgramTiersPage() {
                   href="/signup"
                   className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-3 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-50"
                 >
-                  Start Partnership Application
+                  Apply Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

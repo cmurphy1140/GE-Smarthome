@@ -60,7 +60,7 @@ export const breadcrumbConfigs = {
     { label: 'Partner Journey' }
   ],
   learnAboutGE: [
-    { label: 'Learn About GE Smart Home' }
+    { label: 'About the GE Smart Home Dealer Program' }
   ],
   signup: [
     { label: 'Sign Up' }
@@ -69,4 +69,3 @@ export const breadcrumbConfigs = {
     { label: 'FAQ' }
   ]
 }
-

@@ -57,9 +57,9 @@ export function SectionHeader({
         </span>
       ) : null}
       <div className="space-y-3">
-        <div className={titleClasses}>
+        <h2 className={titleClasses}>
           {title}
-        </div>
+        </h2>
         {description ? (
           <p className={variant === 'dark' ? "text-base leading-snug text-blue-50 md:text-lg lg:text-xl font-normal" : "text-base leading-snug text-slate-700 md:text-lg lg:text-xl font-normal"}>
             {description}

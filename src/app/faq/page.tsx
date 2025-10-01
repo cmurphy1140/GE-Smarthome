@@ -218,7 +218,7 @@ export default function FaqPage() {
             variants={staggerContainer}
             className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.name}
                 variants={fadeInUp}

@@ -112,7 +112,7 @@ export default function FaqSection() {
               href="/signup"
               className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-100"
             >
-              Schedule a call
+              Apply Now
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

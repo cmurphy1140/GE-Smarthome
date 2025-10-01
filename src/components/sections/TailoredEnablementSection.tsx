@@ -145,7 +145,7 @@ export function TailoredEnablementSection() {
                 href="/signup"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-100"
               >
-                Become a dealer
+                Apply Now
                 <Rocket className="h-4 w-4" />
               </Link>
             </div>
@@ -169,4 +169,3 @@ export function TailoredEnablementSection() {
     </section>
   )
 }
-

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef, useState, lazy, Suspense } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
@@ -9,7 +9,8 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { Breadcrumb, breadcrumbConfigs } from '@/components/ui/Breadcrumb'
-import RoiCalculatorSection from '@/components/sections/RoiCalculatorSection'
+import BenefitsSection from '@/components/sections/BenefitsSection'
+const RoiCalculatorSection = lazy(() => import('@/components/sections/RoiCalculatorSection'))
 
 const heroStats = [
   { value: '140+', label: 'Years of innovation' },
@@ -166,7 +167,7 @@ function PartnerJourneyHero() {
               href="/signup"
               className="inline-flex items-center justify-center gap-3 rounded-full bg-neutral-900 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-800"
             >
-              Start your application
+              Apply Now
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
@@ -319,7 +320,44 @@ export default function PartnerJourneyPage() {
           </div>
         </section>
 
-        <RoiCalculatorSection />
+        <BenefitsSection />
+
+        <Suspense
+          fallback={
+            <div className="relative bg-white py-24">
+              <div className="mx-auto max-w-6xl px-4 sm:px-6">
+                <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] animate-pulse">
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="h-12 w-12 bg-slate-200 rounded-lg"></div>
+                      <div className="space-y-2">
+                        <div className="h-5 w-48 bg-slate-200 rounded"></div>
+                        <div className="h-3 w-64 bg-slate-200 rounded"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-6">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="space-y-3">
+                          <div className="h-4 w-32 bg-slate-200 rounded"></div>
+                          <div className="h-2 w-full bg-slate-200 rounded-full"></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] animate-pulse">
+                    <div className="space-y-4">
+                      <div className="h-24 w-full bg-slate-200 rounded-lg"></div>
+                      <div className="h-4 w-full bg-slate-200 rounded"></div>
+                      <div className="h-4 w-3/4 bg-slate-200 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <RoiCalculatorSection />
+        </Suspense>
 
         <section className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="rounded-3xl border border-blue-900/20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-10 py-12 text-white shadow-[0_30px_80px_rgba(15,23,42,0.25)]">
@@ -329,14 +367,14 @@ export default function PartnerJourneyPage() {
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Begin your partnership today</h3>
               <p className="text-base leading-relaxed text-neutral-200">
-                Connect with our channel strategists to map your path from discovery to flagship installation.
+                Apply now to connect with our channel strategists and map your path from discovery to flagship installation.
               </p>
               <div className="mt-6">
                 <Link
                   href="/signup"
                   className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-3 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-50"
                 >
-                  Start Partnership Application
+                  Apply Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

@@ -26,7 +26,7 @@ const features = [
   },
   {
     icon: HelpCircle,
-    title: "FAQ's",
+    title: 'FAQs',
     description: 'Tips & tricks to get the most from your Cync devices'
   }
 ]
@@ -76,7 +76,7 @@ export default function CyncFeaturesSection() {
             href="/signup"
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5"
           >
-            Get Started Today
+            Apply Now
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

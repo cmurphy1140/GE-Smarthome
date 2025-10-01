@@ -1,13 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, AlertCircle, Check } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeader } from '@/components/common/SectionHeader'
+import { trackEvent, FormEvents, CTAEvents } from '@/lib/analytics'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -66,6 +68,68 @@ const focusPrefills: Record<string, {
   }
 }
 
+// Validation utilities
+const validateEmail = (email: string): { isValid: boolean; error?: string } => {
+  if (!email.trim()) {
+    return { isValid: false, error: 'Email address is required' }
+  }
+
+  // Enhanced email regex
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+  if (!emailRegex.test(email)) {
+    return { isValid: false, error: 'Please enter a valid email address (e.g., name@company.com)' }
+  }
+
+  // Check for common disposable email domains
+  const disposableDomains = ['tempmail.org', '10minutemail.com', 'guerrillamail.com', 'mailinator.com']
+  const domain = email.split('@')[1]?.toLowerCase()
+
+  if (disposableDomains.includes(domain)) {
+    return { isValid: false, error: 'Please use a business email address' }
+  }
+
+  return { isValid: true }
+}
+
+const formatPhoneNumber = (value: string): string => {
+  // Remove all non-digits
+  const digits = value.replace(/\D/g, '')
+
+  // Format as (XXX) XXX-XXXX
+  if (digits.length >= 10) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`
+  } else if (digits.length >= 6) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
+  } else if (digits.length >= 3) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`
+  }
+  return digits
+}
+
+const validatePhone = (phone: string): { isValid: boolean; error?: string } => {
+  const digits = phone.replace(/\D/g, '')
+
+  if (!digits) {
+    return { isValid: false, error: 'Phone number is required' }
+  }
+
+  if (digits.length < 10) {
+    return { isValid: false, error: 'Please enter a complete 10-digit phone number' }
+  }
+
+  if (digits.length > 10) {
+    return { isValid: false, error: 'Phone number should be 10 digits (US format)' }
+  }
+
+  // Check for invalid patterns
+  if (/^(\d)\1{9}$/.test(digits)) {
+    return { isValid: false, error: 'Please enter a valid phone number' }
+  }
+
+  return { isValid: true }
+}
+
 export default function SignupPage() {
   const [vertical, setVertical] = useState('')
 
@@ -97,7 +161,9 @@ export default function SignupPage() {
     interestReason: defaults?.interestReason ?? ''
   }))
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [validationStatus, setValidationStatus] = useState<Record<string, 'valid' | 'invalid' | 'pending'>>({})
   const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   useEffect(() => {
     if (!defaults) return
@@ -113,39 +179,176 @@ export default function SignupPage() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }))
+    let processedValue = value
+
+    // Handle phone number formatting
+    if (name === 'phone') {
+      processedValue = formatPhoneNumber(value)
+
+      // Real-time phone validation
+      const phoneValidation = validatePhone(processedValue)
+      setErrors(prev => ({ ...prev, [name]: phoneValidation.error || '' }))
+      setValidationStatus(prev => ({
+        ...prev,
+        [name]: phoneValidation.isValid ? 'valid' : 'invalid'
+      }))
     }
+
+    // Handle email validation
+    if (name === 'email') {
+      const emailValidation = validateEmail(value)
+      setErrors(prev => ({ ...prev, [name]: emailValidation.error || '' }))
+      setValidationStatus(prev => ({
+        ...prev,
+        [name]: emailValidation.isValid ? 'valid' : 'invalid'
+      }))
+    }
+
+    // Handle required field validation
+    if (['companyName', 'contactName', 'businessFocus', 'yearsInBusiness', 'annualRevenue'].includes(name)) {
+      const isEmpty = !value.trim()
+      if (errors[name] && !isEmpty) {
+        setErrors(prev => ({ ...prev, [name]: '' }))
+        setValidationStatus(prev => ({ ...prev, [name]: 'valid' }))
+      } else if (isEmpty && errors[name]) {
+        setValidationStatus(prev => ({ ...prev, [name]: 'invalid' }))
+      }
+    }
+
+    setFormData(prev => ({ ...prev, [name]: processedValue }))
   }
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
+    const newValidationStatus: Record<string, 'valid' | 'invalid' | 'pending'> = {}
 
-    if (!formData.companyName.trim()) newErrors.companyName = 'Company name is required'
-    if (!formData.contactName.trim()) newErrors.contactName = 'Contact name is required'
-    if (!formData.email.trim()) newErrors.email = 'Email is required'
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format'
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required'
-    if (!formData.businessFocus) newErrors.businessFocus = 'Please select your business focus'
-    if (!formData.yearsInBusiness) newErrors.yearsInBusiness = 'Years in business is required'
-    if (!formData.annualRevenue) newErrors.annualRevenue = 'Please select your revenue range'
+    // Company Name
+    if (!formData.companyName.trim()) {
+      newErrors.companyName = 'Company name is required'
+      newValidationStatus.companyName = 'invalid'
+    } else {
+      newValidationStatus.companyName = 'valid'
+    }
+
+    // Contact Name
+    if (!formData.contactName.trim()) {
+      newErrors.contactName = 'Contact name is required'
+      newValidationStatus.contactName = 'invalid'
+    } else {
+      newValidationStatus.contactName = 'valid'
+    }
+
+    // Email validation
+    const emailValidation = validateEmail(formData.email)
+    if (!emailValidation.isValid) {
+      newErrors.email = emailValidation.error!
+      newValidationStatus.email = 'invalid'
+    } else {
+      newValidationStatus.email = 'valid'
+    }
+
+    // Phone validation
+    const phoneValidation = validatePhone(formData.phone)
+    if (!phoneValidation.isValid) {
+      newErrors.phone = phoneValidation.error!
+      newValidationStatus.phone = 'invalid'
+    } else {
+      newValidationStatus.phone = 'valid'
+    }
+
+    // Business Focus
+    if (!formData.businessFocus) {
+      newErrors.businessFocus = 'Please select your primary business focus'
+      newValidationStatus.businessFocus = 'invalid'
+    } else {
+      newValidationStatus.businessFocus = 'valid'
+    }
+
+    // Years in Business
+    if (!formData.yearsInBusiness) {
+      newErrors.yearsInBusiness = 'Please enter years in business'
+      newValidationStatus.yearsInBusiness = 'invalid'
+    } else if (parseInt(formData.yearsInBusiness) < 0 || parseInt(formData.yearsInBusiness) > 100) {
+      newErrors.yearsInBusiness = 'Please enter a realistic number of years (0-100)'
+      newValidationStatus.yearsInBusiness = 'invalid'
+    } else {
+      newValidationStatus.yearsInBusiness = 'valid'
+    }
+
+    // Annual Revenue
+    if (!formData.annualRevenue) {
+      newErrors.annualRevenue = 'Please select your annual revenue range'
+      newValidationStatus.annualRevenue = 'invalid'
+    } else {
+      newValidationStatus.annualRevenue = 'valid'
+    }
 
     setErrors(newErrors)
+    setValidationStatus(newValidationStatus)
     return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!validateForm()) return
+    // Track form submission attempt
+    trackEvent(FormEvents.FORM_SUBMIT_ATTEMPT, {
+      form_type: 'dealer_application',
+      form_data: {
+        company_name: formData.companyName ? 'provided' : 'empty',
+        contact_name: formData.contactName ? 'provided' : 'empty',
+        email: formData.email ? 'provided' : 'empty',
+        phone: formData.phone ? 'provided' : 'empty',
+        business_focus: formData.businessFocus ? 'provided' : 'empty',
+        years_in_business: formData.yearsInBusiness ? 'provided' : 'empty',
+        annual_revenue: formData.annualRevenue ? 'provided' : 'empty',
+      },
+    })
 
+    if (!validateForm()) {
+      setSubmitStatus('error')
+
+      // Track form validation errors
+      trackEvent(FormEvents.FORM_VALIDATION_ERROR, {
+        form_type: 'dealer_application',
+        errors: Object.keys(errors),
+        error_count: Object.keys(errors).length,
+      })
+
+      return
+    }
+
+    setSubmitStatus('loading')
     setIsLoading(true)
 
-    setTimeout(() => {
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      setSubmitStatus('success')
       setIsLoading(false)
       setIsSubmitted(true)
-    }, 2000)
+
+      // Track successful form submission
+      trackEvent(FormEvents.FORM_SUBMIT_SUCCESS, {
+        form_type: 'dealer_application',
+        company_name: formData.companyName,
+        business_focus: formData.businessFocus,
+        annual_revenue: formData.annualRevenue,
+        years_in_business: formData.yearsInBusiness,
+      })
+
+    } catch (_error) {
+      setSubmitStatus('error')
+      setIsLoading(false)
+      setErrors(prev => ({ ...prev, submit: 'There was an error submitting your application. Please try again.' }))
+
+      // Track form submission error
+      trackEvent(FormEvents.FORM_SUBMIT_ERROR, {
+        form_type: 'dealer_application',
+        error_type: 'api_error',
+      })
+    }
   }
 
   if (isSubmitted) {
@@ -166,16 +369,47 @@ export default function SignupPage() {
             >
               <CheckCircle className="h-12 w-12 text-green-600" />
             </motion.div>
-            <h2 className="text-2xl font-semibold text-slate-900">Thank you for your interest!</h2>
+            <h2 className="text-2xl font-semibold text-slate-900">Application Submitted Successfully!</h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              We have received your application and a member of our team will be in touch shortly to schedule your welcome call.
+              Thank you for applying to the GE Smart Home Dealer Program. Your application has been received and is being reviewed.
             </p>
+
+            <div className="mt-6 rounded-lg bg-blue-50 p-4 text-left">
+              <h3 className="text-sm font-semibold text-blue-900 mb-2">What happens next:</h3>
+              <ul className="text-xs text-blue-800 space-y-1">
+                <li>• <strong>Within 48 hours:</strong> A channel strategist will contact you to schedule your welcome call</li>
+                <li>• <strong>Welcome call:</strong> Discuss your business goals and create a customized onboarding plan</li>
+                <li>• <strong>Demo roadmap:</strong> Receive personalized equipment recommendations for your first project</li>
+                <li>• <strong>30-day enablement:</strong> Access training materials, marketing assets, and technical support</li>
+              </ul>
+            </div>
+
             <div className="mt-8 flex flex-col gap-3">
+              <a
+                href={process.env.NEXT_PUBLIC_CALENDAR_URL || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackEvent(CTAEvents.SCHEDULE_CALL_CLICK, {
+                    source: 'post_submit_confirmation',
+                    form_type: 'dealer_application',
+                  })
+                }}
+                className="inline-flex items-center justify-center rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-green-700 disabled:opacity-50"
+              >
+                Schedule Your Welcome Call
+              </a>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center rounded-full bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-900"
               >
-                Home
+                Return to Homepage
+              </Link>
+              <Link
+                href="/program-tiers"
+                className="inline-flex items-center justify-center rounded-full border border-blue-300 bg-white px-6 py-3 text-sm font-semibold text-blue-950 transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-50"
+              >
+                Learn About Program Tiers
               </Link>
             </div>
           </motion.div>
@@ -190,7 +424,14 @@ export default function SignupPage() {
       <Header />
       <main className="space-y-16 pb-24">
         <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 py-24 text-white">
-          <div className="absolute inset-0 bg-[url('/signup-hero.png')] bg-cover bg-center opacity-20 mix-blend-soft-light" />
+          <Image
+            src="/signup-hero.png"
+            alt="GE Smart Home dealer program background"
+            fill
+            priority
+            className="object-cover opacity-20 mix-blend-soft-light"
+            sizes="100vw"
+          />
           <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl space-y-6">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-md font-semibold uppercase tracking-[0.35em] text-white/80">
@@ -262,17 +503,33 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Company Name <span className="text-red-500">*</span>
                     </label>
-                    <motion.input
-                      whileFocus={{ scale: 1.02 }}
-                      type="text"
-                      name="companyName"
-                      value={formData.companyName}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.companyName ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Your company name"
-                    />
+                    <div className="relative">
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type="text"
+                        name="companyName"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-10 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
+                          errors.companyName
+                            ? 'border-red-500'
+                            : validationStatus.companyName === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                        placeholder="Your company name"
+                      />
+                      {validationStatus.companyName === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.companyName === 'invalid' && formData.companyName && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.companyName && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -289,17 +546,33 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Primary Contact Name <span className="text-red-500">*</span>
                     </label>
-                    <motion.input
-                      whileFocus={{ scale: 1.02 }}
-                      type="text"
-                      name="contactName"
-                      value={formData.contactName}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.contactName ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Your full name"
-                    />
+                    <div className="relative">
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type="text"
+                        name="contactName"
+                        value={formData.contactName}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-10 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
+                          errors.contactName
+                            ? 'border-red-500'
+                            : validationStatus.contactName === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                        placeholder="Your full name"
+                      />
+                      {validationStatus.contactName === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.contactName === 'invalid' && formData.contactName && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.contactName && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -316,17 +589,33 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Email Address <span className="text-red-500">*</span>
                     </label>
-                    <motion.input
-                      whileFocus={{ scale: 1.02 }}
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.email ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="your@email.com"
-                    />
+                    <div className="relative">
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-10 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
+                          errors.email
+                            ? 'border-red-500'
+                            : validationStatus.email === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                        placeholder="your@email.com"
+                      />
+                      {validationStatus.email === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.email === 'invalid' && formData.email && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     <p className="mt-2 text-xs text-neutral-600">
                       By submitting, you agree to our{' '}
                       <Link href="/privacy" className="text-ge-blue underline">
@@ -354,17 +643,33 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Phone Number <span className="text-red-500">*</span>
                     </label>
-                    <motion.input
-                      whileFocus={{ scale: 1.02 }}
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.phone ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="(555) 123-4567"
-                    />
+                    <div className="relative">
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-10 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
+                          errors.phone
+                            ? 'border-red-500'
+                            : validationStatus.phone === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                        placeholder="(555) 123-4567"
+                      />
+                      {validationStatus.phone === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.phone === 'invalid' && formData.phone && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.phone && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -381,23 +686,44 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Primary Business Focus <span className="text-red-500">*</span>
                     </label>
-                    <motion.select
-                      whileFocus={{ scale: 1.02 }}
-                      name="businessFocus"
-                      value={formData.businessFocus}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.businessFocus ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                    >
-                      <option value="">Select your primary business focus</option>
-                      <option value="custom-integrator">Custom Integrator / AV Professional</option>
-                      <option value="security-installer">Security Installer</option>
-                      <option value="licensed-electrician">Licensed Electrician</option>
-                      <option value="home-builder">Home Builder</option>
-                      <option value="remodeler-contractor">Remodeler / Contractor</option>
-                      <option value="retailer">Retailer</option>
-                    </motion.select>
+                    <div className="relative">
+                      <motion.select
+                        whileFocus={{ scale: 1.02 }}
+                        name="businessFocus"
+                        value={formData.businessFocus}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-12 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 appearance-none ${
+                          errors.businessFocus
+                            ? 'border-red-500'
+                            : validationStatus.businessFocus === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                      >
+                        <option value="">Select your primary business focus</option>
+                        <option value="custom-integrator">Custom Integrator / AV Professional</option>
+                        <option value="security-installer">Security Installer</option>
+                        <option value="licensed-electrician">Licensed Electrician</option>
+                        <option value="home-builder">Home Builder</option>
+                        <option value="remodeler-contractor">Remodeler / Contractor</option>
+                        <option value="retailer">Retailer</option>
+                      </motion.select>
+                      <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      {validationStatus.businessFocus === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.businessFocus === 'invalid' && formData.businessFocus && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.businessFocus && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -414,19 +740,35 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Years in Business <span className="text-red-500">*</span>
                     </label>
-                    <motion.input
-                      whileFocus={{ scale: 1.02 }}
-                      type="number"
-                      name="yearsInBusiness"
-                      value={formData.yearsInBusiness}
-                      onChange={handleInputChange}
-                      min="0"
-                      max="100"
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.yearsInBusiness ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="5"
-                    />
+                    <div className="relative">
+                      <motion.input
+                        whileFocus={{ scale: 1.02 }}
+                        type="number"
+                        name="yearsInBusiness"
+                        value={formData.yearsInBusiness}
+                        onChange={handleInputChange}
+                        min="0"
+                        max="100"
+                        className={`w-full rounded-lg border px-4 py-3 pr-10 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
+                          errors.yearsInBusiness
+                            ? 'border-red-500'
+                            : validationStatus.yearsInBusiness === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                        placeholder="5"
+                      />
+                      {validationStatus.yearsInBusiness === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.yearsInBusiness === 'invalid' && formData.yearsInBusiness && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.yearsInBusiness && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -443,22 +785,43 @@ export default function SignupPage() {
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
                       Annual Revenue Range <span className="text-red-500">*</span>
                     </label>
-                    <motion.select
-                      whileFocus={{ scale: 1.02 }}
-                      name="annualRevenue"
-                      value={formData.annualRevenue}
-                      onChange={handleInputChange}
-                      className={`w-full rounded-lg border px-4 py-3 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 ${
-                        errors.annualRevenue ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                    >
-                      <option value="">Select revenue range</option>
-                      <option value="under-100k">Under $100,000</option>
-                      <option value="100k-500k">$100,000 - $500,000</option>
-                      <option value="500k-1m">$500,000 - $1,000,000</option>
-                      <option value="1m-5m">$1,000,000 - $5,000,000</option>
-                      <option value="over-5m">Over $5,000,000</option>
-                    </motion.select>
+                    <div className="relative">
+                      <motion.select
+                        whileFocus={{ scale: 1.02 }}
+                        name="annualRevenue"
+                        value={formData.annualRevenue}
+                        onChange={handleInputChange}
+                        className={`w-full rounded-lg border px-4 py-3 pr-12 transition-all focus:border-blue-900 focus:ring-2 focus:ring-blue-900 appearance-none ${
+                          errors.annualRevenue
+                            ? 'border-red-500'
+                            : validationStatus.annualRevenue === 'valid'
+                              ? 'border-green-500'
+                              : 'border-gray-300'
+                        }`}
+                      >
+                        <option value="">Select revenue range</option>
+                        <option value="under-100k">Under $100,000</option>
+                        <option value="100k-500k">$100,000 - $500,000</option>
+                        <option value="500k-1m">$500,000 - $1,000,000</option>
+                        <option value="1m-5m">$1,000,000 - $5,000,000</option>
+                        <option value="over-5m">Over $5,000,000</option>
+                      </motion.select>
+                      <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      {validationStatus.annualRevenue === 'valid' && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                      )}
+                      {validationStatus.annualRevenue === 'invalid' && formData.annualRevenue && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                        </div>
+                      )}
+                    </div>
                     {errors.annualRevenue && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}

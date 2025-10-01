@@ -208,14 +208,14 @@ function LearnAboutGEHero() {
             variants={fadeInUp}
             className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-5 py-2 text-md font-semibold uppercase tracking-[0.35em] text-blue-950"
           >
-            Learn About GE Smart Home
+            About the GE Smart Home Dealer Program
           </motion.span>
 
           <motion.h1
             variants={fadeInUp}
             className="text-4xl font-semibold leading-tight text-neutral-900 md:text-5xl"
           >
-            Complete partner enablement and support
+            About the GE Smart Home Dealer Program
           </motion.h1>
 
           <motion.p
@@ -233,7 +233,7 @@ function LearnAboutGEHero() {
               href="/signup"
               className="inline-flex items-center justify-center gap-3 rounded-full bg-neutral-900 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-neutral-800"
             >
-              Start your application
+              Apply Now
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
@@ -273,6 +273,33 @@ export default function LearnAboutGEPage() {
           <Breadcrumb items={breadcrumbConfigs.learnAboutGE} />
         </div>
         <LearnAboutGEHero />
+
+        <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <SectionHeader
+            eyebrow="Who we serve"
+            title={<span className="text-blue-950">Enablement tailored to every professional segment</span>}
+            description="Specialized playbooks and resources ensure each trade can launch, scale, and differentiate with the GE Lighting × Savant stack."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {professionalSegments.map(segment => (
+              <motion.div
+                key={segment.title}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-80px' }}
+                className="group rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)] hover:-translate-y-1"
+              >
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-950">{segment.title}</h3>
+                  <p className="mt-2 text-base text-neutral-500">{segment.subtitle}</p>
+                </div>
+                <p className="mt-4 text-lg leading-relaxed text-neutral-600">{segment.narrative}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
         <section className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-12 md:grid-cols-[0.42fr_0.58fr]">
@@ -368,33 +395,6 @@ export default function LearnAboutGEPage() {
                 {currentJourneyPhase.highlight.text}
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SectionHeader
-            eyebrow="Who we serve"
-            title={<span className="text-blue-950">Enablement tailored to every professional segment</span>}
-            description="Specialized playbooks and resources ensure each trade can launch, scale, and differentiate with the GE Lighting × Savant stack."
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {professionalSegments.map(segment => (
-              <motion.div
-                key={segment.title}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-80px' }}
-                className="group rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)] hover:-translate-y-1"
-              >
-                 <div>
-                   <h3 className="text-xl font-semibold text-blue-950">{segment.title}</h3>
-                   <p className="mt-2 text-base text-neutral-500">{segment.subtitle}</p>
-                 </div>
-                 <p className="mt-4 text-lg leading-relaxed text-neutral-600">{segment.narrative}</p>
-              </motion.div>
-            ))}
           </div>
         </section>
 
@@ -509,14 +509,14 @@ export default function LearnAboutGEPage() {
               </span>
               <h3 className="text-2xl font-semibold md:text-3xl">Begin your partnership journey</h3>
               <p className="text-base leading-relaxed text-neutral-200">
-                Start your application and connect with our channel strategists to build your customized enablement roadmap.
+                Apply now and connect with our channel strategists to build your customized enablement roadmap.
               </p>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/signup"
                   className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-3 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-50"
                 >
-                  Start Partnership Application
+                  Apply Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link

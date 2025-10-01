@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BarChart3, Rocket, HelpCircle, Save, CheckCircle, X } from 'lucide-react'
+import { trackEvent, ROIEvents, CTAEvents } from '@/lib/analytics'
 
 const roiCalculator = {
   inputs: [
@@ -47,11 +48,23 @@ export default function RoiCalculatorSection() {
 
   // Load saved inputs from localStorage on mount
   useEffect(() => {
+    // Track calculator load with initial values
+    const initialValues = { projects: 8, products: 20, price: 35 }
+    trackEvent(ROIEvents.CALCULATOR_LOAD, {
+      default_values: initialValues,
+    })
+
     const saved = localStorage.getItem('roi-calculator-inputs')
     if (saved) {
       try {
         const parsedInputs = JSON.parse(saved)
         setRoiInputs(parsedInputs)
+
+        // Track that saved values were loaded
+        trackEvent(ROIEvents.CALCULATOR_LOAD, {
+          loaded_saved_values: true,
+          saved_values: parsedInputs,
+        })
       } catch (error) {
         console.warn('Failed to load saved ROI inputs:', error)
       }
@@ -79,10 +92,24 @@ export default function RoiCalculatorSection() {
     const error = validateInput(key, value)
     setErrors(prev => ({ ...prev, [key]: error || '' }))
     setRoiInputs(prev => ({ ...prev, [key]: value }))
+
+    // Track slider change events
+    trackEvent(ROIEvents.SLIDER_CHANGE, {
+      field: key,
+      value: value,
+      has_error: !!error,
+      current_values: { ...roiInputs, [key]: value },
+    })
   }
 
   // Handle save configuration
   const handleSaveConfig = async () => {
+    // Track save config submit attempt
+    trackEvent(ROIEvents.CONFIG_SAVE_SUBMIT, {
+      email: saveEmail.trim() ? 'provided' : 'empty',
+      configuration: roiInputs,
+    })
+
     if (!saveEmail.trim()) {
       setSaveStatus('error')
       return
@@ -94,6 +121,13 @@ export default function RoiCalculatorSection() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500))
       setSaveStatus('saved')
+
+      // Track successful save
+      trackEvent(ROIEvents.CONFIG_SAVE_SUCCESS, {
+        email: 'provided',
+        configuration: roiInputs,
+      })
+
       setTimeout(() => {
         setShowSaveModal(false)
         setSaveStatus('idle')
@@ -134,7 +168,7 @@ export default function RoiCalculatorSection() {
   const roi = calculateROI()
 
   return (
-    <section className="relative bg-white py-24">
+    <section id="roi-calculator" className="relative bg-white py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div
@@ -262,7 +296,12 @@ export default function RoiCalculatorSection() {
 
             <div className="space-y-3">
               <button
-                onClick={() => setShowSaveModal(true)}
+                onClick={() => {
+                  setShowSaveModal(true)
+                  trackEvent(ROIEvents.CONFIG_SAVE_MODAL_OPEN, {
+                    configuration: roiInputs,
+                  })
+                }}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <Save className="h-4 w-4" />
@@ -271,6 +310,13 @@ export default function RoiCalculatorSection() {
 
               <Link
                 href="/signup"
+                onClick={() => {
+                  trackEvent(CTAEvents.APPLY_NOW_CLICK, {
+                    source: 'roi_calculator',
+                    configuration: roiInputs,
+                    calculated_roi: calculateROI(),
+                  })
+                }}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Apply Now
