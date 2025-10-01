@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { WhatWeDoSection } from '@/components/sections/WhatWeDoSection'
+import { PartnerStoreSection } from '@/components/sections/PartnerStoreSection'
 import { SocialSidebar } from '@/components/common/SocialSidebar'
 import { PillarsSection } from '@/components/sections/PillarsSection'
 import { StatsSection } from '@/components/sections/StatsSection'
@@ -18,6 +19,7 @@ export default function Home() {
         {/* New Ronas IT-style sections */}
         <HeroSection />
         <WhatWeDoSection />
+        <PartnerStoreSection />
         
         {/* Original homepage sections */}
         <section id="program">
