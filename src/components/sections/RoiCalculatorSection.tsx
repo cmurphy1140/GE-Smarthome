@@ -99,7 +99,7 @@ export default function RoiCalculatorSection() {
         setSaveStatus('idle')
         setSaveEmail('')
       }, 2000)
-    } catch (error) {
+    } catch {
       setSaveStatus('error')
     }
   }
