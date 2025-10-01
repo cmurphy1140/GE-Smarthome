@@ -12,6 +12,7 @@
     "build:analyze": "npm run build && npm run analyze"
   },
   "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.1",
     "framer-motion": "^12.23.19",
     "lucide-react": "^0.544.0",
     "next": "15.5.4",
