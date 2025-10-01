@@ -66,7 +66,7 @@ const testimonials = [
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.17, 0.67, 0.35, 1] } }
+  visible: { opacity: 1, y: 0 }
 }
 
 const staggerContainer = {
@@ -222,6 +222,7 @@ export default function FaqPage() {
               <motion.div
                 key={testimonial.name}
                 variants={fadeInUp}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
               >
                 <div className="absolute top-6 right-6 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
