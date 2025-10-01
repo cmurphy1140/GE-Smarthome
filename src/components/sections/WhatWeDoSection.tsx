@@ -182,8 +182,96 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
                     <circle cx="175" cy="160" r="3" fill="#0284c7" />
                   </svg>
                 </motion.div>
+              ) : sectionIndex === 2 ? (
+                /* Support Illustration for Section 03 */
+                <motion.div 
+                  variants={fadeInUp}
+                  className="flex justify-center lg:justify-start"
+                >
+                  <svg 
+                    width="400" 
+                    height="400" 
+                    viewBox="0 0 400 400" 
+                    className="drop-shadow-2xl"
+                  >
+                    {/* Background circle */}
+                    <circle
+                      cx="200"
+                      cy="200"
+                      r="80"
+                      fill="#0ea5e9"
+                      opacity="0.2"
+                    />
+                    
+                    {/* Headset headband */}
+                    <path
+                      d="M 120 180 Q 120 120, 200 120 Q 280 120, 280 180"
+                      fill="none"
+                      stroke="#0ea5e9"
+                      strokeWidth="12"
+                      strokeLinecap="round"
+                    />
+                    
+                    {/* Left ear cup */}
+                    <rect
+                      x="100"
+                      y="170"
+                      width="40"
+                      height="60"
+                      rx="20"
+                      fill="#0ea5e9"
+                      stroke="#0284c7"
+                      strokeWidth="3"
+                    />
+                    
+                    {/* Right ear cup */}
+                    <rect
+                      x="260"
+                      y="170"
+                      width="40"
+                      height="60"
+                      rx="20"
+                      fill="#0ea5e9"
+                      stroke="#0284c7"
+                      strokeWidth="3"
+                    />
+                    
+                    {/* Microphone boom */}
+                    <path
+                      d="M 140 200 Q 180 240, 200 260"
+                      fill="none"
+                      stroke="#0284c7"
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                    />
+                    
+                    {/* Microphone */}
+                    <circle
+                      cx="200"
+                      cy="265"
+                      r="12"
+                      fill="#0ea5e9"
+                      stroke="#0284c7"
+                      strokeWidth="2"
+                    />
+                    
+                    {/* Sound waves */}
+                    <g opacity="0.5">
+                      <path d="M 320 180 Q 330 200, 320 220" fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M 340 160 Q 355 200, 340 240" fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M 80 180 Q 70 200, 80 220" fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M 60 160 Q 45 200, 60 240" fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
+                    </g>
+                    
+                    {/* 24/7 badge */}
+                    <g>
+                      <circle cx="200" cy="140" r="25" fill="#0284c7" />
+                      <text x="200" y="148" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">24/7</text>
+                    </g>
+                  </svg>
+                </motion.div>
               ) : (
-                /* Subsections for other sections */
+                /* Subsections for section 02 (Integrate) */
                 <motion.div variants={fadeInUp} className="space-y-8">
                   {section.subsections.map((subsection, subIndex) => (
                     <div key={subIndex} className="space-y-2">
