@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ExternalLink, ChevronLeft, ChevronRight, Sparkles, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import React, { memo, useState, useEffect } from 'react'
 
@@ -18,53 +18,90 @@ const staggerContainer = {
   }
 }
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.8
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.8
+  })
+}
+
 const geProducts = [
   {
     id: 1,
     name: 'Cync Full Color Smart Bulbs',
     description: 'Full color spectrum with voice control',
     image: '/cync-bulb.png',
-    category: 'Smart Lighting'
+    category: 'Smart Lighting',
+    dealerPrice: 'Up to 40% off'
   },
   {
     id: 2,
     name: 'Cync Soft White Smart Bulbs',
     description: 'Simple setup with Alexa compatibility',
     image: '/soft-white.png',
-    category: 'Smart Lighting'
+    category: 'Smart Lighting',
+    dealerPrice: 'Up to 40% off'
   },
   {
     id: 3,
     name: 'GE LED+ Dimmable Smart Bulb',
     description: 'Energy efficient with remote control',
     image: '/led-light.png',
-    category: 'Smart LED'
+    category: 'Smart LED',
+    dealerPrice: 'Up to 40% off'
   },
   {
     id: 4,
     name: 'Cync Smart Thermostat',
     description: 'Wi-Fi enabled with scheduling',
     image: '/thermostat.png',
-    category: 'Smart Climate'
+    category: 'Smart Climate',
+    dealerPrice: 'Up to 40% off'
   }
 ]
 
 export const PartnerStoreSection = memo(function PartnerStoreSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [direction, setDirection] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
+    if (isHovered) return
+
     const interval = setInterval(() => {
+      setDirection(1)
       setCurrentSlide((prev) => (prev + 1) % geProducts.length)
-    }, 3000)
+    }, 4000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isHovered])
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection)
+    setCurrentSlide((prev) => {
+      const next = prev + newDirection
+      if (next >= geProducts.length) return 0
+      if (next < 0) return geProducts.length - 1
+      return next
+    })
+  }
 
   const currentProduct = geProducts[currentSlide]
 
   return (
-    <section className="relative bg-gray-50 py-32 md:py-48 overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-white py-32 md:py-48 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -80,94 +117,164 @@ export const PartnerStoreSection = memo(function PartnerStoreSection() {
             <h3 className="text-4xl font-bold text-gray-900 lg:text-5xl xl:text-6xl">
               Partner Store
             </h3>
-            <p className="mx-auto mt-6 max-w-2xl text-xl text-gray-600 leading-relaxed">
-              Access premium smart lighting with exclusive dealer pricing and priority fulfillment.
-            </p>
           </motion.div>
 
-          {/* Product Slideshow Card - 3D Effect */}
-          <motion.div
-            variants={fadeInUp}
-            className="relative mx-auto max-w-4xl"
-            style={{ perspective: '1000px' }}
+          {/* Dynamic Product Showcase */}
+          <div 
+            className="relative mx-auto max-w-5xl"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            {/* 3D Card with shadows */}
-            <div 
-              className="relative rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 p-12 shadow-2xl transition-all duration-300 hover:shadow-[0_40px_100px_-20px_rgba(59,130,246,0.5)]"
-              style={{
-                transform: 'rotateX(2deg) rotateY(-2deg)',
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              {/* 3D depth layers */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-800/20 to-blue-950/20 blur-xl" 
-                   style={{ transform: 'translateZ(-10px)' }} />
-              <div className="absolute inset-0 rounded-3xl bg-blue-600/10" 
-                   style={{ transform: 'translateZ(-5px)' }} />
-              
-              {/* Main content */}
-              <div className="relative" style={{ transform: 'translateZ(20px)' }}>
-                <div key={currentProduct.id} className="flex flex-col items-center">
-                  {/* Product Image - Larger */}
-                  <div className="relative mb-8 h-80 w-80 md:h-96 md:w-96">
-                    <div className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-sm shadow-inner" />
-                    <div className="absolute inset-2 flex items-center justify-center">
+            {/* Background animated gradient */}
+            <div className="absolute inset-0 -z-10">
+              <motion.div
+                animate={{
+                  background: [
+                    'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                    'radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                    'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)'
+                  ]
+                }}
+                transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-0 rounded-3xl"
+              />
+            </div>
+
+            {/* Product Display Area */}
+            <div className="relative py-16">
+              {/* Animated floating elements */}
+              <motion.div
+                animate={{ 
+                  y: [0, -20, 0],
+                  rotate: [0, 5, 0]
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-10 left-10 opacity-20"
+              >
+                <Sparkles className="h-12 w-12 text-blue-600" />
+              </motion.div>
+
+              <motion.div
+                animate={{ 
+                  y: [0, 20, 0],
+                  rotate: [0, -5, 0]
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute bottom-10 right-10 opacity-20"
+              >
+                <ShieldCheck className="h-12 w-12 text-blue-600" />
+              </motion.div>
+
+              {/* Product Carousel */}
+              <div className="relative flex items-center justify-center gap-8">
+                {/* Left arrow */}
+                <button
+                  onClick={() => paginate(-1)}
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-200 hover:bg-blue-50 hover:scale-110 hover:shadow-xl z-10"
+                  aria-label="Previous product"
+                >
+                  <ChevronLeft className="h-6 w-6 text-gray-900" />
+                </button>
+
+                {/* Product Image with AnimatePresence */}
+                <div className="relative h-96 w-96 flex items-center justify-center">
+                  <AnimatePresence initial={false} custom={direction} mode="wait">
+                    <motion.div
+                      key={currentProduct.id}
+                      custom={direction}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.3 },
+                        scale: { duration: 0.3 }
+                      }}
+                      className="absolute"
+                    >
                       <Image
                         src={currentProduct.image}
                         alt={currentProduct.name}
                         width={360}
                         height={360}
-                        className="object-contain transition-all duration-500 hover:scale-110"
+                        className="object-contain drop-shadow-2xl"
                         priority={currentSlide === 0}
                       />
-                    </div>
-                  </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
 
-                  {/* Product Info */}
-                  <div className="mb-6">
-                    <span className="inline-flex items-center rounded-full bg-blue-500/20 px-4 py-1.5 text-sm font-medium text-blue-200 border border-blue-400/20 shadow-sm">
+                {/* Right arrow */}
+                <button
+                  onClick={() => paginate(1)}
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-200 hover:bg-blue-50 hover:scale-110 hover:shadow-xl z-10"
+                  aria-label="Next product"
+                >
+                  <ChevronRight className="h-6 w-6 text-gray-900" />
+                </button>
+              </div>
+
+              {/* Product Info */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentProduct.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-8 space-y-4"
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-800">
                       {currentProduct.category}
                     </span>
+                    <span className="inline-flex items-center rounded-full bg-green-100 px-4 py-1.5 text-sm font-semibold text-green-800">
+                      {currentProduct.dealerPrice}
+                    </span>
                   </div>
-                  <h4 className="mb-3 text-2xl font-bold text-white drop-shadow-lg">
+                  <h4 className="text-3xl font-bold text-gray-900">
                     {currentProduct.name}
                   </h4>
-                  <p className="mb-8 text-lg text-blue-200/80">
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                     {currentProduct.description}
                   </p>
+                </motion.div>
+              </AnimatePresence>
 
-                  {/* Slide Indicators */}
-                  <div className="flex justify-center gap-2">
-                    {geProducts.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                          index === currentSlide
-                            ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
-                            : 'bg-white/30 hover:bg-white/50'
-                        }`}
-                        aria-label={`View product ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Store CTA */}
-                <div className="mt-8">
-                  <a
-                    href="https://www.gelighting.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-950 shadow-lg transition-all duration-200 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-2xl"
-                  >
-                    Visit Partner Store
-                    <ExternalLink className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                  </a>
-                </div>
+              {/* Slide Indicators */}
+              <div className="mt-12 flex justify-center gap-3">
+                {geProducts.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setDirection(index > currentSlide ? 1 : -1)
+                      setCurrentSlide(index)
+                    }}
+                    className={`transition-all duration-300 rounded-full ${
+                      index === currentSlide
+                        ? 'h-3 w-12 bg-blue-600 shadow-lg shadow-blue-600/50'
+                        : 'h-3 w-3 bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    aria-label={`View product ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
-          </motion.div>
+
+            {/* Store CTA */}
+            <motion.div variants={fadeInUp} className="mt-12">
+              <a
+                href="https://www.gelighting.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                Visit Partner Store
+                <ExternalLink className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
