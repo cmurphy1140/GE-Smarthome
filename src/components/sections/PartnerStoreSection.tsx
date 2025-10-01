@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Key, Store, Award, TrendingUp } from 'lucide-react'
+import { ArrowRight, Key } from 'lucide-react'
 import React, { memo } from 'react'
 
 const fadeInUp = {
@@ -18,23 +18,6 @@ const staggerContainer = {
   }
 }
 
-const storeFeatures = [
-  {
-    icon: Store,
-    title: 'Dealer Portal Access',
-    description: 'Complete product catalog with dealer pricing and instant ordering'
-  },
-  {
-    icon: Award,
-    title: 'Demo Equipment',
-    description: 'Showroom kits and demo units to showcase flagship installations'
-  },
-  {
-    icon: TrendingUp,
-    title: 'Growth Resources',
-    description: 'Marketing materials, co-branded assets, and MDF funding'
-  }
-]
 
 export const PartnerStoreSection = memo(function PartnerStoreSection() {
   return (
@@ -168,32 +151,6 @@ export const PartnerStoreSection = memo(function PartnerStoreSection() {
             >
               Access exclusive dealer pricing, training resources, and business growth tools designed to accelerate your smart home practice.
             </motion.p>
-
-            {/* Features */}
-            <motion.div variants={staggerContainer} className="space-y-6">
-              {storeFeatures.map((feature, index) => {
-                const IconComponent = feature.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    className="flex items-start gap-4"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 flex-shrink-0">
-                      <IconComponent className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                        {feature.title}
-                      </h4>
-                      <p className="text-gray-600">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
 
             {/* CTA */}
             <motion.div variants={fadeInUp} className="pt-4">
