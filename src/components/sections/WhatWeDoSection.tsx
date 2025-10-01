@@ -83,7 +83,7 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
         </motion.div>
 
         {/* Content sections */}
-        <div className="space-y-64">
+        <div className="space-y-32">
           {sections.map((section, sectionIndex) => (
             <motion.div
               key={section.number}
@@ -263,10 +263,63 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
                       <path d="M 60 160 Q 45 200, 60 240" fill="none" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" />
                     </g>
                     
-                    {/* 24/7 badge */}
-                    <g>
-                      <circle cx="200" cy="140" r="25" fill="#0284c7" />
-                      <text x="200" y="148" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">24/7</text>
+                    {/* 24/7 Clock badge - positioned to the right */}
+                    <g transform="translate(290, 120)">
+                      {/* Clock circle background */}
+                      <circle cx="0" cy="0" r="35" fill="#0284c7" />
+                      
+                      {/* Clock face */}
+                      <circle cx="0" cy="0" r="28" fill="white" />
+                      
+                      {/* Clock hands */}
+                      <line x1="0" y1="0" x2="0" y2="-15" stroke="#0284c7" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="0" y1="0" x2="10" y2="5" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" />
+                      
+                      {/* Center dot */}
+                      <circle cx="0" cy="0" r="3" fill="#0284c7" />
+                      
+                      {/* Circular arrows around clock */}
+                      <g opacity="0.7">
+                        {/* Top arrow */}
+                        <path 
+                          d="M -5 -40 Q 0 -42, 5 -40" 
+                          fill="none" 
+                          stroke="#0ea5e9" 
+                          strokeWidth="2" 
+                          strokeLinecap="round"
+                          markerEnd="url(#arrowhead)"
+                        />
+                        
+                        {/* Right arrow */}
+                        <path 
+                          d="M 40 -5 Q 42 0, 40 5" 
+                          fill="none" 
+                          stroke="#0ea5e9" 
+                          strokeWidth="2" 
+                          strokeLinecap="round"
+                        />
+                        
+                        {/* Bottom arrow */}
+                        <path 
+                          d="M 5 40 Q 0 42, -5 40" 
+                          fill="none" 
+                          stroke="#0ea5e9" 
+                          strokeWidth="2" 
+                          strokeLinecap="round"
+                        />
+                        
+                        {/* Left arrow */}
+                        <path 
+                          d="M -40 5 Q -42 0, -40 -5" 
+                          fill="none" 
+                          stroke="#0ea5e9" 
+                          strokeWidth="2" 
+                          strokeLinecap="round"
+                        />
+                      </g>
+                      
+                      {/* 24/7 text */}
+                      <text x="0" y="-50" textAnchor="middle" fill="#0284c7" fontSize="14" fontWeight="bold">24/7</text>
                     </g>
                   </svg>
                 </motion.div>
