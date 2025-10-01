@@ -72,13 +72,17 @@ export default function RoiCalculatorSection() {
             <div className="space-y-6">
               {roiCalculator.inputs.map(input => (
                 <div key={input.key}>
-                  <label className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.3em] text-slate-600">
+                  <label
+                    htmlFor={`roi-${input.key}`}
+                    className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.3em] text-slate-600"
+                  >
                     {input.label}
-                    <span className="text-slate-900">
+                    <span className="text-slate-900" aria-live="polite">
                       {input.key === 'price' ? `$${roiInputs[input.key]}` : roiInputs[input.key]}
                     </span>
                   </label>
                   <input
+                    id={`roi-${input.key}`}
                     type="range"
                     min={input.min}
                     max={input.max}
@@ -89,9 +93,14 @@ export default function RoiCalculatorSection() {
                         [input.key]: parseInt(event.target.value, 10)
                       }))
                     }
-                    className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200"
+                    className="mt-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    aria-label={`${input.label}: ${input.key === 'price' ? `$${roiInputs[input.key]}` : roiInputs[input.key]}`}
+                    aria-valuemin={input.min}
+                    aria-valuemax={input.max}
+                    aria-valuenow={roiInputs[input.key]}
+                    aria-valuetext={input.key === 'price' ? `$${roiInputs[input.key]}` : `${roiInputs[input.key]}`}
                   />
-                  <div className="mt-2 flex justify-between text-sm text-slate-500">
+                  <div className="mt-2 flex justify-between text-sm text-slate-600">
                     <span>{input.key === 'price' ? `$${input.min}` : input.min}</span>
                     <span>{input.key === 'price' ? `$${input.max}` : input.max}</span>
                   </div>
@@ -124,17 +133,17 @@ export default function RoiCalculatorSection() {
                 <span className="text-xl font-semibold text-blue-900">{roi.dealerSavings}% off MSRP</span>
               </div>
 
-              <div className="text-xs text-slate-500 mt-3">
+              <div className="text-xs text-slate-600 mt-3">
                 Based on ${Math.round(roi.totalProductVolume).toLocaleString()} monthly product volume
               </div>
             </div>
-            <Link
-              href="/signup"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900"
-            >
-              Become a GE Dealer
-              <Rocket className="h-4 w-4" />
-            </Link>
+          <Link
+            href="/signup"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-6 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-900"
+          >
+            Apply Now
+            <Rocket className="h-4 w-4" />
+          </Link>
           </motion.div>
         </div>
       </div>

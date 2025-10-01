@@ -327,7 +327,7 @@ export default function SignupPage() {
                       }`}
                       placeholder="your@email.com"
                     />
-                    <p className="mt-2 text-xs text-neutral-500">
+                    <p className="mt-2 text-xs text-neutral-600">
                       By submitting, you agree to our{' '}
                       <Link href="/privacy" className="text-ge-blue underline">
                         Privacy Policy

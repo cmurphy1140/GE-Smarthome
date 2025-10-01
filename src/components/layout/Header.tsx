@@ -94,7 +94,7 @@ export function Header() {
           <div className="inline-flex h-12 w-12 items-center justify-center overflow-visible">
             <Image
               src="/GE-Logo.png"
-              alt="GE Logo"
+              alt="GE Smart Home logo"
               width={48}
               height={48}
               className="h-12 w-12 object-contain transform scale-[1.65] origin-left"
@@ -132,7 +132,7 @@ export function Header() {
               href="/signup"
               className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
             >
-              Become a Dealer
+              Apply Now
               <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -215,14 +215,14 @@ export function Header() {
             </div>
           </div>
 
-          <Link
-            href="/signup"
-            className="group mt-8 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-6 py-3 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-            onClick={() => setOpenState(null)}
-          >
-            Become a Dealer
-            <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
+        <Link
+          href="/signup"
+          className="group mt-8 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-6 py-3 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+          onClick={() => setOpenState(null)}
+        >
+          Apply Now
+          <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+        </Link>
         </div>
       </motion.div>
     </motion.header>

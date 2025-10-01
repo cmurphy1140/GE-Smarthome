@@ -159,7 +159,7 @@ export default function BenefitsSection() {
                 key={key}
                 type="button"
                 onClick={() => setActiveCategory(key)}
-                className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${
+                className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-blue-950 ${
                   isActive
                     ? 'border-slate-800 bg-slate-800 text-white'
                     : 'border-blue-700/40 bg-blue-800/30 text-blue-100 hover:border-blue-600 hover:bg-blue-600/50 hover:text-white'
@@ -243,15 +243,15 @@ export default function BenefitsSection() {
                       </p>
                     </div>
                     
-                    <div className="pt-4">
-                      <Link
-                        href="/signup"
-                        className="group inline-flex items-center gap-3 text-base font-semibold text-blue-600 transition-all duration-300 hover:text-blue-700 hover:gap-4"
-                      >
-                        Learn more
-                        <motion.div
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
+                  <div className="pt-4">
+                    <Link
+                      href="/signup"
+                      className="group inline-flex items-center gap-3 text-base font-semibold text-blue-600 transition-all duration-300 hover:text-blue-700 hover:gap-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md"
+                    >
+                      Apply Now
+                      <motion.div
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
                         >
                           <ChevronRight className="h-5 w-5" />
                         </motion.div>

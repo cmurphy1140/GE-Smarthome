@@ -108,7 +108,10 @@ export default function FaqPage() {
                     <button
                       type="button"
                       onClick={() => setOpenFaq(current => (current === index ? null : index))}
-                      className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left"
+                      className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-content-${index}`}
+                      id={`faq-button-${index}`}
                     >
                       <div>
                         <p className="text-lg font-medium text-blue-900/70">
@@ -121,6 +124,7 @@ export default function FaqPage() {
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                         className="rounded-full border border-blue-950/20 p-2 text-blue-900"
+                        aria-hidden="true"
                       >
                         <ArrowRight className="h-4 w-4" />
                       </motion.div>
@@ -134,6 +138,9 @@ export default function FaqPage() {
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.35, ease: 'easeInOut' }}
                           className="px-8 pb-8 text-base leading-relaxed text-slate-600"
+                          id={`faq-content-${index}`}
+                          role="region"
+                          aria-labelledby={`faq-button-${index}`}
                         >
                           {faq.answer}
                         </motion.div>
