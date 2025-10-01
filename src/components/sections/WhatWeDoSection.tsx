@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import React, { memo } from 'react'
 
@@ -104,12 +103,6 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
                 <p className="text-xl text-gray-600 leading-relaxed">
                   {section.description}
                 </p>
-                <Link
-                  href="/smart-home-experience"
-                  className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-8 py-3 text-base font-semibold text-gray-900 transition-all duration-200 hover:bg-gray-100"
-                >
-                  View More
-                </Link>
               </motion.div>
 
               {/* Right column - Illustration or Subsections */}
