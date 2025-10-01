@@ -85,68 +85,87 @@ export const PartnerStoreSection = memo(function PartnerStoreSection() {
             </p>
           </motion.div>
 
-          {/* Product Slideshow Card */}
+          {/* Product Slideshow Card - 3D Effect */}
           <motion.div
             variants={fadeInUp}
-            className="mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 p-12 shadow-2xl"
+            className="relative mx-auto max-w-4xl"
+            style={{ perspective: '1000px' }}
           >
-            <div key={currentProduct.id} className="flex flex-col items-center">
-              {/* Product Image */}
-              <div className="relative mb-8 h-64 w-64">
-                <div className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-sm" />
-                <div className="absolute inset-2 flex items-center justify-center">
-                  <Image
-                    src={currentProduct.image}
-                    alt={currentProduct.name}
-                    width={240}
-                    height={240}
-                    className="object-contain transition-transform duration-300"
-                    priority={currentSlide === 0}
-                  />
+            {/* 3D Card with shadows */}
+            <div 
+              className="relative rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 p-12 shadow-2xl transition-all duration-300 hover:shadow-[0_40px_100px_-20px_rgba(59,130,246,0.5)]"
+              style={{
+                transform: 'rotateX(2deg) rotateY(-2deg)',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              {/* 3D depth layers */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-800/20 to-blue-950/20 blur-xl" 
+                   style={{ transform: 'translateZ(-10px)' }} />
+              <div className="absolute inset-0 rounded-3xl bg-blue-600/10" 
+                   style={{ transform: 'translateZ(-5px)' }} />
+              
+              {/* Main content */}
+              <div className="relative" style={{ transform: 'translateZ(20px)' }}>
+                <div key={currentProduct.id} className="flex flex-col items-center">
+                  {/* Product Image - Larger */}
+                  <div className="relative mb-8 h-80 w-80 md:h-96 md:w-96">
+                    <div className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-sm shadow-inner" />
+                    <div className="absolute inset-2 flex items-center justify-center">
+                      <Image
+                        src={currentProduct.image}
+                        alt={currentProduct.name}
+                        width={360}
+                        height={360}
+                        className="object-contain transition-all duration-500 hover:scale-110"
+                        priority={currentSlide === 0}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="mb-6">
+                    <span className="inline-flex items-center rounded-full bg-blue-500/20 px-4 py-1.5 text-sm font-medium text-blue-200 border border-blue-400/20 shadow-sm">
+                      {currentProduct.category}
+                    </span>
+                  </div>
+                  <h4 className="mb-3 text-2xl font-bold text-white drop-shadow-lg">
+                    {currentProduct.name}
+                  </h4>
+                  <p className="mb-8 text-lg text-blue-200/80">
+                    {currentProduct.description}
+                  </p>
+
+                  {/* Slide Indicators */}
+                  <div className="flex justify-center gap-2">
+                    {geProducts.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                          index === currentSlide
+                            ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
+                            : 'bg-white/30 hover:bg-white/50'
+                        }`}
+                        aria-label={`View product ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Store CTA */}
+                <div className="mt-8">
+                  <a
+                    href="https://www.gelighting.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-950 shadow-lg transition-all duration-200 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-2xl"
+                  >
+                    Visit Partner Store
+                    <ExternalLink className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </a>
                 </div>
               </div>
-
-              {/* Product Info */}
-              <div className="mb-6">
-                <span className="inline-flex items-center rounded-full bg-blue-500/20 px-4 py-1.5 text-sm font-medium text-blue-200 border border-blue-400/20">
-                  {currentProduct.category}
-                </span>
-              </div>
-              <h4 className="mb-3 text-2xl font-bold text-white">
-                {currentProduct.name}
-              </h4>
-              <p className="mb-8 text-lg text-blue-200/80">
-                {currentProduct.description}
-              </p>
-
-              {/* Slide Indicators */}
-              <div className="flex justify-center gap-2">
-                {geProducts.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide
-                        ? 'bg-blue-400 shadow-lg shadow-blue-400/50 scale-125'
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
-                    aria-label={`View product ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Store CTA */}
-            <div className="mt-8">
-              <a
-                href="https://www.gelighting.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-950 shadow-lg transition-all duration-200 hover:bg-blue-50 hover:-translate-y-0.5"
-              >
-                Visit Partner Store
-                <ExternalLink className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
             </div>
           </motion.div>
         </motion.div>
