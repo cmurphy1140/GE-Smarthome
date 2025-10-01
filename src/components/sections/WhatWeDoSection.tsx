@@ -20,46 +20,46 @@ const staggerContainer = {
 const sections = [
   {
     number: '01',
-    title: 'Design',
-    description: 'We work hard to create eye-catching and intuitive interface designs that provide users with an enjoyable experience.',
+    title: 'Innovate',
+    description: 'We pioneer cutting-edge smart home solutions that transform how people live, combining GE\'s 140+ years of innovation with Savant\'s advanced automation technology.',
     subsections: [
       {
-        title: 'Websites and Platforms',
-        content: 'We are ready to work on projects of any complexity and size. With our profound design experience, we can create both one-page sites and complex admin panels with several dashboards.'
+        title: 'Smart Home Technology',
+        content: 'From GE Proseo smart lighting to Savant whole-home automation, we deliver products that set industry standards. Our portfolio spans lighting, climate control, security, and entertainment systems designed for modern living.'
       },
       {
-        title: 'Mobile Apps',
-        content: 'We create interfaces that are not only good-looking, but also simple and easy to use. We also follow platform guidelines to make sure the design runs on every screen.'
+        title: 'Product Development',
+        content: 'We continuously advance our technology stack with firmware updates, new integrations, and expanded product lines. Every innovation is tested to ensure reliability, security, and seamless user experiences across all devices.'
       }
     ]
   },
   {
     number: '02',
-    title: 'Development',
-    description: 'When working on a project, we not only establish scalable architecture design using the best industry practices but also provide a high level of data security.',
+    title: 'Integrate',
+    description: 'When partnering with dealers, we provide complete integration support including training, technical resources, and dedicated channel strategists to ensure successful installations.',
     subsections: [
       {
-        title: 'Web Services',
-        content: 'With our technical solutions, you can get digital products created specifically for your business aim. We develop landing pages, apps for automating business processes, and high-load platforms.'
+        title: 'Dealer Enablement',
+        content: 'From day one, partners receive comprehensive training on product installation, system design, and sales strategies. Our regional trainers conduct live sessions, provide demo equipment, and offer ongoing certification programs tailored to your business.'
       },
       {
-        title: 'Native Mobile Development',
-        content: 'We create custom mobile apps for iOS and Android using Swift and Kotlin. The developed apps can be quickly released to stores because we follow Apple and Google guidelines.'
+        title: 'System Integration',
+        content: 'Our smart home systems integrate seamlessly with third-party devices, networking equipment, and existing infrastructure. We provide professional-grade APIs, documentation, and technical support to ensure every installation exceeds expectations.'
       }
     ]
   },
   {
     number: '03',
-    title: 'Maintenance',
-    description: 'Constant updating, modifying, and re-assessing of software is one way to make them user-oriented and up-to-date. Through such a service, we give businesses the technological support they need.',
+    title: 'Support',
+    description: 'Constant updating, dedicated assistance, and proactive monitoring ensure our dealers and their customers receive world-class support at every stage of the partnership.',
     subsections: [
       {
-        title: 'Post-release support',
-        content: 'We help to keep projects up-to-date – from technology updates to new functionality implementation.'
+        title: '24/7 Technical Support',
+        content: 'Our dedicated support team provides round-the-clock assistance for installation questions, troubleshooting, and system optimization. Dealers receive priority response times and direct access to engineering expertise when needed.'
       },
       {
-        title: 'System Administration',
-        content: 'Keeping your project up and running 24/7/365 is important. We make this process easy and stress-free for you.'
+        title: 'Business Growth Support',
+        content: 'Beyond technical help, we provide marketing resources, co-branded materials, MDF funds, and strategic guidance to help dealers grow their smart home practice. Quarterly business reviews ensure you\'re maximizing your partnership potential.'
       }
     ]
   }
