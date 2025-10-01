@@ -327,6 +327,17 @@ export default function SignupPage() {
                       }`}
                       placeholder="your@email.com"
                     />
+                    <p className="mt-2 text-xs text-neutral-500">
+                      By submitting, you agree to our{' '}
+                      <Link href="/privacy" className="text-ge-blue underline">
+                        Privacy Policy
+                      </Link>{' '}
+                      and{' '}
+                      <Link href="/terms" className="text-ge-blue underline">
+                        Terms
+                      </Link>
+                      .
+                    </p>
                     {errors.email && (
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
@@ -513,7 +524,7 @@ export default function SignupPage() {
                         className="mx-auto h-6 w-6 rounded-full border-2 border-white border-t-transparent"
                       />
                     ) : (
-                      'Submit inquiry'
+                      'Apply Now'
                     )}
                   </motion.button>
                 </motion.div>

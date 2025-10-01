@@ -88,6 +88,7 @@ export default function FaqPage() {
         </div>
 
         <section className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h1 className="sr-only">GE Smart Home Dealer Program FAQ</h1>
           <SectionHeader
             eyebrow="Support"
             title={<span className="text-blue-950">Frequently Asked Questions</span>}
@@ -166,13 +167,13 @@ export default function FaqPage() {
                     Share your portfolio and we will map the right incentives, demo gear, and integration path for your team.
                   </p>
                 </div>
-                <Link
-                  href="/signup"
-                  className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-100"
-                >
-                  Schedule a call
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
+              <Link
+                href="/signup"
+                className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-950 shadow-lg transition-transform duration-200 hover:-translate-y-1 hover:bg-blue-100"
+              >
+                Apply Now
+                <ArrowRight className="h-5 w-5" />
+              </Link>
               </div>
 
               <div className="absolute inset-0 rounded-3xl border border-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -239,7 +240,7 @@ export default function FaqPage() {
               Ready to Join Our Partner Network?
             </h2>
             <p className="text-blue-100 mb-8 text-lg max-w-2xl mx-auto">
-              Start your journey with GE Smart Home today. Get access to exclusive pricing, comprehensive training, and ongoing support.
+              Apply now to access exclusive pricing, comprehensive training, and ongoing support from the GE Smart Home team.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -247,7 +248,7 @@ export default function FaqPage() {
                 href="/signup"
                 className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-950 transition-all duration-200 hover:-translate-y-1 hover:bg-blue-50"
               >
-                Become a Dealer
+                Apply Now
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
