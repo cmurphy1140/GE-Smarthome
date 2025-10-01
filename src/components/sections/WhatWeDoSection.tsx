@@ -84,17 +84,17 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
 
         {/* Content sections */}
         <div className="space-y-64">
-          {sections.map((section) => (
+          {sections.map((section, sectionIndex) => (
             <motion.div
               key={section.number}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainer}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
             >
-              {/* Left column - Section info */}
-              <motion.div variants={fadeInUp} className="space-y-8">
+              {/* Left column - Section info (appears first on mobile, conditionally ordered on desktop) */}
+              <motion.div variants={fadeInUp} className={`space-y-8 ${sectionIndex === 0 ? 'lg:order-1' : ''}`}>
                 <div className="text-gray-300 text-8xl font-bold">
                   {section.number}
                 </div>
@@ -112,19 +112,91 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
                 </Link>
               </motion.div>
 
-              {/* Right column - Subsections */}
-              <motion.div variants={fadeInUp} className="space-y-8">
-                {section.subsections.map((subsection, subIndex) => (
-                  <div key={subIndex} className="space-y-2">
-                    <h4 className="text-xl font-bold text-gray-900">
-                      {subsection.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {subsection.content}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
+              {/* Right column - Illustration or Subsections */}
+              {sectionIndex === 0 ? (
+                /* Innovation Illustration for Section 01 */
+                <motion.div 
+                  variants={fadeInUp}
+                  className="flex justify-center lg:justify-start lg:order-2"
+                >
+                  <svg 
+                    width="400" 
+                    height="400" 
+                    viewBox="0 0 400 400" 
+                    className="drop-shadow-2xl"
+                  >
+                    {/* Light bulb base */}
+                    <circle
+                      cx="200"
+                      cy="200"
+                      r="80"
+                      fill="#0ea5e9"
+                      opacity="0.2"
+                    />
+                    
+                    {/* Light bulb */}
+                    <path
+                      d="M 200 100 
+                         Q 240 120, 240 160
+                         Q 240 200, 220 230
+                         L 220 260
+                         Q 220 270, 210 270
+                         L 190 270
+                         Q 180 270, 180 260
+                         L 180 230
+                         Q 160 200, 160 160
+                         Q 160 120, 200 100 Z"
+                      fill="#0ea5e9"
+                      stroke="#0284c7"
+                      strokeWidth="3"
+                    />
+                    
+                    {/* Bulb base */}
+                    <rect
+                      x="185"
+                      y="270"
+                      width="30"
+                      height="20"
+                      rx="2"
+                      fill="#0284c7"
+                    />
+                    
+                    {/* Light rays */}
+                    <g opacity="0.6">
+                      <line x1="200" y1="80" x2="200" y2="50" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
+                      <line x1="260" y1="120" x2="280" y2="100" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
+                      <line x1="280" y1="180" x2="310" y2="180" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
+                      <line x1="140" y1="120" x2="120" y2="100" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
+                      <line x1="120" y1="180" x2="90" y2="180" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
+                    </g>
+                    
+                    {/* Gears inside bulb */}
+                    <circle cx="200" cy="160" r="25" fill="none" stroke="#0284c7" strokeWidth="2" />
+                    <circle cx="200" cy="160" r="15" fill="none" stroke="#0284c7" strokeWidth="2" />
+                    <circle cx="200" cy="160" r="4" fill="#0284c7" />
+                    
+                    {/* Small gear teeth */}
+                    <circle cx="200" cy="135" r="3" fill="#0284c7" />
+                    <circle cx="225" cy="160" r="3" fill="#0284c7" />
+                    <circle cx="200" cy="185" r="3" fill="#0284c7" />
+                    <circle cx="175" cy="160" r="3" fill="#0284c7" />
+                  </svg>
+                </motion.div>
+              ) : (
+                /* Subsections for other sections */
+                <motion.div variants={fadeInUp} className="space-y-8">
+                  {section.subsections.map((subsection, subIndex) => (
+                    <div key={subIndex} className="space-y-2">
+                      <h4 className="text-xl font-bold text-gray-900">
+                        {subsection.title}
+                      </h4>
+                      <p className="text-gray-600 leading-relaxed">
+                        {subsection.content}
+                      </p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>
