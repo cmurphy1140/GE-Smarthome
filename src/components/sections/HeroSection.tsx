@@ -28,6 +28,64 @@ function HeroSectionComponent() {
           variants={staggerContainer}
           className="text-center"
         >
+          {/* House roof icon above heading */}
+          <motion.div
+            variants={fadeInUp}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            className="flex justify-center mb-12"
+          >
+            <svg 
+              width="200" 
+              height="100" 
+              viewBox="0 0 200 100" 
+              className="text-blue-600"
+              aria-label="Smart Home"
+            >
+              {/* Roof */}
+              <path
+                d="M 10 90 L 100 20 L 190 90 Z"
+                fill="currentColor"
+                className="opacity-90"
+              />
+              {/* Chimney */}
+              <rect
+                x="140"
+                y="40"
+                width="15"
+                height="30"
+                fill="currentColor"
+                className="opacity-80"
+              />
+              {/* Door */}
+              <rect
+                x="85"
+                y="70"
+                width="30"
+                height="30"
+                fill="white"
+                className="opacity-90"
+              />
+              {/* Window left */}
+              <rect
+                x="50"
+                y="75"
+                width="20"
+                height="20"
+                fill="white"
+                className="opacity-90"
+              />
+              {/* Window right */}
+              <rect
+                x="130"
+                y="75"
+                width="20"
+                height="20"
+                fill="white"
+                className="opacity-90"
+              />
+            </svg>
+          </motion.div>
+
           {/* Main heading - Ronas IT style */}
           <motion.h1
             variants={fadeInUp}
