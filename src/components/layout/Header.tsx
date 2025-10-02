@@ -93,18 +93,17 @@ export function Header() {
             >
           <div className="inline-flex h-12 w-12 items-center justify-center overflow-visible">
             <Image
-              src="/GE-Logo.png"
+              src="/General_Electric_logo.png"
               alt="GE Smart Home logo"
               width={48}
               height={48}
-              className="h-12 w-12 object-contain transform scale-[1.65] origin-left"
+              className="h-12 w-12 object-contain"
               priority
               unoptimized
             />
           </div>
           <div className="flex flex-col">
                 <span className="text-xl font-bold text-gray-900 leading-tight">GE Smart Home</span>
-            <span className="text-xs text-gray-500 leading-tight">Powered by Savant AI</span>
           </div>
         </Link>
 

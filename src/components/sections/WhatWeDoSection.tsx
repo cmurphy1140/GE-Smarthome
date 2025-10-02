@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import React, { memo, useRef, useState } from 'react'
+import Image from 'next/image'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
@@ -146,6 +147,25 @@ export const WhatWeDoSection = memo(function WhatWeDoSection() {
           <p className="text-body text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We don&apos;t sell products to dealers—we invest in their success. Every partnership is built on three pillars that drive measurable business growth.
           </p>
+        </motion.div>
+
+        {/* Analytics showcase image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative mb-20 overflow-hidden rounded-2xl"
+        >
+          <Image
+            src="/smart-home-analytics.png"
+            alt="Advanced smart home analytics and data insights"
+            width={1200}
+            height={600}
+            className="h-auto w-full object-cover"
+            sizes="(max-width: 768px) 100vw, 1200px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent" />
         </motion.div>
 
         {/* Design.md: Content sections with psychological design strategies */}
